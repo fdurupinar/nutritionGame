@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20904539f03445f5a4dfc956ed10877, type: 3}
+  m_Name: myth_detox_smoothies
+  m_EditorClassIdentifier: Assembly-CSharp::MythSO
+  id: myth_detox_smoothies
+  title: Detox smoothies cure everything
+  difficulty: 2
+  baseReach: 1500
+  susceptibleAudiences:
+  - wellness
+  - parents
+  counterFacts:
+  - Liver and kidneys already detox;No strong clinical evidence for detox cleanses
+  shortDebunk: "Bodies already have detox systems \u2014 smoothies don\u2019t \u2018flush
+    toxins\u2019."
+  tags:
+  - detox
+  - miracle
+  enabledFlag: 1

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20904539f03445f5a4dfc956ed10877, type: 3}
+  m_Name: myth_carbs_poison
+  m_EditorClassIdentifier: Assembly-CSharp::MythSO
+  id: myth_carbs_poison
+  title: Carbs are poison
+  difficulty: 1
+  baseReach: 1200
+  susceptibleAudiences:
+  - teens
+  - fitness
+  counterFacts:
+  - Carbs are a primary energy source;Whole grains are linked with better outcomes
+  shortDebunk: "Carbs \u2260 poison \u2014 quality & portion matter."
+  tags:
+  - weightloss
+  - fear
+  enabledFlag: 1

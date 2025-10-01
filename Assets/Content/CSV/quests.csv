@@ -1,0 +1,4 @@
+id,title,description,reward_coins,reward_truthTokens,enabled
+quest_shares_500,Go Viral,Hit 500 shares on a single post.,100,5,True
+quest_mix_tactics,Mix It Up,Use three different tactic types in one post.,80,5,True
+quest_debrief_perfect,Sharp-Eyed,Score 100% on any debrief mini-game.,70,10,True

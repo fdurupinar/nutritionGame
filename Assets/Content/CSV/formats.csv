@@ -1,0 +1,5 @@
+id,name,audienceMultipliers,enabled
+fmt_meme,Meme,teens:0.10|parents:-0.05|fitness:0.02|wellness:0.02|general:0.00,True
+fmt_before_after,Before/After,fitness:0.12|teens:0.05|parents:-0.02|wellness:0.00|general:0.03,True
+fmt_infographic,Infographic,general:0.08|parents:0.05|teens:-0.03|fitness:0.02|wellness:0.04,True
+fmt_quote,Quote Card,wellness:0.08|parents:0.03|general:0.02|teens:0.00|fitness:0.00,True

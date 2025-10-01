@@ -1,0 +1,6 @@
+id,displayName,emotionality,skepticism,interests,enabled
+teens,Teens,0.75,0.4,memes|short-form|trends,True
+parents,Parents,0.6,0.6,safety|kids|budget,True
+fitness,Fitness,0.55,0.55,macros|performance|physique,True
+wellness,Wellness,0.7,0.45,holistic|mindfulness|clean,True
+general,General,0.5,0.5,news|work|family,True

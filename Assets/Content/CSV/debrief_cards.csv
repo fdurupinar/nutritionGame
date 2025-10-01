@@ -1,0 +1,4 @@
+id,text,correctBin,explanation
+dc_miracle_cure,‘Miracle cure’ claim,RedFlag,Exaggerated promises are classic misinformation.
+dc_secret_they_hide,‘Doctors hide this secret’,RedFlag,Appeal to conspiracy undermines trustworthy sources.
+dc_whole_grains_ok,‘Whole grains provide fiber and nutrients’,Okay,Evidence-supported general statement.

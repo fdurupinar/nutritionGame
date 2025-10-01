@@ -1,0 +1,4 @@
+id,name,perk_tacticTypeBonus,audienceAffinity,cosmeticSet,enabled
+avatar_biohacker,Biohacker,FakeExpert:0.10|CherryPick:0.03,fitness:0.05|general:0.02,techy|neon,True
+avatar_detox_queen,Detox Queen,Anecdote:0.08|Clickbait:0.12,parents:0.05|wellness:0.05,pastel|sparkle,True
+avatar_fitfluencer,Fitfluencer,BeforeAfter:0.12|Anecdote:0.03,fitness:0.07|teens:0.03,athleisure|bold,True

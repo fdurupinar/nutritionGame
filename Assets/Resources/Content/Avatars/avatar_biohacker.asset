@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32023fef60ece43b6ba5a70a05c9cf5f, type: 3}
+  m_Name: avatar_biohacker
+  m_EditorClassIdentifier: Assembly-CSharp::AvatarSO
+  id: avatar_biohacker
+  name: Biohacker
+  perk_tacticTypeBonus:
+  - type: 1
+    bonus: 0.1
+  - type: 2
+    bonus: 0.03
+  audienceAffinity:
+  - audienceId: fitness
+    bonus: 0.05
+  - audienceId: general
+    bonus: 0.02
+  cosmeticSet: techy|neon
+  enabledFlag: 1
