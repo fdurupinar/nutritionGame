@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 34c25f57aa90f4645811fcca5235a2ab
+guid: 3fd747391da3b4a699c6a7da4804aa45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3899264874753553345
-    second: chat_0
+      213: 2637952981396332254
+    second: publishButton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +46,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 203, y: 414, z: 200, w: 414}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,35 +98,13 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: chat_0
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 51
-        width: 378
-        height: 410
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c3f7d09eb8fc1630800000000000000
-      internalID: 3899264874753553345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
-    internalID: 0
+    spriteID: 584e71e17276f4ddeac2ac0ccced3029
+    internalID: -885472436
     vertices: []
     indices: 
     edges: []
@@ -135,7 +113,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      chat_0: 3899264874753553345
+      publishButton_0: 2637952981396332254
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
