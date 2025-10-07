@@ -23,3 +23,4 @@ MonoBehaviour:
   - data
   - manipulation
   enabledFlag: 1
+  tacticImage: {fileID: -4652545123539155653, guid: a152ccd513896491eb27e56e4c420f64, type: 3}

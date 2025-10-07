@@ -12,4 +12,6 @@ public class TacticSO : ScriptableObject {
     public string[] synergies;      // pipe-delimited
     public string[] tags;           // pipe-delimited
     public bool enabledFlag = true;
+    public Sprite tacticImage; // Add this line for the card's image
+
 }

@@ -23,3 +23,4 @@ MonoBehaviour:
   - teens
   - visual
   enabledFlag: 1
+  tacticImage: {fileID: 8204146772873552989, guid: 8828727f9dd614ada8f845629dd33ebd, type: 3}

@@ -56,7 +56,10 @@ public static class NutriGameCsvImporter {
         if(!Check(file)) return;
         var rows = Csv.Read(file);
         foreach(var r in rows) {
+            
+
             var so = LoadOrCreate<TacticSO>(Path.Combine(OutFolder, "Tactics"), r["id"]);
+
             so.id = r["id"];
             so.displayName = r["displayName"];
             so.type = EnumParse(r["type"], TacticType.Fear);
@@ -65,6 +68,11 @@ public static class NutriGameCsvImporter {
             so.synergies = SplitPipe(r.GetOrDefault("synergies"));
             so.tags = SplitPipe(r.GetOrDefault("tags"));
             so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
+
+            Debug.Log(r.GetOrDefault("tacticImagePath", "").Trim());
+            so.tacticImage = AssetDatabase.LoadAssetAtPath<Sprite>(r.GetOrDefault("tacticImagePath", "").Trim());
+            
+           
             EditorUtility.SetDirty(so);
         }
     }

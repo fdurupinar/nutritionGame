@@ -23,3 +23,4 @@ MonoBehaviour:
   - headline
   - curiosity
   enabledFlag: 1
+  tacticImage: {fileID: 1625011720555441244, guid: 23c49b53d91ef49879dde9aa6ee0ed6f, type: 3}

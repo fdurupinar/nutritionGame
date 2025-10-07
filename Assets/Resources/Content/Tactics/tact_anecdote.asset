@@ -23,3 +23,4 @@ MonoBehaviour:
   - story
   - relatable
   enabledFlag: 1
+  tacticImage: {fileID: -6513743853152151312, guid: d0f00a30f16a0436db515d2eba6cc028, type: 3}

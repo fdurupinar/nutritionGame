@@ -10,6 +10,8 @@ public class Card : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _bonusText; // New UI element for the bonus
     [SerializeField] private TextMeshProUGUI _costText;  // New UI element for the cost
+    [SerializeField] private Image _tacticMainImage; // Add this reference
+
 
     [SerializeField] private GameObject _selectionOutline;
 
@@ -31,6 +33,13 @@ public class Card : MonoBehaviour {
         _button = GetComponent<Button>();
         _button.onClick.RemoveAllListeners(); // Clear previous listeners
         _button.onClick.AddListener(OnCardClicked);
+
+        // Set the new tactic image
+        _tacticMainImage = GetComponent<Image>();
+            
+           
+        _tacticMainImage.sprite = _tacticData.tacticImage;
+        
     }
 
     private void OnCardClicked() {

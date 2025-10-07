@@ -2,29 +2,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-
+using System.Linq; // <-- Required for ToList()
 
 public class TacticManager : MonoBehaviour
 {
 
     public Animator TacticPanel;
     [Header("Grid Settings")]
-    [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private Transform gridParent;
+    [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private Transform _gridParent;
 
     [Header("Grid Settings")]
     
-    [SerializeField] private List<TacticSO> tacticsToCreate; // Changed to a list of TacticSO
+    [SerializeField] private List<TacticSO> _tacticsToCreate; // Changed to a list of TacticSO
 
     private Card _currentlySelectedCard;
 
+    [Header("Publish Settings")]
+    [SerializeField] private Image _publishedImagePreview; // Reference to the preview image
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        int numberOfCards = tacticsToCreate.Count;
+        //// Hide the preview image initially
+        //if (_publishedImagePreview != null)        
+        //    _publishedImagePreview.gameObject.SetActive(false);
+
+        _tacticsToCreate = new List<TacticSO>();
+
+        _tacticsToCreate = Resources.LoadAll<TacticSO>("Content/Tactics").ToList(); 
+
+        
+
+        int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
+        
     }
 
 
@@ -39,15 +52,15 @@ public class TacticManager : MonoBehaviour
     }
     public void PopulateGrid(int count) {
         // Clear any existing cards in the grid before populating
-        foreach(Transform child in gridParent) {
+        foreach(Transform child in _gridParent) {
             Destroy(child.gameObject);
         }
 
         // Loop through the TacticSO list
-        foreach(TacticSO tacticData in tacticsToCreate) {
+        foreach(TacticSO tacticData in _tacticsToCreate) {
             if(!tacticData.enabledFlag) continue; // Skip disabled tactics
 
-            GameObject newCardObj = Instantiate(cardPrefab, gridParent);
+            GameObject newCardObj = Instantiate(_cardPrefab, _gridParent);
             Card cardComponent = newCardObj.GetComponent<Card>();
 
             // Pass the TacticSO data to the new card
@@ -70,6 +83,27 @@ public class TacticManager : MonoBehaviour
             _currentlySelectedCard.Select();
             // You can now access the selected tactic's data
             Debug.Log($"Selected Tactic: {_currentlySelectedCard.TacticData.displayName}");
+        }
+    }
+
+
+    // This is the public method the Publish Button will call
+    public void OnPublishButtonClicked()
+    {
+        if (_currentlySelectedCard != null)
+        {
+            // Get the data from the selected card
+            TacticSO selectedTactic = _currentlySelectedCard.TacticData;
+
+            // Update the preview image with the selected card's sprite
+            _publishedImagePreview.sprite = selectedTactic.tacticImage;
+            _publishedImagePreview.gameObject.SetActive(true);
+
+            Debug.Log($"Published Tactic: {selectedTactic.displayName}");
+        }
+        else
+        {
+            Debug.LogWarning("No card selected to publish!");
         }
     }
 }

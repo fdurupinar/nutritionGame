@@ -24,3 +24,4 @@ MonoBehaviour:
   - emotional
   - alarm
   enabledFlag: 1
+  tacticImage: {fileID: 1477306467657765337, guid: ae214e595b9f041bd842bc35a7e6d341, type: 3}

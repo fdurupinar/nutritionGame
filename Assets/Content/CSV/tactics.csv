@@ -1,7 +1,7 @@
-id,displayName,type,engagementBonus,credibilityCost,synergies,tags,enabled
-tact_fear,Fear,Fear,0.15,0.08,clickbait|before_after,emotional|alarm,True
-tact_fakeexpert,Fake Expert,FakeExpert,0.1,0.05,infographic,authority|pseudo,True
-tact_cherrypick,Cherry-pick,CherryPick,0.12,0.07,graph_no_context,data|manipulation,True
-tact_anecdote,Anecdote,Anecdote,0.08,0.03,before_after,story|relatable,True
-tact_clickbait,Clickbait,Clickbait,0.1,0.02,fear,headline|curiosity,True
-tact_emoji,Emoji Spam,EmojiSpam,0.05,0.01,meme,teens|visual,True
+id,displayName,type,engagementBonus,credibilityCost,synergies,tags,enabled,tacticImagePath
+tact_fear,Fear,Fear,0.15,0.08,clickbait|before_after,emotional|alarm,True,"Assets/Images/Cards/fear.png"
+tact_fakeexpert,Fake Expert,FakeExpert,0.1,0.05,infographic,authority|pseudo,True,"Assets/Images/Cards/fakeexpert.png"
+tact_cherrypick,Cherry-pick,CherryPick,0.12,0.07,graph_no_context,data|manipulation,True,"Assets/Images/Cards/cherrypick.png"
+tact_anecdote,Anecdote,Anecdote,0.08,0.03,before_after,story|relatable,True,"Assets/Images/Cards/anecdote.png"
+tact_clickbait,Clickbait,Clickbait,0.1,0.02,fear,headline|curiosity,True,"Assets/Images/Cards/clickbait.png"
+tact_emoji,Emoji Spam,EmojiSpam,0.05,0.01,meme,teens|visual,True,"Assets/Images/Cards/meme.png"
