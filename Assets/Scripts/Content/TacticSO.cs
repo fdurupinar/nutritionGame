@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum TacticType { Fear, FakeExpert, CherryPick, Anecdote, Clickbait, EmojiSpam }
 
-[CreateAssetMenu(menuName = "Content/Tactic")]
+[CreateAssetMenu(menuName = "Content/Tactics")]
 public class TacticSO : ScriptableObject {
     public string id;
     public string displayName;

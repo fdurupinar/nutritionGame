@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a4ea59759e7483bae7bb6ad48d5cf1, type: 3}
-  m_Name: c_skeptic_2
+  m_Name: id_4
   m_EditorClassIdentifier: Assembly-CSharp::CommentLineSO
-  id: c_skeptic_2
-  category: 1
-  text: Cherry-picked much?
-  tags:
-  - fitness
-  - general
+  category: 2
+  id: id_4
+  commenterName: jenny
+  text: "Interesting\u2026 not sure about it though."

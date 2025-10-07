@@ -14,7 +14,7 @@ public static class NutriGameCsvImporter {
     private const string OutFolder = "Assets/Resources/Content";
     private static readonly CultureInfo CI = CultureInfo.InvariantCulture;
 
-    [MenuItem("Tools/Nutrition Misinformation/Import All CSVs")]
+    [MenuItem("FFT/Import All CSVs")]
     public static void ImportAll() {
         EnsureDirs();
 
@@ -30,7 +30,7 @@ public static class NutriGameCsvImporter {
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        Debug.Log("<b>Nutrition Misinformation:</b> CSV import complete.");
+        Debug.Log("CSV import complete.");
     }
 
     // ---------- Importers ----------
@@ -137,12 +137,13 @@ public static class NutriGameCsvImporter {
         if(!Check(file)) return;
         var rows = Csv.Read(file);
         foreach(var r in rows) {
+            
             var so = LoadOrCreate<CommentLineSO>(Path.Combine(OutFolder, "Comments"), r["id"]);
-            so.id = r["id"];
+            so.id = r["id"];            
             if(!Enum.TryParse(r["category"], true, out CommentCategory cat)) cat = CommentCategory.neutral;
             so.category = cat;
             so.text = r["text"];
-            so.tags = SplitPipe(r.GetOrDefault("tags"));
+            so.commenterName = r["commenterName"];            
             EditorUtility.SetDirty(so);
         }
     }
