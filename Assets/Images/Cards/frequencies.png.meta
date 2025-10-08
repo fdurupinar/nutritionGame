@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff0d05d8ca63048d4b58ca82e9b80e41
+guid: db9f8b9c4b4ce42d1b2eb9ee5aa04577
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7024868407741593447
-    second: fakeexpert_0
+      213: -6815932256579981985
+    second: frequencies_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fakeexpert_0
+      name: frequencies_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 1120
+        height: 928
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7673d45f8985d7160800000000000000
-      internalID: 7024868407741593447
+      spriteID: f5d6c6999b1f861a0800000000000000
+      internalID: -6815932256579981985
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fakeexpert_0: 7024868407741593447
+      frequencies_0: -6815932256579981985
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,3 +15,9 @@
 <a href="https://www.flaticon.com/free-icons/instagram-comment" title="instagram comment icons">Instagram comment icons created by Fajri rama - Flaticon</a>
 
 <a href="https://www.flaticon.com/free-icons/user-interface" title="user interface icons">User interface icons created by Awicon - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/close" title="close icons">Close icons created by Ilham Fitrotul Hayat - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/coin" title="coin icons">Coin icons created by Freepik - Flaticon</a>
+
+<a href="https://www.flaticon.com/free-icons/security" title="security icons">Security icons created by Freepik - Flaticon</a>

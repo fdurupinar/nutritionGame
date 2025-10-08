@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
-  m_Name: tact_fakeexpert
+  m_Name: tact_fakeexpert2
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
-  id: tact_fakeexpert
-  displayName: Fake Expert
+  id: tact_fakeexpert2
+  displayName: FakeExpert
   type: 1
-  engagementBonus: 0.1
-  credibilityCost: 0.05
+  engagementBonus: 0.08
+  credibilityCost: 0.03
   synergies:
-  - infographic
+  - before_after
   tags:
-  - authority
-  - pseudo
+  - story
+  - relatable
   enabledFlag: 1
-  tacticImage: {fileID: -759233108545097862, guid: 83bcfde0b29a74c068e30e95ede68c99, type: 3}
+  tacticImage: {fileID: 6753559102107755999, guid: 6fabf5b4cda2f4f379cdb2171b4a8121, type: 3}

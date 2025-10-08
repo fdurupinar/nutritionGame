@@ -1,7 +1,14 @@
 id,displayName,type,engagementBonus,credibilityCost,synergies,tags,enabled,tacticImagePath
-tact_fear,Fear,Fear,0.15,0.08,clickbait|before_after,emotional|alarm,True,"Assets/Images/Cards/fear.png"
-tact_fakeexpert,Fake Expert,FakeExpert,0.1,0.05,infographic,authority|pseudo,True,"Assets/Images/Cards/fakeexpert.png"
-tact_cherrypick,Cherry-pick,CherryPick,0.12,0.07,graph_no_context,data|manipulation,True,"Assets/Images/Cards/cherrypick.png"
-tact_anecdote,Anecdote,Anecdote,0.08,0.03,before_after,story|relatable,True,"Assets/Images/Cards/anecdote.png"
-tact_clickbait,Clickbait,Clickbait,0.1,0.02,fear,headline|curiosity,True,"Assets/Images/Cards/clickbait.png"
-tact_emoji,Emoji Spam,EmojiSpam,0.05,0.01,meme,teens|visual,True,"Assets/Images/Cards/meme.png"
+tact_fear,Fear,Fear,0.15,0.08,clickbait|before_after,emotional|alarm,TRUE,Assets/Images/Cards/fear.png
+tact_fakeexpert,Fake Expert,FakeExpert,0.1,0.05,infographic,authority|pseudo,TRUE,Assets/Images/Cards/supplements.png
+tact_cherrypick,Cherry-pick,CherryPick,0.12,0.07,graph_no_context,data|manipulation,TRUE,Assets/Images/Cards/cherrypick.png
+tact_anecdote,Anecdote,Anecdote,0.08,0.03,before_after,story|relatable,TRUE,Assets/Images/Cards/anecdote.png
+tact_clickbait,Clickbait,Clickbait,0.1,0.02,fear,headline|curiosity,TRUE,Assets/Images/Cards/clickbait.png
+tact_emoji,Emoji Spam,EmojiSpam,0.05,0.01,meme,teens|visual,TRUE,Assets/Images/Cards/meme.png
+tact_beforeafter,BeforeAfter,BeforeAfter,0.15,0.08,clickbait|before_after,emotional|alarm,TRUE,Assets/Images/Cards/beforeafter.png
+tact_toxins,Toxins,Toxins,0.1,0.05,infographic,authority|pseudo,TRUE,Assets/Images/Cards/juice.png
+tact_glowup,Glowup,Glowup,0.12,0.07,graph_no_context,data|manipulation,TRUE,Assets/Images/Cards/glowup.png
+tact_fakeexpert2,FakeExpert,FakeExpert,0.08,0.03,before_after,story|relatable,TRUE,Assets/Images/Cards/yoga.png
+tact_fakeexpert3,FakeExpert,FakeExpert,0.1,0.02,fear,headline|curiosity,TRUE,Assets/Images/Cards/frequencies.png
+tact_toxins2,Fear,Fear,0.05,0.01,meme,teens|visual,TRUE,Assets/Images/Cards/elimination.png
+tact_detox,Detox,Detox,0.05,0.01,clickbait|before_after,teens|visual,TRUE,Assets/Images/Cards/detox.png

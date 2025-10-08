@@ -22,6 +22,9 @@ public class TacticManager : MonoBehaviour
     [SerializeField] private Image _publishedImagePreview; // Reference to the preview image
 
 
+    private CommentManager _commentManager;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,9 +34,10 @@ public class TacticManager : MonoBehaviour
 
         _tacticsToCreate = new List<TacticSO>();
 
-        _tacticsToCreate = Resources.LoadAll<TacticSO>("Content/Tactics").ToList(); 
+        _tacticsToCreate = Resources.LoadAll<TacticSO>("Content/Tactics").ToList();
 
-        
+
+        _commentManager = FindFirstObjectByType<CommentManager>();
 
         int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
@@ -48,6 +52,13 @@ public class TacticManager : MonoBehaviour
 
     public void CloseCardView() {
         TacticPanel.SetBool("isHidden", true);
+
+    }
+
+    public void CloseCardViewWithoutSelection()
+    {
+        TacticPanel.SetBool("isHidden", true);
+        _currentlySelectedCard = null;
 
     }
     public void PopulateGrid(int count) {
@@ -100,6 +111,9 @@ public class TacticManager : MonoBehaviour
             _publishedImagePreview.gameObject.SetActive(true);
 
             Debug.Log($"Published Tactic: {selectedTactic.displayName}");
+
+
+            StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
         }
         else
         {

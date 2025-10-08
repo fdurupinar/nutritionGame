@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-public class CommentDisplay : MonoBehaviour {
+public class CommentManager : MonoBehaviour {
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI _commentBox;
     [SerializeField] private ScrollRect _scrollRect;
@@ -26,8 +26,9 @@ public class CommentDisplay : MonoBehaviour {
         // Clear the comment box at the start
         _commentBox.text = string.Empty;
 
+
         LoadComments();
-        StartCoroutine(DisplayCommentsRoutine());
+        StartCoroutine(DisplayCommentsRoutine(_commentDelay));
     }
 
     
@@ -44,7 +45,7 @@ public class CommentDisplay : MonoBehaviour {
         _commentsList = commentsArray.ToList();
     }
 
-    private IEnumerator DisplayCommentsRoutine() {
+    public IEnumerator DisplayCommentsRoutine(float delay) {
         StringBuilder builder = new StringBuilder();
 
         foreach(CommentLineSO comment in _commentsList) {
@@ -67,7 +68,7 @@ public class CommentDisplay : MonoBehaviour {
             }
 
             // Wait for the specified delay before adding the next comment
-            yield return new WaitForSeconds(_commentDelay);
+            yield return new WaitForSeconds(delay);
         }
     }
 

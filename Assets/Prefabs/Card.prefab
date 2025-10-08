@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291025255
-  m_fontColor: {r: 0.40450338, g: 0.8490566, b: 0.763876, a: 1}
+    rgba: 4288522667
+  m_fontColor: {r: 0.67058825, g: 0.6627451, b: 0.6156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.8941177, b: 0.882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -277,6 +277,7 @@ MonoBehaviour:
   _nameText: {fileID: 5583023185652841571}
   _bonusText: {fileID: 6130858390099927455}
   _costText: {fileID: 5598424652704938276}
+  _tacticMainImage: {fileID: 0}
   _selectionOutline: {fileID: 7677053570400048771}
 --- !u!1 &4241755838159012933
 GameObject:
@@ -488,8 +489,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285493221
-  m_fontColor: {r: 0.8962264, g: 0.43543077, b: 0.43543077, a: 1}
+    rgba: 4288522667
+  m_fontColor: {r: 0.67058825, g: 0.6627451, b: 0.6156863, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

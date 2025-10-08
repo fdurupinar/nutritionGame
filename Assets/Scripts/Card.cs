@@ -34,12 +34,12 @@ public class Card : MonoBehaviour {
         _button.onClick.RemoveAllListeners(); // Clear previous listeners
         _button.onClick.AddListener(OnCardClicked);
 
-        // Set the new tactic image
-        _tacticMainImage = GetComponent<Image>();
-            
-           
-        _tacticMainImage.sprite = _tacticData.tacticImage;
         
+        // Open this to change the card face
+        //_tacticMainImage = GetComponent<Image>(); 
+        //_tacticMainImage.sprite = _tacticData.tacticImage;
+
+
     }
 
     private void OnCardClicked() {
