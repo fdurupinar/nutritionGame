@@ -1,14 +1,17 @@
-id,displayName,type,engagementBonus,credibilityCost,synergies,tags,enabled,tacticImagePath
-tact_fear,Fear,Fear,0.15,0.08,clickbait|before_after,emotional|alarm,TRUE,Assets/Images/Cards/fear.png
-tact_fakeexpert,Fake Expert,FakeExpert,0.1,0.05,infographic,authority|pseudo,TRUE,Assets/Images/Cards/supplements.png
-tact_cherrypick,Cherry-pick,CherryPick,0.12,0.07,graph_no_context,data|manipulation,TRUE,Assets/Images/Cards/cherrypick.png
-tact_anecdote,Anecdote,Anecdote,0.08,0.03,before_after,story|relatable,TRUE,Assets/Images/Cards/anecdote.png
-tact_clickbait,Clickbait,Clickbait,0.1,0.02,fear,headline|curiosity,TRUE,Assets/Images/Cards/clickbait.png
-tact_emoji,Emoji Spam,EmojiSpam,0.05,0.01,meme,teens|visual,TRUE,Assets/Images/Cards/meme.png
-tact_beforeafter,BeforeAfter,BeforeAfter,0.15,0.08,clickbait|before_after,emotional|alarm,TRUE,Assets/Images/Cards/beforeafter.png
-tact_toxins,Toxins,Toxins,0.1,0.05,infographic,authority|pseudo,TRUE,Assets/Images/Cards/juice.png
-tact_glowup,Glowup,Glowup,0.12,0.07,graph_no_context,data|manipulation,TRUE,Assets/Images/Cards/glowup.png
-tact_fakeexpert2,FakeExpert,FakeExpert,0.08,0.03,before_after,story|relatable,TRUE,Assets/Images/Cards/yoga.png
-tact_fakeexpert3,FakeExpert,FakeExpert,0.1,0.02,fear,headline|curiosity,TRUE,Assets/Images/Cards/frequencies.png
-tact_toxins2,Fear,Fear,0.05,0.01,meme,teens|visual,TRUE,Assets/Images/Cards/elimination.png
-tact_detox,Detox,Detox,0.05,0.01,clickbait|before_after,teens|visual,TRUE,Assets/Images/Cards/detox.png
+id,displayName,type,text,level,engagementBonus,credibilityCost,enabled,tacticImagePath
+0,Fear,Emotion,"If you're not doing this, you're in danger!",1,0.15,0.08,TRUE,Assets/Images/Cards/fear.png
+1,Detox,Emotion,"Everyone is doing this new cleanse!""",2,0.05,0.01,TRUE,Assets/Images/Cards/detox.png
+2,BeforeAfter|Inspirational,Emotion,How I lost 20lbs in 5 days,3,0.15,0.08,TRUE,Assets/Images/Cards/beforeafter.png
+3,False hope,Emotion,The one trick that will change your life forever.,1,0.05,0.01,TRUE,Assets/Images/Cards/elimination.png
+4,Appeal to nature,Pseudoscience,Use this natural ingredient,1,0.12,0.07,TRUE,Assets/Images/Cards/glowup.png
+5,Toxins,Conspiracy,Big Pharma doesn't want you to know this secret!,1,0.1,0.05,TRUE,Assets/Images/Cards/juice.png
+6,Guru,TwistedEvidence,Scientist says do this every day,1,0.1,0.02,TRUE,Assets/Images/Cards/frequencies.png
+7,Ancient Wisdom,TwistedEvidence,Rediscover the forgotten secrets of the ancients.,2,0.08,0.03,TRUE,Assets/Images/Cards/yoga.png
+8,Cherry picking,TwistedEvidence,A recent study hinted that this could be effective.,2,0.1,0.03,TRUE,Assets/Images/Cards/glowup.png
+9,Misleading graph,TwistedEvidence,The numbers don't lie! Look at this chart.,3,0.08,0.03,TRUE,Assets/Images/Cards/yoga.png
+10,Anecdote,LogicalFallacy,My cousin lost 60lbs with this  protocol. ,1,0.15,0.05,TRUE,Assets/Images/Cards/anecdote.png
+11,Strawman,Conspiracy,"They say eat 'moderation', but what are they hiding?",1,0.05,0.07,TRUE,Assets/Images/Cards/detox.png
+12,Jargon overload,Pseudoscience,Secret biovibrational harmonization power of citrus,2,0.15,0.03,TRUE,Assets/Images/Cards/frequencies.png
+13,Single Cause,Pseudoscience,You can cure cancer with seed oils,2,0.05,0.02,TRUE,Assets/Images/Cards/frequencies.png
+14,Correlation vs. Causation,LogicalFallacy,She went gluten-free and her acne cleared up.,2,0.12,0.08,TRUE,Assets/Images/Cards/beforeafter.png
+15,Supplements,FinancialGain,Buy my supplements to unlock your true potential!,1,0.08,0.01,TRUE,Assets/Images/Cards/supplements.png

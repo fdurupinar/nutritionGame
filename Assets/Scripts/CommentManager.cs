@@ -25,7 +25,7 @@ public class CommentManager : MonoBehaviour {
 
         // Clear the comment box at the start
         _commentBox.text = string.Empty;
-
+        
 
         LoadComments();
         StartCoroutine(DisplayCommentsRoutine(_commentDelay));
@@ -48,7 +48,10 @@ public class CommentManager : MonoBehaviour {
     public IEnumerator DisplayCommentsRoutine(float delay) {
         StringBuilder builder = new StringBuilder();
 
-        foreach(CommentLineSO comment in _commentsList) {
+        //initial delay
+        yield return new WaitForSeconds(delay);
+
+        foreach (CommentLineSO comment in _commentsList) {
             // Check if the user is at the bottom BEFORE adding the new text.
             // A small tolerance (e.g., 0.1f) is good practice to account for floating point inaccuracies.
             bool isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
@@ -68,7 +71,7 @@ public class CommentManager : MonoBehaviour {
             }
 
             // Wait for the specified delay before adding the next comment
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 

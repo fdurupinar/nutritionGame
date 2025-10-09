@@ -18,9 +18,8 @@ public class TacticManager : MonoBehaviour
 
     private Card _currentlySelectedCard;
 
-    [Header("Publish Settings")]
-    [SerializeField] private Image _publishedImagePreview; // Reference to the preview image
-
+    [Header("Publish Settings")]    
+    [SerializeField] private GameObject _contentPanel;
 
     private CommentManager _commentManager;
 
@@ -106,14 +105,21 @@ public class TacticManager : MonoBehaviour
             // Get the data from the selected card
             TacticSO selectedTactic = _currentlySelectedCard.TacticData;
 
+
+            _contentPanel.GetComponent<Image>().sprite = selectedTactic.tacticImage;
+            _contentPanel.GetComponent<Image>().gameObject.SetActive(true);
+            _contentPanel.GetComponentInChildren<TextMeshProUGUI>().text = selectedTactic.text;
+
+            Debug.Log(selectedTactic.text);
             // Update the preview image with the selected card's sprite
-            _publishedImagePreview.sprite = selectedTactic.tacticImage;
-            _publishedImagePreview.gameObject.SetActive(true);
+            //_publishedImagePreview.sprite = selectedTactic.tacticImage;
+            //_publishedImagePreview.gameObject.SetActive(true);
 
             Debug.Log($"Published Tactic: {selectedTactic.displayName}");
 
 
             StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
+
         }
         else
         {

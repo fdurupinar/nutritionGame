@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 7
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 7
+  displayName: Ancient Wisdom
+  type: 5
+  text: Rediscover the forgotten secrets of the ancients.
+  engagementBonus: 0.08
+  credibilityCost: 0.03
+  enabledFlag: 1
+  tacticImage: {fileID: 6753559102107755999, guid: 6fabf5b4cda2f4f379cdb2171b4a8121, type: 3}

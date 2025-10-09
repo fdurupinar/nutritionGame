@@ -18,15 +18,12 @@ public static class NutriGameCsvImporter {
     public static void ImportAll() {
         EnsureDirs();
 
-        ImportAudiences(Path.Combine(CsvFolder, "audiences.csv"));
-        ImportMyths(Path.Combine(CsvFolder, "myths.csv"));
-        ImportTactics(Path.Combine(CsvFolder, "tactics.csv"));
-        ImportFormats(Path.Combine(CsvFolder, "formats.csv"));
-        ImportAvatars(Path.Combine(CsvFolder, "avatars.csv"));
+        ImportAudiences(Path.Combine(CsvFolder, "audiences.csv"));     
+        ImportTactics(Path.Combine(CsvFolder, "tactics.csv"));        
         ImportComments(Path.Combine(CsvFolder, "comments.csv"));
         ImportQuests(Path.Combine(CsvFolder, "quests.csv"));
         ImportDebrief(Path.Combine(CsvFolder, "debrief_cards.csv"));
-        ImportLocalization(Path.Combine(CsvFolder, "localization_en.csv"));
+        
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
@@ -34,24 +31,7 @@ public static class NutriGameCsvImporter {
     }
 
     // ---------- Importers ----------
-    private static void ImportMyths(string file) {
-        if(!Check(file)) return;
-        var rows = Csv.Read(file);
-        foreach(var r in rows) {
-            var so = LoadOrCreate<MythSO>(Path.Combine(OutFolder, "Myths"), r["id"]);
-            so.id = r["id"];
-            so.title = r["title"];
-            so.difficulty = ParseInt(r["difficulty"], 1);
-            so.baseReach = ParseFloat(r["baseReach"], 1000f);
-            so.susceptibleAudiences = SplitPipe(r["susceptibleAudiences"]);
-            so.counterFacts = SplitPipe(r["counterFacts"]);
-            so.shortDebunk = r.GetOrDefault("shortDebunk");
-            so.tags = SplitPipe(r.GetOrDefault("tags"));
-            so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
-            EditorUtility.SetDirty(so);
-        }
-    }
-
+   
     private static void ImportTactics(string file) {
         if(!Check(file)) return;
         var rows = Csv.Read(file);
@@ -62,13 +42,11 @@ public static class NutriGameCsvImporter {
 
             so.id = r["id"];
             so.displayName = r["displayName"];
-            so.type = EnumParse(r["type"], TacticType.Fear);
+            so.text = r["text"];
+            so.type = EnumParse(r["type"], TacticType.Emotion);
             so.engagementBonus = ParseFloat(r["engagementBonus"], 0f);
-            so.credibilityCost = ParseFloat(r["credibilityCost"], 0f);
-            so.synergies = SplitPipe(r.GetOrDefault("synergies"));
-            so.tags = SplitPipe(r.GetOrDefault("tags"));
+            so.credibilityCost = ParseFloat(r["credibilityCost"], 0f);                        
             so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
-
             Debug.Log(r.GetOrDefault("tacticImagePath", "").Trim());
             so.tacticImage = AssetDatabase.LoadAssetAtPath<Sprite>(r.GetOrDefault("tacticImagePath", "").Trim());
             
@@ -77,27 +55,7 @@ public static class NutriGameCsvImporter {
         }
     }
 
-    private static void ImportFormats(string file) {
-        if(!Check(file)) return;
-        var rows = Csv.Read(file);
-        foreach(var r in rows) {
-            var so = LoadOrCreate<FormatSO>(Path.Combine(OutFolder, "Formats"), r["id"]);
-            so.id = r["id"];
-            so.name = r["name"];
-            so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
-            so.audienceMultipliers.Clear();
-            foreach(var pair in SplitPipe(r["audienceMultipliers"])) {
-                // pair like "teens:0.10"
-                var kv = pair.Split(':');
-                if(kv.Length != 2) continue;
-                so.audienceMultipliers.Add(new AudienceMultiplier {
-                    audienceId = kv[0].Trim(),
-                    multiplier = ParseFloat(kv[1], 0f)
-                });
-            }
-            EditorUtility.SetDirty(so);
-        }
-    }
+   
 
     private static void ImportAudiences(string file) {
         if(!Check(file)) return;
@@ -114,32 +72,6 @@ public static class NutriGameCsvImporter {
         }
     }
 
-    private static void ImportAvatars(string file) {
-        if(!Check(file)) return;
-        var rows = Csv.Read(file);
-        foreach(var r in rows) {
-            var so = LoadOrCreate<AvatarSO>(Path.Combine(OutFolder, "Avatars"), r["id"]);
-            so.id = r["id"];
-            so.name = r["name"];
-            so.cosmeticSet = r.GetOrDefault("cosmeticSet");
-            so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
-
-            so.perk_tacticTypeBonus.Clear();
-            foreach(var pair in SplitPipe(r.GetOrDefault("perk_tacticTypeBonus"))) {
-                var kv = pair.Split(':'); if(kv.Length != 2) continue;
-                if(!Enum.TryParse(kv[0], out TacticType tt)) continue;
-                so.perk_tacticTypeBonus.Add(new TacticTypeBonus { type = tt, bonus = ParseFloat(kv[1], 0f) });
-            }
-
-            so.audienceAffinity.Clear();
-            foreach(var pair in SplitPipe(r.GetOrDefault("audienceAffinity"))) {
-                var kv = pair.Split(':'); if(kv.Length != 2) continue;
-                so.audienceAffinity.Add(new AudienceAffinity { audienceId = kv[0].Trim(), bonus = ParseFloat(kv[1], 0f) });
-            }
-
-            EditorUtility.SetDirty(so);
-        }
-    }
 
     private static void ImportComments(string file) {
         if(!Check(file)) return;
@@ -185,18 +117,7 @@ public static class NutriGameCsvImporter {
         }
     }
 
-    private static void ImportLocalization(string file) {
-        if(!Check(file)) return;
-        var rows = Csv.Read(file);
-        foreach(var r in rows) {
-            var id = r["key"];
-            var so = LoadOrCreate<LocalizationEntrySO>(Path.Combine(OutFolder, "Localization"), id);
-            so.key = id;
-            so.en = r.GetOrDefault("en");
-            EditorUtility.SetDirty(so);
-        }
-    }
-
+  
     // ---------- Helpers ----------
     private static T LoadOrCreate<T>(string folder, string id) where T : ScriptableObject {
         Directory.CreateDirectory(folder);

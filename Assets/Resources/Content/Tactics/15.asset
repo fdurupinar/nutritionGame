@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 15
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 15
+  displayName: Supplements
+  type: 4
+  text: Buy my supplements to unlock your true potential!
+  engagementBonus: 0.08
+  credibilityCost: 0.01
+  enabledFlag: 1
+  tacticImage: {fileID: -759233108545097862, guid: 83bcfde0b29a74c068e30e95ede68c99, type: 3}
