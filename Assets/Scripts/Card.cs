@@ -36,7 +36,7 @@ public class Card : MonoBehaviour {
         _button.onClick.RemoveAllListeners(); // Clear previous listeners
         _button.onClick.AddListener(OnCardClicked);
 
-        //_button.GetComponent<Image>().color = GetColorForTactic(_tacticData.type);
+        GetComponent<Image>().color = GetColorForTactic(_tacticData.type);
 
         // Open this to change the card face
         //_tacticMainImage = GetComponent<Image>(); 

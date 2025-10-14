@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq; // <-- Required for ToList()
 
+
 public class TacticManager : MonoBehaviour
 {
 
@@ -13,7 +14,6 @@ public class TacticManager : MonoBehaviour
     [SerializeField] private Transform _gridParent;
 
     [Header("Grid Settings")]
-    
     [SerializeField] private List<TacticSO> _tacticsToCreate; // Changed to a list of TacticSO
 
     private Card _currentlySelectedCard;
@@ -23,6 +23,8 @@ public class TacticManager : MonoBehaviour
 
     private CommentManager _commentManager;
 
+
+    UserStats _userStats;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +40,9 @@ public class TacticManager : MonoBehaviour
 
         _commentManager = FindFirstObjectByType<CommentManager>();
 
+        _userStats = GameObject.FindWithTag("Player").GetComponent<UserStats>();
+        _userStats.Credibility = 100;
+        
         int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
         
@@ -117,13 +122,28 @@ public class TacticManager : MonoBehaviour
 
             Debug.Log($"Published Tactic: {selectedTactic.displayName}");
 
-
+            UpdateScores(selectedTactic);
             StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
+            
+                        
 
         }
         else
         {
             Debug.LogWarning("No card selected to publish!");
         }
+    }
+    
+    
+    void UpdateScores(TacticSO tactic)
+    {
+        _userStats.Cash += (int)(tactic.engagementBonus * 100);
+        _userStats.FollowerCount += (int)(tactic.engagementBonus * 1000);
+
+        _userStats.Likes += (int)(tactic.engagementBonus * 50);
+        _userStats.Credibility -= (int)(tactic.credibilityCost * 100);
+        
+        
+        
     }
 }
