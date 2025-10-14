@@ -1,91 +1,61 @@
 using UnityEngine;
 using TMPro;
-using System.Collections; 
+using System.Collections;
+using System; // Required for using Action<>
+
 public class UserStats : MonoBehaviour
 {
-
-    
     [SerializeField] private TextMeshProUGUI _followerText;
-    [SerializeField] private TextMeshProUGUI _cashText; 
-    [SerializeField] private TextMeshProUGUI _credibilityText;  
-    
-    [SerializeField] private TextMeshProUGUI _likesText;  
-    
+    [SerializeField] private TextMeshProUGUI _cashText;
+    [SerializeField] private TextMeshProUGUI _credibilityText;
+    [SerializeField] private TextMeshProUGUI _likesText;
+
     private int _followerCnt;
     public int FollowerCount
     {
-        get{
-            return _followerCnt;
-        }
-        set{
-            
-            if(value < _followerCnt)        
-                StartCoroutine(UpdateSlowly(value, ref _followerCnt, 1, 0.5f));
-            else
-                StartCoroutine(UpdateSlowly(value, ref _followerCnt, -1, 0.5f));
-            
-            _followerText.text = _followerCnt.ToString();
-        }
+        get => _followerCnt;
+        set => StartCoroutine(UpdateStatCoroutine(value, _followerText, val => _followerCnt = val, _followerCnt));
     }
+
     private int _cash;
     public int Cash
     {
-        get
-        {
-            return _cash;
-        }
-        set
-        {
-            if(value < _cash)        
-                StartCoroutine(UpdateSlowly(value, ref _cash, 1, 0.5f));
-            else
-            StartCoroutine(UpdateSlowly(value, ref _cash, -1, 0.5f));
-            _cashText.text = _followerCnt.ToString();
-        }
+        get => _cash;
+        set => StartCoroutine(UpdateStatCoroutine(value, _cashText, val => _cash = val, _cash));
     }
-    
+
     private int _credibility;
-    public int Credibility{
-        get
-        {
-            return _credibility;
-        }
-        set
-        {
-            if(value < _credibility)        
-                StartCoroutine(UpdateSlowly(value, ref _credibility, 1, 0.5f));
-            else
-                StartCoroutine(UpdateSlowly(value, ref _credibility, -1, 0.5f));
-            
-            _credibilityText.text = _credibility.ToString();
-        }
-    }
-    
-    private int _likes;
-    public int Likes {
-        get
-        {
-            return _likes;
-        }
-        set
-        {
-            if (value < _likes)
-                StartCoroutine(UpdateSlowly(value, ref _likes, 1, 0.5f));
-            else
-                StartCoroutine(UpdateSlowly(value, ref _likes, -1, 0.5f));
-            _likesText.text = _likes.ToString();
-        }
-    }
-   
-    public IEnumerator UpdateSlowly(int target, ref int value, int delta, float delay)
+    public int Credibility
     {
-        while(value <= target)
-        {            
+        get => _credibility;
+        set => StartCoroutine(UpdateStatCoroutine(value, _credibilityText, val => _credibility = val, _credibility));
+    }
+
+    private int _likes;
+    public int Likes
+    {
+        get => _likes;
+        set => StartCoroutine(UpdateStatCoroutine(value, _likesText, val => _likes = val, _likes));
+    }
+
+    /// <summary>
+    /// Animates a stat from its current value to a target value, updating the UI text.
+    /// </summary>    
+    private IEnumerator UpdateStatCoroutine(int targetValue, TextMeshProUGUI textElement, Action<int> setter, int currentValue)
+    {
+        if (currentValue == targetValue)
+            yield break; // No change needed
+
+        // Determine direction and set a fixed delay between steps
+        int step = (targetValue > currentValue) ? 1 : -1;
+        float delay = 0.2f; // Adjust for faster/slower animation
+
+        while (currentValue != targetValue)
+        {
+            currentValue += step;
+            setter(currentValue); // Update the actual variable using the delegate
+            textElement.text = currentValue.ToString();
             yield return new WaitForSeconds(delay);
-            value+= delta;
         }
-        
-    } 
-    
-   
+    }
 }

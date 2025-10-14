@@ -18,8 +18,10 @@ public class TacticManager : MonoBehaviour
 
     private Card _currentlySelectedCard;
 
-    [Header("Publish Settings")]    
+    [Header("Publish Settings")]
     [SerializeField] private GameObject _contentPanel;
+
+    [SerializeField] private Button _publishButton;
 
     private CommentManager _commentManager;
 
@@ -42,20 +44,24 @@ public class TacticManager : MonoBehaviour
 
         _userStats = GameObject.FindWithTag("Player").GetComponent<UserStats>();
         _userStats.Credibility = 100;
-        
+
         int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
-        
+
     }
 
 
-    public void OpenCardView() {
+    public void OpenCardView()
+    {
         TacticPanel.SetBool("isHidden", false);
-       
+
     }
 
-    public void CloseCardView() {
+    public void CloseCardView()
+    {
         TacticPanel.SetBool("isHidden", true);
+
+        HighlightPublish();
 
     }
 
@@ -63,17 +69,21 @@ public class TacticManager : MonoBehaviour
     {
         TacticPanel.SetBool("isHidden", true);
         _currentlySelectedCard = null;
+          UnhighlightPublish();
 
     }
-    public void PopulateGrid(int count) {
+    public void PopulateGrid(int count)
+    {
         // Clear any existing cards in the grid before populating
-        foreach(Transform child in _gridParent) {
+        foreach (Transform child in _gridParent)
+        {
             Destroy(child.gameObject);
         }
 
         // Loop through the TacticSO list
-        foreach(TacticSO tacticData in _tacticsToCreate) {
-            if(!tacticData.enabledFlag) continue; // Skip disabled tactics
+        foreach (TacticSO tacticData in _tacticsToCreate)
+        {
+            if (!tacticData.enabledFlag) continue; // Skip disabled tactics
 
             GameObject newCardObj = Instantiate(_cardPrefab, _gridParent);
             Card cardComponent = newCardObj.GetComponent<Card>();
@@ -84,16 +94,21 @@ public class TacticManager : MonoBehaviour
     }
 
 
-    public void OnCardSelected(Card card) {
-        if(_currentlySelectedCard != null) {
+    public void OnCardSelected(Card card)
+    {
+        if (_currentlySelectedCard != null)
+        {
             _currentlySelectedCard.Deselect();
         }
 
-        if(_currentlySelectedCard == card) {
+        if (_currentlySelectedCard == card)
+        {
+            _currentlySelectedCard.Deselect();
             _currentlySelectedCard = null;
             Debug.Log("Card deselected.");
         }
-        else {
+        else
+        {
             _currentlySelectedCard = card;
             _currentlySelectedCard.Select();
             // You can now access the selected tactic's data
@@ -124,17 +139,30 @@ public class TacticManager : MonoBehaviour
 
             UpdateScores(selectedTactic);
             StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
-            
-                        
-
+            _currentlySelectedCard.Deselect();
+            UnhighlightPublish();
         }
         else
         {
+
             Debug.LogWarning("No card selected to publish!");
         }
     }
-    
-    
+
+    public void UnhighlightPublish()
+    {
+        ColorBlock cb = _publishButton.colors;
+        cb.normalColor = Color.white;
+        _publishButton.colors = cb;
+
+    }
+    public void HighlightPublish()
+    {
+        ColorBlock cb = _publishButton.colors;
+        cb.normalColor = Color.yellow;
+        _publishButton.colors = cb;
+
+    }
     void UpdateScores(TacticSO tactic)
     {
         _userStats.Cash += (int)(tactic.engagementBonus * 100);
@@ -142,8 +170,7 @@ public class TacticManager : MonoBehaviour
 
         _userStats.Likes += (int)(tactic.engagementBonus * 50);
         _userStats.Credibility -= (int)(tactic.credibilityCost * 100);
-        
-        
-        
+
     }
+    
 }
