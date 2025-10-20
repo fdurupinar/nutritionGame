@@ -9,6 +9,9 @@ public class UserStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _cashText;
     [SerializeField] private TextMeshProUGUI _credibilityText;
     [SerializeField] private TextMeshProUGUI _likesText;
+    AudioManager _audioManager;
+
+
 
     private int _followerCnt;
     public int FollowerCount
@@ -38,6 +41,11 @@ public class UserStats : MonoBehaviour
         set => StartCoroutine(UpdateStatCoroutine(value, _likesText, val => _likes = val, _likes, 0.02f));
     }
 
+    void Start()
+    {
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
     /// <summary>
     /// Animates a stat from its current value to a target value, updating the UI text.
     /// </summary>    
@@ -48,14 +56,16 @@ public class UserStats : MonoBehaviour
 
         // Determine direction and set a fixed delay between steps
         int step = (targetValue > currentValue) ? 1 : -1;
-        
+
 
         while (currentValue != targetValue)
         {
             currentValue += step;
             setter(currentValue); // Update the actual variable using the delegate
             textElement.text = currentValue.ToString();
+            _audioManager.PlayEngagamentNotification();
             yield return new WaitForSeconds(delay);
+
         }
     }
 }

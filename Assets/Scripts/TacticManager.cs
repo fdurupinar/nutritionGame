@@ -29,7 +29,6 @@ public class TacticManager : MonoBehaviour
     private CommentManager _commentManager;
 
 
-
     UserStats _userStats;
 
     [SerializeField] private float _wordsPerSec = 3f;
@@ -54,6 +53,7 @@ public class TacticManager : MonoBehaviour
 
         _contentBox = _contentPanel.GetComponentInChildren<TextMeshProUGUI>();
 
+
         int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
 
@@ -65,6 +65,9 @@ public class TacticManager : MonoBehaviour
     public void OpenCardView()
     {
         TacticPanel.SetBool("isHidden", false);
+
+
+
 
     }
 
@@ -122,8 +125,6 @@ public class TacticManager : MonoBehaviour
         {
             _currentlySelectedCard = card;
             _currentlySelectedCard.Select();
-            // You can now access the selected tactic's data
-            UnityEngine.Debug.Log($"Selected Tactic: {_currentlySelectedCard.TacticData.displayName}");
         }
     }
 
@@ -137,7 +138,7 @@ public class TacticManager : MonoBehaviour
         Process speechProcess = Process.Start("/usr/bin/say", cmdArgs);
 
         float delay = text.Split(' ').Length / _wordsPerSec;
-        print(delay);
+
         yield return new WaitForSeconds(delay);
         UpdateScores(_currentlySelectedCard.TacticData);
         StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));

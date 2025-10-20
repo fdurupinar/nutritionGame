@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Card : MonoBehaviour {
+public class Card : MonoBehaviour
+{
     [Header("Tactic Data")]
     [SerializeField] private TacticSO _tacticData;
 
@@ -17,16 +18,18 @@ public class Card : MonoBehaviour {
 
     private Button _button;
     private TacticManager _controller;
+    AudioManager _audioManager;
 
     // The Setup method now accepts a TacticSO
-    public void Setup(TacticSO data, TacticManager controller) {
+    public void Setup(TacticSO data, TacticManager controller)
+    {
         _tacticData = data;
         _controller = controller;
 
         // Populate the card's UI with data from the TacticSO
         _nameText.text = _tacticData.displayName;
 
-        
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         // Format and display the bonus and cost
         _bonusText.text = _tacticData.engagementBonus.ToString("+0.#%;-0.#%;0");
@@ -35,6 +38,8 @@ public class Card : MonoBehaviour {
         _button = GetComponent<Button>();
         _button.onClick.RemoveAllListeners(); // Clear previous listeners
         _button.onClick.AddListener(OnCardClicked);
+
+
 
         GetComponent<Image>().color = GetColorForTactic(_tacticData.type);
 
@@ -78,15 +83,19 @@ public class Card : MonoBehaviour {
                 return Color.white;
         }
     }
-    private void OnCardClicked() {
+    private void OnCardClicked()
+    {
         _controller.OnCardSelected(this);
+        _audioManager.PlayCardSelect();
     }
 
-    public void Select() {
+    public void Select()
+    {
         _selectionOutline.SetActive(true);
     }
 
-    public void Deselect() {
+    public void Deselect()
+    {
         _selectionOutline.SetActive(false);
     }
 
