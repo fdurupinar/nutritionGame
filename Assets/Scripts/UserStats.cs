@@ -14,41 +14,41 @@ public class UserStats : MonoBehaviour
     public int FollowerCount
     {
         get => _followerCnt;
-        set => StartCoroutine(UpdateStatCoroutine(value, _followerText, val => _followerCnt = val, _followerCnt));
+        set => StartCoroutine(UpdateStatCoroutine(value, _followerText, val => _followerCnt = val, _followerCnt, 0.02f));
     }
 
     private int _cash;
     public int Cash
     {
         get => _cash;
-        set => StartCoroutine(UpdateStatCoroutine(value, _cashText, val => _cash = val, _cash));
+        set => StartCoroutine(UpdateStatCoroutine(value, _cashText, val => _cash = val, _cash, 0.02f));
     }
 
-    private int _credibility;
+    private int _credibility = 100;
     public int Credibility
     {
         get => _credibility;
-        set => StartCoroutine(UpdateStatCoroutine(value, _credibilityText, val => _credibility = val, _credibility));
+        set => StartCoroutine(UpdateStatCoroutine(value, _credibilityText, val => _credibility = val, _credibility, 0.5f));
     }
 
     private int _likes;
     public int Likes
     {
         get => _likes;
-        set => StartCoroutine(UpdateStatCoroutine(value, _likesText, val => _likes = val, _likes));
+        set => StartCoroutine(UpdateStatCoroutine(value, _likesText, val => _likes = val, _likes, 0.02f));
     }
 
     /// <summary>
     /// Animates a stat from its current value to a target value, updating the UI text.
     /// </summary>    
-    private IEnumerator UpdateStatCoroutine(int targetValue, TextMeshProUGUI textElement, Action<int> setter, int currentValue)
+    private IEnumerator UpdateStatCoroutine(int targetValue, TextMeshProUGUI textElement, Action<int> setter, int currentValue, float delay)
     {
         if (currentValue == targetValue)
             yield break; // No change needed
 
         // Determine direction and set a fixed delay between steps
         int step = (targetValue > currentValue) ? 1 : -1;
-        float delay = 0.2f; // Adjust for faster/slower animation
+        
 
         while (currentValue != targetValue)
         {

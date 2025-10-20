@@ -64,6 +64,8 @@ public class CommentManager : MonoBehaviour {
             // Update the text box with the new cumulative text
             _commentBox.text = builder.ToString();
 
+            
+
             // If the user was at the bottom, request a scroll
             if(isAtBottom) {
                 _needsScrollToBottom = true;
@@ -73,6 +75,10 @@ public class CommentManager : MonoBehaviour {
             yield return new WaitForSeconds(_commentDelay);
         }
     }
+    
+    
+    
+    
 
     void LateUpdate() {
         // If a scroll is requested, execute it here and reset the flag.

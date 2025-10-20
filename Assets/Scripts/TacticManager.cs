@@ -3,7 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq; // <-- Required for ToList()
+using System;
+using System.Collections;
 
+using System.Diagnostics;
 
 public class TacticManager : MonoBehaviour
 {
@@ -26,8 +29,12 @@ public class TacticManager : MonoBehaviour
     private CommentManager _commentManager;
 
 
+
     UserStats _userStats;
 
+    [SerializeField] private float _wordsPerSec = 3f;
+
+    TextMeshProUGUI _contentBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,8 +52,12 @@ public class TacticManager : MonoBehaviour
         _userStats = GameObject.FindWithTag("Player").GetComponent<UserStats>();
         _userStats.Credibility = 100;
 
+        _contentBox = _contentPanel.GetComponentInChildren<TextMeshProUGUI>();
+
         int numberOfCards = _tacticsToCreate.Count;
         PopulateGrid(numberOfCards);
+
+        HidePublish();
 
     }
 
@@ -61,7 +72,7 @@ public class TacticManager : MonoBehaviour
     {
         TacticPanel.SetBool("isHidden", true);
 
-        HighlightPublish();
+        ShowPublish();
 
     }
 
@@ -69,7 +80,7 @@ public class TacticManager : MonoBehaviour
     {
         TacticPanel.SetBool("isHidden", true);
         _currentlySelectedCard = null;
-          UnhighlightPublish();
+        HidePublish();
 
     }
     public void PopulateGrid(int count)
@@ -105,14 +116,56 @@ public class TacticManager : MonoBehaviour
         {
             _currentlySelectedCard.Deselect();
             _currentlySelectedCard = null;
-            Debug.Log("Card deselected.");
+            UnityEngine.Debug.Log("Card deselected.");
         }
         else
         {
             _currentlySelectedCard = card;
             _currentlySelectedCard.Select();
             // You can now access the selected tactic's data
-            Debug.Log($"Selected Tactic: {_currentlySelectedCard.TacticData.displayName}");
+            UnityEngine.Debug.Log($"Selected Tactic: {_currentlySelectedCard.TacticData.displayName}");
+        }
+    }
+
+
+
+    private IEnumerator SpeakAndShowComments(string voice, string text)
+    {
+
+        string cmdArgs = string.Format(" -v {0} -r {1} \"{2}\"", voice, _wordsPerSec * 60, text.Replace("\"", ","));
+
+        Process speechProcess = Process.Start("/usr/bin/say", cmdArgs);
+
+        float delay = text.Split(' ').Length / _wordsPerSec;
+        print(delay);
+        yield return new WaitForSeconds(delay);
+        UpdateScores(_currentlySelectedCard.TacticData);
+        StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
+
+    }
+
+
+
+
+    private IEnumerator DisplayTextCC(string fullText)
+    {
+        // 1. Clear the text box
+        _contentBox.text = "";
+
+        // 2. Split the full text into an array of words
+        string[] words = fullText.Split(' ');
+
+
+        // 3. Calculate the time to wait between words
+        float delay = 1.0f / _wordsPerSec;
+
+        // 4. Loop through each word in the array
+        foreach (string word in words)
+        {
+
+            _contentBox.text += word + " ";
+
+            yield return new WaitForSeconds(delay);
         }
     }
 
@@ -128,39 +181,31 @@ public class TacticManager : MonoBehaviour
 
             _contentPanel.GetComponent<Image>().sprite = selectedTactic.tacticImage;
             _contentPanel.GetComponent<Image>().gameObject.SetActive(true);
-            _contentPanel.GetComponentInChildren<TextMeshProUGUI>().text = selectedTactic.text;
 
-            Debug.Log(selectedTactic.text);
-            // Update the preview image with the selected card's sprite
-            //_publishedImagePreview.sprite = selectedTactic.tacticImage;
-            //_publishedImagePreview.gameObject.SetActive(true);
+            StartCoroutine(DisplayTextCC(selectedTactic.text));
 
-            Debug.Log($"Published Tactic: {selectedTactic.displayName}");
 
-            UpdateScores(selectedTactic);
-            StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
+            StartCoroutine(SpeakAndShowComments("Samantha", selectedTactic.text));
+
             _currentlySelectedCard.Deselect();
-            UnhighlightPublish();
+
+            HidePublish();
         }
         else
         {
 
-            Debug.LogWarning("No card selected to publish!");
+            UnityEngine.Debug.LogWarning("No card selected to publish!");
         }
     }
 
-    public void UnhighlightPublish()
+    public void HidePublish()
     {
-        ColorBlock cb = _publishButton.colors;
-        cb.normalColor = Color.white;
-        _publishButton.colors = cb;
+        _publishButton.gameObject.SetActive(false);
 
     }
-    public void HighlightPublish()
+    public void ShowPublish()
     {
-        ColorBlock cb = _publishButton.colors;
-        cb.normalColor = Color.yellow;
-        _publishButton.colors = cb;
+        _publishButton.gameObject.SetActive(true);
 
     }
     void UpdateScores(TacticSO tactic)
@@ -172,5 +217,5 @@ public class TacticManager : MonoBehaviour
         _userStats.Credibility -= (int)(tactic.credibilityCost * 100);
 
     }
-    
+
 }
