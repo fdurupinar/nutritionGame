@@ -43,12 +43,13 @@ public static class NutriGameCsvImporter {
             so.id = r["id"];
             so.displayName = r["displayName"];
             so.text = r["text"];
-            so.type = EnumParse(r["type"], TacticType.Emotion);
+            so.type = r["type"];
             so.engagementBonus = ParseFloat(r["engagementBonus"], 0f);
-            so.credibilityCost = ParseFloat(r["credibilityCost"], 0f);                        
+            so.credibilityCost = ParseFloat(r["credibilityCost"], 0f);  
+            so.level = ParseInt(r["level"], 0);                        
             so.enabledFlag = ParseBool(r.GetOrDefault("enabled"), true);
-            Debug.Log(r.GetOrDefault("tacticImagePath", "").Trim());
-            so.tacticImage = AssetDatabase.LoadAssetAtPath<Sprite>(r.GetOrDefault("tacticImagePath", "").Trim());
+            Debug.Log(r.GetOrDefault("tacticImage", "").Trim());
+            so.tacticImage = AssetDatabase.LoadAssetAtPath<Sprite>(r.GetOrDefault("tacticImage", "").Trim());
             
            
             EditorUtility.SetDirty(so);
@@ -83,6 +84,7 @@ public static class NutriGameCsvImporter {
             if(!Enum.TryParse(r["category"], true, out CommentCategory cat)) cat = CommentCategory.neutral;
             so.category = cat;
             so.text = r["text"];
+            so.type = r["type"];
             so.commenterName = r["commenterName"];            
             EditorUtility.SetDirty(so);
         }

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Diagnostics;
 
 public class CommentManager : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class CommentManager : MonoBehaviour
 
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         LoadComments();
-        //StartCoroutine(DisplayCommentsRoutine());
+
     }
 
 
@@ -45,25 +46,31 @@ public class CommentManager : MonoBehaviour
 
         if (commentsArray == null || commentsArray.Length == 0)
         {
-            Debug.LogWarning($"No CommentData assets found in Resources/{folderPath}.");
+            UnityEngine.Debug.LogWarning($"No CommentData assets found in Resources/{folderPath}.");
             _commentsList = new List<CommentLineSO>();
             return;
         }
         _commentsList = commentsArray.ToList();
     }
 
-    public IEnumerator DisplayCommentsRoutine(float delay)
+    public IEnumerator DisplayCommentsRoutine(string type, float delay)
     {
         StringBuilder builder = new StringBuilder();
+
+        List<CommentLineSO> commentsWithType = new List<CommentLineSO>();
+
+        commentsWithType = _commentsList.FindAll(comment => comment.type == type);
 
         // Wait for the specified delay before adding the next comment
         yield return new WaitForSeconds(delay);
 
-        foreach (CommentLineSO comment in _commentsList)
+        foreach (CommentLineSO comment in commentsWithType)
         {
+
             // Check if the user is at the bottom BEFORE adding the new text.
             // A small tolerance (e.g., 0.1f) is good practice to account for floating point inaccuracies.
-            bool isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
+            // bool isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
+
 
             // Append the new comment instead of rebuilding the whole string every time.
             if (builder.Length > 0)
@@ -75,13 +82,11 @@ public class CommentManager : MonoBehaviour
             // Update the text box with the new cumulative text
             _commentBox.text = builder.ToString();
 
-
-
             // If the user was at the bottom, request a scroll
-            if (isAtBottom)
-            {
-                _needsScrollToBottom = true;
-            }
+            // if (isAtBottom)
+            // {
+            _needsScrollToBottom = true;
+            // }
 
             _audioManager.PlayCommentNotification();
             // Wait for the specified delay before adding the next comment

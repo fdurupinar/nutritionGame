@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a4ea59759e7483bae7bb6ad48d5cf1, type: 3}
-  m_Name: id_4
+  m_Name: 19
   m_EditorClassIdentifier: Assembly-CSharp::CommentLineSO
   category: 2
-  id: id_4
-  commenterName: jenny
-  text: "Interesting\u2026 not sure about it though."
+  id: 19
+  type: LogicalFallacy
+  commenterName: PossibleIguess
+  text: That's a crazy story. Wonder if it would work for me.

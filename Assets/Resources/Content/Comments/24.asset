@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a4ea59759e7483bae7bb6ad48d5cf1, type: 3}
-  m_Name: id_0
+  m_Name: 24
   m_EditorClassIdentifier: Assembly-CSharp::CommentLineSO
-  category: 0
-  id: id_0
-  commenterName: fitnessBoi
-  text: Bro is spitting facts
+  category: 2
+  id: 24
+  type: FinancialGain
+  commenterName: ScammedOnce
+  text: This is a straight-up cash grab. You don't care about helping people, you
+    just want their money.

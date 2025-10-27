@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 8
   displayName: Cherry picking
-  type: 5
-  text: A recent study hinted that this could be effective.
-  engagementBonus: 0.1
-  credibilityCost: 0.03
+  type: TwistedEvidence
+  text: A recent study hinted that this could be effective. They won't report it,
+    but if you look at table 3, the data is clear.
+  level: 2
+  engagementBonus: 0.11
+  credibilityCost: 0.06
   enabledFlag: 1
   tacticImage: {fileID: 6032311845197272030, guid: 23eec3bdf25934dea9af3594ddba74ef, type: 3}

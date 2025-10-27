@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 17
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 17
+  displayName: Purity
+  type: Emotion
+  text: Your body is a temple. Don't pollute it with 'approved' foods. Only pure,
+    natural ingredients can make you truly clean inside.
+  level: 2
+  engagementBonus: 0.11
+  credibilityCost: 0.06
+  enabledFlag: 1
+  tacticImage: {fileID: 1555919699509109827, guid: 970eac901108e48ce82a0112e0336830, type: 3}

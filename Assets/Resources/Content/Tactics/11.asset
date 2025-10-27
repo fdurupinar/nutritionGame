@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 11
   displayName: Strawman
-  type: 2
-  text: They say eat 'moderation', but what are they hiding?
-  engagementBonus: 0.05
-  credibilityCost: 0.07
+  type: Conspiracy
+  text: Mainstream 'experts' say just 'eat in moderation', but what are they hiding?
+    Their 'food pyramid' is a lie.
+  level: 1
+  engagementBonus: 0.07
+  credibilityCost: 0.04
   enabledFlag: 1
   tacticImage: {fileID: 1555919699509109827, guid: 970eac901108e48ce82a0112e0336830, type: 3}

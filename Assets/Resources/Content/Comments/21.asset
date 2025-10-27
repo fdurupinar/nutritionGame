@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a4ea59759e7483bae7bb6ad48d5cf1, type: 3}
-  m_Name: id_2
+  m_Name: 21
   m_EditorClassIdentifier: Assembly-CSharp::CommentLineSO
-  category: 1
-  id: id_2
-  commenterName: skptcFrv
-  text: Source for this?
+  category: 2
+  id: 21
+  type: FinancialGain
+  commenterName: ReadyToBuy
+  text: Just ordered mine! Can't wait to start my journey! __ Thanks for the link!

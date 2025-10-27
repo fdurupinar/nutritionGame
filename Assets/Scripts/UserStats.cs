@@ -13,6 +13,8 @@ public class UserStats : MonoBehaviour
 
 
 
+
+
     private int _followerCnt;
     public int FollowerCount
     {
@@ -41,9 +43,18 @@ public class UserStats : MonoBehaviour
         set => StartCoroutine(UpdateStatCoroutine(value, _likesText, val => _likes = val, _likes, 0.02f));
     }
 
+
+    public int Level
+    {
+        get; set;
+
+    }
+
+
     void Start()
     {
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        Level = 1;
     }
 
     /// <summary>

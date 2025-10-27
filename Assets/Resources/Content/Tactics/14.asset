@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 14
   displayName: Correlation vs. Causation
-  type: 3
-  text: She went gluten-free and her acne cleared up.
+  type: TwistedEvidence
+  text: My friend went gluten-free and her acne cleared up in a week. It's obvious
+    that gluten is the real cause of skin problems.
+  level: 2
   engagementBonus: 0.12
   credibilityCost: 0.08
   enabledFlag: 1

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 13
   displayName: Single Cause
-  type: 1
-  text: You can cure cancer with seed oils
-  engagementBonus: 0.05
-  credibilityCost: 0.02
+  type: TwistedEvidence
+  text: 'All your health problems stem from one single thing: seed oils. Cut them
+    out, and you can reverse almost any disease.'
+  level: 2
+  engagementBonus: 0.16
+  credibilityCost: 0.1
   enabledFlag: 1
   tacticImage: {fileID: -6815932256579981985, guid: db9f8b9c4b4ce42d1b2eb9ee5aa04577, type: 3}

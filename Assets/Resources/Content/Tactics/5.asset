@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 5
   displayName: Toxins
-  type: 2
-  text: Big Pharma doesn't want you to know this secret!
+  type: Conspiracy
+  text: Big Pharma doesn't want you to know this. They can't patent a natural cure,
+    so they try to suppress the truth.
+  level: 1
   engagementBonus: 0.1
   credibilityCost: 0.05
   enabledFlag: 1

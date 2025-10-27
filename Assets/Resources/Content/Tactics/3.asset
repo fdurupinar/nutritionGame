@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 3
   displayName: False hope
-  type: 0
-  text: The one trick that will change your life forever.
+  type: Emotion
+  text: The one trick that will change your life forever. This is the secret you've
+    been waiting for to finally feel good.
+  level: 1
   engagementBonus: 0.05
   credibilityCost: 0.01
   enabledFlag: 1
-  tacticImage: {fileID: 0}
+  tacticImage: {fileID: 3852488860119791704, guid: 6c921afc2e2af4ed68570c7176aceca5, type: 3}

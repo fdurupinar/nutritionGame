@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 0
   displayName: Fear
-  type: 0
-  text: If you're not doing this, you're in danger!
-  engagementBonus: 0.15
-  credibilityCost: 0.08
+  type: Emotion
+  text: If you're not doing this, you're putting your family at risk. Are you willing
+    to gamble with their health?
+  level: 1
+  engagementBonus: 0.12
+  credibilityCost: 0.07
   enabledFlag: 1
   tacticImage: {fileID: 1477306467657765337, guid: ae214e595b9f041bd842bc35a7e6d341, type: 3}

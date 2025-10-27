@@ -1,17 +1,28 @@
-id,displayName,type,text,level,engagementBonus,credibilityCost,enabled,tacticImagePath
-0,Fear,Emotion,"If you're not doing this, you're in danger!",1,0.15,0.08,TRUE,Assets/Images/Cards/fear.png
-1,Detox,Emotion,"Everyone is doing this new cleanse!""",2,0.05,0.01,TRUE,Assets/Images/Cards/detox.png
-2,BeforeAfter|Inspirational,Emotion,How I lost 20lbs in 5 days,3,0.15,0.08,TRUE,Assets/Images/Cards/beforeafter.png
-3,False hope,Emotion,The one trick that will change your life forever.,1,0.05,0.01,TRUE,Assets/Images/Cards/elimination.png
-4,Appeal to nature,Pseudoscience,Use this natural ingredient,1,0.12,0.07,TRUE,Assets/Images/Cards/glowup.png
-5,Toxins,Conspiracy,Big Pharma doesn't want you to know this secret!,1,0.1,0.05,TRUE,Assets/Images/Cards/juice.png
-6,Guru,TwistedEvidence,Scientist says do this every day,1,0.1,0.02,TRUE,Assets/Images/Cards/frequencies.png
-7,Ancient Wisdom,TwistedEvidence,Rediscover the forgotten secrets of the ancients.,2,0.08,0.03,TRUE,Assets/Images/Cards/yoga.png
-8,Cherry picking,TwistedEvidence,A recent study hinted that this could be effective.,2,0.1,0.03,TRUE,Assets/Images/Cards/glowup.png
-9,Misleading graph,TwistedEvidence,The numbers don't lie! Look at this chart.,3,0.08,0.03,TRUE,Assets/Images/Cards/yoga.png
-10,Anecdote,LogicalFallacy,My cousin lost 60lbs with this  protocol. ,1,0.15,0.05,TRUE,Assets/Images/Cards/anecdote.png
-11,Strawman,Conspiracy,"They say eat 'moderation', but what are they hiding?",1,0.05,0.07,TRUE,Assets/Images/Cards/detox.png
-12,Jargon overload,Pseudoscience,Secret biovibrational harmonization power of citrus,2,0.15,0.03,TRUE,Assets/Images/Cards/frequencies.png
-13,Single Cause,Pseudoscience,You can cure cancer with seed oils,2,0.05,0.02,TRUE,Assets/Images/Cards/frequencies.png
-14,Correlation vs. Causation,LogicalFallacy,She went gluten-free and her acne cleared up.,2,0.12,0.08,TRUE,Assets/Images/Cards/beforeafter.png
-15,Supplements,FinancialGain,Buy my supplements to unlock your true potential!,1,0.08,0.01,TRUE,Assets/Images/Cards/supplements.png
+id,displayName,type,text,level,engagementBonus,credibilityCost,enabled,tacticImage,
+0,Fear,Emotion,"If you're not doing this, you're putting your family at risk. Are you willing to gamble with their health?",1,0.12,0.07,TRUE,Assets/Images/Cards/fear.png,
+1,Detox,Emotion,"Everyone is talking about this new 7-day cleanse! Don't get left behind, it's the key to unlocking your energy.",2,0.08,0.03,TRUE,Assets/Images/Cards/detox.png,
+2,BeforeAfter,Emotion,I never thought this was possible... I lost 20lbs in 5 days with this one simple trick. The 'after' photo speaks for itself!,3,0.15,0.08,TRUE,Assets/Images/Cards/beforeafter.png,
+3,False hope,Emotion,The one trick that will change your life forever. This is the secret you've been waiting for to finally feel good.,1,0.05,0.01,TRUE,Assets/Images/Cards/eliminationDiet.png,
+4,Appeal to nature,TwistedEvidence,"Why use harsh chemicals when you can use this 100% natural, plant-based ingredient? Nature always knows best.",1,0.06,0.02,TRUE,Assets/Images/Cards/food.png,
+5,Toxins,Conspiracy,"Big Pharma doesn't want you to know this. They can't patent a natural cure, so they try to suppress the truth.",1,0.1,0.05,TRUE,Assets/Images/Cards/juice.png,
+6,Guru,TwistedEvidence,A prominent (but unnamed) scientist says doing this every day can boost your metabolism by 300%. The results are shocking.,1,0.1,0.04,TRUE,Assets/Images/Cards/frequencies.png,
+7,Ancient Wisdom,TwistedEvidence,"Rediscover the forgotten secrets of the ancients. This remedy has been used for thousands of years, long before modern medicine.",2,0.08,0.03,TRUE,Assets/Images/Cards/yoga.png,
+8,Cherry picking,TwistedEvidence,"A recent study hinted that this could be effective. They won't report it, but if you look at table 3, the data is clear.",2,0.11,0.06,TRUE,Assets/Images/Cards/glowup.png,
+9,Misleading graph,TwistedEvidence,The numbers don't lie! Just look at this chart. The results are undeniable. You can't argue with the data.,3,0.14,0.07,TRUE,Assets/Images/Cards/yoga.png,
+10,Anecdote,TwistedEvidence,"My cousin's best friend lost 60lbs with this product in just two months! It really works, I'm ordering mine now.",1,0.04,0.01,TRUE,Assets/Images/Cards/anecdote.png,
+11,Strawman,Conspiracy,"Mainstream 'experts' say just 'eat in moderation', but what are they hiding? Their 'food pyramid' is a lie.",1,0.07,0.04,TRUE,Assets/Images/Cards/detox.png,
+12,Jargon overload,TwistedEvidence,It's all about the secret biovibrational harmonization of alkaline water. It recalibrates your body's quantum energy field.,2,0.14,0.05,TRUE,Assets/Images/Cards/frequencies.png,
+13,Single Cause,TwistedEvidence,"All your health problems stem from one single thing: seed oils. Cut them out, and you can reverse almost any disease.",2,0.16,0.1,TRUE,Assets/Images/Cards/frequencies.png,
+14,Correlation vs. Causation,TwistedEvidence,My friend went gluten-free and her acne cleared up in a week. It's obvious that gluten is the real cause of skin problems.,2,0.12,0.08,TRUE,Assets/Images/Cards/beforeafter.png,
+15,Supplements,FinancialGain,"To get the full effect of my detox, you have to try my new 'Pure-Life' supplements! Link in bio to buy.",1,0.08,0.01,TRUE,Assets/Images/Cards/supplement.png,
+16,Bandwagon,Emotion,"All your friends are already doing this, it's the fastest-growing health movement of the year. Don't be the last one!",1,0.09,0.03,TRUE,Assets/Images/Cards/fear.png,
+17,Purity,Emotion,"Your body is a temple. Don't pollute it with 'approved' foods. Only pure, natural ingredients can make you truly clean inside.",2,0.11,0.06,TRUE,Assets/Images/Cards/detox.png,
+18,Vague Authority,TwistedEvidence,Leading experts and university studies agree that this method is the future of health. The research is very clear.,1,0.07,0.02,TRUE,Assets/Images/Cards/before.png,
+19,The Cover-Up,Conspiracy,They're trying to silence me. My last post was flagged because I'm getting too close to the truth. They are scared.,3,0.18,0.12,TRUE,Assets/Images/Cards/eliminationDiet.png,
+20,Buy My Book,FinancialGain,"I've compiled all my secrets into a new e-book. For just $19.99, you can get the full 30-day plan to change your life.",2,0.06,0.01,TRUE,Assets/Images/Cards/food.png,
+21,Hidden Manuscript,TwistedEvidence,"I found this in a lost medical manuscript from the 1800s. They knew the truth back then, before it was all suppressed.",3,0.13,0.08,TRUE,Assets/Images/Cards/juice.png,
+22,Personal Coaching,FinancialGain,Want one-on-one help? I'm opening 5 spots for my exclusive personal coaching program. DM me for prices.,3,0.04,0.01,TRUE,Assets/Images/Cards/frequencies.png,
+23,Medical Dismissal,Conspiracy,Your doctor will tell you to just 'eat less and move more'. That's what they're paid to say. Here's what really works.,2,0.1,0.06,TRUE,Assets/Images/Cards/yoga.png,
+24,Smear Campaign,Attack,That other 'guru' is a fraud. I have info that they photoshop all their results. Don't trust them.,3,0.17,0.15,TRUE,Assets/Images/Cards/glowup.png,
+25,Discredit Science,Attack,"These so-called 'scientists' are just paid puppets. They've been wrong for decades, why trust their 'studies' now?",2,0.13,0.09,TRUE,Assets/Images/Cards/cherrypick.png,
+26,Block Skeptic,Attack,To the 'skeptic' in my comments: you're clearly just a troll who is miserable. Blocked. Don't let them bother you.,1,0.05,0.04,TRUE,Assets/Images/Cards/anecdote.png,

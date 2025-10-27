@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 19
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 19
+  displayName: The Cover-Up
+  type: Conspiracy
+  text: They're trying to silence me. My last post was flagged because I'm getting
+    too close to the truth. They are scared.
+  level: 3
+  engagementBonus: 0.18
+  credibilityCost: 0.12
+  enabledFlag: 1
+  tacticImage: {fileID: 3852488860119791704, guid: 6c921afc2e2af4ed68570c7176aceca5, type: 3}

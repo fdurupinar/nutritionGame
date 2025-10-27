@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 12
   displayName: Jargon overload
-  type: 1
-  text: Secret biovibrational harmonization power of citrus
-  engagementBonus: 0.15
-  credibilityCost: 0.03
+  type: TwistedEvidence
+  text: It's all about the secret biovibrational harmonization of alkaline water.
+    It recalibrates your body's quantum energy field.
+  level: 2
+  engagementBonus: 0.14
+  credibilityCost: 0.05
   enabledFlag: 1
   tacticImage: {fileID: -6815932256579981985, guid: db9f8b9c4b4ce42d1b2eb9ee5aa04577, type: 3}

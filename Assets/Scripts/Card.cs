@@ -9,6 +9,7 @@ public class Card : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private TextMeshProUGUI _subtitleText;
     [SerializeField] private TextMeshProUGUI _bonusText; // New UI element for the bonus
     [SerializeField] private TextMeshProUGUI _costText;  // New UI element for the cost
     [SerializeField] private Image _tacticMainImage; // Add this reference
@@ -27,7 +28,9 @@ public class Card : MonoBehaviour
         _controller = controller;
 
         // Populate the card's UI with data from the TacticSO
-        _nameText.text = _tacticData.displayName;
+        _nameText.text = _tacticData.type;
+        _subtitleText.text = _tacticData.displayName;
+
 
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
@@ -50,33 +53,29 @@ public class Card : MonoBehaviour
 
     }
 
-    public Color GetColorForTactic(TacticType type)
+    public Color GetColorForTactic(string type)
     {
-        switch (type)
+        switch (type.ToLower())
         {
-            case TacticType.Emotion:
+            case "emotion":
                 // Soft Coral (#FFC4B4)
-                return new Color32(255, 196, 180, 255);
+                return new Color32(242, 195, 185, 255);
 
-            case TacticType.Pseudoscience:
-                // Mint Green (#BDEFD2)
-                return new Color32(189, 239, 210, 255);
+            case "attack":
+                return new Color32(210, 224, 211, 255);
 
-            case TacticType.Conspiracy:
-                // Muted Lavender (#D2C4E4)
-                return new Color32(210, 196, 228, 255);
+            case "conspiracy":
 
-            case TacticType.LogicalFallacy:
-                // Light Yellow (#FFFACD)
-                return new Color32(255, 250, 205, 255);
+                return new Color32(240, 221, 214, 255);
 
-            case TacticType.FinancialGain:
+
+            case "financialgain":
                 // Sandy Gold (#F5E8C7)
                 return new Color32(245, 232, 199, 255);
 
-            case TacticType.TwistedEvidence:
-                // Slate Blue (#BCCDE4)
-                return new Color32(188, 205, 228, 255);
+            case "twistedevidence":
+
+                return new Color32(151, 179, 174, 255);
 
             default:
                 // A default color in case a new type is added

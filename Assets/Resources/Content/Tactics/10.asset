@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 10
   displayName: Anecdote
-  type: 3
-  text: 'My cousin lost 60lbs with this  protocol. '
-  engagementBonus: 0.15
-  credibilityCost: 0.05
+  type: TwistedEvidence
+  text: My cousin's best friend lost 60lbs with this product in just two months!
+    It really works, I'm ordering mine now.
+  level: 1
+  engagementBonus: 0.04
+  credibilityCost: 0.01
   enabledFlag: 1
   tacticImage: {fileID: -6513743853152151312, guid: d0f00a30f16a0436db515d2eba6cc028, type: 3}

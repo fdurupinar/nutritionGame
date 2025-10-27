@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 20
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 20
+  displayName: Buy My Book
+  type: FinancialGain
+  text: I've compiled all my secrets into a new e-book. For just $19.99, you can
+    get the full 30-day plan to change your life.
+  level: 2
+  engagementBonus: 0.06
+  credibilityCost: 0.01
+  enabledFlag: 1
+  tacticImage: {fileID: 0}

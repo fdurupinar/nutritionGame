@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 1
   displayName: Detox
-  type: 0
-  text: Everyone is doing this new cleanse!"
-  engagementBonus: 0.05
-  credibilityCost: 0.01
+  type: Emotion
+  text: Everyone is talking about this new 7-day cleanse! Don't get left behind,
+    it's the key to unlocking your energy.
+  level: 2
+  engagementBonus: 0.08
+  credibilityCost: 0.03
   enabledFlag: 1
   tacticImage: {fileID: 1555919699509109827, guid: 970eac901108e48ce82a0112e0336830, type: 3}

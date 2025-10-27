@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 4
   displayName: Appeal to nature
-  type: 1
-  text: Use this natural ingredient
-  engagementBonus: 0.12
-  credibilityCost: 0.07
+  type: TwistedEvidence
+  text: Why use harsh chemicals when you can use this 100% natural, plant-based ingredient?
+    Nature always knows best.
+  level: 1
+  engagementBonus: 0.06
+  credibilityCost: 0.02
   enabledFlag: 1
-  tacticImage: {fileID: 6032311845197272030, guid: 23eec3bdf25934dea9af3594ddba74ef, type: 3}
+  tacticImage: {fileID: 0}

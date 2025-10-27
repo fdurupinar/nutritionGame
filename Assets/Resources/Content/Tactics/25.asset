@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
+  m_Name: 25
+  m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  id: 25
+  displayName: Discredit Science
+  type: Attack
+  text: These so-called 'scientists' are just paid puppets. They've been wrong for
+    decades, why trust their 'studies' now?
+  level: 2
+  engagementBonus: 0.13
+  credibilityCost: 0.09
+  enabledFlag: 1
+  tacticImage: {fileID: -4652545123539155653, guid: a152ccd513896491eb27e56e4c420f64, type: 3}

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 15
   displayName: Supplements
-  type: 4
-  text: Buy my supplements to unlock your true potential!
+  type: FinancialGain
+  text: To get the full effect of my detox, you have to try my new 'Pure-Life' supplements!
+    Link in bio to buy.
+  level: 1
   engagementBonus: 0.08
   credibilityCost: 0.01
   enabledFlag: 1
-  tacticImage: {fileID: -759233108545097862, guid: 83bcfde0b29a74c068e30e95ede68c99, type: 3}
+  tacticImage: {fileID: 0}

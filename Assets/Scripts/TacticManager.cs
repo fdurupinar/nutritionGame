@@ -17,23 +17,27 @@ public class TacticManager : MonoBehaviour
     [SerializeField] private Transform _gridParent;
 
     [Header("Grid Settings")]
-    [SerializeField] private List<TacticSO> _tacticsToCreate; // Changed to a list of TacticSO
+    [SerializeField] private List<TacticSO> _allTactics; // Changed to a list of TacticSO
 
+    [SerializeField] private List<TacticSO> _currentTactics; // Changed to a list of TacticSO
     private Card _currentlySelectedCard;
 
     [Header("Publish Settings")]
     [SerializeField] private GameObject _contentPanel;
 
-    [SerializeField] private Button _publishButton;
+    [SerializeField] private Button _selectCardButton;
+
+    [SerializeField] TextMeshProUGUI _contentBox;
+    private ScrollRect _scrollRect;
 
     private CommentManager _commentManager;
 
-
+    bool _isAtBottom;
     UserStats _userStats;
 
-    [SerializeField] private float _wordsPerSec = 3f;
+    [SerializeField] private float _wordsPerSec = 4f;
 
-    TextMeshProUGUI _contentBox;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -41,23 +45,28 @@ public class TacticManager : MonoBehaviour
         //if (_publishedImagePreview != null)        
         //    _publishedImagePreview.gameObject.SetActive(false);
 
-        _tacticsToCreate = new List<TacticSO>();
+        _allTactics = new List<TacticSO>();
+        _currentTactics = new List<TacticSO>();
 
-        _tacticsToCreate = Resources.LoadAll<TacticSO>("Content/Tactics").ToList();
+        _allTactics = Resources.LoadAll<TacticSO>("Content/Tactics").ToList();
 
+
+
+        _scrollRect = _contentBox.GetComponentInParent<ScrollRect>();
 
         _commentManager = FindFirstObjectByType<CommentManager>();
 
         _userStats = GameObject.FindWithTag("Player").GetComponent<UserStats>();
         _userStats.Credibility = 100;
 
-        _contentBox = _contentPanel.GetComponentInChildren<TextMeshProUGUI>();
+        // _contentBox = _contentPanel.GetComponentInChildren<TextMeshProUGUI>();
 
 
-        int numberOfCards = _tacticsToCreate.Count;
-        PopulateGrid(numberOfCards);
+        _currentTactics = _allTactics.FindAll(tactic => tactic.level == _userStats.Level);
 
-        HidePublish();
+        PopulateGrid();
+
+        // HidePublish();
 
     }
 
@@ -66,16 +75,14 @@ public class TacticManager : MonoBehaviour
     {
         TacticPanel.SetBool("isHidden", false);
 
-
-
-
     }
 
     public void CloseCardView()
     {
         TacticPanel.SetBool("isHidden", true);
 
-        ShowPublish();
+
+        //  ShowPublish();
 
     }
 
@@ -83,10 +90,10 @@ public class TacticManager : MonoBehaviour
     {
         TacticPanel.SetBool("isHidden", true);
         _currentlySelectedCard = null;
-        HidePublish();
+        // HidePublish();
 
     }
-    public void PopulateGrid(int count)
+    public void PopulateGrid()
     {
         // Clear any existing cards in the grid before populating
         foreach (Transform child in _gridParent)
@@ -95,7 +102,7 @@ public class TacticManager : MonoBehaviour
         }
 
         // Loop through the TacticSO list
-        foreach (TacticSO tacticData in _tacticsToCreate)
+        foreach (TacticSO tacticData in _currentTactics)
         {
             if (!tacticData.enabledFlag) continue; // Skip disabled tactics
 
@@ -125,12 +132,13 @@ public class TacticManager : MonoBehaviour
         {
             _currentlySelectedCard = card;
             _currentlySelectedCard.Select();
+
         }
     }
 
 
 
-    private IEnumerator SpeakAndShowComments(string voice, string text)
+    private IEnumerator SpeakAndShowComments(string voice, string text, string type)
     {
 
         string cmdArgs = string.Format(" -v {0} -r {1} \"{2}\"", voice, _wordsPerSec * 60, text.Replace("\"", ","));
@@ -141,7 +149,11 @@ public class TacticManager : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
         UpdateScores(_currentlySelectedCard.TacticData);
-        StartCoroutine(_commentManager.DisplayCommentsRoutine(2f));
+
+        StartCoroutine(_commentManager.DisplayCommentsRoutine(type, 2f));
+
+        yield return new WaitForSeconds(2f);
+        ShowSelectCardButton();
 
     }
 
@@ -166,7 +178,9 @@ public class TacticManager : MonoBehaviour
 
             _contentBox.text += word + " ";
 
+            _isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
             yield return new WaitForSeconds(delay);
+
         }
     }
 
@@ -177,20 +191,28 @@ public class TacticManager : MonoBehaviour
         if (_currentlySelectedCard != null)
         {
             // Get the data from the selected card
-            TacticSO selectedTactic = _currentlySelectedCard.TacticData;
+            TacticSO selectedTactic = _currentlySelectedCard.TacticData; //remove from available tactics
+
 
 
             _contentPanel.GetComponent<Image>().sprite = selectedTactic.tacticImage;
             _contentPanel.GetComponent<Image>().gameObject.SetActive(true);
 
+            HideSelectCardButton();
             StartCoroutine(DisplayTextCC(selectedTactic.text));
 
 
-            StartCoroutine(SpeakAndShowComments("Samantha", selectedTactic.text));
+            StartCoroutine(SpeakAndShowComments("Samantha", selectedTactic.text, selectedTactic.type));
+
 
             _currentlySelectedCard.Deselect();
 
-            HidePublish();
+            _currentTactics.Remove(selectedTactic);
+
+            PopulateGrid();
+
+
+
         }
         else
         {
@@ -199,14 +221,14 @@ public class TacticManager : MonoBehaviour
         }
     }
 
-    public void HidePublish()
+    public void HideSelectCardButton()
     {
-        _publishButton.gameObject.SetActive(false);
+        _selectCardButton.gameObject.SetActive(false);
 
     }
-    public void ShowPublish()
+    public void ShowSelectCardButton()
     {
-        _publishButton.gameObject.SetActive(true);
+        _selectCardButton.gameObject.SetActive(true);
 
     }
     void UpdateScores(TacticSO tactic)
@@ -219,4 +241,14 @@ public class TacticManager : MonoBehaviour
 
     }
 
+    void LateUpdate()
+    {
+
+        if (_isAtBottom)
+        {
+            Canvas.ForceUpdateCanvases();
+            _scrollRect.verticalNormalizedPosition = 0f;
+            _isAtBottom = false;
+        }
+    }
 }

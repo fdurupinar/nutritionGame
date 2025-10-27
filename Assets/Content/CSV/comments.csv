@@ -1,7 +1,29 @@
-id,commenterName,category,text
-id_0,fitnessBoi,positive,Bro is spitting facts
-id_1,lvly20,positive,This changed my life!!!
-id_2,skptcFrv,skeptic,Source for this?
-id_3,scienceATW,skeptic,Cherry-picked much?
-id_4,jenny,neutral,Interesting… not sure about it though.
-id_5,gsgfd46,spam,DM me for the REAL detox!
+id,commenterName,category,type,text
+1,WellnessFanatic22,supportive,Emotion,This is so inspiring! Thank you for being brave enough to share your journey! ___
+2,LogicBot,skeptic,Emotion,"A 'before and after' pic isn't evidence. It can be faked with lighting, posture, and just sucking in."
+3,HopefulSoul,supportive,Emotion,I'm literally in tears. This is the sign I've been waiting for. I'm starting this tomorrow!
+4,TiredOfThis,negative,Emotion,This is so irresponsible. You're preying on people's desperation for a quick fix.
+5,BioHackerBro,supportive,Pseudoscience,YES! I've been saying this for ages. It's all about the biovibrational frequencies. So glad someone is finally talking about it!
+6,RealScientist,skeptic,Pseudoscience,'Biovibrational harmonization' is not a recognized scientific term. This is meaningless technobabble.
+7,JustWondering,neutral,Pseudoscience,Can you explain what 'recalibrating the body's quantum field' means in simpler terms?
+8,Debunker_Dan,negative,Pseudoscience,This 'single cause' idea is dangerous. You're telling people to ignore real medical advice for a fad.
+9,TruthSeeker11,supportive,Conspiracy,They are definitely trying to hide this! Thank you for being brave enough to speak the TRUTH! 100%
+10,WhereIsTheProof,skeptic,Conspiracy,"Who is 'they'? Can you name a single person, organization, or study to back this 'cover-up' claim?"
+11,OnTheFence,neutral,Conspiracy,"It's an interesting theory, but seems a bit far-fetched. Not sure what to believe."
+12,AngryUser87,negative,Conspiracy,Not everything is a plot. You're just trying to scare people to get more clicks. Stop it.
+13,MeToo123,supportive,TwistedEvidence,"Wow, I never knew that! It makes so much sense. The ancient ways are always the best."
+14,CiteYourSource,skeptic,TwistedEvidence,Can you please link to the actual study you're 'cherry-picking' from? I'd like to read the full context.
+15,HistoryBuff,negative,TwistedEvidence,Just because something is 'ancient' doesn't mean it's good. We used to use lead as makeup.
+16,Learner21,neutral,TwistedEvidence,I'd never heard of this study before. Going to look it up.
+17,JennysStory,supportive,LogicalFallacy,This is so true! The same thing happened to my aunt's friend. It definitely works!
+18,StatsGuy,skeptic,LogicalFallacy,That's a classic 'correlation vs. causation' fallacy. Just because two things happened at once doesn't mean one caused the other.
+19,PossibleIguess,neutral,LogicalFallacy,That's a crazy story. Wonder if it would work for me.
+20,NotADoctor,negative,LogicalFallacy,This is how bad information spreads. Stop using 'my cousin said' as medical proof.
+21,ReadyToBuy,supportive,FinancialGain,Just ordered mine! Can't wait to start my journey! __ Thanks for the link!
+22,FollowTheMoney,skeptic,FinancialGain,"Ah, so this whole post was just a 10-minute ad to sell your overpriced supplements. Got it."
+23,PricePlz,neutral,FinancialGain,How much does the e-book cost? Is there a discount code?
+24,ScammedOnce,negative,FinancialGain,"This is a straight-up cash grab. You don't care about helping people, you just want their money."
+25,AngryAndy,supportive,Attack,Yes! Call them out! Those 'doctors' are just paid shills. They don't care about our health!
+26,JustTheFacts,skeptic,Attack,"This post doesn't offer any data, it's just a personal attack. Can you address their actual research?"
+27,GrabsPopcorn,neutral,Attack,"Wow, things are getting heated in the wellness space. __"
+28,BeKindPlease,negative,Attack,There's no reason to be so aggressive. It just makes your own argument look weak.

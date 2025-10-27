@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 9
   displayName: Misleading graph
-  type: 5
-  text: The numbers don't lie! Look at this chart.
-  engagementBonus: 0.08
-  credibilityCost: 0.03
+  type: TwistedEvidence
+  text: The numbers don't lie! Just look at this chart. The results are undeniable.
+    You can't argue with the data.
+  level: 3
+  engagementBonus: 0.14
+  credibilityCost: 0.07
   enabledFlag: 1
   tacticImage: {fileID: 6753559102107755999, guid: 6fabf5b4cda2f4f379cdb2171b4a8121, type: 3}

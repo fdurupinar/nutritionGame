@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: 2
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 2
-  displayName: BeforeAfter|Inspirational
-  type: 0
-  text: How I lost 20lbs in 5 days
+  displayName: BeforeAfter
+  type: Emotion
+  text: I never thought this was possible... I lost 20lbs in 5 days with this one
+    simple trick. The 'after' photo speaks for itself!
+  level: 3
   engagementBonus: 0.15
   credibilityCost: 0.08
   enabledFlag: 1

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 7
   displayName: Ancient Wisdom
-  type: 5
-  text: Rediscover the forgotten secrets of the ancients.
+  type: TwistedEvidence
+  text: Rediscover the forgotten secrets of the ancients. This remedy has been used
+    for thousands of years, long before modern medicine.
+  level: 2
   engagementBonus: 0.08
   credibilityCost: 0.03
   enabledFlag: 1

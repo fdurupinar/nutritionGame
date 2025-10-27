@@ -4,10 +4,12 @@ using UnityEngine;
 public enum CommentCategory { positive, skeptic, neutral, spam }
 
 [CreateAssetMenu(menuName = "Content/CommentLine")]
-public class CommentLineSO : ScriptableObject {
+public class CommentLineSO : ScriptableObject
+{
     public CommentCategory category;
 
     public string id;
+    public string type;
     public string commenterName;
     //public Sprite icon;
 
