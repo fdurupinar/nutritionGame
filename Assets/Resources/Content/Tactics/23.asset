@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 23
   displayName: Medical Dismissal
   type: Conspiracy
-  text: Your doctor will tell you to just 'eat less and move more'. That's what they're
-    paid to say. Here's what really works.
+  text: Your doctor will tell you to just 'eat less'...
+  debunkingText: ' This is an "Us vs. Them" conspiracy. It tries to create complete
+    distrust in the entire medical profession to position the guru as the only one
+    with the "real" answers.'
   level: 2
   engagementBonus: 0.1
   credibilityCost: 0.06

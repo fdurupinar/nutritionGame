@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 17
   displayName: Purity
   type: Emotion
-  text: Your body is a temple. Don't pollute it with 'approved' foods. Only pure,
-    natural ingredients can make you truly clean inside.
+  text: Your body is a temple. Don't pollute it...
+  debunkingText: ' This is an Appeal to Purity. This emotionally charged language
+    is not scientific. Your body is not "dirty" or "polluted" in the way these products
+    claim.'
   level: 2
   engagementBonus: 0.11
   credibilityCost: 0.06

@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 24
   displayName: Smear Campaign
   type: Attack
-  text: That other 'guru' is a fraud. I have info that they photoshop all their results.
-    Don't trust them.
+  text: That other 'guru' is a fraud. I have info that...
+  debunkingText: ' This is an Ad Hominem attack. It attacks the person ("fraud,"
+    "liar") instead of their argument or evidence. It''s a deflection tactic to avoid
+    a real debate.'
   level: 3
   engagementBonus: 0.17
   credibilityCost: 0.15

@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 20
   displayName: Buy My Book
   type: FinancialGain
-  text: I've compiled all my secrets into a new e-book. For just $19.99, you can
-    get the full 30-day plan to change your life.
+  text: I've compiled all my secrets into a new e-book...
+  debunkingText: ' This is a Bait-and-Switch. The "free" information on the social
+    media post is just an advertisement designed to get you to pay for the "real"
+    secrets.'
   level: 2
   engagementBonus: 0.06
   credibilityCost: 0.01

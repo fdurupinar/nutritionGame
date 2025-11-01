@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 12
   displayName: Jargon overload
   type: TwistedEvidence
-  text: It's all about the secret biovibrational harmonization of alkaline water.
-    It recalibrates your body's quantum energy field.
+  text: It's all about the secret biovibrational harmonization...
+  debunkingText: ' This uses Pseudoscientific Jargon to sound impressive. Terms like
+    "biovibrational" or "quantum energy" are scientifically meaningless and are used
+    to confuse, not clarify.'
   level: 2
   engagementBonus: 0.14
   credibilityCost: 0.05

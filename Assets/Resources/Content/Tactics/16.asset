@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 16
   displayName: Bandwagon
   type: Emotion
-  text: All your friends are already doing this, it's the fastest-growing health
-    movement of the year. Don't be the last one!
+  text: All your friends are already doing this...
+  debunkingText: ' This is the Bandwagon Fallacy. The popularity of an idea has zero
+    impact on its validity. "Everyone is doing it" is a social pressure tactic, not
+    a scientific argument.'
   level: 1
   engagementBonus: 0.09
   credibilityCost: 0.03

@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 7
   displayName: Ancient Wisdom
   type: TwistedEvidence
-  text: Rediscover the forgotten secrets of the ancients. This remedy has been used
-    for thousands of years, long before modern medicine.
+  text: Rediscover the forgotten secrets of the ancients...
+  debunkingText: ' This is the Appeal to Tradition fallacy. The age of a practice
+    has no bearing on its effectiveness. We''ve abandoned many "ancient" practices
+    (like bloodletting) for very good reasons.'
   level: 2
   engagementBonus: 0.08
   credibilityCost: 0.03

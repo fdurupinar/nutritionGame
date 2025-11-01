@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 19
   displayName: The Cover-Up
   type: Conspiracy
-  text: They're trying to silence me. My last post was flagged because I'm getting
-    too close to the truth. They are scared.
+  text: They're trying to silence me. My last post was flagged...
+  debunkingText: ' This is a conspiracy tactic to build authority. Claiming to be
+    "silenced" frames criticism as persecution, making the influencer look like a
+    brave martyr speaking the truth.'
   level: 3
   engagementBonus: 0.18
   credibilityCost: 0.12

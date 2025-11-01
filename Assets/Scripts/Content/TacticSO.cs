@@ -9,6 +9,7 @@ public class TacticSO : ScriptableObject
     public string displayName;
     public string type;
     public string text;
+    public string debunkingText;
     public int level;
     public float engagementBonus;   // 0.15f = +15%
     public float credibilityCost;   // 0.08f = -8    

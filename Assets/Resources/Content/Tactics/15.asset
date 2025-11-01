@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 15
   displayName: Supplements
   type: FinancialGain
-  text: To get the full effect of my detox, you have to try my new 'Pure-Life' supplements!
-    Link in bio to buy.
+  text: To get the full effect...you have to try my new...
+  debunkingText: ' This is a classic sales funnel. The "free" advice creates a problem,
+    and the Financial Gain tactic conveniently sells you the one "true" solution.'
   level: 1
   engagementBonus: 0.08
   credibilityCost: 0.01

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Diagnostics;
 
 public class Card : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Card : MonoBehaviour
 
     [SerializeField] private GameObject _selectionOutline;
 
+    CardFlip _flipper;
     private Button _button;
     private TacticManager _controller;
     AudioManager _audioManager;
@@ -39,12 +41,18 @@ public class Card : MonoBehaviour
         _costText.text = (_tacticData.credibilityCost * -100).ToString("F0");
 
         _button = GetComponent<Button>();
-        _button.onClick.RemoveAllListeners(); // Clear previous listeners
-        _button.onClick.AddListener(OnCardClicked);
+        // _button.onClick.RemoveAllListeners(); // Clear previous listeners
+        // _button.onClick.AddListener(OnCardClicked);
 
 
+        _flipper = GetComponent<CardFlip>();
+        _flipper.SetupCard(_tacticData.debunkingText);
 
-        GetComponent<Image>().color = GetColorForTactic(_tacticData.type);
+        GetComponent<Image>().color = GetColorForTactic();
+
+        transform.Find("CardBack").GetComponent<Image>().color = GetColorForTactic(); // Background image
+
+
 
         // Open this to change the card face
         //_tacticMainImage = GetComponent<Image>(); 
@@ -53,8 +61,10 @@ public class Card : MonoBehaviour
 
     }
 
-    public Color GetColorForTactic(string type)
+
+    public Color GetColorForTactic()
     {
+        string type = _tacticData.type;
         switch (type.ToLower())
         {
             case "emotion":
@@ -82,14 +92,16 @@ public class Card : MonoBehaviour
                 return Color.white;
         }
     }
-    private void OnCardClicked()
+    public void OnCardClicked()
     {
+        UnityEngine.Debug.Log("clicked");
         _controller.OnCardSelected(this);
         _audioManager.PlayCardSelect();
     }
 
     public void Select()
     {
+
         _selectionOutline.SetActive(true);
     }
 

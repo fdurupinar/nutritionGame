@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: 14
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 14
-  displayName: Correlation vs. Causation
+  displayName: Correlation vs. Causat
   type: TwistedEvidence
-  text: My friend went gluten-free and her acne cleared up in a week. It's obvious
-    that gluten is the real cause of skin problems.
+  text: My friend went gluten-free and her acne cleared up...
+  debunkingText: ' This confuses Correlation with Causation. Just because B happened
+    after A doesn''t mean A caused B. Maybe she also cut out sugar, or simply got
+    older.'
   level: 2
   engagementBonus: 0.12
   credibilityCost: 0.08

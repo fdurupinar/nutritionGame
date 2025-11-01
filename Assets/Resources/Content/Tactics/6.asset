@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 6
   displayName: Guru
   type: TwistedEvidence
-  text: A prominent (but unnamed) scientist says doing this every day can boost your
-    metabolism by 300%. The results are shocking.
+  text: A prominent scientist says doing this every day...
+  debunkingText: ' This relies on Vague Authority. Who is this scientist? Where was
+    this published? If no verifiable source is given, the claim is worthless. Real
+    science is specific.'
   level: 1
   engagementBonus: 0.1
   credibilityCost: 0.04

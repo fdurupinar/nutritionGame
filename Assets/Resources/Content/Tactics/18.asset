@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 18
   displayName: Vague Authority
   type: TwistedEvidence
-  text: Leading experts and university studies agree that this method is the future
-    of health. The research is very clear.
+  text: Leading experts and university studies agree...
+  debunkingText: ' This is an appeal to Vague Authority. Which "leading experts"?
+    What "university studies"? If they don''t provide a specific, verifiable source,
+    the claim is empty.'
   level: 1
   engagementBonus: 0.07
   credibilityCost: 0.02

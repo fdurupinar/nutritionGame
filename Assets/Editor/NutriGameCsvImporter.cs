@@ -43,6 +43,7 @@ public static class NutriGameCsvImporter {
             so.id = r["id"];
             so.displayName = r["displayName"];
             so.text = r["text"];
+            so.debunkingText = r["debunkingText"];
             so.type = r["type"];
             so.engagementBonus = ParseFloat(r["engagementBonus"], 0f);
             so.credibilityCost = ParseFloat(r["credibilityCost"], 0f);  

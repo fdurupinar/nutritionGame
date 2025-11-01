@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 2
   displayName: BeforeAfter
   type: Emotion
-  text: I never thought this was possible... I lost 20lbs in 5 days with this one
-    simple trick. The 'after' photo speaks for itself!
+  text: I never thought this was possible... I lost 20lbs...
+  debunkingText: ' Before/after photos are easy to fake. A simple change in lighting,
+    posture, angle, or just sucking in can create a dramatically misleading illusion.'
   level: 3
   engagementBonus: 0.15
   credibilityCost: 0.08

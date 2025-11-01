@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 3
   displayName: False hope
   type: Emotion
-  text: The one trick that will change your life forever. This is the secret you've
-    been waiting for to finally feel good.
+  text: The one trick that will change your life forever...
+  debunkingText: ' Be wary of any "one simple trick" or "cure-all." Health is complex,
+    and real solutions are almost never a single, magical secret.'
   level: 1
   engagementBonus: 0.05
   credibilityCost: 0.01

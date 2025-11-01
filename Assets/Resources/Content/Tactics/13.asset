@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 13
   displayName: Single Cause
   type: TwistedEvidence
-  text: 'All your health problems stem from one single thing: seed oils. Cut them
-    out, and you can reverse almost any disease.'
+  text: All your health problems stem from one single thing...
+  debunkingText: ' This is the Single-Cause Fallacy. Complex problems like disease
+    are almost never caused by one single thing. This extreme oversimplification
+    is a classic red flag.'
   level: 2
   engagementBonus: 0.16
   credibilityCost: 0.1

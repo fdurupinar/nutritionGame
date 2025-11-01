@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 25
   displayName: Discredit Science
   type: Attack
-  text: These so-called 'scientists' are just paid puppets. They've been wrong for
-    decades, why trust their 'studies' now?
+  text: These so-called 'scientists' are just paid puppets...
+  debunkingText: ' This is a broad Attack on the scientific method. Science is a
+    process of being wrong and correcting itself; that''s its strength. This tactic
+    uses past corrections as "proof" the whole system is untrustworthy.'
   level: 2
   engagementBonus: 0.13
   credibilityCost: 0.09

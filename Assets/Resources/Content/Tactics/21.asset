@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 21
   displayName: Hidden Manuscript
   type: TwistedEvidence
-  text: I found this in a lost medical manuscript from the 1800s. They knew the truth
-    back then, before it was all suppressed.
+  text: I found this in a lost medical manuscript...
+  debunkingText: ' This is a Special Knowledge claim. It suggests the "truth" is
+    hidden and only available to a select few. Real scientific knowledge is published
+    openly for all to review and test.'
   level: 3
   engagementBonus: 0.13
   credibilityCost: 0.08

@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 4
   displayName: Appeal to nature
   type: TwistedEvidence
-  text: Why use harsh chemicals when you can use this 100% natural, plant-based ingredient?
-    Nature always knows best.
+  text: Why use harsh chemicals when you can use this...
+  debunkingText: ' This is the Appeal to Nature fallacy. "Natural" does not automatically
+    mean "safe" or "better." Cyanide, arsenic, and snake venom are all 100% natural.'
   level: 1
   engagementBonus: 0.06
   credibilityCost: 0.02

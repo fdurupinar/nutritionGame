@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 22
   displayName: Personal Coaching
   type: FinancialGain
-  text: Want one-on-one help? I'm opening 5 spots for my exclusive personal coaching
-    program. DM me for prices.
+  text: Want one-on-one help? I'm opening 5 spots...
+  debunkingText: ' This uses Artificial Scarcity ("5 spots left!") to create urgency
+    and drive impulse buys for expensive, often unaccredited, coaching services.'
   level: 3
   engagementBonus: 0.04
   credibilityCost: 0.01
