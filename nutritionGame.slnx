@@ -1,4 +1,6 @@
 ﻿<Solution>
+  <Project Path="ReadyPlayerMe.Samples.AvatarCreatorElements.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ReadyPlayerMe.Samples.AvatarCreatorWizard.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>
