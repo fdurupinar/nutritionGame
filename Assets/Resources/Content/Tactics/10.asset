@@ -15,12 +15,13 @@ MonoBehaviour:
   id: 10
   displayName: Anecdote
   type: TwistedEvidence
-  text: My cousin's best friend lost 60lbs with this...
-  debunkingText: ' An Anecdote ("it worked for my cousin") is not data. It''s a single
-    data point with no control group, and it completely ignores the powerful placebo
-    effect.'
+  text: My cousin's best friend lost 60lbs with this product in just two months!
+    It really works, I'm ordering mine now.
+  debunkingText: "\uFFFDAn Anecdote (\"it worked for my cousin\") is not data. It's
+    a single data point with no control group, and it completely ignores the powerful
+    placebo effect."
   level: 1
   engagementBonus: 0.04
   credibilityCost: 0.01
   enabledFlag: 1
-  tacticImage: {fileID: -6513743853152151312, guid: d0f00a30f16a0436db515d2eba6cc028, type: 3}
+  tacticImage: {fileID: -364064275121831553, guid: 5c52c258d468840c780f75e88267927e, type: 3}

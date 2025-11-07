@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 0
   displayName: Fear
   type: Emotion
-  text: If you're not doing this, you're...
-  debunkingText: ' This is a Fear Mongering tactic. It bypasses logic by making you
-    feel scared. A claim''s validity isn''t determined by how scary its alternative
-    is.'
+  text: Processed foods are toxic. Stay away from them at all costs.
+  debunkingText: "\uFFFDThis is a Fear Mongering tactic. It bypasses logic by making
+    you feel scared. A claim's validity isn't determined by how scary its alternative
+    is."
   level: 1
   engagementBonus: 0.12
   credibilityCost: 0.07

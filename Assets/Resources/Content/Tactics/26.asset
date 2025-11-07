@@ -15,12 +15,13 @@ MonoBehaviour:
   id: 26
   displayName: Block Skeptic
   type: Attack
-  text: To the 'skeptic' in my comments... Blocked...
-  debunkingText: ' This is Creating an Echo Chamber. By blocking all criticism and
-    labeling skeptics as "trolls," the influencer maintains a purely supportive community,
-    making their claims seem more valid.'
+  text: 'To the ''skeptic'' in my comments: you''re clearly just a troll who is miserable.
+    Blocked. Don''t let them bother you.'
+  debunkingText: "\uFFFDThis is Creating an Echo Chamber. By blocking all criticism
+    and labeling skeptics as \"trolls,\" the influencer maintains a purely supportive
+    community, making their claims seem more valid."
   level: 1
   engagementBonus: 0.05
   credibilityCost: 0.04
   enabledFlag: 1
-  tacticImage: {fileID: -6513743853152151312, guid: d0f00a30f16a0436db515d2eba6cc028, type: 3}
+  tacticImage: {fileID: 2812451458825776801, guid: 57b95179a28e1431996a34a7eeab7b86, type: 3}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 23c49b53d91ef49879dde9aa6ee0ed6f
+guid: 5c52c258d468840c780f75e88267927e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1625011720555441244
-    second: clickbait_0
+      213: -364064275121831553
+    second: supplements2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clickbait_0
+      name: supplements2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c5cad87dc833d8610800000000000000
-      internalID: 1625011720555441244
+      spriteID: f7104fd787592faf0800000000000000
+      internalID: -364064275121831553
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      clickbait_0: 1625011720555441244
+      supplements2_0: -364064275121831553
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

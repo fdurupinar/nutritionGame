@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 5
   displayName: Toxins
   type: Conspiracy
-  text: Big Pharma doesn't want you to know this...
-  debunkingText: ' This is a conspiracy tactic to create an "Us vs. Them" narrative.
-    Claims of "suppressed cures" almost never have verifiable evidence to support
-    them.'
+  text: Big Pharma doesn't want you to know this. They can't patent a natural cure,
+    so they try to suppress the truth.
+  debunkingText: "\uFFFDThis is a conspiracy tactic to create an \"Us vs. Them\"
+    narrative. Claims of \"suppressed cures\" almost never have verifiable evidence
+    to support them."
   level: 1
   engagementBonus: 0.1
   credibilityCost: 0.05

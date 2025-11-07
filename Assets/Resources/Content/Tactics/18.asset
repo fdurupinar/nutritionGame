@@ -15,12 +15,13 @@ MonoBehaviour:
   id: 18
   displayName: Vague Authority
   type: TwistedEvidence
-  text: Leading experts and university studies agree...
-  debunkingText: ' This is an appeal to Vague Authority. Which "leading experts"?
-    What "university studies"? If they don''t provide a specific, verifiable source,
-    the claim is empty.'
+  text: Leading experts and university studies agree that this method is the future
+    of health. The research is very clear.
+  debunkingText: "\uFFFDThis is an appeal to Vague Authority. Which \"leading experts\"?
+    What \"university studies\"? If they don't provide a specific, verifiable source,
+    the claim is empty."
   level: 1
   engagementBonus: 0.07
   credibilityCost: 0.02
   enabledFlag: 1
-  tacticImage: {fileID: 0}
+  tacticImage: {fileID: 250790742652188796, guid: e7af4f5e1915c4bac8ccf5c71ecdf314, type: 3}

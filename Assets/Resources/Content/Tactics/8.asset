@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 8
   displayName: Cherry picking
   type: TwistedEvidence
-  text: A recent study hinted that this could be effective...
-  debunkingText: ' This is Cherry Picking. It highlights one tiny piece of data (like
-    a single table) while ignoring the full context, the study''s conclusion, or
-    all other research that contradicts it.'
+  text: A recent study hinted that this could be effective. They won't report it,
+    but if you look at table 3, the data is clear.
+  debunkingText: "\uFFFDThis is Cherry Picking. It highlights one tiny piece of data
+    (like a single table) while ignoring the full context, the study's conclusion,
+    or all other research that contradicts it."
   level: 2
   engagementBonus: 0.11
   credibilityCost: 0.06

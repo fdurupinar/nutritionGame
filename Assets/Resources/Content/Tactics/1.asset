@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 1
   displayName: Detox
   type: Emotion
-  text: Everyone is doing this new 7-day cleanse...
-  debunkingText: ' Your body has a built-in, highly effective "detox" system: your
-    liver and kidneys. Most "cleanses" are just a form of fasting that don''t "clean"
-    anything.'
+  text: Everyone is talking about this new 7-day cleanse! Don't get left behind,
+    it's the key to unlocking your energy.
+  debunkingText: "\uFFFDYour body has a built-in, highly effective \"detox\" system:
+    your liver and kidneys. Most \"cleanses\" are just a form of fasting that don't
+    \"clean\" anything."
   level: 2
   engagementBonus: 0.08
   credibilityCost: 0.03

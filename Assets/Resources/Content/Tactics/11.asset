@@ -15,9 +15,10 @@ MonoBehaviour:
   id: 11
   displayName: Strawman
   type: Conspiracy
-  text: Mainstream 'experts' say just 'eat in moderation'...
-  debunkingText: ' This is a Strawman attack. It misrepresents the opposing argument
-    (e.g., "food pyramid") to make it look weak and easy to attack.'
+  text: Mainstream 'experts' say just 'eat in moderation', but what are they hiding?
+    Their 'food pyramid' is a lie.
+  debunkingText: "\uFFFDThis is a Strawman attack. It misrepresents the opposing
+    argument (e.g., \"food pyramid\") to make it look weak and easy to attack."
   level: 1
   engagementBonus: 0.07
   credibilityCost: 0.04

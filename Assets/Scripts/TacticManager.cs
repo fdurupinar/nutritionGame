@@ -143,7 +143,7 @@ public class TacticManager : MonoBehaviour
 
         string cmdArgs = string.Format(" -v {0} -r {1} \"{2}\"", voice, _wordsPerSec * 60, text.Replace("\"", ","));
 
-        Process speechProcess = Process.Start("/usr/bin/say", cmdArgs);
+        // Process speechProcess = Process.Start("/usr/bin/say", cmdArgs);
 
         float delay = text.Split(' ').Length / _wordsPerSec;
 

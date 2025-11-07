@@ -15,12 +15,13 @@ MonoBehaviour:
   id: 16
   displayName: Bandwagon
   type: Emotion
-  text: All your friends are already doing this...
-  debunkingText: ' This is the Bandwagon Fallacy. The popularity of an idea has zero
-    impact on its validity. "Everyone is doing it" is a social pressure tactic, not
-    a scientific argument.'
+  text: All your friends are already doing this, it's the fastest-growing health
+    movement of the year. Don't be the last one!
+  debunkingText: "\uFFFDThis is the Bandwagon Fallacy. The popularity of an idea
+    has zero impact on its validity. \"Everyone is doing it\" is a social pressure
+    tactic, not a scientific argument."
   level: 1
   engagementBonus: 0.09
   credibilityCost: 0.03
   enabledFlag: 1
-  tacticImage: {fileID: 1477306467657765337, guid: ae214e595b9f041bd842bc35a7e6d341, type: 3}
+  tacticImage: {fileID: 1555919699509109827, guid: 970eac901108e48ce82a0112e0336830, type: 3}

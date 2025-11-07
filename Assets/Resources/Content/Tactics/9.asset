@@ -15,10 +15,11 @@ MonoBehaviour:
   id: 9
   displayName: Misleading graph
   type: TwistedEvidence
-  text: The numbers don't lie! Just look at this chart...
-  debunkingText: ' A graph can be easily manipulated to lie. Common tricks include
+  text: The numbers don't lie! Just look at this chart. The results are undeniable.
+    You can't argue with the data.
+  debunkingText: "\uFFFDA graph can be easily manipulated to lie. Common tricks include
     truncating the Y-axis (not starting at zero) or cherry-picking data points to
-    make a trend look more dramatic.'
+    make a trend look more dramatic."
   level: 3
   engagementBonus: 0.14
   credibilityCost: 0.07
