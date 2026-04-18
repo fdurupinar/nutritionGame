@@ -8,9 +8,17 @@ using System.Collections;
 
 using System.Diagnostics;
 
+[System.Serializable]
+public class DayConfig
+{
+    public int dayNumber;
+    public List<TacticSO> tacticsForThisDay;
+}
+
 public class TacticManager : MonoBehaviour
 {
-
+    [Header("Day System Configuration")]
+    public List<DayConfig> dayConfigs;
     public Animator TacticPanel;
     [Header("Grid Settings")]
     [SerializeField] private GameObject _cardPrefab;
@@ -57,13 +65,36 @@ public class TacticManager : MonoBehaviour
         _commentManager = FindFirstObjectByType<CommentManager>();
 
         _userStats = GameObject.FindWithTag("Player").GetComponent<UserStats>();
-        _userStats.Credibility = 100;
+       
 
         // _contentBox = _contentPanel.GetComponentInChildren<TextMeshProUGUI>();
 
 
-        _currentTactics = _allTactics.FindAll(tactic => tactic.level == _userStats.Level);
+        // --- Day System Logic ---
+        int currentDay = 1;
+        if (DayManager.Instance != null)
+        {
+            currentDay = DayManager.Instance.currentDay;
+        }
 
+        // Clear current tactics to ensure a fresh start for the day
+        _currentTactics.Clear();
+
+        // Loop through ALL configs to add tactics for the current day AND previous days
+        foreach (DayConfig config in dayConfigs)
+        {
+            if (config.dayNumber <= currentDay)
+            {
+                foreach (TacticSO tactic in config.tacticsForThisDay)
+                {
+                    // Only add if it matches the player level AND isn't already in the list
+                    if (tactic.level == _userStats.Level && !_currentTactics.Contains(tactic))
+                    {
+                        _currentTactics.Add(tactic);
+                    }
+                }
+            }
+        }
         PopulateGrid();
 
         // HidePublish();
@@ -138,6 +169,9 @@ public class TacticManager : MonoBehaviour
 
 
 
+
+
+
     private IEnumerator SpeakAndShowComments(string voice, string text, string type)
     {
 
@@ -151,11 +185,18 @@ public class TacticManager : MonoBehaviour
         UpdateScores(_currentlySelectedCard.TacticData);
 
         StartCoroutine(_commentManager.DisplayCommentsRoutine(type, 2f));
+        yield return new WaitForSeconds(3f);
+        if (GlobalStatManager.Instance != null)
+        {
+            GlobalStatManager.Instance.SaveToDisk(_userStats.Cash, _userStats.FollowerCount, _userStats.Credibility);
+        }
 
         yield return new WaitForSeconds(2f);
         ShowSelectCardButton();
-
     }
+
+
+    
 
 
 

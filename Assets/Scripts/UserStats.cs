@@ -53,10 +53,18 @@ public class UserStats : MonoBehaviour
 
     void Start()
     {
+        // Fix: Remove the second "void Start()" line that was inside here
+        if (GlobalStatManager.Instance != null)
+        {
+            // Pull the numbers from the Global Manager bank
+            this.Cash = GlobalStatManager.Instance.currentCash;
+            this.FollowerCount = GlobalStatManager.Instance.currentFollowers;
+            this.Credibility = GlobalStatManager.Instance.currentCredibility;
+        }
+
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         Level = 1;
     }
-
     /// <summary>
     /// Animates a stat from its current value to a target value, updating the UI text.
     /// </summary>    
