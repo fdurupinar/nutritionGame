@@ -2730,7 +2730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DaySceneLink
   sceneDayText: {fileID: 0}
-  advanceButtons: []
+  advanceButtons:
+  - {fileID: 57028204}
   resetButtons:
   - {fileID: 272904580}
   objectsToActivate:
