@@ -96,7 +96,33 @@ public class CommentManager : MonoBehaviour
     }
 
 
+    public void ClearComments()
 
+    {
+
+        StopAllCoroutines();
+
+        if (_commentBox != null)
+
+        {
+
+            _commentBox.text = string.Empty;
+
+        }
+
+        _needsScrollToBottom = false;
+
+        if (_scrollRect != null)
+
+        {
+
+            Canvas.ForceUpdateCanvases();
+
+            _scrollRect.verticalNormalizedPosition = 1f;
+
+        }
+
+    }
 
 
     void LateUpdate()

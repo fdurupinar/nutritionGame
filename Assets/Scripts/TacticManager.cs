@@ -45,6 +45,14 @@ public class TacticManager : MonoBehaviour
 
     [SerializeField] private float _wordsPerSec = 4f;
 
+    private Coroutine _displayTextRoutine;
+    private Coroutine _speakAndCommentRoutine;
+    private int _displayRequestId = 0;
+
+    [Header("Daily Post Fill Blank")]
+    public DailyPostFillBlankManager dailyPostFillBlankManager;
+
+  
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -172,56 +180,84 @@ public class TacticManager : MonoBehaviour
 
 
 
-    private IEnumerator SpeakAndShowComments(string voice, string text, string type)
+    private IEnumerator SpeakAndShowComments(TacticSO selectedTactic, string postTextToShow)
     {
+        if (selectedTactic == null)
+            yield break;
 
-        string cmdArgs = string.Format(" -v {0} -r {1} \"{2}\"", voice, _wordsPerSec * 60, text.Replace("\"", ","));
-
-        // Process speechProcess = Process.Start("/usr/bin/say", cmdArgs);
-
-        float delay = text.Split(' ').Length / _wordsPerSec;
+        float delay = postTextToShow.Split(' ').Length / _wordsPerSec;
 
         yield return new WaitForSeconds(delay);
-        UpdateScores(_currentlySelectedCard.TacticData);
 
-        StartCoroutine(_commentManager.DisplayCommentsRoutine(type, 2f));
+        UpdateScores(selectedTactic);
+
+        if (_commentManager != null)
+        {
+            StartCoroutine(_commentManager.DisplayCommentsRoutine(selectedTactic.type, 2f));
+        }
+
         yield return new WaitForSeconds(3f);
+
         if (GlobalStatManager.Instance != null)
         {
-            GlobalStatManager.Instance.SaveToDisk(_userStats.Cash, _userStats.FollowerCount, _userStats.Credibility);
+            GlobalStatManager.Instance.SaveToDisk(
+                _userStats.Cash,
+                _userStats.FollowerCount,
+                _userStats.Credibility
+            );
         }
 
         yield return new WaitForSeconds(2f);
+
         ShowSelectCardButton();
     }
 
 
-    
-
-
-
-
-    private IEnumerator DisplayTextCC(string fullText)
+    private void StopTacticPublishRoutines()
     {
-        // 1. Clear the text box
+        _displayRequestId++;
+
+        if (_displayTextRoutine != null)
+        {
+            StopCoroutine(_displayTextRoutine);
+            _displayTextRoutine = null;
+        }
+
+        if (_speakAndCommentRoutine != null)
+        {
+            StopCoroutine(_speakAndCommentRoutine);
+            _speakAndCommentRoutine = null;
+        }
+
+        _isAtBottom = false;
+    }
+
+
+
+
+    private IEnumerator DisplayTextCC(string fullText, int requestId)
+    {
+        if (_contentBox == null)
+            yield break;
+
         _contentBox.text = "";
 
-        // 2. Split the full text into an array of words
         string[] words = fullText.Split(' ');
-
-
-        // 3. Calculate the time to wait between words
         float delay = 1.0f / _wordsPerSec;
 
-        // 4. Loop through each word in the array
         foreach (string word in words)
         {
+            if (requestId != _displayRequestId)
+                yield break;
 
             _contentBox.text += word + " ";
 
-            _isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
-            yield return new WaitForSeconds(delay);
+            if (_scrollRect != null)
+            {
+                _isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
+            }
 
+            yield return new WaitForSeconds(delay);
         }
     }
 
@@ -229,37 +265,123 @@ public class TacticManager : MonoBehaviour
     // This is the public method the Publish Button will call
     public void OnPublishButtonClicked()
     {
-        if (_currentlySelectedCard != null)
+        if (_currentlySelectedCard == null)
         {
-            // Get the data from the selected card
-            TacticSO selectedTactic = _currentlySelectedCard.TacticData; //remove from available tactics
-
-
-
-            _contentPanel.GetComponent<Image>().sprite = selectedTactic.tacticImage;
-            _contentPanel.GetComponent<Image>().gameObject.SetActive(true);
-
-            HideSelectCardButton();
-            StartCoroutine(DisplayTextCC(selectedTactic.text));
-
-
-            StartCoroutine(SpeakAndShowComments("Samantha", selectedTactic.text, selectedTactic.type));
-
-
-            _currentlySelectedCard.Deselect();
-
-            _currentTactics.Remove(selectedTactic);
-
-            PopulateGrid();
-
-
-
-        }
-        else
-        {
-
             UnityEngine.Debug.LogWarning("No card selected to publish!");
+            return;
         }
+
+        StopTacticPublishRoutines();
+
+        TacticSO selectedTactic = _currentlySelectedCard.TacticData;
+
+        string postTextToShow = selectedTactic.text;
+
+        if (dailyPostFillBlankManager != null &&
+            !string.IsNullOrWhiteSpace(dailyPostFillBlankManager.currentCompletedSentence))
+        {
+            postTextToShow = dailyPostFillBlankManager.currentCompletedSentence;
+        }
+
+        if (TacticPanel != null)
+        {
+            TacticPanel.SetBool("isHidden", false);
+        }
+
+        if (_contentPanel != null)
+        {
+            Image contentImage = _contentPanel.GetComponent<Image>();
+
+            if (contentImage != null)
+            {
+                contentImage.sprite = selectedTactic.tacticImage;
+                contentImage.gameObject.SetActive(true);
+            }
+        }
+
+        if (_contentBox != null)
+        {
+            _contentBox.text = "";
+        }
+
+        if (_scrollRect != null)
+        {
+            Canvas.ForceUpdateCanvases();
+            _scrollRect.verticalNormalizedPosition = 1f;
+        }
+
+        HideSelectCardButton();
+
+        _displayTextRoutine = StartCoroutine(DisplayTextCC(postTextToShow, _displayRequestId));
+        _speakAndCommentRoutine = StartCoroutine(SpeakAndShowComments(selectedTactic, postTextToShow));
+
+        _currentlySelectedCard.Deselect();
+        _currentlySelectedCard = null;
+
+        _currentTactics.Remove(selectedTactic);
+        PopulateGrid();
+    }
+
+    private void StopTacticScrollRoutines()
+    {
+        _displayRequestId++;
+
+        if (_displayTextRoutine != null)
+        {
+            StopCoroutine(_displayTextRoutine);
+            _displayTextRoutine = null;
+        }
+
+        if (_speakAndCommentRoutine != null)
+        {
+            StopCoroutine(_speakAndCommentRoutine);
+            _speakAndCommentRoutine = null;
+        }
+
+        _isAtBottom = false;
+    }
+    public void ShowDailyPostCompletedSentenceOnly(string completedSentence)
+    {
+        if (string.IsNullOrWhiteSpace(completedSentence))
+        {
+            UnityEngine.Debug.LogWarning("TacticManager: Daily Post completed sentence is empty.");
+            return;
+        }
+
+        StopTacticScrollRoutines();
+
+        if (_contentPanel != null)
+        {
+            _contentPanel.SetActive(true);
+
+            Image contentImage = _contentPanel.GetComponent<Image>();
+            if (contentImage != null)
+            {
+                contentImage.sprite = null;
+                contentImage.color = Color.white;
+                contentImage.enabled = true;
+            }
+        }
+
+        if (_contentBox != null)
+        {
+            _contentBox.text = "";
+        }
+
+        if (_scrollRect != null)
+        {
+            Canvas.ForceUpdateCanvases();
+            _scrollRect.verticalNormalizedPosition = 1f;
+        }
+
+        if (_commentManager != null)
+        {
+            _commentManager.ClearComments();
+        }
+
+        HideSelectCardButton();
+
+        _displayTextRoutine = StartCoroutine(DisplayTextCC(completedSentence, _displayRequestId));
     }
 
     public void HideSelectCardButton()
