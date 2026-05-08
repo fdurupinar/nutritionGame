@@ -8,9 +8,13 @@ using UnityEngine.UI;
 
 public class DailyPostFillBlankManager : MonoBehaviour
 {
+    [Header("Manager References")]
+    public TacticManager tacticManager;
+
     [Header("Panels")]
     public GameObject topicPanel;
     public GameObject subTopicPanel;
+    public GameObject sentenceSelectionPanel;
     public GameObject fillBlankPanel;
 
     [Header("JSON Data")]
@@ -25,6 +29,10 @@ public class DailyPostFillBlankManager : MonoBehaviour
     public TextMeshProUGUI subTopicTitleText;
     public Transform subTopicButtonParent;
     public Button subTopicButtonPrefab;
+
+    [Header("Sentence Selection UI")]
+    public Transform sentenceButtonParent;
+    public Button sentenceButtonPrefab;
 
     [Header("Fill Blank UI")]
     public TextMeshProUGUI sentenceText;
@@ -58,8 +66,11 @@ public class DailyPostFillBlankManager : MonoBehaviour
     [Header("Runtime Info")]
     [HideInInspector] public string currentTopicId;
     [HideInInspector] public int currentSubTopicIndex = -1;
+    [HideInInspector] public string currentTacticType;
+
     [HideInInspector] public DailyPostTopicJson currentTopicData;
     [HideInInspector] public DailyPostSubTopicJson currentSubTopicData;
+    [HideInInspector] public DailyPostSentenceJson currentSentenceData;
 
     public string currentCompletedSentence;
 
@@ -116,14 +127,13 @@ public class DailyPostFillBlankManager : MonoBehaviour
         }
 
         if (dailyPostData == null)
-        {
             dailyPostData = new DailyPostJsonDatabase();
-        }
 
         if (dailyPostData.topics == null)
-        {
             dailyPostData.topics = new List<DailyPostTopicJson>();
-        }
+
+        if (dailyPostData.tactics == null)
+            dailyPostData.tactics = new List<DailyPostTacticJson>();
     }
 
     public void OpenTopicPanel()
@@ -146,8 +156,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         {
             TopicButtonBinding binding = topicButtons[i];
 
-            if (binding.topicButton == null)
-                continue;
+            if (binding.topicButton == null) continue;
 
             bool unlocked = currentDay >= binding.unlockDay;
 
@@ -187,9 +196,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         ClearChildren(subTopicButtonParent);
 
         if (currentTopicData.subTopics == null)
-        {
             currentTopicData.subTopics = new List<DailyPostSubTopicJson>();
-        }
 
         for (int i = 0; i < currentTopicData.subTopics.Count; i++)
         {
@@ -205,58 +212,110 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
             int capturedSubTopicIndex = i;
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => OpenFillBlankPanel(capturedSubTopicIndex));
+            button.onClick.AddListener(() => GoToTacticSelection(capturedSubTopicIndex));
         }
     }
 
-    public DailyPostTopicJson GetTopicDataById(string topicId)
+    public void GoToTacticSelection(int subTopicIndex)
     {
-        if (dailyPostData == null || dailyPostData.topics == null)
-            return null;
-
-        for (int i = 0; i < dailyPostData.topics.Count; i++)
-        {
-            if (dailyPostData.topics[i].topicId == topicId)
-            {
-                return dailyPostData.topics[i];
-            }
-        }
-
-        return null;
-    }
-
-    public void OpenFillBlankPanel(int subTopicIndex)
-    {
-        if (currentTopicData == null || currentTopicData.subTopics == null)
-            return;
-
-        if (subTopicIndex < 0 || subTopicIndex >= currentTopicData.subTopics.Count)
-            return;
-
         currentSubTopicIndex = subTopicIndex;
         currentSubTopicData = currentTopicData.subTopics[subTopicIndex];
+
+        // Hide daily post panels entirely
+        ShowOnlyPanel(null);
+
+        // Turn on the Tactic Panel
+        if (tacticManager != null)
+        {
+            tacticManager.OpenCardView();
+        }
+    }
+
+    // Called by TacticManager after a card is confirmed
+    public void OpenSentenceSelectionPanel(string tacticType)
+    {
+        currentTacticType = tacticType.ToLower();
+        DailyPostTacticJson tacticData = GetTacticDataById(currentTacticType);
+
+        if (tacticData == null || tacticData.sentences == null || tacticData.sentences.Count == 0)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: No sentences found for tactic: " + tacticType);
+            return;
+        }
+
+        ShowOnlyPanel(sentenceSelectionPanel);
+        ClearChildren(sentenceButtonParent);
+
+        for (int i = 0; i < tacticData.sentences.Count; i++)
+        {
+            DailyPostSentenceJson sentenceData = tacticData.sentences[i];
+            Button button = Instantiate(sentenceButtonPrefab, sentenceButtonParent);
+
+            TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                // Format the preview text to show blanks instead of brackets
+                string previewText = sentenceData.sentence;
+                if (sentenceData.blankWords != null)
+                {
+                    for (int w = 0; w < sentenceData.blankWords.Count; w++)
+                    {
+                        previewText = previewText.Replace($"[{sentenceData.blankWords[w]}]", emptyBlankText);
+                    }
+                }
+                buttonText.text = previewText;
+            }
+
+            int capturedIndex = i;
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() => OpenFillBlankPanel(tacticData, capturedIndex));
+        }
+    }
+
+    public void OpenFillBlankPanel(DailyPostTacticJson tacticData, int sentenceIndex)
+    {
+        currentSentenceData = tacticData.sentences[sentenceIndex];
         currentCompletedSentence = "";
 
         ShowOnlyPanel(fillBlankPanel);
 
         BuildFillBlankSentence();
-        BuildWordChoices(currentSubTopicData);
+        BuildWordChoices(currentSentenceData);
         UpdateNextButtonState();
+    }
+
+    public DailyPostTopicJson GetTopicDataById(string topicId)
+    {
+        if (dailyPostData == null || dailyPostData.topics == null) return null;
+
+        for (int i = 0; i < dailyPostData.topics.Count; i++)
+        {
+            if (dailyPostData.topics[i].topicId == topicId)
+                return dailyPostData.topics[i];
+        }
+        return null;
+    }
+
+    public DailyPostTacticJson GetTacticDataById(string tacticId)
+    {
+        if (dailyPostData == null || dailyPostData.tactics == null) return null;
+
+        for (int i = 0; i < dailyPostData.tactics.Count; i++)
+        {
+            if (dailyPostData.tactics[i].tacticId.ToLower() == tacticId.ToLower())
+                return dailyPostData.tactics[i];
+        }
+        return null;
     }
 
     public void BuildFillBlankSentence()
     {
         currentBlankValues.Clear();
 
-        if (currentSubTopicData == null)
+        if (currentSentenceData == null || currentSentenceData.blankWords == null)
             return;
 
-        if (currentSubTopicData.blankWords == null)
-        {
-            currentSubTopicData.blankWords = new List<string>();
-        }
-
-        for (int i = 0; i < currentSubTopicData.blankWords.Count; i++)
+        for (int i = 0; i < currentSentenceData.blankWords.Count; i++)
         {
             currentBlankValues.Add("");
         }
@@ -266,11 +325,9 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
     public void RefreshSentenceText()
     {
-        if (sentenceText == null || currentSubTopicData == null)
-            return;
+        if (sentenceText == null || currentSentenceData == null) return;
 
         sentenceText.text = BuildDisplaySentence();
-
         sentenceText.enableWordWrapping = true;
         sentenceText.richText = true;
         sentenceText.raycastTarget = false;
@@ -293,36 +350,31 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
     public string BuildDisplaySentence()
     {
-        if (currentSubTopicData == null)
-            return "";
+        if (currentSentenceData == null) return "";
 
         StringBuilder builder = new StringBuilder();
-
-        string sentence = currentSubTopicData.sentence;
+        string sentence = currentSentenceData.sentence;
         int cursor = 0;
 
-        for (int i = 0; i < currentSubTopicData.blankWords.Count; i++)
+        for (int i = 0; i < currentSentenceData.blankWords.Count; i++)
         {
-            string originalBlankWord = currentSubTopicData.blankWords[i];
+            string originalBlankWord = currentSentenceData.blankWords[i];
 
-            if (string.IsNullOrWhiteSpace(originalBlankWord))
-                continue;
+            if (string.IsNullOrWhiteSpace(originalBlankWord)) continue;
 
-            int index = sentence.IndexOf(originalBlankWord, cursor, StringComparison.OrdinalIgnoreCase);
+            int index = sentence.IndexOf($"[{originalBlankWord}]", cursor, StringComparison.OrdinalIgnoreCase);
 
             if (index < 0)
             {
-                Debug.LogWarning("Blank word not found in sentence: " + originalBlankWord);
-                continue;
+                // Fallback if brackets aren't used in the raw string match
+                index = sentence.IndexOf(originalBlankWord, cursor, StringComparison.OrdinalIgnoreCase);
+                if (index < 0) continue;
             }
 
             builder.Append(sentence.Substring(cursor, index - cursor));
 
             string value = "";
-            if (i < currentBlankValues.Count)
-            {
-                value = currentBlankValues[i];
-            }
+            if (i < currentBlankValues.Count) value = currentBlankValues[i];
 
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -331,12 +383,9 @@ public class DailyPostFillBlankManager : MonoBehaviour
             else
             {
                 string safeValue = EscapeRichText(value);
-
                 if (underlineFilledWords)
                 {
-                    builder.Append("<u>");
-                    builder.Append(safeValue);
-                    builder.Append("</u>");
+                    builder.Append("<u>").Append(safeValue).Append("</u>");
                 }
                 else
                 {
@@ -344,7 +393,9 @@ public class DailyPostFillBlankManager : MonoBehaviour
                 }
             }
 
-            cursor = index + originalBlankWord.Length;
+            // Advance cursor past the blank word (account for brackets if they exist)
+            int lengthToSkip = sentence.Substring(index).StartsWith("[") ? originalBlankWord.Length + 2 : originalBlankWord.Length;
+            cursor = index + lengthToSkip;
         }
 
         if (cursor < sentence.Length)
@@ -357,25 +408,24 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
     public string BuildCompletedSentence()
     {
-        if (currentSubTopicData == null)
-            return "";
+        if (currentSentenceData == null) return "";
 
         StringBuilder builder = new StringBuilder();
-
-        string sentence = currentSubTopicData.sentence;
+        string sentence = currentSentenceData.sentence;
         int cursor = 0;
 
-        for (int i = 0; i < currentSubTopicData.blankWords.Count; i++)
+        for (int i = 0; i < currentSentenceData.blankWords.Count; i++)
         {
-            string originalBlankWord = currentSubTopicData.blankWords[i];
+            string originalBlankWord = currentSentenceData.blankWords[i];
+            if (string.IsNullOrWhiteSpace(originalBlankWord)) continue;
 
-            if (string.IsNullOrWhiteSpace(originalBlankWord))
-                continue;
-
-            int index = sentence.IndexOf(originalBlankWord, cursor, StringComparison.OrdinalIgnoreCase);
+            int index = sentence.IndexOf($"[{originalBlankWord}]", cursor, StringComparison.OrdinalIgnoreCase);
 
             if (index < 0)
-                continue;
+            {
+                index = sentence.IndexOf(originalBlankWord, cursor, StringComparison.OrdinalIgnoreCase);
+                if (index < 0) continue;
+            }
 
             builder.Append(sentence.Substring(cursor, index - cursor));
 
@@ -388,7 +438,8 @@ public class DailyPostFillBlankManager : MonoBehaviour
                 builder.Append(emptyBlankText);
             }
 
-            cursor = index + originalBlankWord.Length;
+            int lengthToSkip = sentence.Substring(index).StartsWith("[") ? originalBlankWord.Length + 2 : originalBlankWord.Length;
+            cursor = index + lengthToSkip;
         }
 
         if (cursor < sentence.Length)
@@ -399,53 +450,27 @@ public class DailyPostFillBlankManager : MonoBehaviour
         return builder.ToString();
     }
 
-    public void BuildWordChoices(DailyPostSubTopicJson subTopic)
+    public void BuildWordChoices(DailyPostSentenceJson sentenceData)
     {
         activeWordChoices.Clear();
         ClearChildren(wordChoiceParent);
 
-        if (subTopic == null)
-            return;
+        if (sentenceData == null || sentenceData.wordChoices == null) return;
 
-        if (subTopic.blankWords == null)
-        {
-            subTopic.blankWords = new List<string>();
-        }
-
-        if (subTopic.wordChoices == null)
-        {
-            subTopic.wordChoices = new List<string>();
-        }
-
-        List<string> finalChoices = new List<string>();
-
-        for (int i = 0; i < subTopic.blankWords.Count; i++)
-        {
-            AddUnique(finalChoices, subTopic.blankWords[i]);
-        }
-
-        for (int i = 0; i < subTopic.wordChoices.Count; i++)
-        {
-            if (finalChoices.Count >= maxWordChoicesToShow)
-                break;
-
-            AddUnique(finalChoices, subTopic.wordChoices[i]);
-        }
+        List<string> finalChoices = new List<string>(sentenceData.wordChoices);
 
         if (shuffleWordChoices)
         {
             Shuffle(finalChoices);
         }
 
-        for (int i = 0; i < finalChoices.Count; i++)
+        for (int i = 0; i < finalChoices.Count && i < maxWordChoicesToShow; i++)
         {
             Button button = Instantiate(wordChoiceButtonPrefab, wordChoiceParent);
-
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+
             if (buttonText != null)
-            {
                 buttonText.text = finalChoices[i];
-            }
 
             string capturedWord = finalChoices[i];
             Button capturedButton = button;
@@ -466,8 +491,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
     {
         int blankIndex = GetFirstEmptyBlankIndex();
 
-        if (blankIndex < 0)
-            return;
+        if (blankIndex < 0) return;
 
         currentBlankValues[blankIndex] = word;
         MarkWordChoiceUsed(button, word);
@@ -486,13 +510,9 @@ public class DailyPostFillBlankManager : MonoBehaviour
                 choice.used = true;
 
                 if (hideWordChoiceAfterUse)
-                {
                     choice.button.gameObject.SetActive(false);
-                }
                 else
-                {
                     choice.button.interactable = false;
-                }
 
                 return;
             }
@@ -503,35 +523,26 @@ public class DailyPostFillBlankManager : MonoBehaviour
     {
         for (int i = 0; i < currentBlankValues.Count; i++)
         {
-            if (string.IsNullOrWhiteSpace(currentBlankValues[i]))
-            {
-                return i;
-            }
+            if (string.IsNullOrWhiteSpace(currentBlankValues[i])) return i;
         }
-
         return -1;
     }
 
     public bool AllBlanksFilled()
     {
-        if (currentBlankValues.Count == 0)
-            return false;
+        if (currentBlankValues.Count == 0) return false;
 
         for (int i = 0; i < currentBlankValues.Count; i++)
         {
-            if (string.IsNullOrWhiteSpace(currentBlankValues[i]))
-                return false;
+            if (string.IsNullOrWhiteSpace(currentBlankValues[i])) return false;
         }
-
         return true;
     }
 
     public void UpdateNextButtonState()
     {
         if (nextButton != null)
-        {
             nextButton.interactable = AllBlanksFilled();
-        }
     }
 
     public void ClearLastFilledBlank()
@@ -548,7 +559,6 @@ public class DailyPostFillBlankManager : MonoBehaviour
                 return;
             }
         }
-
         UpdateNextButtonState();
     }
 
@@ -579,8 +589,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         {
             WordChoiceRuntime choice = activeWordChoices[i];
 
-            if (choice == null || choice.button == null)
-                continue;
+            if (choice == null || choice.button == null) continue;
 
             if (choice.used && string.Equals(choice.word, word, StringComparison.OrdinalIgnoreCase))
             {
@@ -592,7 +601,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         }
     }
 
-    public void GoNext()
+    public void GoNext() // This is called when the Next/publishing button is pressed after filling blanks
     {
         if (!AllBlanksFilled())
         {
@@ -601,44 +610,29 @@ public class DailyPostFillBlankManager : MonoBehaviour
         }
 
         currentCompletedSentence = BuildCompletedSentence();
+
+        // Hide all Daily Post panels so the screen is clear for publishing
+        ShowOnlyPanel(null);
+
         onNext.Invoke();
     }
 
     public void ShowOnlyPanel(GameObject panelToShow)
     {
-        if (topicPanel != null)
-            topicPanel.SetActive(panelToShow == topicPanel);
-
-        if (subTopicPanel != null)
-            subTopicPanel.SetActive(panelToShow == subTopicPanel);
-
-        if (fillBlankPanel != null)
-            fillBlankPanel.SetActive(panelToShow == fillBlankPanel);
+        if (topicPanel != null) topicPanel.SetActive(panelToShow == topicPanel);
+        if (subTopicPanel != null) subTopicPanel.SetActive(panelToShow == subTopicPanel);
+        if (sentenceSelectionPanel != null) sentenceSelectionPanel.SetActive(panelToShow == sentenceSelectionPanel);
+        if (fillBlankPanel != null) fillBlankPanel.SetActive(panelToShow == fillBlankPanel);
     }
 
     public void ClearChildren(Transform parent)
     {
-        if (parent == null)
-            return;
+        if (parent == null) return;
 
         for (int i = parent.childCount - 1; i >= 0; i--)
         {
             Destroy(parent.GetChild(i).gameObject);
         }
-    }
-
-    public void AddUnique(List<string> list, string word)
-    {
-        if (string.IsNullOrWhiteSpace(word))
-            return;
-
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (string.Equals(list[i], word, StringComparison.OrdinalIgnoreCase))
-                return;
-        }
-
-        list.Add(word);
     }
 
     public void Shuffle(List<string> list)
@@ -654,9 +648,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
     public string EscapeRichText(string value)
     {
-        if (string.IsNullOrEmpty(value))
-            return "";
-
+        if (string.IsNullOrEmpty(value)) return "";
         return value.Replace("<", "&lt;").Replace(">", "&gt;");
     }
 }
@@ -666,8 +658,6 @@ public class TopicButtonBinding
 {
     public int unlockDay = 1;
     public Button topicButton;
-
-    [Header("Must match topicId in JSON")]
     public string topicId;
 }
 
@@ -675,12 +665,14 @@ public class TopicButtonBinding
 public class DailyPostJsonDatabase
 {
     public List<DailyPostTopicJson> topics = new List<DailyPostTopicJson>();
+    public List<DailyPostTacticJson> tactics = new List<DailyPostTacticJson>();
 }
 
 [Serializable]
 public class DailyPostTopicJson
 {
     public string topicId;
+    public string topicName;
     public List<DailyPostSubTopicJson> subTopics = new List<DailyPostSubTopicJson>();
 }
 
@@ -689,10 +681,20 @@ public class DailyPostSubTopicJson
 {
     public string subTopicId;
     public string subTopicName;
+}
 
+[Serializable]
+public class DailyPostTacticJson
+{
+    public string tacticId;
+    public List<DailyPostSentenceJson> sentences = new List<DailyPostSentenceJson>();
+}
+
+[Serializable]
+public class DailyPostSentenceJson
+{
     [TextArea(2, 5)]
     public string sentence;
-
     public List<string> blankWords = new List<string>();
     public List<string> wordChoices = new List<string>();
 }

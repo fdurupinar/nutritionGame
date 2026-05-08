@@ -1,116 +1,238 @@
 {
   "topics": [
     {
-      "topicId": "food",
-      "subTopics": [
-        {
-          "subTopicId": "raw_milk",
-          "subTopicName": "Raw Milk Trend",
-          "sentence": "Raw milk can make people sick if it is not handled safely.",
-          "blankWords": ["Raw milk", "sick", "safely"],
-          "wordChoices": ["natural", "healthy", "viral", "clean", "farm", "protein", "strong", "fresh", "better"]
-        },
-        {
-          "subTopicId": "leftovers",
-          "subTopicName": "Leftover Food Safety",
-          "sentence": "Leaving cooked food out too long can increase bacteria.",
-          "blankWords": ["cooked food", "too long", "bacteria"],
-          "wordChoices": ["fresh", "safe", "hot", "cold", "viral", "clean", "natural", "healthy", "fast"]
-        }
-      ]
-    },
-    {
       "topicId": "diet",
+      "topicName": "General Dietary Patterns",
       "subTopics": [
-        {
-          "subTopicId": "genz_diet",
-          "subTopicName": "Gen-Z Diet Trend",
-          "sentence": "This Gen-Z diet is doing harm to your body.",
-          "blankWords": ["Gen-Z", "harm", "body"],
-          "wordChoices": ["viral", "safe", "doctor", "energy", "skin", "sleep", "natural", "clean", "fast"]
-        },
-        {
-          "subTopicId": "clean_eating",
-          "subTopicName": "Clean Eating Claim",
-          "sentence": "Eating only clean foods is the best way to stay healthy.",
-          "blankWords": ["clean foods", "best way", "healthy"],
-          "wordChoices": ["natural", "safe", "doctor", "viral", "energy", "body", "simple", "popular", "fast"]
-        }
+        { "subTopicId": "carnivore", "subTopicName": "The Carnivore Diet" },
+        { "subTopicId": "fasting", "subTopicName": "Extreme Fasting Rules" },
+        { "subTopicId": "clean_eating", "subTopicName": "Clean Eating Exclusivity" }
       ]
     },
     {
       "topicId": "mom_child",
+      "topicName": "Maternal & Child Nutrition",
       "subTopics": [
-        {
-          "subTopicId": "baby_food",
-          "subTopicName": "Baby Food Claim",
-          "sentence": "This homemade baby food is safer than anything from the store.",
-          "blankWords": ["homemade", "safer", "store"],
-          "wordChoices": ["natural", "doctor", "viral", "healthy", "clean", "fresh", "simple", "fast", "popular"]
-        },
-        {
-          "subTopicId": "pregnancy_food",
-          "subTopicName": "Pregnancy Food Advice",
-          "sentence": "Pregnant people should avoid this food to protect their baby.",
-          "blankWords": ["Pregnant people", "avoid", "baby"],
-          "wordChoices": ["natural", "doctor", "safe", "viral", "clean", "energy", "body", "healthy", "fast"]
-        }
+        { "subTopicId": "mystery_illness", "subTopicName": "Curing Mystery Illnesses" },
+        { "subTopicId": "baby_formula", "subTopicName": "Homemade Baby Formula" },
+        { "subTopicId": "food_dyes", "subTopicName": "Food Dyes and Hyperactivity" }
       ]
     },
     {
       "topicId": "disease",
+      "topicName": "Disease Prevention & Management",
       "subTopics": [
-        {
-          "subTopicId": "immune_boost",
-          "subTopicName": "Immune Boost Claim",
-          "sentence": "This drink can boost your immune system better than medicine.",
-          "blankWords": ["drink", "immune system", "medicine"],
-          "wordChoices": ["fruit", "doctor", "natural", "fast", "safe", "energy", "viral", "clean", "body"]
-        },
-        {
-          "subTopicId": "sugar_disease",
-          "subTopicName": "Sugar Disease Claim",
-          "sentence": "Cutting sugar can prevent disease and fix your body.",
-          "blankWords": ["sugar", "prevent disease", "body"],
-          "wordChoices": ["natural", "doctor", "healthy", "viral", "clean", "safe", "energy", "fast", "popular"]
-        }
+        { "subTopicId": "cancer_superfoods", "subTopicName": "Anti-Cancer Superfoods" },
+        { "subTopicId": "cure_diabetes", "subTopicName": "Curing Diabetes Quickly" },
+        { "subTopicId": "extreme_immunity", "subTopicName": "Extreme Immunity Hacks" }
+      ]
+    },
+    {
+      "topicId": "food",
+      "topicName": "Food Safety",
+      "subTopics": [
+        { "subTopicId": "raw_milk", "subTopicName": "Raw vs. Pasteurized Milk" },
+        { "subTopicId": "tap_water", "subTopicName": "Hidden Toxins in Tap Water" },
+        { "subTopicId": "dirty_dozen", "subTopicName": "The Pesticide Scare" }
       ]
     },
     {
       "topicId": "supp",
+      "topicName": "Supplements",
       "subTopics": [
-        {
-          "subTopicId": "detox_pill",
-          "subTopicName": "Detox Pill Claim",
-          "sentence": "This detox pill can clean your body in only one night.",
-          "blankWords": ["detox pill", "clean", "one night"],
-          "wordChoices": ["doctor", "natural", "safe", "viral", "energy", "strong", "fast", "simple", "popular"]
-        },
-        {
-          "subTopicId": "vitamin_gummy",
-          "subTopicName": "Vitamin Gummy Trend",
-          "sentence": "These vitamin gummies can give you perfect health every day.",
-          "blankWords": ["vitamin gummies", "perfect health", "every day"],
-          "wordChoices": ["protein", "natural", "safe", "doctor", "viral", "clean", "energy", "strong", "fast"]
-        }
+        { "subTopicId": "heavy_metal", "subTopicName": "Heavy Metal Detoxes" },
+        { "subTopicId": "pre_workout", "subTopicName": "Unregulated Pre-Workout Powders" },
+        { "subTopicId": "magic_gummies", "subTopicName": "Magic Vitamin Gummies" }
       ]
     },
     {
       "topicId": "weight",
+      "topicName": "Weight Loss",
       "subTopics": [
+        { "subTopicId": "body_size", "subTopicName": "Attacking Body Size" },
+        { "subTopicId": "fat_burning", "subTopicName": "Rapid Fat-Burning Pills" },
+        { "subTopicId": "negative_calorie", "subTopicName": "Negative Calorie Foods" }
+      ]
+    }
+  ],
+  "tactics": [
+    {
+      "tacticId": "emotion",
+      "sentences": [
         {
-          "subTopicId": "fast_loss",
-          "subTopicName": "Fast Weight Loss Trend",
-          "sentence": "This simple diet trick can burn fat while you sleep.",
-          "blankWords": ["simple", "burn fat", "sleep"],
-          "wordChoices": ["doctor", "viral", "natural", "safe", "body", "energy", "clean", "fast", "popular"]
+          "sentence": "This poor mother trusted [doctors], and now her baby is in the [hospital].",
+          "blankWords": ["doctors", "hospital"],
+          "wordChoices": ["doctors", "hospital", "experts", "clinic", "natural", "safe", "sick", "home"]
         },
         {
-          "subTopicId": "belly_fat",
-          "subTopicName": "Belly Fat Claim",
-          "sentence": "This one food can melt belly fat without exercise.",
-          "blankWords": ["one food", "melt", "exercise"],
-          "wordChoices": ["natural", "doctor", "safe", "viral", "clean", "energy", "body", "fast", "popular"]
+          "sentence": "You are poisoning your [family] if you keep feeding them [chemicals].",
+          "blankWords": ["family", "chemicals"],
+          "wordChoices": ["family", "chemicals", "kids", "medicine", "healthy", "toxins", "food", "pets"]
+        },
+        {
+          "sentence": "Feel [amazing] again by ditching the toxic [garbage] in your pantry.",
+          "blankWords": ["amazing", "garbage"],
+          "wordChoices": ["amazing", "garbage", "young", "food", "fresh", "chemicals", "healthy", "tired"]
+        }
+      ]
+    },
+    {
+      "tacticId": "trolling",
+      "sentences": [
+        {
+          "sentence": "Only absolute [sheep] still believe that eating [veggies] is healthy.",
+          "blankWords": ["sheep", "veggies"],
+          "wordChoices": ["sheep", "veggies", "fools", "meat", "natural", "clean", "doctors", "sugar"]
+        },
+        {
+          "sentence": "Imagine being so [dumb] that you think drinking [water] actually works.",
+          "blankWords": ["dumb", "water"],
+          "wordChoices": ["dumb", "water", "blind", "medicine", "smoothies", "safe", "smart", "soda"]
+        },
+        {
+          "sentence": "I guess people who eat [bread] just enjoy being [sick].",
+          "blankWords": ["bread", "sick"],
+          "wordChoices": ["bread", "sick", "carbs", "weak", "fat", "healthy", "strong", "sugar"]
+        }
+      ]
+    },
+    {
+      "tacticId": "attack",
+      "sentences": [
+        {
+          "sentence": "That nutritionist is just a [liar] paid off by big [corporations].",
+          "blankWords": ["liar", "corporations"],
+          "wordChoices": ["liar", "corporations", "fool", "pharma", "doctors", "natural", "genius", "farmers"]
+        },
+        {
+          "sentence": "Don't listen to that doctor, look at their [body], they clearly hate [health].",
+          "blankWords": ["body", "health"],
+          "wordChoices": ["body", "health", "face", "fitness", "sick", "tired", "science", "money"]
+        },
+        {
+          "sentence": "She claims to be an expert, but she is a [fraud] who only wants your [money].",
+          "blankWords": ["fraud", "money"],
+          "wordChoices": ["fraud", "money", "fake", "views", "time", "healthy", "doctor", "followers"]
+        }
+      ]
+    },
+    {
+      "tacticId": "conspiracy",
+      "sentences": [
+        {
+          "sentence": "The government is hiding the truth about [raw milk] to keep us [sick].",
+          "blankWords": ["raw milk", "sick"],
+          "wordChoices": ["raw milk", "sick", "detox", "weak", "safe", "natural", "water", "healthy"]
+        },
+        {
+          "sentence": "Big Pharma doesn't want you to know this [secret] can cure [cancer].",
+          "blankWords": ["secret", "cancer"],
+          "wordChoices": ["secret", "cancer", "food", "disease", "natural", "pills", "trick", "headaches"]
+        },
+        {
+          "sentence": "They put [chemicals] in our water so we stay [weak] and obedient.",
+          "blankWords": ["chemicals", "weak"],
+          "wordChoices": ["chemicals", "weak", "toxins", "sick", "strong", "clean", "fluoride", "smart"]
+        }
+      ]
+    },
+    {
+      "tacticId": "strawman",
+      "sentences": [
+        {
+          "sentence": "Doctors say we should [cook] our food, which means they want us eating [poison].",
+          "blankWords": ["cook", "poison"],
+          "wordChoices": ["cook", "poison", "wash", "ash", "safe", "dead", "burn", "medicine"]
+        },
+        {
+          "sentence": "So you think eating [sugar] is fine? You must want everyone to get [disease].",
+          "blankWords": ["sugar", "disease"],
+          "wordChoices": ["sugar", "disease", "fruit", "fat", "healthy", "sick", "carbs", "energy"]
+        },
+        {
+          "sentence": "The experts claim [pasteurization] is safe, I guess they love hurting [kids].",
+          "blankWords": ["pasteurization", "kids"],
+          "wordChoices": ["pasteurization", "kids", "cooking", "adults", "raw", "natural", "cleaning", "doctors"]
+        }
+      ]
+    },
+    {
+      "tacticId": "scapegoat",
+      "sentences": [
+        {
+          "sentence": "The only reason you can't lose weight is because of [toxins] in your [food].",
+          "blankWords": ["toxins", "food"],
+          "wordChoices": ["toxins", "food", "carbs", "water", "natural", "safe", "genetics", "drinks"]
+        },
+        {
+          "sentence": "Your lack of energy isn't your fault, it's the [chemicals] ruining our [health].",
+          "blankWords": ["chemicals", "health"],
+          "wordChoices": ["chemicals", "health", "sugar", "bodies", "fresh", "clean", "vitamins", "sleep"]
+        },
+        {
+          "sentence": "Blame [processed food] for the rise in modern [illnesses].",
+          "blankWords": ["processed food", "illnesses"],
+          "wordChoices": ["processed food", "illnesses", "doctors", "disease", "natural", "weak", "sugar", "health"]
+        }
+      ]
+    },
+    {
+      "tacticId": "twisting",
+      "sentences": [
+        {
+          "sentence": "Studies show a tiny drop in [risk], which means this food is basically a [miracle].",
+          "blankWords": ["risk", "miracle"],
+          "wordChoices": ["risk", "miracle", "weight", "poison", "cure", "safe", "fat", "toxin"]
+        },
+        {
+          "sentence": "Because one person got sick from [lettuce], all of it must be [toxic].",
+          "blankWords": ["lettuce", "toxic"],
+          "wordChoices": ["lettuce", "toxic", "meat", "safe", "fresh", "deadly", "water", "healthy"]
+        },
+        {
+          "sentence": "Since this plant contains [antioxidants], eating it will instantly heal your [body].",
+          "blankWords": ["antioxidants", "body"],
+          "wordChoices": ["antioxidants", "body", "vitamins", "disease", "natural", "sick", "sugar", "mind"]
+        }
+      ]
+    },
+    {
+      "tacticId": "authority",
+      "sentences": [
+        {
+          "sentence": "Top Hollywood [actors] swear by this diet to stay [young].",
+          "blankWords": ["actors", "young"],
+          "wordChoices": ["actors", "young", "doctors", "thin", "healthy", "experts", "models", "rich"]
+        },
+        {
+          "sentence": "A famous [influencer] on TikTok said this is the best way to get [fit].",
+          "blankWords": ["influencer", "fit"],
+          "wordChoices": ["influencer", "fit", "model", "rich", "healthy", "clean", "doctor", "famous"]
+        },
+        {
+          "sentence": "Even my fitness [guru] says you should only eat [raw meat].",
+          "blankWords": ["guru", "raw meat"],
+          "wordChoices": ["guru", "raw meat", "coach", "veggies", "natural", "safe", "doctor", "fruit"]
+        }
+      ]
+    },
+    {
+      "tacticId": "bandwagon",
+      "sentences": [
+        {
+          "sentence": "Everyone is quitting [sugar] and switching to [detox teas] right now.",
+          "blankWords": ["sugar", "detox teas"],
+          "wordChoices": ["sugar", "detox teas", "carbs", "water", "natural", "fast", "meat", "smoothies"]
+        },
+        {
+          "sentence": "Join the millions of people who have woken up to the [truth] about [health].",
+          "blankWords": ["truth", "health"],
+          "wordChoices": ["truth", "health", "lies", "medicine", "natural", "safe", "science", "food"]
+        },
+        {
+          "sentence": "If you aren't doing the [carnivore] challenge, you are falling [behind].",
+          "blankWords": ["carnivore", "behind"],
+          "wordChoices": ["carnivore", "behind", "detox", "sick", "clean", "natural", "vegan", "apart"]
         }
       ]
     }

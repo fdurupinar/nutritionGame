@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
-  m_Name: 0
+  m_Name: 0 7
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
   id: 0
   displayName: Appeal to Emotion
   type: emotion
   text: 
-  debunkingText: "\uFFFDThis is a Fear Mongering tactic. It bypasses logic by making
-    you feel scared. A claim's validity isn't determined by how scary its alternative
-    is."
-  level: 1
-  engagementBonus: 0.12
-  credibilityCost: 0.03
+  debunkingText: 
+  level: 0
+  engagementBonus: 0
+  credibilityCost: 0
   enabledFlag: 1
-  tacticImage: {fileID: 8378444612288947262, guid: 12f4b3b98966fa045b95290f72febf7f, type: 3}
+  tacticImage: {fileID: 0}

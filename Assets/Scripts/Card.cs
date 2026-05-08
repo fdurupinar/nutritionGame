@@ -30,8 +30,8 @@ public class Card : MonoBehaviour
         _controller = controller;
 
         // Populate the card's UI with data from the TacticSO
-        _nameText.text = _tacticData.type;
-        _subtitleText.text = _tacticData.displayName;
+        _nameText.text = _tacticData.displayName; // Puts "Appeal to Emotion" in the big text slot
+        _subtitleText.text = ""; // Leaves the small text slot empty
 
 
         _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();

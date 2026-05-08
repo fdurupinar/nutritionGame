@@ -1,6 +1,17 @@
 using UnityEngine;
 
-public enum TacticType { Emotion, Pseudoscience, Conspiracy, LogicalFallacy, FinancialGain, TwistedEvidence }
+public enum TacticType
+{
+    Emotion,
+    Trolling,
+    Attack,
+    Conspiracy,
+    Strawman,
+    Scapegoat,
+    TwistingFacts,
+    Authority,
+    Bandwagon
+}
 
 [CreateAssetMenu(menuName = "Content/Tactics")]
 public class TacticSO : ScriptableObject
