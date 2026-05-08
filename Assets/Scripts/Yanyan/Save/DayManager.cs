@@ -10,7 +10,7 @@ public class DayManager : MonoBehaviour
     public int maxDay = 31;
 
     private TextMeshProUGUI currentText;
-    private const string SAVED_DAY_KEY = "SavedCurrentDay"; // The key for saving
+    private const string SAVED_DAY_KEY = "SavedCurrentDay";
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class DayManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadDay(); // Load the saved day as soon as the manager wakes up
+            LoadDay();
         }
         else
         {
@@ -37,7 +37,8 @@ public class DayManager : MonoBehaviour
         if (currentDay < maxDay)
         {
             currentDay++;
-            SaveDay(); // Save whenever the day changes
+            PlayerPrefs.SetInt("HasPostedToday", 0); // <-- Resets the post flag
+            SaveDay();
             RefreshUI();
         }
     }
@@ -45,21 +46,19 @@ public class DayManager : MonoBehaviour
     public void ResetDays()
     {
         currentDay = 1;
-        SaveDay(); // Save the reset
+        PlayerPrefs.SetInt("HasPostedToday", 0); // <-- Resets the post flag
+        SaveDay();
         RefreshUI();
     }
-
-    // --- Save and Load Logic ---
 
     private void SaveDay()
     {
         PlayerPrefs.SetInt(SAVED_DAY_KEY, currentDay);
-        PlayerPrefs.Save(); // Force write to disk
+        PlayerPrefs.Save();
     }
 
     private void LoadDay()
     {
-        // If the key exists, use it. Otherwise, default to 1.
         currentDay = PlayerPrefs.GetInt(SAVED_DAY_KEY, 1);
     }
 
