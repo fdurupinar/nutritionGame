@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 0
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 0
   displayName: Appeal to Emotion
   type: Emotion
@@ -25,4 +27,4 @@ MonoBehaviour:
   engagementBonus: 0.12
   credibilityCost: 0.03
   enabledFlag: 1
-  tacticImage: {fileID: 5057296622976785138, guid: 42be75a7a7fa41148b61e05ca798f2fa, type: 3}
+  tacticImage: {fileID: 21300000, guid: 4fb30b5a332e39742bf31eee731e21a4, type: 3}

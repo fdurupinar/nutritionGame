@@ -16,7 +16,7 @@ MonoBehaviour:
   tacticId: twisting
   id: 4
   displayName: Twisted Facts
-  type: Twisted Facts
+  type: twisting
   text: Why use harsh chemicals when you can use this 100% natural, plant-based ingredient?
     Nature always knows best.
   debunkingText: This is the Appeal to Nature fallacy. "Natural" does not automatically

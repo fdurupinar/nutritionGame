@@ -31,9 +31,9 @@
       "topicId": "food",
       "topicName": "Food Safety",
       "subTopics": [
-        { "subTopicId": "raw_milk", "subTopicName": "Raw vs. Pasteurized Milk" },
-        { "subTopicId": "tap_water", "subTopicName": "Hidden Toxins in Tap Water" },
-        { "subTopicId": "dirty_dozen", "subTopicName": "The Pesticide Scare" }
+        { "subTopicId": "raw_milk", "subTopicName": "Fear of Unsafe Food" },
+        { "subTopicId": "tap_water", "subTopicName": "Contaminated Produce Panic"  },
+        { "subTopicId": "dirty_dozen", "subTopicName": "Chemical Food Fear" }
       ]
     },
     {
@@ -57,24 +57,43 @@
   ],
   "tactics": [
     {
-      "tacticId": "emotion",
-      "sentences": [
-        {
-          "sentence": "This poor mother trusted [doctors], and now her baby is in the [hospital].",
-          "blankWords": ["doctors", "hospital"],
-          "wordChoices": ["doctors", "hospital", "experts", "clinic", "natural", "safe", "sick", "home"]
-        },
-        {
-          "sentence": "You are poisoning your [family] if you keep feeding them [chemicals].",
-          "blankWords": ["family", "chemicals"],
-          "wordChoices": ["family", "chemicals", "kids", "medicine", "healthy", "toxins", "food", "pets"]
-        },
-        {
-          "sentence": "Feel [amazing] again by ditching the toxic [garbage] in your pantry.",
-          "blankWords": ["amazing", "garbage"],
-          "wordChoices": ["amazing", "garbage", "young", "food", "fresh", "chemicals", "healthy", "tired"]
-        }
-      ]
+
+        "tacticId": "emotion",
+
+        "sentences": [
+
+            {
+
+                "sentence": "Imagine your [child] getting sick because you trusted unsafe [food].",
+
+                "blankWords": [ "child", "food" ],
+
+                "wordChoices": [ "child", "food", "family", "milk", "safe", "doctor", "school", "healthy" ]
+
+            },
+
+            {
+
+                "sentence": "One bad bite of [lettuce] could send your whole [family] to the hospital.",
+
+                "blankWords": [ "lettuce", "family" ],
+
+                "wordChoices": [ "lettuce", "family", "milk", "kids", "water", "doctor", "healthy", "safe" ]
+
+            },
+
+            {
+
+                "sentence": "If you care about your [kids], you will stop feeding them dangerous [chemicals].",
+
+                "blankWords": [ "kids", "chemicals" ],
+
+                "wordChoices": [ "kids", "chemicals", "family", "toxins", "food", "safe", "natural", "water" ]
+
+            }
+
+        ]
+
     },
     {
       "tacticId": "trolling",
