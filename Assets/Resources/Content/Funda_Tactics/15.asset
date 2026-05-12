@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 15
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 15
   displayName: Supplements
   type: FinancialGain
@@ -20,6 +22,7 @@ MonoBehaviour:
   debunkingText: "\uFFFDThis is a classic sales funnel. The \"free\" advice creates
     a problem, and the Financial Gain tactic conveniently sells you the one \"true\"
     solution."
+  hintText: Pushes pills, powders, or vitamins as a simple fix without strong proof.
   level: 1
   engagementBonus: 0.08
   credibilityCost: 0.01

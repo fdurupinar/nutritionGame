@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 0 6
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
-  id: 0
-  displayName: Appeal to Emotion
-  type: emotion
+  id: 6
+  displayName: 
+  type: Twisting Facts
   text: 
   debunkingText: 
+  hintText: Uses real information in a misleading way by leaving out context or changing
+    the meaning.
   level: 0
   engagementBonus: 0
   credibilityCost: 0
   enabledFlag: 1
-  tacticImage: {fileID: 0}
+  tacticImage: {fileID: 4243730022951935469, guid: 5a3701cf13f67a449860dd149f6feb31, type: 3}

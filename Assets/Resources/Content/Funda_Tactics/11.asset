@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 11
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 11
   displayName: Strawman
   type: Conspiracy
@@ -19,6 +21,8 @@ MonoBehaviour:
     Their 'food pyramid' is a lie.
   debunkingText: "\uFFFDThis is a Strawman attack. It misrepresents the opposing
     argument (e.g., \"food pyramid\") to make it look weak and easy to attack."
+  hintText: "Changes someone\u2019s real point into a weaker version, then attacks
+    that version."
   level: 1
   engagementBonus: 0.07
   credibilityCost: 0.04

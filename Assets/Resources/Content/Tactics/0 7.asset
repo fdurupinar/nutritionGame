@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 0 7
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
-  id: 0
-  displayName: Appeal to Emotion
-  type: emotion
+  id: 7
+  displayName: 
+  type: Appeal to Authority
   text: 
   debunkingText: 
+  hintText: Uses a famous person, expert, or official-sounding source to make a claim
+    seem true.
   level: 0
   engagementBonus: 0
   credibilityCost: 0
   enabledFlag: 1
-  tacticImage: {fileID: 0}
+  tacticImage: {fileID: 8378444612288947262, guid: 12f4b3b98966fa045b95290f72febf7f, type: 3}

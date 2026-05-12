@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 10
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 10
   displayName: Anecdote
   type: TwistedEvidence
@@ -20,6 +22,7 @@ MonoBehaviour:
   debunkingText: "\uFFFDAn Anecdote (\"it worked for my cousin\") is not data. It's
     a single data point with no control group, and it completely ignores the powerful
     placebo effect."
+  hintText: Uses one personal story as proof, even when it is not enough evidence.
   level: 1
   engagementBonus: 0.04
   credibilityCost: 0.01

@@ -33,6 +33,10 @@ public class TacticManager : MonoBehaviour
     [SerializeField] private GameObject _contentPanel;
     [SerializeField] TextMeshProUGUI _contentBox;
 
+    [Header("Button After Sentence Animation")]
+    [SerializeField] private Button _afterSentenceButton;
+    [SerializeField] private bool _hideAfterSentenceButtonObject = true;
+
     private ScrollRect _scrollRect;
     private CommentManager _commentManager;
     bool _isAtBottom;
@@ -47,6 +51,8 @@ public class TacticManager : MonoBehaviour
     [Header("Daily Post Fill Blank")]
     public DailyPostFillBlankManager dailyPostFillBlankManager;
 
+    [Header("Hint Panel")]
+    public TacticHintPanel tacticHintPanel;
     void Start()
     {
         _allTactics = new List<TacticSO>();
@@ -63,6 +69,8 @@ public class TacticManager : MonoBehaviour
             _userStats = playerObj.GetComponent<UserStats>();
         }
 
+        SetAfterSentenceButtonActive(false);
+
         // --- Day System Logic ---
         int currentDay = 1;
         if (DayManager.Instance != null)
@@ -74,18 +82,100 @@ public class TacticManager : MonoBehaviour
 
         foreach (DayConfig config in dayConfigs)
         {
-            if (config.dayNumber <= currentDay)
+            foreach (TacticSO tactic in config.tacticsForThisDay)
             {
-                foreach (TacticSO tactic in config.tacticsForThisDay)
+                if (tactic != null && !_currentTactics.Contains(tactic))
                 {
-                    if (_userStats != null && tactic.level <= _userStats.Level && !_currentTactics.Contains(tactic))
-                    {
-                        _currentTactics.Add(tactic);
-                    }
+                    _currentTactics.Add(tactic);
                 }
             }
         }
+
         PopulateGrid();
+    }
+
+    public bool IsTacticUnlocked(TacticSO tactic)
+    {
+        if (tactic == null)
+            return false;
+
+        if (!tactic.enabledFlag)
+            return false;
+
+        int currentDay = 1;
+        if (DayManager.Instance != null)
+        {
+            currentDay = DayManager.Instance.currentDay;
+        }
+
+        bool dayUnlocked = false;
+
+        foreach (DayConfig config in dayConfigs)
+        {
+            if (config == null || config.tacticsForThisDay == null)
+                continue;
+
+            if (config.tacticsForThisDay.Contains(tactic) && config.dayNumber <= currentDay)
+            {
+                dayUnlocked = true;
+                break;
+            }
+        }
+
+        bool levelUnlocked = true;
+
+        if (_userStats != null)
+        {
+            levelUnlocked = tactic.level <= _userStats.Level;
+        }
+
+        return dayUnlocked && levelUnlocked;
+    }
+
+    private void SetCardClickable(GameObject cardObject, bool canClick)
+    {
+        if (cardObject == null)
+            return;
+
+        Button button = cardObject.GetComponent<Button>();
+        if (button != null)
+        {
+            button.interactable = canClick;
+        }
+
+        CanvasGroup canvasGroup = cardObject.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = cardObject.AddComponent<CanvasGroup>();
+        }
+
+        if (canClick)
+        {
+            canvasGroup.alpha = 1f;
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            canvasGroup.alpha = 0.45f;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+        }
+    }
+
+    private void SetAfterSentenceButtonActive(bool active)
+    {
+        if (_afterSentenceButton == null)
+            return;
+
+        if (_hideAfterSentenceButtonObject)
+        {
+            _afterSentenceButton.gameObject.SetActive(active);
+        }
+        else
+        {
+            _afterSentenceButton.interactable = active;
+        }
     }
 
     public void OpenCardView()
@@ -113,16 +203,29 @@ public class TacticManager : MonoBehaviour
 
         foreach (TacticSO tacticData in _currentTactics)
         {
-            if (!tacticData.enabledFlag) continue;
+            if (tacticData == null)
+                continue;
 
             GameObject newCardObj = Instantiate(_cardPrefab, _gridParent);
             Card cardComponent = newCardObj.GetComponent<Card>();
             cardComponent.Setup(tacticData, this);
+
+            bool canClick = IsTacticUnlocked(tacticData);
+            SetCardClickable(newCardObj, canClick);
         }
     }
 
     public void OnCardSelected(Card card)
     {
+        if (card == null)
+            return;
+
+        if (!IsTacticUnlocked(card.TacticData))
+        {
+            UnityEngine.Debug.Log("This tactic card is locked and cannot be selected.");
+            return;
+        }
+
         if (_currentlySelectedCard != null)
         {
             _currentlySelectedCard.Deselect();
@@ -132,12 +235,23 @@ public class TacticManager : MonoBehaviour
         {
             _currentlySelectedCard.Deselect();
             _currentlySelectedCard = null;
+
+            if (tacticHintPanel != null)
+            {
+                tacticHintPanel.ClearSelectedCard();
+            }
+
             UnityEngine.Debug.Log("Card deselected.");
         }
         else
         {
             _currentlySelectedCard = card;
             _currentlySelectedCard.Select();
+
+            if (tacticHintPanel != null)
+            {
+                tacticHintPanel.SetSelectedCard(_currentlySelectedCard);
+            }
         }
     }
 
@@ -184,11 +298,14 @@ public class TacticManager : MonoBehaviour
         }
 
         _isAtBottom = false;
+        SetAfterSentenceButtonActive(false);
     }
 
     private IEnumerator DisplayTextCC(string fullText, int requestId)
     {
         if (_contentBox == null) yield break;
+
+        SetAfterSentenceButtonActive(false);
 
         _contentBox.text = "";
         string[] words = fullText.Split(' ');
@@ -207,6 +324,11 @@ public class TacticManager : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+
+        if (requestId == _displayRequestId)
+        {
+            SetAfterSentenceButtonActive(true);
+        }
     }
 
     public void OnPublishButtonClicked()
@@ -214,6 +336,12 @@ public class TacticManager : MonoBehaviour
         if (_currentlySelectedCard == null)
         {
             UnityEngine.Debug.LogWarning("No card selected to publish!");
+            return;
+        }
+
+        if (!IsTacticUnlocked(_currentlySelectedCard.TacticData))
+        {
+            UnityEngine.Debug.LogWarning("Selected card is locked and cannot be published.");
             return;
         }
 
@@ -278,6 +406,7 @@ public class TacticManager : MonoBehaviour
         }
 
         _isAtBottom = false;
+        SetAfterSentenceButtonActive(false);
     }
 
     // Hook this method up to the "Confirm Tactic" UI Button
@@ -286,6 +415,12 @@ public class TacticManager : MonoBehaviour
         if (_currentlySelectedCard == null)
         {
             UnityEngine.Debug.LogWarning("No card selected!");
+            return;
+        }
+
+        if (!IsTacticUnlocked(_currentlySelectedCard.TacticData))
+        {
+            UnityEngine.Debug.LogWarning("Selected card is locked.");
             return;
         }
 

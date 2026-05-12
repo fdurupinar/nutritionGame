@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 8
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 8
   displayName: Cherry picking
   type: TwistedEvidence
@@ -20,6 +22,7 @@ MonoBehaviour:
   debunkingText: "\uFFFDThis is Cherry Picking. It highlights one tiny piece of data
     (like a single table) while ignoring the full context, the study's conclusion,
     or all other research that contradicts it."
+  hintText: Only shows the facts that support one side and hides the facts that disagree.
   level: 2
   engagementBonus: 0.11
   credibilityCost: 0.06

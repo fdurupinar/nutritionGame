@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 0 8
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
-  id: 0
-  displayName: Appeal to Emotion
-  type: emotion
+  id: 8
+  displayName: 
+  type: Bandwagon Effect
   text: 
   debunkingText: 
+  hintText: "Makes people believe something because \u201Ceveryone else\u201D seems
+    to believe it or do it."
   level: 0
   engagementBonus: 0
   credibilityCost: 0
   enabledFlag: 1
-  tacticImage: {fileID: 0}
+  tacticImage: {fileID: 5057296622976785138, guid: 42be75a7a7fa41148b61e05ca798f2fa, type: 3}

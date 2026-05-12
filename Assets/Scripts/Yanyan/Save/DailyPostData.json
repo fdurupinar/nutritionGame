@@ -4,7 +4,7 @@
       "topicId": "diet",
       "topicName": "General Dietary Patterns",
       "subTopics": [
-        { "subTopicId": "carnivore", "subTopicName": "The Carnivore Diet" },
+        { "subTopicId": "carnivore", "subTopicName": "The Gen-Z Diet" },
         { "subTopicId": "fasting", "subTopicName": "Extreme Fasting Rules" },
         { "subTopicId": "clean_eating", "subTopicName": "Clean Eating Exclusivity" }
       ]
@@ -180,11 +180,6 @@
       "tacticId": "twisting",
       "sentences": [
         {
-          "sentence": "Studies show a tiny drop in [risk], which means this food is basically a [miracle].",
-          "blankWords": ["risk", "miracle"],
-          "wordChoices": ["risk", "miracle", "weight", "poison", "cure", "safe", "fat", "toxin"]
-        },
-        {
           "sentence": "Because one person got sick from [lettuce], all of it must be [toxic].",
           "blankWords": ["lettuce", "toxic"],
           "wordChoices": ["lettuce", "toxic", "meat", "safe", "fresh", "deadly", "water", "healthy"]
@@ -193,7 +188,13 @@
           "sentence": "Since this plant contains [antioxidants], eating it will instantly heal your [body].",
           "blankWords": ["antioxidants", "body"],
           "wordChoices": ["antioxidants", "body", "vitamins", "disease", "natural", "sick", "sugar", "mind"]
-        }
+        },
+          {
+      "sentence": "One influencer lost weight on the [Gen Z] diet, so it must be the healthiest way for everyone to [eat].",
+      "blankWords": ["Gen Z", "eat"],
+      "wordChoices": ["Gen Z", "eat", "carnivore diet", "live", "healthy", "science", "meat", "diet"]
+    }
+        
       ]
     },
     {

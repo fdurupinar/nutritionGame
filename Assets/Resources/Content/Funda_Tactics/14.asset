@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 14
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 14
   displayName: Correlation vs. Causat
   type: TwistedEvidence
@@ -20,6 +22,7 @@ MonoBehaviour:
   debunkingText: "\uFFFDThis confuses Correlation with Causation. Just because B
     happened after A doesn't mean A caused B. Maybe she also cut out sugar, or simply
     got older."
+  hintText: Says one thing caused another just because they happened together.
   level: 2
   engagementBonus: 0.12
   credibilityCost: 0.08

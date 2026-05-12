@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 6
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 6
   displayName: Guru
   type: TwistedEvidence
@@ -20,6 +22,8 @@ MonoBehaviour:
   debunkingText: "\uFFFDThis relies on Vague Authority. Who is this scientist? Where
     was this published? If no verifiable source is given, the claim is worthless.
     Real science is specific."
+  hintText: A person who acts like a trusted expert or teacher, even if they may
+    not have real evidence or qualifications.
   level: 1
   engagementBonus: 0.1
   credibilityCost: 0.04

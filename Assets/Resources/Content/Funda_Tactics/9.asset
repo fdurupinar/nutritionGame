@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8190bb7e77f954be89ec2dcf7cec1e6e, type: 3}
   m_Name: 9
   m_EditorClassIdentifier: Assembly-CSharp::TacticSO
+  tacticIdDropdown: 0
+  tacticId: emotion
   id: 9
   displayName: Misleading graph
   type: TwistedEvidence
@@ -20,6 +22,7 @@ MonoBehaviour:
   debunkingText: "\uFFFDA graph can be easily manipulated to lie. Common tricks include
     truncating the Y-axis (not starting at zero) or cherry-picking data points to
     make a trend look more dramatic."
+  hintText: Uses a graph that looks scientific but is designed to trick people.
   level: 3
   engagementBonus: 0.14
   credibilityCost: 0.07

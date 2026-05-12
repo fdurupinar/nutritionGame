@@ -3,33 +3,63 @@ using UnityEngine.UI;
 
 public class DailyPostButtonController : MonoBehaviour
 {
-    private Button postButton;
+    private const string KEY = "HasPostedToday";
 
-    // CHANGED from Start() to OnEnable()
-    // OnEnable runs every single time this button becomes active on the screen
-    void OnEnable()
+    public Button dailyPostButton;
+
+    [Header("Auto Refresh")]
+    public bool checkEveryFrame = true;
+
+    private int lastPostedValue = -999;
+    private int lastDayValue = -999;
+
+    private void OnEnable()
     {
-        postButton = GetComponent<Button>();
+        RefreshButtonState();
+    }
 
-        if (postButton == null)
-        {
-            Debug.LogWarning("DailyPostButtonController: No Button component found on this object!");
+    private void Start()
+    {
+        RefreshButtonState();
+    }
+
+    private void Update()
+    {
+        if (!checkEveryFrame)
             return;
+
+        int currentPostedValue = PlayerPrefs.GetInt(KEY, 0);
+
+        int currentDayValue = -1;
+        if (DayManager.Instance != null)
+        {
+            currentDayValue = DayManager.Instance.currentDay;
         }
 
-        // Check our saved flag. 1 means they posted, 0 means they haven't.
-        int hasPosted = PlayerPrefs.GetInt("HasPostedToday", 0);
-
-        // Print the result to the console so we can verify it's working
-        Debug.Log("Home Button Check -> HasPostedToday value is: " + hasPosted);
-
-        if (hasPosted == 1)
+        if (currentPostedValue != lastPostedValue || currentDayValue != lastDayValue)
         {
-            postButton.interactable = false; // Disable the button!
+            RefreshButtonState();
         }
-        else
+    }
+
+    public void RefreshButtonState()
+    {
+        int hasPostedToday = PlayerPrefs.GetInt(KEY, 0);
+
+        int currentDayValue = -1;
+        if (DayManager.Instance != null)
         {
-            postButton.interactable = true;  // Keep it enabled!
+            currentDayValue = DayManager.Instance.currentDay;
+        }
+
+        lastPostedValue = hasPostedToday;
+        lastDayValue = currentDayValue;
+
+        Debug.Log("Daily Post Button Check -> Day: " + currentDayValue + " HasPostedToday: " + hasPostedToday);
+
+        if (dailyPostButton != null)
+        {
+            dailyPostButton.interactable = hasPostedToday == 0;
         }
     }
 }
