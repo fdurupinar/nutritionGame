@@ -39,7 +39,10 @@ public class TacticManager : MonoBehaviour
 
     private ScrollRect _scrollRect;
     private CommentManager _commentManager;
-    bool _isAtBottom;
+
+    // 自动滚动状态标志
+    private bool _isAutoScrolling;
+
     UserStats _userStats;
 
     [SerializeField] private float _wordsPerSec = 4f;
@@ -53,6 +56,7 @@ public class TacticManager : MonoBehaviour
 
     [Header("Hint Panel")]
     public TacticHintPanel tacticHintPanel;
+
     void Start()
     {
         _allTactics = new List<TacticSO>();
@@ -297,7 +301,7 @@ public class TacticManager : MonoBehaviour
             _speakAndCommentRoutine = null;
         }
 
-        _isAtBottom = false;
+        _isAutoScrolling = false;
         SetAfterSentenceButtonActive(false);
     }
 
@@ -311,6 +315,8 @@ public class TacticManager : MonoBehaviour
         string[] words = fullText.Split(' ');
         float delay = 1.0f / _wordsPerSec;
 
+        _isAutoScrolling = true;
+
         foreach (string word in words)
         {
             if (requestId != _displayRequestId) yield break;
@@ -319,7 +325,7 @@ public class TacticManager : MonoBehaviour
 
             if (_scrollRect != null)
             {
-                _isAtBottom = _scrollRect.verticalNormalizedPosition <= 0.1f;
+                Canvas.ForceUpdateCanvases();
             }
 
             yield return new WaitForSeconds(delay);
@@ -329,6 +335,9 @@ public class TacticManager : MonoBehaviour
         {
             SetAfterSentenceButtonActive(true);
         }
+
+        yield return new WaitForSeconds(0.5f);
+        _isAutoScrolling = false;
     }
 
     public void OnPublishButtonClicked()
@@ -373,10 +382,11 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
+        // 【需要你修改】这里把初始位置设为 0f (最底部)
         if (_scrollRect != null)
         {
             Canvas.ForceUpdateCanvases();
-            _scrollRect.verticalNormalizedPosition = 1f;
+            _scrollRect.verticalNormalizedPosition = 0f;
         }
 
         _displayTextRoutine = StartCoroutine(DisplayTextCC(postTextToShow, _displayRequestId));
@@ -405,11 +415,10 @@ public class TacticManager : MonoBehaviour
             _speakAndCommentRoutine = null;
         }
 
-        _isAtBottom = false;
+        _isAutoScrolling = false;
         SetAfterSentenceButtonActive(false);
     }
 
-    // Hook this method up to the "Confirm Tactic" UI Button
     public void ConfirmTacticSelection()
     {
         if (_currentlySelectedCard == null)
@@ -458,10 +467,11 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
+        // 【需要你修改】这里把初始位置设为 0f (最底部)
         if (_scrollRect != null)
         {
             Canvas.ForceUpdateCanvases();
-            _scrollRect.verticalNormalizedPosition = 1f;
+            _scrollRect.verticalNormalizedPosition = 0f;
         }
 
         if (_commentManager != null) _commentManager.ClearComments();
@@ -481,11 +491,10 @@ public class TacticManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (_isAtBottom)
+        // 【需要你修改】将目标值改为 1f，使其向上平滑滚动
+        if (_isAutoScrolling && _scrollRect != null)
         {
-            Canvas.ForceUpdateCanvases();
-            _scrollRect.verticalNormalizedPosition = 0f;
-            _isAtBottom = false;
+            _scrollRect.verticalNormalizedPosition = Mathf.Lerp(_scrollRect.verticalNormalizedPosition, 1f, Time.deltaTime * 10f);
         }
     }
 }
