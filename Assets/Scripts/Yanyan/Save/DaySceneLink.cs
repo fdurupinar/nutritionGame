@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class DaySceneLink : MonoBehaviour
 {
@@ -18,25 +17,19 @@ public class DaySceneLink : MonoBehaviour
     public List<GameObject> objectsToActivate = new List<GameObject>();
 
     [Header("Day 1 Start Once")]
-    [Tooltip("These objects will be ACTIVE only once when the scene starts on Day 1")]
+    [Tooltip("These objects will be activated once every time the game enters Day 1.")]
     public List<GameObject> dayOneStartOnceObjects = new List<GameObject>();
 
     [Header("Testing / Reset Options")]
     [Tooltip("If true, pressing Reset Day will allow the Day 1 once objects to show again.")]
     public bool resetDayOneStartOnceWhenResetDay = true;
 
-    [Tooltip("Turn this on only for testing if the object already showed once and you want to test it again.")]
-    public bool clearDayOneStartOnceFlagOnStart = false;
+    // This is runtime only.
+    // It does NOT use PlayerPrefs anymore.
+    // That means every new Day 1 cycle can show the objects again.
+    private bool _dayOneStartOnceShownThisDayOne = false;
 
-    private const string DAY_ONE_START_ONCE_KEY_PREFIX = "DayOneStartOnceShown_";
-
-    private string DayOneStartOnceKey
-    {
-        get
-        {
-            return DAY_ONE_START_ONCE_KEY_PREFIX + SceneManager.GetActiveScene().name;
-        }
-    }
+    private int _lastCheckedDay = -1;
 
     private void Start()
     {
@@ -44,11 +37,6 @@ public class DaySceneLink : MonoBehaviour
         {
             Debug.LogWarning("DaySceneLink: No DayManager found in the scene.");
             return;
-        }
-
-        if (clearDayOneStartOnceFlagOnStart)
-        {
-            ResetDayOneStartOnceFlag();
         }
 
         DayManager.Instance.UpdateSceneReferences(sceneDayText);
@@ -140,10 +128,23 @@ public class DaySceneLink : MonoBehaviour
         if (DayManager.Instance == null)
             return;
 
-        bool isDayOne = DayManager.Instance.currentDay == 1;
-        bool alreadyShown = PlayerPrefs.GetInt(DayOneStartOnceKey, 0) == 1;
+        int currentDay = DayManager.Instance.currentDay;
 
-        bool shouldShow = isDayOne && !alreadyShown;
+        // If the day changed, update tracking.
+        if (_lastCheckedDay != currentDay)
+        {
+            // When leaving Day 1, reset the once flag.
+            // This allows the objects to show again next time the game returns to Day 1.
+            if (currentDay != 1)
+            {
+                _dayOneStartOnceShownThisDayOne = false;
+            }
+
+            _lastCheckedDay = currentDay;
+        }
+
+        bool isDayOne = currentDay == 1;
+        bool shouldShow = isDayOne && !_dayOneStartOnceShownThisDayOne;
 
         for (int i = 0; i < dayOneStartOnceObjects.Count; i++)
         {
@@ -157,25 +158,24 @@ public class DaySceneLink : MonoBehaviour
 
         if (shouldShow)
         {
-            PlayerPrefs.SetInt(DayOneStartOnceKey, 1);
-            PlayerPrefs.Save();
+            _dayOneStartOnceShownThisDayOne = true;
 
-            Debug.Log("DaySceneLink: Day 1 start once objects shown.");
+            Debug.Log("DaySceneLink: Day 1 start once objects activated.");
         }
         else
         {
-            Debug.Log("DaySceneLink: Day 1 start once object hidden. Day = "
-                      + DayManager.Instance.currentDay
-                      + ", alreadyShown = "
-                      + alreadyShown);
+            Debug.Log("DaySceneLink: Day 1 start once objects not activated. Day = "
+                      + currentDay
+                      + ", alreadyShownThisDayOne = "
+                      + _dayOneStartOnceShownThisDayOne);
         }
     }
 
     public void ResetDayOneStartOnceFlag()
     {
-        PlayerPrefs.DeleteKey(DayOneStartOnceKey);
-        PlayerPrefs.Save();
+        _dayOneStartOnceShownThisDayOne = false;
+        _lastCheckedDay = -1;
 
-        Debug.Log("DaySceneLink: Day 1 start once flag reset.");
+        Debug.Log("DaySceneLink: Day 1 start once runtime flag reset.");
     }
 }

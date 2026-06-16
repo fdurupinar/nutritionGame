@@ -43,6 +43,15 @@ public class TacticManager : MonoBehaviour
     // 自动滚动状态标志
     private bool _isAutoScrolling;
 
+    [Header("Caption Auto Scroll")]
+    [SerializeField] private bool _autoScrollCaptionToBottom = true;
+
+    // true = always snap to newest caption line.
+    // false = smoothly scroll down using _captionAutoScrollSpeed.
+    [SerializeField] private bool _snapCaptionToBottomWhileTyping = true;
+
+    [SerializeField] private float _captionAutoScrollSpeed = 15f;
+
     UserStats _userStats;
 
     [SerializeField] private float _wordsPerSec = 4f;
@@ -312,6 +321,18 @@ public class TacticManager : MonoBehaviour
         SetAfterSentenceButtonActive(false);
 
         _contentBox.text = "";
+        ResetCaptionScrollToTop();
+
+        if (string.IsNullOrWhiteSpace(fullText))
+        {
+            if (requestId == _displayRequestId)
+            {
+                SetAfterSentenceButtonActive(true);
+            }
+
+            yield break;
+        }
+
         string[] words = fullText.Split(' ');
         float delay = 1.0f / _wordsPerSec;
 
@@ -323,12 +344,26 @@ public class TacticManager : MonoBehaviour
 
             _contentBox.text += word + " ";
 
-            if (_scrollRect != null)
+            // Caption behavior:
+            // keep the newest text visible at the bottom of the ScrollRect.
+            if (_autoScrollCaptionToBottom)
             {
-                Canvas.ForceUpdateCanvases();
+                if (_snapCaptionToBottomWhileTyping)
+                {
+                    ForceCaptionScrollToBottom();
+                }
+                else
+                {
+                    RebuildCaptionLayout();
+                }
             }
 
             yield return new WaitForSeconds(delay);
+        }
+
+        if (_autoScrollCaptionToBottom)
+        {
+            ForceCaptionScrollToBottom();
         }
 
         if (requestId == _displayRequestId)
@@ -382,12 +417,7 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
-        // 【需要你修改】这里把初始位置设为 0f (最底部)
-        if (_scrollRect != null)
-        {
-            Canvas.ForceUpdateCanvases();
-            _scrollRect.verticalNormalizedPosition = 0f;
-        }
+        ResetCaptionScrollToTop();
 
         _displayTextRoutine = StartCoroutine(DisplayTextCC(postTextToShow, _displayRequestId));
         _speakAndCommentRoutine = StartCoroutine(SpeakAndShowComments(selectedTactic, postTextToShow));
@@ -467,16 +497,44 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
-        // 【需要你修改】这里把初始位置设为 0f (最底部)
-        if (_scrollRect != null)
-        {
-            Canvas.ForceUpdateCanvases();
-            _scrollRect.verticalNormalizedPosition = 0f;
-        }
+        ResetCaptionScrollToTop();
 
         if (_commentManager != null) _commentManager.ClearComments();
 
         _displayTextRoutine = StartCoroutine(DisplayTextCC(completedSentence, _displayRequestId));
+    }
+
+    private void RebuildCaptionLayout()
+    {
+        if (_contentBox != null)
+        {
+            _contentBox.ForceMeshUpdate();
+        }
+
+        if (_scrollRect != null && _scrollRect.content != null)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollRect.content);
+        }
+
+        Canvas.ForceUpdateCanvases();
+    }
+
+    private void ResetCaptionScrollToTop()
+    {
+        if (_scrollRect == null)
+            return;
+
+        RebuildCaptionLayout();
+        _scrollRect.verticalNormalizedPosition = 1f;
+    }
+
+    private void ForceCaptionScrollToBottom()
+    {
+        if (_scrollRect == null)
+            return;
+
+        RebuildCaptionLayout();
+        _scrollRect.verticalNormalizedPosition = 0f;
     }
 
     void UpdateScores(TacticSO tactic)
@@ -491,10 +549,22 @@ public class TacticManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // 【需要你修改】将目标值改为 1f，使其向上平滑滚动
-        if (_isAutoScrolling && _scrollRect != null)
+        if (_isAutoScrolling && _autoScrollCaptionToBottom && _scrollRect != null)
         {
-            _scrollRect.verticalNormalizedPosition = Mathf.Lerp(_scrollRect.verticalNormalizedPosition, 1f, Time.deltaTime * 10f);
+            if (_snapCaptionToBottomWhileTyping)
+            {
+                ForceCaptionScrollToBottom();
+            }
+            else
+            {
+                RebuildCaptionLayout();
+
+                _scrollRect.verticalNormalizedPosition = Mathf.Lerp(
+                    _scrollRect.verticalNormalizedPosition,
+                    0f,
+                    Time.deltaTime * _captionAutoScrollSpeed
+                );
+            }
         }
     }
 }
