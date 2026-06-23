@@ -14,39 +14,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EndingStoryDatabase
   saveId: MainEndingStoryDatabase
   endings:
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
-  - endingId: 
-    title: 
-    story: 
+  - endingId: collapse
+    title: Trust Collapse
+    story: The trust crisis becomes impossible to control. Even when you post the
+      truth, nobody believes you anymore. Sponsors leave, followers attack each other,
+      and your name becomes a warning about what happens when misinformation destroys
+      credibility.
+  - endingId: forgotten
+    title: Forgotten
+    story: Your account slowly disappears into the endless feed. You did not make
+      enough money, did not build trust, and did not keep an audience. In the end,
+      your posts remain online, but almost nobody remembers them.
+  - endingId: noise_empire
+    title: Noise Empire
+    story: You built a massive platform through outrage, fear, and misinformation.
+      Money poured in, followers multiplied, and your posts dominated every feed.
+      But the empire stands on a broken foundation. People watch you, but they no
+      longer trust you.
+  - endingId: viral_beast
+    title: Viral Beast
+    story: Your content spreads faster than you can control. Millions of people see
+      your posts, but many of them follow you for chaos, not trust. You became famous,
+      but the audience you created is angry, unstable, and hard to stop.
+  - endingId: quiet_cash
+    title: Quiet Cash
+    story: You did not become widely famous, but you found a way to make money quietly.
+      Sponsors and private deals kept you alive, even without a huge audience. Your
+      influence is small, but financially, you survived.
+  - endingId: broke_star
+    title: Broke Star
+    story: People like you, share your posts, and recognize your name, but popularity
+      does not pay the bills. You built an audience, but failed to turn attention
+      into money. Your influence is real, but your future is financially uncertain.
+  - endingId: powerhouse
+    title: Powerhouse
+    story: 'You achieved the rarest result: money, trust, and influence at the same
+      time. Your content reaches a large audience without relying on manipulation.
+      People follow you because they believe you, and your platform becomes both
+      successful and respected.'
+  - endingId: trusted
+    title: Trusted
+    story: You became a voice people rely on. Your audience grew because your content
+      felt responsible, careful, and believable. You may not control the whole media
+      landscape, but when people need clarity, they come to you.
+  - endingId: honest_path
+    title: Honest Path
+    story: You refused to chase easy lies. Your growth was slower, and money remained
+      a problem, but people trusted you. You did not become rich, but you protected
+      your integrity.
+  - endingId: balanced
+    title: Responsible Influencer
+    story: You found a stable balance between income, influence, and responsibility.
+      You made mistakes, but you corrected them before they became disasters. Your
+      platform survives because people see you as imperfect, but mostly trustworthy.
+  - endingId: paid_lies
+    title: Paid Lies
+    story: You learned that misinformation can be profitable. Sponsors, clicks, and
+      ads rewarded your worst choices. You end the month with money, but your reputation
+      is permanently damaged.
+  - endingId: mixed_legacy
+    title: Unclear Legacy
+    story: Your month ends with a mixed record. You gained some attention, lost some
+      trust, made some money, and left behind arguments that people still debate.
+      Some remember you as entertaining. Others remember the damage. Your legacy
+      depends on who tells the story.

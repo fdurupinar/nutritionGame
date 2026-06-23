@@ -10,8 +10,12 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     public EndingStoryDatabase endingDatabase;
 
     [Header("12个结局UI槽位")]
-    [Tooltip("每个槽位对应一个结局。每个结局只需要一个 Locked 物体和一个 Unlocked 物体。")]
+    [Tooltip("每个槽位对应一个结局。Locked GameObject 和 Unlocked GameObject 都可以直接是Button。")]
     public EndingStorySlotUI[] storySlots = new EndingStorySlotUI[12];
+
+    [Header("按钮自动绑定")]
+    [Tooltip("开启后，脚本会自动给每个Locked Button和Unlocked Button添加点击事件，不需要你手动设置24个OnClick。")]
+    public bool autoBindSlotButtons = true;
 
     [Header("故事Panel")]
     [Tooltip("共用的故事Panel。点击已解锁结局或测试解锁按钮后，会自动打开这个Panel。")]
@@ -20,11 +24,11 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     [Tooltip("打开结局收藏界面时，是否自动关闭故事Panel。")]
     public bool hideStoryPanelOnOpen = true;
 
-    [Tooltip("点击已解锁结局时，是否自动打开故事Panel。测试解锁按钮也会使用这个逻辑。")]
+    [Tooltip("点击已解锁结局时，是否自动打开故事Panel。")]
     public bool showStoryPanelWhenUnlockedEndingClicked = true;
 
-    [Tooltip("点击未解锁结局时，是否关闭故事Panel。通常保持关闭即可。")]
-    public bool hideStoryPanelWhenLockedEndingClicked = false;
+    [Tooltip("点击未解锁结局时，是否关闭故事Panel。")]
+    public bool hideStoryPanelWhenLockedEndingClicked = true;
 
     [Header("共用故事显示文字")]
     [Tooltip("共用的结局标题文字。点击已解锁结局后，这里会显示对应标题。")]
@@ -50,16 +54,31 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     [Tooltip("点击已解锁结局时，是否自动关闭Locked Panel。")]
     public bool hideLockedPanelWhenUnlockedEndingClicked = true;
 
-    [Header("锁定时共用文字")]
-    [Tooltip("点击未解锁结局时，共用标题显示的文字。如果不想改共用文字，可以留空。")]
+    [Header("锁定Panel文字")]
+    [Tooltip("Locked Panel里的标题文字。可以不填；不填则只打开Locked Panel，不改文字。")]
+    public TMP_Text lockedPanelTitleTMP;
+
+    [Tooltip("Locked Panel里的说明文字。可以不填；不填则只打开Locked Panel，不改文字。")]
+    public TMP_Text lockedPanelStoryTMP;
+
+    [Tooltip("Locked Panel里的普通Text标题备用。可以不填。")]
+    public Text lockedPanelTitleText;
+
+    [Tooltip("Locked Panel里的普通Text说明备用。可以不填。")]
+    public Text lockedPanelStoryText;
+
+    [Tooltip("点击未解锁结局时，Locked Panel显示的标题。")]
     public string lockedTitle = "Locked";
 
     [TextArea(2, 5)]
-    [Tooltip("点击未解锁结局时，共用故事正文显示的文字。如果不想改共用文字，可以留空。")]
+    [Tooltip("点击未解锁结局时，Locked Panel显示的说明。")]
     public string lockedStory = "This ending has not been unlocked yet.";
 
-    [Tooltip("点击未解锁结局时，是否也更新共用故事文字。")]
-    public bool updateSharedTextWhenLockedClicked = false;
+    [Tooltip("勾选后，Locked Panel标题会显示该结局的真实标题；不勾选则显示Locked。")]
+    public bool showEndingTitleOnLockedPanel = false;
+
+    [Tooltip("不建议开启。开启后，未解锁结局也会在Locked Panel显示真实故事。")]
+    public bool revealStoryOnLockedPanel = false;
 
     [Header("刷新设置")]
     [Tooltip("当这个Panel启用时，自动刷新所有结局的锁定/解锁显示。")]
@@ -76,6 +95,11 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     private void Awake()
     {
         EnsureSlotArray();
+
+        if (autoBindSlotButtons)
+        {
+            BindAllSlotButtons();
+        }
     }
 
     private void Start()
@@ -117,6 +141,70 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         {
             RefreshAllSlots();
         }
+    }
+
+    /// <summary>
+    /// 自动给所有Locked Button和Unlocked Button绑定点击事件。
+    /// </summary>
+    public void BindAllSlotButtons()
+    {
+        EnsureSlotArray();
+
+        for (int i = 0; i < storySlots.Length; i++)
+        {
+            BindSlotButtons(i);
+        }
+    }
+
+    /// <summary>
+    /// 自动绑定单个槽位的Locked/Unlocked按钮。
+    /// </summary>
+    private void BindSlotButtons(int index)
+    {
+        if (!IsValidSlotIndex(index))
+        {
+            return;
+        }
+
+        EndingStorySlotUI slot = storySlots[index];
+
+        if (slot == null || slot.buttonsBound)
+        {
+            return;
+        }
+
+        int capturedIndex = index;
+
+        Button lockedButton = FindButton(slot.lockedGameObject);
+        Button unlockedButton = FindButton(slot.unlockedGameObject);
+
+        if (lockedButton != null)
+        {
+            lockedButton.onClick.AddListener(() => OnLockedSlotButtonClicked(capturedIndex));
+        }
+
+        if (unlockedButton != null)
+        {
+            unlockedButton.onClick.AddListener(() => OnUnlockedSlotButtonClicked(capturedIndex));
+        }
+
+        slot.buttonsBound = true;
+    }
+
+    /// <summary>
+    /// 点击Locked按钮：打开Locked Panel，并显示统一锁定提示。
+    /// </summary>
+    private void OnLockedSlotButtonClicked(int index)
+    {
+        ShowLockedEndingPanel(index);
+    }
+
+    /// <summary>
+    /// 点击Unlocked按钮：打开Story Panel，并显示对应结局故事。
+    /// </summary>
+    private void OnUnlockedSlotButtonClicked(int index)
+    {
+        ShowEndingByIndex(index);
     }
 
     /// <summary>
@@ -183,18 +271,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
         if (!unlocked)
         {
-            OpenLockedPanel();
-
-            if (hideStoryPanelWhenLockedEndingClicked)
-            {
-                CloseStoryPanel();
-            }
-
-            if (updateSharedTextWhenLockedClicked)
-            {
-                SetSharedStoryText(lockedTitle, lockedStory);
-            }
-
+            ShowLockedEndingPanel(index);
             return;
         }
 
@@ -228,6 +305,41 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
+    /// 点击Locked按钮时调用：打开Locked Panel，显示锁定提示。
+    /// </summary>
+    public void ShowLockedEndingPanel(int index)
+    {
+        if (!IsValidSlotIndex(index))
+        {
+            return;
+        }
+
+        if (hideStoryPanelWhenLockedEndingClicked)
+        {
+            CloseStoryPanel();
+        }
+
+        OpenLockedPanel();
+
+        EndingStoryData data = GetEndingDataForSlot(index);
+
+        string titleToShow = lockedTitle;
+        string storyToShow = lockedStory;
+
+        if (showEndingTitleOnLockedPanel && data != null && !string.IsNullOrWhiteSpace(data.title))
+        {
+            titleToShow = data.title;
+        }
+
+        if (revealStoryOnLockedPanel && data != null && !string.IsNullOrWhiteSpace(data.story))
+        {
+            storyToShow = data.story;
+        }
+
+        SetLockedPanelText(titleToShow, storyToShow);
+    }
+
+    /// <summary>
     /// 显示第一个已解锁结局。
     /// </summary>
     public void ShowFirstUnlockedEnding()
@@ -243,11 +355,6 @@ public class EndingStoryCollectionPanel : MonoBehaviour
                 ShowEndingByIndex(i);
                 return;
             }
-        }
-
-        if (updateSharedTextWhenLockedClicked)
-        {
-            SetSharedStoryText(lockedTitle, lockedStory);
         }
     }
 
@@ -399,11 +506,6 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         PlayerPrefs.Save();
         RefreshAllSlots();
 
-        if (updateSharedTextWhenLockedClicked)
-        {
-            SetSharedStoryText(lockedTitle, lockedStory);
-        }
-
         CloseLockedPanel();
         CloseStoryPanel();
 
@@ -548,6 +650,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     // 12个显示按钮：只显示，不解锁
     // 未解锁时会打开Locked Panel
     // 已解锁时会打开Story Panel
+    // 如果你开启了自动绑定，一般不用手动设置这些。
     // =========================
 
     public void ShowEnding01()
@@ -633,6 +736,46 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         }
     }
 
+    private void SetLockedPanelText(string title, string story)
+    {
+        if (lockedPanelTitleTMP != null)
+        {
+            lockedPanelTitleTMP.text = title;
+        }
+
+        if (lockedPanelStoryTMP != null)
+        {
+            lockedPanelStoryTMP.text = story;
+        }
+
+        if (lockedPanelTitleText != null)
+        {
+            lockedPanelTitleText.text = title;
+        }
+
+        if (lockedPanelStoryText != null)
+        {
+            lockedPanelStoryText.text = story;
+        }
+    }
+
+    private Button FindButton(GameObject targetObject)
+    {
+        if (targetObject == null)
+        {
+            return null;
+        }
+
+        Button button = targetObject.GetComponent<Button>();
+
+        if (button != null)
+        {
+            return button;
+        }
+
+        return targetObject.GetComponentInChildren<Button>(true);
+    }
+
     private string GetEndingIdForSlot(int index)
     {
         EndingStoryData data = GetEndingDataForSlot(index);
@@ -700,10 +843,13 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 [Serializable]
 public class EndingStorySlotUI
 {
-    [Header("锁定/解锁物体")]
-    [Tooltip("未解锁时显示的GameObject。")]
+    [Header("锁定/解锁按钮物体")]
+    [Tooltip("未解锁时显示的Button GameObject。点击后会打开Locked Panel。")]
     public GameObject lockedGameObject;
 
-    [Tooltip("已解锁时显示的GameObject。")]
+    [Tooltip("已解锁时显示的Button GameObject。点击后会打开Story Panel并显示对应故事。")]
     public GameObject unlockedGameObject;
+
+    [NonSerialized]
+    public bool buttonsBound;
 }
