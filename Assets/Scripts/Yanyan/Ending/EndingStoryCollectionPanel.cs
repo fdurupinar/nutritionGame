@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,6 +44,33 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
     [Tooltip("如果你没有用TMP，可以把普通Text故事正文拖到这里。可以不填。")]
     public Text sharedStoryText;
+
+    [Header("首次解锁打字动画")]
+    [Tooltip("开启后，只有第一次解锁某个结局时播放打字机动画；之后点击已解锁按钮会直接显示完整文字。")]
+    public bool playTypewriterOnlyOnFirstUnlock = true;
+
+    [Tooltip("每秒显示多少个字符。数值越大，文字出现越快。")]
+    public float typewriterCharactersPerSecond = 45f;
+
+    [Tooltip("打字机动画是否使用真实时间。开启后，即使Time.timeScale为0，动画也会播放。")]
+    public bool typewriterUseUnscaledTime = true;
+
+    [Tooltip("每次显示字符时是否播放轻微打字跳动感。一般保持开启。")]
+    public bool useJuicyPanelPop = true;
+
+    [Tooltip("Story Panel弹出动画时间。")]
+    public float panelPopDuration = 0.18f;
+
+    [Range(0.5f, 1f)]
+    [Tooltip("Story Panel弹出开始时的缩放。")]
+    public float panelPopStartScale = 0.92f;
+
+    [Range(1f, 1.3f)]
+    [Tooltip("Story Panel弹出时的轻微放大倍率。")]
+    public float panelPopOvershootScale = 1.05f;
+
+    [Tooltip("打字动画开始前的短暂停顿。")]
+    public float typewriterStartDelay = 0.05f;
 
     [Header("锁定提示Panel")]
     [Tooltip("点击未解锁结局时，需要打开的Locked Panel。")]
@@ -92,9 +120,14 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
     private const string SaveKeyPrefix = "ENDING_UNLOCKED_";
 
+    private Coroutine storyRevealCoroutine;
+    private Vector3 storyPanelOriginalScale = Vector3.one;
+    private bool storyPanelScaleCached = false;
+
     private void Awake()
     {
         EnsureSlotArray();
+        CacheStoryPanelScale();
 
         if (autoBindSlotButtons)
         {
@@ -200,7 +233,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 点击Unlocked按钮：打开Story Panel，并显示对应结局故事。
+    /// 点击Unlocked按钮：打开Story Panel，并直接显示对应故事，不播放打字动画。
     /// </summary>
     private void OnUnlockedSlotButtonClicked(int index)
     {
@@ -255,10 +288,26 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
     /// <summary>
     /// 显示指定结局到共用故事文字。
-    /// 如果未解锁，则打开Locked Panel。
-    /// 如果已解锁，则打开Story Panel。
+    /// 普通点击已解锁按钮时不会播放打字动画。
     /// </summary>
     public void ShowEndingByIndex(int index)
+    {
+        ShowEndingByIndexInternal(index, false);
+    }
+
+    /// <summary>
+    /// Button传数字用：1 = 第1个结局，12 = 第12个结局。
+    /// </summary>
+    public void ShowEndingByNumber(int endingNumber)
+    {
+        ShowEndingByIndex(endingNumber - 1);
+    }
+
+    /// <summary>
+    /// 显示指定结局。
+    /// playFirstUnlockAnimation = true 时，会播放一次打字机动画。
+    /// </summary>
+    private void ShowEndingByIndexInternal(int index, bool playFirstUnlockAnimation)
     {
         if (!IsValidSlotIndex(index))
         {
@@ -289,19 +338,18 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
         if (data == null)
         {
-            SetSharedStoryText("Missing Ending", "This ending data is missing from the database.");
+            ShowStoryTextInstant("Missing Ending", "This ending data is missing from the database.");
             return;
         }
 
-        SetSharedStoryText(data.title, data.story);
-    }
-
-    /// <summary>
-    /// Button传数字用：1 = 第1个结局，12 = 第12个结局。
-    /// </summary>
-    public void ShowEndingByNumber(int endingNumber)
-    {
-        ShowEndingByIndex(endingNumber - 1);
+        if (playFirstUnlockAnimation)
+        {
+            PlayStoryTypewriter(data.title, data.story);
+        }
+        else
+        {
+            ShowStoryTextInstant(data.title, data.story);
+        }
     }
 
     /// <summary>
@@ -313,6 +361,8 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         {
             return;
         }
+
+        StopStoryRevealAnimation();
 
         if (hideStoryPanelWhenLockedEndingClicked)
         {
@@ -374,6 +424,8 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     /// </summary>
     public void CloseStoryPanel()
     {
+        StopStoryRevealAnimation();
+
         if (storyPanel != null)
         {
             storyPanel.SetActive(false);
@@ -404,7 +456,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
     /// <summary>
     /// 解锁结局，并显示到共用故事文字。
-    /// 这个方法会永久保存解锁状态。
+    /// 第一次解锁会播放打字机动画；之后再次点击不会播放。
     /// 0 = 第1个结局，11 = 第12个结局。
     /// </summary>
     public void UnlockEndingByIndex(int index)
@@ -423,20 +475,27 @@ public class EndingStoryCollectionPanel : MonoBehaviour
             return;
         }
 
-        // 永久保存解锁状态
+        bool wasAlreadyUnlocked = IsEndingUnlocked(endingId);
+
         PlayerPrefs.SetInt(BuildSaveKey(endingId), 1);
         PlayerPrefs.Save();
 
-        // 立即刷新UI：隐藏Locked，显示Unlocked
         RefreshAllSlots();
 
-        // 测试按钮点击后，立即打开故事Panel并显示故事
-        ShowEndingByIndex(index);
+        bool shouldPlayTypewriter = playTypewriterOnlyOnFirstUnlock && !wasAlreadyUnlocked;
+        ShowEndingByIndexInternal(index, shouldPlayTypewriter);
 
         EndingStoryData data = GetEndingDataForSlot(index);
         string title = data != null ? data.title : endingId;
 
-        Debug.Log("[EndingStoryCollectionPanel] Ending unlocked permanently: " + title);
+        if (wasAlreadyUnlocked)
+        {
+            Debug.Log("[EndingStoryCollectionPanel] Ending already unlocked, showing instantly: " + title);
+        }
+        else
+        {
+            Debug.Log("[EndingStoryCollectionPanel] Ending unlocked permanently: " + title);
+        }
     }
 
     /// <summary>
@@ -515,6 +574,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     /// <summary>
     /// 根据三个数值判断结局，并自动解锁。
     /// 正式游戏结束时可以调用这个方法。
+    /// 第一次解锁时也会播放打字动画。
     /// </summary>
     public EndingStoryData ResolveAndUnlockEndingFromStats(int money, int credibility, int followers)
     {
@@ -584,6 +644,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 
     // =========================
     // 12个测试按钮：永久解锁 + 显示Unlocked + 隐藏Locked + 打开Story Panel
+    // 第一次解锁会播放打字动画
     // =========================
 
     public void TestUnlockEnding01()
@@ -650,7 +711,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     // 12个显示按钮：只显示，不解锁
     // 未解锁时会打开Locked Panel
     // 已解锁时会打开Story Panel
-    // 如果你开启了自动绑定，一般不用手动设置这些。
+    // 不播放打字动画
     // =========================
 
     public void ShowEnding01()
@@ -713,8 +774,194 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         ShowEndingByIndex(11);
     }
 
+    // =========================
+    // 打字动画
+    // =========================
+
+    private void PlayStoryTypewriter(string title, string story)
+    {
+        StopStoryRevealAnimation();
+
+        storyRevealCoroutine = StartCoroutine(StoryTypewriterRoutine(title, story));
+    }
+
+    private IEnumerator StoryTypewriterRoutine(string title, string story)
+    {
+        OpenStoryPanel();
+        CloseLockedPanel();
+
+        SetSharedTitleOnly(title);
+        PrepareStoryBodyForTypewriter(story);
+
+        if (useJuicyPanelPop)
+        {
+            yield return PlayStoryPanelPopRoutine();
+        }
+
+        if (typewriterStartDelay > 0f)
+        {
+            yield return WaitForSecondsSmart(typewriterStartDelay);
+        }
+
+        int totalCharacters = GetStoryCharacterCount(story);
+        float visibleCharacterFloat = 0f;
+        int visibleCharacters = 0;
+
+        while (visibleCharacters < totalCharacters)
+        {
+            float deltaTime = typewriterUseUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            visibleCharacterFloat += Mathf.Max(1f, typewriterCharactersPerSecond) * deltaTime;
+
+            int newVisibleCharacters = Mathf.Clamp(Mathf.FloorToInt(visibleCharacterFloat), 0, totalCharacters);
+
+            if (newVisibleCharacters != visibleCharacters)
+            {
+                visibleCharacters = newVisibleCharacters;
+                SetStoryVisibleCharacters(story, visibleCharacters);
+            }
+
+            yield return null;
+        }
+
+        ShowStoryTextInstant(title, story);
+        storyRevealCoroutine = null;
+    }
+
+    private IEnumerator PlayStoryPanelPopRoutine()
+    {
+        Transform panelTransform = GetStoryPanelTransform();
+
+        if (panelTransform == null)
+        {
+            yield break;
+        }
+
+        CacheStoryPanelScale();
+
+        float duration = Mathf.Max(0.01f, panelPopDuration);
+        float timer = 0f;
+
+        Vector3 startScale = storyPanelOriginalScale * panelPopStartScale;
+        Vector3 overshootScale = storyPanelOriginalScale * panelPopOvershootScale;
+        Vector3 endScale = storyPanelOriginalScale;
+
+        panelTransform.localScale = startScale;
+
+        while (timer < duration)
+        {
+            float deltaTime = typewriterUseUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            timer += deltaTime;
+
+            float t = Mathf.Clamp01(timer / duration);
+
+            if (t < 0.7f)
+            {
+                float firstPart = Mathf.Clamp01(t / 0.7f);
+                panelTransform.localScale = Vector3.LerpUnclamped(startScale, overshootScale, EaseOutCubic(firstPart));
+            }
+            else
+            {
+                float secondPart = Mathf.Clamp01((t - 0.7f) / 0.3f);
+                panelTransform.localScale = Vector3.LerpUnclamped(overshootScale, endScale, EaseOutCubic(secondPart));
+            }
+
+            yield return null;
+        }
+
+        panelTransform.localScale = endScale;
+    }
+
+    private void StopStoryRevealAnimation()
+    {
+        if (storyRevealCoroutine != null)
+        {
+            StopCoroutine(storyRevealCoroutine);
+            storyRevealCoroutine = null;
+        }
+
+        ResetStoryPanelScale();
+        ResetTMPVisibleCharacters();
+    }
+
+    private void PrepareStoryBodyForTypewriter(string story)
+    {
+        if (sharedStoryTMP != null)
+        {
+            sharedStoryTMP.text = story;
+            sharedStoryTMP.ForceMeshUpdate();
+            sharedStoryTMP.maxVisibleCharacters = 0;
+        }
+
+        if (sharedStoryText != null)
+        {
+            sharedStoryText.text = string.Empty;
+        }
+    }
+
+    private void SetStoryVisibleCharacters(string fullStory, int visibleCharacters)
+    {
+        if (sharedStoryTMP != null)
+        {
+            sharedStoryTMP.maxVisibleCharacters = visibleCharacters;
+        }
+
+        if (sharedStoryText != null)
+        {
+            int safeLength = Mathf.Clamp(visibleCharacters, 0, fullStory.Length);
+            sharedStoryText.text = fullStory.Substring(0, safeLength);
+        }
+    }
+
+    private int GetStoryCharacterCount(string story)
+    {
+        if (sharedStoryTMP != null)
+        {
+            sharedStoryTMP.ForceMeshUpdate();
+            return sharedStoryTMP.textInfo.characterCount;
+        }
+
+        if (string.IsNullOrEmpty(story))
+        {
+            return 0;
+        }
+
+        return story.Length;
+    }
+
+    private IEnumerator WaitForSecondsSmart(float seconds)
+    {
+        float timer = 0f;
+
+        while (timer < seconds)
+        {
+            timer += typewriterUseUnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    private void ShowStoryTextInstant(string title, string story)
+    {
+        StopStoryRevealAnimation();
+        SetSharedStoryText(title, story);
+    }
+
+    private void SetSharedTitleOnly(string title)
+    {
+        if (sharedTitleTMP != null)
+        {
+            sharedTitleTMP.text = title;
+        }
+
+        if (sharedTitleText != null)
+        {
+            sharedTitleText.text = title;
+        }
+    }
+
     private void SetSharedStoryText(string title, string story)
     {
+        ResetTMPVisibleCharacters();
+
         if (sharedTitleTMP != null)
         {
             sharedTitleTMP.text = title;
@@ -723,6 +970,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
         if (sharedStoryTMP != null)
         {
             sharedStoryTMP.text = story;
+            sharedStoryTMP.maxVisibleCharacters = int.MaxValue;
         }
 
         if (sharedTitleText != null)
@@ -735,6 +983,65 @@ public class EndingStoryCollectionPanel : MonoBehaviour
             sharedStoryText.text = story;
         }
     }
+
+    private void ResetTMPVisibleCharacters()
+    {
+        if (sharedStoryTMP != null)
+        {
+            sharedStoryTMP.maxVisibleCharacters = int.MaxValue;
+        }
+    }
+
+    private void CacheStoryPanelScale()
+    {
+        if (storyPanelScaleCached)
+        {
+            return;
+        }
+
+        Transform panelTransform = GetStoryPanelTransform();
+
+        if (panelTransform != null)
+        {
+            storyPanelOriginalScale = panelTransform.localScale;
+        }
+        else
+        {
+            storyPanelOriginalScale = Vector3.one;
+        }
+
+        storyPanelScaleCached = true;
+    }
+
+    private void ResetStoryPanelScale()
+    {
+        Transform panelTransform = GetStoryPanelTransform();
+
+        if (panelTransform != null)
+        {
+            panelTransform.localScale = storyPanelOriginalScale;
+        }
+    }
+
+    private Transform GetStoryPanelTransform()
+    {
+        if (storyPanel != null)
+        {
+            return storyPanel.transform;
+        }
+
+        return null;
+    }
+
+    private float EaseOutCubic(float t)
+    {
+        t = Mathf.Clamp01(t);
+        return 1f - Mathf.Pow(1f - t, 3f);
+    }
+
+    // =========================
+    // 通用辅助方法
+    // =========================
 
     private void SetLockedPanelText(string title, string story)
     {

@@ -8806,6 +8806,14 @@ MonoBehaviour:
   sharedStoryTMP: {fileID: 132922066}
   sharedTitleText: {fileID: 0}
   sharedStoryText: {fileID: 0}
+  playTypewriterOnlyOnFirstUnlock: 1
+  typewriterCharactersPerSecond: 25
+  typewriterUseUnscaledTime: 1
+  useJuicyPanelPop: 1
+  panelPopDuration: 0.18
+  panelPopStartScale: 0.92
+  panelPopOvershootScale: 1.05
+  typewriterStartDelay: 0.05
   lockedPanel: {fileID: 2058153918}
   hideLockedPanelOnOpen: 1
   hideLockedPanelWhenUnlockedEndingClicked: 1
