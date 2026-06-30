@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca5e78eaf427f943a1e33d16783508d, type: 3}
+  m_Name: MisinformationMetricFormulaProfile
+  m_EditorClassIdentifier: Assembly-CSharp::MisinformationMetricFormulaProfile
+  clampMoney: 1
+  clampFollowers: 1
+  clampCredibility: 1
+  maxMoney: 100
+  maxFollowers: 100
+  maxCredibility: 100
+  baseFollowersPerPost: 8
+  baseMoneyPerPost: 2
+  baseLikesPerPost: 6
+  moneyPerFollowerGained: 0.12
+  likesPerFollowerGained: 0.8
+  tacticEngagementBonusToGrowthMultiplier: 1
+  tacticEngagementBonusToMoneyMultiplier: 0.5
+  tacticCredibilityCostToCredibilityLoss: 100
+  useJsonScoring: 1
+  useBlankWordsAsCorrectAnswers: 1
+  allowAnyBlankWordAsCorrect: 1
+  defaultUnlistedWordQuality: 3
+  defaultCaptionQuality: 0
+  useJsonTacticFit: 1
+  globalCorrectWords: []
+  globalHalfCorrectWords: []
+  globalNeutralWords: []
+  globalWrongWords: []
+  globalNonsenseWords: []
+  captionQualityWeight: 0.25
+  wordChoiceQualityWeight: 0.55
+  tacticFitWeight: 0.2
+  correctScore: 1
+  halfCorrectScore: 0.5
+  neutralScore: 0
+  wrongScore: -0.65
+  nonsenseScore: -1
+  correctTacticScore: 1
+  wrongTacticScore: -0.75
+  qualityToGrowthMultiplier:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1
+      value: 0.05
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: -0.5
+      value: 0.25
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0
+      value: 0.65
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1.55
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minQualityGrowthMultiplier: -0.5
+  maxQualityGrowthMultiplier: 2
+  successfulMisinformationCredibilityLoss: 2
+  wrongPostCredibilityLoss: 5
+  qualityScoreThresholdForEffectivePost: 0.25
+  lowCredibilityReducesGrowth: 1
+  zeroCredibilityGrowthMultiplier: 0.35
+  enableFactCheckEvents: 1
+  factCheckCredibilityThreshold: 35
+  factCheckCooldownDays: 3
+  factCheckCredibilityLoss: 6
+  factCheckFollowerLossPercent: 0.08
+  factCheckMoneyLossPercent: 0.03
+  useOnlyHighestPriorityPenalty: 1
+  repetitionPenaltySettings:
+  - reason: 5
+    priority: 50
+    freeStreakDays: 1
+    decayPerExtraDay: 0.55
+    minGrowthMultiplier: -0.65
+    exponentialPenaltyGrowth: 0.45
+    followerLossBase: 5
+    moneyLossBase: 1
+    credibilityLossBase: 4
+  - reason: 4
+    priority: 40
+    freeStreakDays: 1
+    decayPerExtraDay: 0.45
+    minGrowthMultiplier: -0.35
+    exponentialPenaltyGrowth: 0.38
+    followerLossBase: 3
+    moneyLossBase: 0
+    credibilityLossBase: 3
+  - reason: 3
+    priority: 40
+    freeStreakDays: 2
+    decayPerExtraDay: 0.4
+    minGrowthMultiplier: -0.25
+    exponentialPenaltyGrowth: 0.34
+    followerLossBase: 3
+    moneyLossBase: 0
+    credibilityLossBase: 2
+  - reason: 2
+    priority: 30
+    freeStreakDays: 3
+    decayPerExtraDay: 0.28
+    minGrowthMultiplier: 0.1
+    exponentialPenaltyGrowth: 0.25
+    followerLossBase: 2
+    moneyLossBase: 0
+    credibilityLossBase: 1
+  - reason: 1
+    priority: 20
+    freeStreakDays: 3
+    decayPerExtraDay: 0.18
+    minGrowthMultiplier: 0.2
+    exponentialPenaltyGrowth: 0.18
+    followerLossBase: 1
+    moneyLossBase: 0
+    credibilityLossBase: 1

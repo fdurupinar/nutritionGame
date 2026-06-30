@@ -673,6 +673,11 @@ public class DailyPostTopicJson
 {
     public string topicId;
     public string topicName;
+
+    [Header("Optional Scoring Data")]
+    public List<string> idealTacticTypes = new List<string>();
+    public List<string> badTacticTypes = new List<string>();
+
     public List<DailyPostSubTopicJson> subTopics = new List<DailyPostSubTopicJson>();
 }
 
@@ -681,6 +686,10 @@ public class DailyPostSubTopicJson
 {
     public string subTopicId;
     public string subTopicName;
+
+    [Header("Optional Scoring Data")]
+    public List<string> idealTacticTypes = new List<string>();
+    public List<string> badTacticTypes = new List<string>();
 }
 
 [Serializable]
@@ -693,10 +702,40 @@ public class DailyPostTacticJson
 [Serializable]
 public class DailyPostSentenceJson
 {
+    [Header("Caption Template")]
+    public string sentenceId;
+    public string captionTemplateId;
+
     [TextArea(2, 5)]
     public string sentence;
+
     public List<string> blankWords = new List<string>();
     public List<string> wordChoices = new List<string>();
+
+    [Header("Optional Scoring Data")]
+    [Tooltip("Optional. Use Correct, HalfCorrect, Neutral, Wrong, or Nonsense. Empty uses the default value from MisinformationMetricFormulaProfile.")]
+    public string captionQuality;
+
+    [Tooltip("Optional. If filled, the current tactic must match one of these to avoid Wrong Tactic.")]
+    public List<string> idealTacticTypes = new List<string>();
+
+    [Tooltip("Optional. If filled and the current tactic is in this list, it counts as Wrong Tactic.")]
+    public List<string> badTacticTypes = new List<string>();
+
+    [Tooltip("Optional. Words that count as fully correct. If empty, blankWords are treated as correct answers by the metric profile.")]
+    public List<string> correctWords = new List<string>();
+
+    [Tooltip("Optional. Words that count as half correct.")]
+    public List<string> halfCorrectWords = new List<string>();
+
+    [Tooltip("Optional. Words that do not help or hurt much.")]
+    public List<string> neutralWords = new List<string>();
+
+    [Tooltip("Optional. Words that are wrong and may reduce metrics.")]
+    public List<string> wrongWords = new List<string>();
+
+    [Tooltip("Optional. Very strange or nonsense words. These are punished harder than wrong words.")]
+    public List<string> nonsenseWords = new List<string>();
 }
 
 [Serializable]

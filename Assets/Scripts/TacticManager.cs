@@ -40,7 +40,7 @@ public class TacticManager : MonoBehaviour
     private ScrollRect _scrollRect;
     private CommentManager _commentManager;
 
-    // 自动滚动状态标志
+    // Auto-scroll state flag
     private bool _isAutoScrolling;
 
     UserStats _userStats;
@@ -56,6 +56,18 @@ public class TacticManager : MonoBehaviour
 
     [Header("Hint Panel")]
     public TacticHintPanel tacticHintPanel;
+
+    [Header("Metric Formula / Cat Coach")]
+    [Tooltip("If enabled, uses the new misinformation metric formula. If disabled, uses the old simple TacticSO scoring.")]
+    public bool useMisinformationMetricFormula = true;
+
+    [Tooltip("Drag in MisinformationMetricEngine. It calculates Money, Followers, and Credibility. If empty, the script will try to find one automatically.")]
+    public MisinformationMetricEngine metricEngine;
+
+    [Tooltip("Drag in CatCoachManager. In Easy Mode, it warns before publishing clearly bad posts. If empty, Cat Coach is disabled.")]
+    public CatCoachManager catCoachManager;
+
+    private bool _skipCatCoachWarningOnce;
 
     void Start()
     {
@@ -73,9 +85,19 @@ public class TacticManager : MonoBehaviour
             _userStats = playerObj.GetComponent<UserStats>();
         }
 
+        if (metricEngine == null)
+        {
+            metricEngine = FindObjectOfType<MisinformationMetricEngine>();
+        }
+
+        if (catCoachManager == null)
+        {
+            catCoachManager = FindObjectOfType<CatCoachManager>();
+        }
+
         SetAfterSentenceButtonActive(false);
 
-        // --- Day System Logic ---
+        // Day system logic
         int currentDay = 1;
         if (DayManager.Instance != null)
         {
@@ -354,8 +376,6 @@ public class TacticManager : MonoBehaviour
             return;
         }
 
-        StopTacticPublishRoutines();
-
         TacticSO selectedTactic = _currentlySelectedCard.TacticData;
         string postTextToShow = selectedTactic.text;
 
@@ -364,6 +384,23 @@ public class TacticManager : MonoBehaviour
         {
             postTextToShow = dailyPostFillBlankManager.currentCompletedSentence;
         }
+
+        if (!_skipCatCoachWarningOnce &&
+            useMisinformationMetricFormula &&
+            metricEngine != null &&
+            catCoachManager != null)
+        {
+            PostMetricPreview preview = metricEngine.PreviewPost(selectedTactic, dailyPostFillBlankManager, _userStats);
+
+            if (catCoachManager.TryShowEasyModeWarning(preview, this))
+            {
+                return;
+            }
+        }
+
+        _skipCatCoachWarningOnce = false;
+
+        StopTacticPublishRoutines();
 
         if (TacticPanel != null)
         {
@@ -382,7 +419,7 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
-        // 【需要你修改】这里把初始位置设为 0f (最底部)
+        // Set initial position to 0f so the caption starts at the bottom.
         if (_scrollRect != null)
         {
             Canvas.ForceUpdateCanvases();
@@ -397,6 +434,12 @@ public class TacticManager : MonoBehaviour
 
         _currentTactics.Remove(selectedTactic);
         PopulateGrid();
+    }
+
+    public void ContinuePublishAfterCatCoachWarning()
+    {
+        _skipCatCoachWarningOnce = true;
+        OnPublishButtonClicked();
     }
 
     private void StopTacticScrollRoutines()
@@ -467,7 +510,7 @@ public class TacticManager : MonoBehaviour
 
         if (_contentBox != null) _contentBox.text = "";
 
-        // 【需要你修改】这里把初始位置设为 0f (最底部)
+        // Set initial position to 0f so the caption starts at the bottom.
         if (_scrollRect != null)
         {
             Canvas.ForceUpdateCanvases();
@@ -483,6 +526,13 @@ public class TacticManager : MonoBehaviour
     {
         if (_userStats == null) return;
 
+        if (useMisinformationMetricFormula && metricEngine != null)
+        {
+            metricEngine.ApplyPostResult(tactic, dailyPostFillBlankManager, _userStats);
+            return;
+        }
+
+        // Old formula is kept so the game still runs if MetricEngine is not assigned.
         _userStats.Cash += (int)(tactic.engagementBonus * 100);
         _userStats.FollowerCount += (int)(tactic.engagementBonus * 1000);
         _userStats.Likes += (int)(tactic.engagementBonus * 50);
@@ -491,7 +541,7 @@ public class TacticManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // 【需要你修改】将目标值改为 1f，使其向上平滑滚动
+        // Target 1f so the caption auto-scrolls upward smoothly.
         if (_isAutoScrolling && _scrollRect != null)
         {
             _scrollRect.verticalNormalizedPosition = Mathf.Lerp(_scrollRect.verticalNormalizedPosition, 1f, Time.deltaTime * 10f);
