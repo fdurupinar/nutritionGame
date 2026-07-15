@@ -806,7 +806,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8378444612288947262, guid: 12f4b3b98966fa045b95290f72febf7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f702d4c0ebb14e3cb6ce7e65fd861ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -11294,7 +11294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Maternal/Child
+  m_text: Family
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
   m_sharedMaterial: {fileID: 3241832977246249860, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
