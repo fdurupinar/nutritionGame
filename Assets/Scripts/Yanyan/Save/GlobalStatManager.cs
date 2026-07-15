@@ -30,17 +30,17 @@ public class GlobalStatManager : MonoBehaviour
     public void ResetStats()
     {
         // FORCE the variables in the script to reset immediately
-        currentCash = 0;
+        currentCash = 1000;
         currentFollowers = 0;
         currentCredibility = 100;
 
         // Overwrite the save file
-        PlayerPrefs.SetInt(SAVE_CASH, 0);
+        PlayerPrefs.SetInt(SAVE_CASH, 10000);
         PlayerPrefs.SetInt(SAVE_FOLLOWERS, 0);
         PlayerPrefs.SetInt(SAVE_CRED, 100);
         PlayerPrefs.Save();
 
-        Debug.Log("GlobalStatManager: Memory and Disk reset to 0, 0, 100");
+        Debug.Log("GlobalStatManager: reset to 1000, 0, 100");
     }
 
     public void SaveToDisk(int cash, int followers, int cred)
@@ -57,7 +57,7 @@ public class GlobalStatManager : MonoBehaviour
 
     private void LoadFromDisk()
     {
-        currentCash = PlayerPrefs.GetInt(SAVE_CASH, 0);
+        currentCash = PlayerPrefs.GetInt(SAVE_CASH, 1000);
         currentFollowers = PlayerPrefs.GetInt(SAVE_FOLLOWERS, 0);
         currentCredibility = PlayerPrefs.GetInt(SAVE_CRED, 100);
     }

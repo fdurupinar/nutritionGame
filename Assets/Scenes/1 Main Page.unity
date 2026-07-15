@@ -2527,6 +2527,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 95401662}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1067162353}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
         m_MethodName: LoadGameScene
@@ -11912,7 +11924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
-  maxDay: 31
+  maxDay: 3
 --- !u!4 &1746062777
 Transform:
   m_ObjectHideFlags: 0
@@ -12458,6 +12470,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794101119}
   m_CullTransparentMesh: 1
+--- !u!1 &1794122491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794122493}
+  - component: {fileID: 1794122492}
+  m_Layer: 0
+  m_Name: EndingSceneAutoResolver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1794122492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794122491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b142e382db04048b508ca23e2468e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingSceneAutoResolver
+  endingStoryCollectionPanel: {fileID: 1107839369}
+  endingCollectionRoot: {fileID: 1107839365}
+  requirePendingEndingRequest: 1
+  additionalStartDelay: 0
+  clearPendingRequestAfterSuccess: 1
+  automaticallyOpenStoryPanel: 1
+  alwaysPlayStoryTypewriter: 1
+  forceCompleteTextAfterTyping: 1
+  isResolvingEnding: 0
+  resolvedEndingNumber: 0
+--- !u!4 &1794122493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794122491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 811.771, y: 587.39996, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796059116
 GameObject:
   m_ObjectHideFlags: 0
@@ -14219,7 +14285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5b0731b1ebe40d1a5169b63f8f561e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalStatManager
-  currentCash: 0
+  currentCash: 1000
   currentFollowers: 0
   currentCredibility: 100
 --- !u!4 &2010036330
@@ -15238,8 +15304,9 @@ SceneRoots:
   - {fileID: 1143683925}
   - {fileID: 717175552}
   - {fileID: 1067162352}
+  - {fileID: 325987194}
+  - {fileID: 1194702907}
   - {fileID: 1832534056}
   - {fileID: 1746062777}
   - {fileID: 2010036330}
-  - {fileID: 1194702907}
-  - {fileID: 325987194}
+  - {fileID: 1794122493}

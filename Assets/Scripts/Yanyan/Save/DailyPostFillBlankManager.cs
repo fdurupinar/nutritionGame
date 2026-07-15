@@ -9,7 +9,24 @@ using UnityEngine.UI;
 public class DailyPostFillBlankManager : MonoBehaviour
 {
     [Header("Manager References")]
+    [Tooltip("Tactic manager opened after the caption passes the Easy Mode coach check.")]
     public TacticManager tacticManager;
+
+    [Tooltip("Cat coach used to warn about wrong or nonsensical blank choices before tactic selection.")]
+    public CatCoachManager catCoachManager;
+
+    [Tooltip("Metric engine used to evaluate ordered blank choices for the Easy Mode coach.")]
+    public MisinformationMetricEngine metricEngine;
+
+    [Header("Easy Mode Coach Flow")]
+    [Tooltip("If enabled, the completed caption is checked by the cat coach before tactic selection.")]
+    public bool checkCaptionWithCoachBeforeTacticSelection = true;
+
+    [Tooltip("If enabled, the fill-in-the-blank panel is hidden while the coach warning is open. Keep the coach panel outside the fill-in-the-blank panel hierarchy.")]
+    public bool hideFillBlankPanelWhileCoachIsOpen = true;
+
+    [Tooltip("Legacy compatibility only. Leave OFF. Turning this on invokes the old On Next UnityEvent after tactic selection opens.")]
+    public bool invokeLegacyOnNextEvent = false;
 
     [Header("Panels")]
     public GameObject topicPanel;
@@ -21,6 +38,10 @@ public class DailyPostFillBlankManager : MonoBehaviour
     public TextAsset dailyPostJsonFile;
 
     private DailyPostJsonDatabase dailyPostData = new DailyPostJsonDatabase();
+
+    [Header("Selection Flow")]
+    [Tooltip("ON = Topic > Subtopic > Caption > Fill Blank. This is the recommended new flow. OFF = Topic > Subtopic > Tactic > Caption, using the old tactic selection flow.")]
+    public bool selectCaptionImmediatelyAfterSubTopic = true;
 
     [Header("Topic Buttons")]
     public List<TopicButtonBinding> topicButtons = new List<TopicButtonBinding>();
@@ -82,6 +103,22 @@ public class DailyPostFillBlankManager : MonoBehaviour
         LoadJsonData();
         SetupTopicButtons();
 
+        // 中文备注：如果 Inspector 没有手动拖入引用，就自动查找，避免因为漏拖引用导致流程中断。
+        if (tacticManager == null)
+        {
+            tacticManager = FindObjectOfType<TacticManager>();
+        }
+
+        if (catCoachManager == null)
+        {
+            catCoachManager = FindObjectOfType<CatCoachManager>();
+        }
+
+        if (metricEngine == null)
+        {
+            metricEngine = FindObjectOfType<MisinformationMetricEngine>();
+        }
+
         if (nextButton != null)
         {
             nextButton.onClick.RemoveAllListeners();
@@ -134,6 +171,100 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
         if (dailyPostData.tactics == null)
             dailyPostData.tactics = new List<DailyPostTacticJson>();
+
+        NormalizeRuntimeDatabase();
+    }
+
+    private void NormalizeRuntimeDatabase()
+    {
+        if (dailyPostData == null) return;
+        if (dailyPostData.topics == null) dailyPostData.topics = new List<DailyPostTopicJson>();
+
+        for (int i = 0; i < dailyPostData.topics.Count; i++)
+        {
+            DailyPostTopicJson topic = dailyPostData.topics[i];
+            if (topic == null) continue;
+            if (topic.subTopics == null) topic.subTopics = new List<DailyPostSubTopicJson>();
+
+            for (int s = 0; s < topic.subTopics.Count; s++)
+            {
+                DailyPostSubTopicJson subTopic = topic.subTopics[s];
+                if (subTopic == null) continue;
+                if (subTopic.sentences == null) subTopic.sentences = new List<DailyPostSentenceJson>();
+
+                for (int c = 0; c < subTopic.sentences.Count; c++)
+                {
+                    NormalizeSentence(subTopic.sentences[c]);
+                }
+            }
+        }
+
+        if (dailyPostData.tactics != null)
+        {
+            for (int t = 0; t < dailyPostData.tactics.Count; t++)
+            {
+                DailyPostTacticJson tactic = dailyPostData.tactics[t];
+                if (tactic == null) continue;
+                if (tactic.sentences == null) tactic.sentences = new List<DailyPostSentenceJson>();
+
+                for (int c = 0; c < tactic.sentences.Count; c++)
+                {
+                    NormalizeSentence(tactic.sentences[c]);
+                }
+            }
+        }
+    }
+
+    private void NormalizeSentence(DailyPostSentenceJson sentence)
+    {
+        if (sentence == null) return;
+        if (sentence.blankWords == null) sentence.blankWords = new List<string>();
+        if (sentence.wordChoices == null) sentence.wordChoices = new List<string>();
+        if (sentence.blankScoring == null) sentence.blankScoring = new List<DailyPostBlankScoringJson>();
+        if (sentence.idealTacticTypes == null) sentence.idealTacticTypes = new List<string>();
+        if (sentence.neutralTacticTypes == null) sentence.neutralTacticTypes = new List<string>();
+        if (sentence.badTacticTypes == null) sentence.badTacticTypes = new List<string>();
+        if (sentence.correctWords == null) sentence.correctWords = new List<string>();
+        if (sentence.halfCorrectWords == null) sentence.halfCorrectWords = new List<string>();
+        if (sentence.neutralWords == null) sentence.neutralWords = new List<string>();
+        if (sentence.wrongWords == null) sentence.wrongWords = new List<string>();
+        if (sentence.nonsenseWords == null) sentence.nonsenseWords = new List<string>();
+
+        while (sentence.blankScoring.Count < sentence.blankWords.Count)
+        {
+            int newIndex = sentence.blankScoring.Count;
+            sentence.blankScoring.Add(new DailyPostBlankScoringJson
+            {
+                note = "Blank " + (newIndex + 1),
+                correctWords = new List<string> { sentence.blankWords[newIndex] },
+                halfCorrectWords = new List<string>(),
+                neutralWords = new List<string>(),
+                wrongWords = new List<string>(),
+                nonsenseWords = new List<string>()
+            });
+        }
+
+        while (sentence.blankScoring.Count > sentence.blankWords.Count)
+        {
+            sentence.blankScoring.RemoveAt(sentence.blankScoring.Count - 1);
+        }
+
+        for (int i = 0; i < sentence.blankScoring.Count; i++)
+        {
+            DailyPostBlankScoringJson rule = sentence.blankScoring[i];
+            if (rule == null)
+            {
+                rule = new DailyPostBlankScoringJson();
+                sentence.blankScoring[i] = rule;
+            }
+
+            if (string.IsNullOrWhiteSpace(rule.note)) rule.note = "Blank " + (i + 1);
+            if (rule.correctWords == null) rule.correctWords = new List<string>();
+            if (rule.halfCorrectWords == null) rule.halfCorrectWords = new List<string>();
+            if (rule.neutralWords == null) rule.neutralWords = new List<string>();
+            if (rule.wrongWords == null) rule.wrongWords = new List<string>();
+            if (rule.nonsenseWords == null) rule.nonsenseWords = new List<string>();
+        }
     }
 
     public void OpenTopicPanel()
@@ -176,6 +307,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         currentTopicId = topicId;
         currentSubTopicIndex = -1;
         currentSubTopicData = null;
+        currentSentenceData = null;
         currentCompletedSentence = "";
 
         currentTopicData = GetTopicDataById(topicId);
@@ -212,8 +344,38 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
             int capturedSubTopicIndex = i;
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => GoToTacticSelection(capturedSubTopicIndex));
+
+            if (selectCaptionImmediatelyAfterSubTopic)
+            {
+                button.onClick.AddListener(() => OpenSentenceSelectionForSubTopic(capturedSubTopicIndex));
+            }
+            else
+            {
+                button.onClick.AddListener(() => GoToTacticSelection(capturedSubTopicIndex));
+            }
         }
+    }
+
+    public void OpenSentenceSelectionForSubTopic(int subTopicIndex)
+    {
+        if (currentTopicData == null || currentTopicData.subTopics == null)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: No topic selected before opening captions.");
+            return;
+        }
+
+        if (subTopicIndex < 0 || subTopicIndex >= currentTopicData.subTopics.Count)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: Invalid subtopic index: " + subTopicIndex);
+            return;
+        }
+
+        currentSubTopicIndex = subTopicIndex;
+        currentSubTopicData = currentTopicData.subTopics[subTopicIndex];
+        currentSentenceData = null;
+        currentCompletedSentence = "";
+
+        OpenSentenceSelectionForCurrentSubTopic();
     }
 
     public void GoToTacticSelection(int subTopicIndex)
@@ -221,60 +383,77 @@ public class DailyPostFillBlankManager : MonoBehaviour
         currentSubTopicIndex = subTopicIndex;
         currentSubTopicData = currentTopicData.subTopics[subTopicIndex];
 
-        // Hide daily post panels entirely
         ShowOnlyPanel(null);
 
-        // Turn on the Tactic Panel
         if (tacticManager != null)
         {
             tacticManager.OpenCardView();
         }
     }
 
-    // Called by TacticManager after a card is confirmed
+    // Backward compatible method. TacticManager can still call this after a tactic card is confirmed.
+    // New JSON stores captions under the currently selected subtopic, so tacticType is saved for scoring but does not decide which captions appear.
     public void OpenSentenceSelectionPanel(string tacticType)
     {
-        currentTacticType = tacticType.ToLower();
-        DailyPostTacticJson tacticData = GetTacticDataById(currentTacticType);
+        currentTacticType = string.IsNullOrWhiteSpace(tacticType) ? "" : tacticType.ToLowerInvariant();
+        OpenSentenceSelectionForCurrentSubTopic();
+    }
 
-        if (tacticData == null || tacticData.sentences == null || tacticData.sentences.Count == 0)
+    public void OpenSentenceSelectionForCurrentSubTopic()
+    {
+        if (currentSubTopicData == null)
         {
-            Debug.LogWarning("DailyPostFillBlankManager: No sentences found for tactic: " + tacticType);
+            Debug.LogWarning("DailyPostFillBlankManager: No subtopic selected before opening caption selection.");
+            return;
+        }
+
+        List<DailyPostSentenceJson> sentenceList = currentSubTopicData.sentences;
+
+        // Legacy fallback: if this subtopic has no captions yet, use old tactic-based captions.
+        if ((sentenceList == null || sentenceList.Count == 0) && !string.IsNullOrWhiteSpace(currentTacticType))
+        {
+            DailyPostTacticJson tacticData = GetTacticDataById(currentTacticType);
+            if (tacticData != null)
+            {
+                sentenceList = tacticData.sentences;
+            }
+        }
+
+        if (sentenceList == null || sentenceList.Count == 0)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: No captions found for subtopic: " + currentSubTopicData.subTopicId);
             return;
         }
 
         ShowOnlyPanel(sentenceSelectionPanel);
         ClearChildren(sentenceButtonParent);
 
-        for (int i = 0; i < tacticData.sentences.Count; i++)
+        for (int i = 0; i < sentenceList.Count; i++)
         {
-            DailyPostSentenceJson sentenceData = tacticData.sentences[i];
+            DailyPostSentenceJson sentenceData = sentenceList[i];
             Button button = Instantiate(sentenceButtonPrefab, sentenceButtonParent);
 
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText != null)
             {
-                // Format the preview text to show blanks instead of brackets
-                string previewText = sentenceData.sentence;
-                if (sentenceData.blankWords != null)
-                {
-                    for (int w = 0; w < sentenceData.blankWords.Count; w++)
-                    {
-                        previewText = previewText.Replace($"[{sentenceData.blankWords[w]}]", emptyBlankText);
-                    }
-                }
-                buttonText.text = previewText;
+                buttonText.text = BuildPreviewSentence(sentenceData);
             }
 
             int capturedIndex = i;
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => OpenFillBlankPanel(tacticData, capturedIndex));
+            button.onClick.AddListener(() => OpenFillBlankPanel(sentenceList, capturedIndex));
         }
     }
 
-    public void OpenFillBlankPanel(DailyPostTacticJson tacticData, int sentenceIndex)
+    public void OpenFillBlankPanel(List<DailyPostSentenceJson> sentenceList, int sentenceIndex)
     {
-        currentSentenceData = tacticData.sentences[sentenceIndex];
+        if (sentenceList == null || sentenceIndex < 0 || sentenceIndex >= sentenceList.Count)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: Invalid caption index.");
+            return;
+        }
+
+        currentSentenceData = sentenceList[sentenceIndex];
         currentCompletedSentence = "";
 
         ShowOnlyPanel(fillBlankPanel);
@@ -284,13 +463,43 @@ public class DailyPostFillBlankManager : MonoBehaviour
         UpdateNextButtonState();
     }
 
+    // Legacy signature kept so old references do not break.
+    public void OpenFillBlankPanel(DailyPostTacticJson tacticData, int sentenceIndex)
+    {
+        if (tacticData == null)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: tacticData is null.");
+            return;
+        }
+
+        OpenFillBlankPanel(tacticData.sentences, sentenceIndex);
+    }
+
+    public string BuildPreviewSentence(DailyPostSentenceJson sentenceData)
+    {
+        if (sentenceData == null || string.IsNullOrEmpty(sentenceData.sentence))
+            return "";
+
+        string previewText = sentenceData.sentence;
+
+        if (sentenceData.blankWords != null)
+        {
+            for (int w = 0; w < sentenceData.blankWords.Count; w++)
+            {
+                previewText = previewText.Replace("[" + sentenceData.blankWords[w] + "]", emptyBlankText);
+            }
+        }
+
+        return previewText;
+    }
+
     public DailyPostTopicJson GetTopicDataById(string topicId)
     {
         if (dailyPostData == null || dailyPostData.topics == null) return null;
 
         for (int i = 0; i < dailyPostData.topics.Count; i++)
         {
-            if (dailyPostData.topics[i].topicId == topicId)
+            if (string.Equals(dailyPostData.topics[i].topicId, topicId, StringComparison.OrdinalIgnoreCase))
                 return dailyPostData.topics[i];
         }
         return null;
@@ -302,7 +511,8 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
         for (int i = 0; i < dailyPostData.tactics.Count; i++)
         {
-            if (dailyPostData.tactics[i].tacticId.ToLower() == tacticId.ToLower())
+            if (dailyPostData.tactics[i] != null &&
+                string.Equals(dailyPostData.tactics[i].tacticId, tacticId, StringComparison.OrdinalIgnoreCase))
                 return dailyPostData.tactics[i];
         }
         return null;
@@ -362,11 +572,10 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
             if (string.IsNullOrWhiteSpace(originalBlankWord)) continue;
 
-            int index = sentence.IndexOf($"[{originalBlankWord}]", cursor, StringComparison.OrdinalIgnoreCase);
+            int index = sentence.IndexOf("[" + originalBlankWord + "]", cursor, StringComparison.OrdinalIgnoreCase);
 
             if (index < 0)
             {
-                // Fallback if brackets aren't used in the raw string match
                 index = sentence.IndexOf(originalBlankWord, cursor, StringComparison.OrdinalIgnoreCase);
                 if (index < 0) continue;
             }
@@ -393,7 +602,6 @@ public class DailyPostFillBlankManager : MonoBehaviour
                 }
             }
 
-            // Advance cursor past the blank word (account for brackets if they exist)
             int lengthToSkip = sentence.Substring(index).StartsWith("[") ? originalBlankWord.Length + 2 : originalBlankWord.Length;
             cursor = index + lengthToSkip;
         }
@@ -419,7 +627,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
             string originalBlankWord = currentSentenceData.blankWords[i];
             if (string.IsNullOrWhiteSpace(originalBlankWord)) continue;
 
-            int index = sentence.IndexOf($"[{originalBlankWord}]", cursor, StringComparison.OrdinalIgnoreCase);
+            int index = sentence.IndexOf("[" + originalBlankWord + "]", cursor, StringComparison.OrdinalIgnoreCase);
 
             if (index < 0)
             {
@@ -601,7 +809,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         }
     }
 
-    public void GoNext() // This is called when the Next/publishing button is pressed after filling blanks
+    public void GoNext()
     {
         if (!AllBlanksFilled())
         {
@@ -611,10 +819,72 @@ public class DailyPostFillBlankManager : MonoBehaviour
 
         currentCompletedSentence = BuildCompletedSentence();
 
-        // Hide all Daily Post panels so the screen is clear for publishing
-        ShowOnlyPanel(null);
+        // 中文备注：这里仅检查字幕/填词，不发布、不保存当天状态，也不计算最终指标。
+        // 最终指标必须等玩家选择战术卡并点击最终 Post 按钮后才计算。
+        if (checkCaptionWithCoachBeforeTacticSelection &&
+            catCoachManager != null &&
+            metricEngine != null)
+        {
+            PostMetricPreview captionPreview = metricEngine.PreviewCaptionChoices(this);
 
-        onNext.Invoke();
+            if (catCoachManager.TryShowCaptionChoiceWarning(captionPreview, this))
+            {
+                return;
+            }
+        }
+
+        ContinueToTacticSelection();
+    }
+
+    /// <summary>
+    /// Called by the Cat Coach Continue Anyway button.
+    /// Keeps the selected caption/words and opens tactic selection.
+    /// </summary>
+    public void ContinueToTacticSelectionAfterCoach()
+    {
+        ContinueToTacticSelection();
+    }
+
+    /// <summary>
+    /// Called by the Cat Coach Revise button.
+    /// Reopens the exact same caption and clears only the selected blank answers.
+    /// </summary>
+    public void ReviseCurrentCaptionFromCoach()
+    {
+        currentCompletedSentence = "";
+        ShowOnlyPanel(fillBlankPanel);
+        ResetCurrentBlanks();
+    }
+
+    /// <summary>
+    /// Hides the fill-in-the-blank panel while the coach overlay is open.
+    /// The selected topic, subtopic, caption, and word-choice buttons remain in memory.
+    /// </summary>
+    public void HideFillBlankPanelForCoach()
+    {
+        if (hideFillBlankPanelWhileCoachIsOpen && fillBlankPanel != null)
+        {
+            fillBlankPanel.SetActive(false);
+        }
+    }
+
+    private void ContinueToTacticSelection()
+    {
+        if (tacticManager == null)
+        {
+            Debug.LogWarning("DailyPostFillBlankManager: Cannot continue because TacticManager is missing.");
+            ShowOnlyPanel(fillBlankPanel);
+            return;
+        }
+
+        ShowOnlyPanel(null);
+        tacticManager.OpenCardView();
+
+        // 中文备注：旧版 On Next 事件默认不再执行，避免过早保存发布状态、计算指标或打开社交动态面板。
+        if (invokeLegacyOnNextEvent)
+        {
+            onNext.Invoke();
+        }
     }
 
     public void ShowOnlyPanel(GameObject panelToShow)
@@ -665,6 +935,8 @@ public class TopicButtonBinding
 public class DailyPostJsonDatabase
 {
     public List<DailyPostTopicJson> topics = new List<DailyPostTopicJson>();
+
+    [Tooltip("Legacy fallback only. New captions should live under topics > subTopics > sentences.")]
     public List<DailyPostTacticJson> tactics = new List<DailyPostTacticJson>();
 }
 
@@ -673,11 +945,6 @@ public class DailyPostTopicJson
 {
     public string topicId;
     public string topicName;
-
-    [Header("Optional Scoring Data")]
-    public List<string> idealTacticTypes = new List<string>();
-    public List<string> badTacticTypes = new List<string>();
-
     public List<DailyPostSubTopicJson> subTopics = new List<DailyPostSubTopicJson>();
 }
 
@@ -687,9 +954,8 @@ public class DailyPostSubTopicJson
     public string subTopicId;
     public string subTopicName;
 
-    [Header("Optional Scoring Data")]
-    public List<string> idealTacticTypes = new List<string>();
-    public List<string> badTacticTypes = new List<string>();
+    [Header("Captions For This Subtopic")]
+    public List<DailyPostSentenceJson> sentences = new List<DailyPostSentenceJson>();
 }
 
 [Serializable]
@@ -712,29 +978,40 @@ public class DailyPostSentenceJson
     public List<string> blankWords = new List<string>();
     public List<string> wordChoices = new List<string>();
 
-    [Header("Optional Scoring Data")]
-    [Tooltip("Optional. Use Correct, HalfCorrect, Neutral, Wrong, or Nonsense. Empty uses the default value from MisinformationMetricFormulaProfile.")]
+    [Header("Ordered Blank Scoring")]
+    [Tooltip("One item per blank, in the same order as blankWords. This makes order matter.")]
+    public List<DailyPostBlankScoringJson> blankScoring = new List<DailyPostBlankScoringJson>();
+
+    [Header("Caption Scoring")]
+    [Tooltip("Correct, HalfCorrect, Neutral, Wrong, or Nonsense. Empty uses the default from MisinformationMetricFormulaProfile.")]
     public string captionQuality;
 
-    [Tooltip("Optional. If filled, the current tactic must match one of these to avoid Wrong Tactic.")]
+    [Header("Caption-Level Tactic Fit")]
+    [Tooltip("Best tactic types for this caption.")]
     public List<string> idealTacticTypes = new List<string>();
 
-    [Tooltip("Optional. If filled and the current tactic is in this list, it counts as Wrong Tactic.")]
+    [Tooltip("Acceptable but not best tactic types for this caption.")]
+    public List<string> neutralTacticTypes = new List<string>();
+
+    [Tooltip("Bad tactic types for this caption.")]
     public List<string> badTacticTypes = new List<string>();
 
-    [Tooltip("Optional. Words that count as fully correct. If empty, blankWords are treated as correct answers by the metric profile.")]
+    [Header("Legacy Fallback Scoring Lists")]
     public List<string> correctWords = new List<string>();
-
-    [Tooltip("Optional. Words that count as half correct.")]
     public List<string> halfCorrectWords = new List<string>();
-
-    [Tooltip("Optional. Words that do not help or hurt much.")]
     public List<string> neutralWords = new List<string>();
-
-    [Tooltip("Optional. Words that are wrong and may reduce metrics.")]
     public List<string> wrongWords = new List<string>();
+    public List<string> nonsenseWords = new List<string>();
+}
 
-    [Tooltip("Optional. Very strange or nonsense words. These are punished harder than wrong words.")]
+[Serializable]
+public class DailyPostBlankScoringJson
+{
+    public string note;
+    public List<string> correctWords = new List<string>();
+    public List<string> halfCorrectWords = new List<string>();
+    public List<string> neutralWords = new List<string>();
+    public List<string> wrongWords = new List<string>();
     public List<string> nonsenseWords = new List<string>();
 }
 

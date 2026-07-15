@@ -76,8 +76,8 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
     [Tooltip("If a sentence has no explicit correctWords list, use blankWords as the correct answers.")]
     public bool useBlankWordsAsCorrectAnswers = true;
 
-    [Tooltip("If enabled, any blank word can count as correct. If disabled, the selected word must match the same blank position.")]
-    public bool allowAnyBlankWordAsCorrect = true;
+    [Tooltip("If enabled, any blank word can count as correct. If disabled, the selected word must match the same blank position. Recommended OFF for ordered fill-in-the-blank captions.")]
+    public bool allowAnyBlankWordAsCorrect = false;
 
     [Tooltip("Quality used for words not listed in correctWords, halfCorrectWords, neutralWords, wrongWords, or nonsenseWords.")]
     public PostChoiceQuality defaultUnlistedWordQuality = PostChoiceQuality.Wrong;
@@ -85,8 +85,11 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
     [Tooltip("Quality used for caption templates when the JSON sentence does not set captionQuality.")]
     public PostChoiceQuality defaultCaptionQuality = PostChoiceQuality.Correct;
 
-    [Tooltip("If enabled, topic/subtopic/sentence idealTacticTypes and badTacticTypes decide whether the tactic is wrong.")]
+    [Tooltip("If enabled, caption-level idealTacticTypes, neutralTacticTypes, and badTacticTypes decide whether the selected tactic fits this caption.")]
     public bool useJsonTacticFit = true;
+
+    [Tooltip("If the tactic is not listed as ideal, neutral, or bad, use this quality. Recommended Neutral so unlisted tactics are accepted but not rewarded.")]
+    public PostChoiceQuality defaultUnlistedTacticFitQuality = PostChoiceQuality.Neutral;
 
     [Header("Optional Global Word Lists")]
     [Tooltip("Optional. These words count as correct everywhere if the sentence does not list them.")]
@@ -111,7 +114,7 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
     [Tooltip("Weight of the selected blank words quality.")]
     public float wordChoiceQualityWeight = 0.55f;
 
-    [Tooltip("Weight of whether the tactic fits the topic/subtopic.")]
+    [Tooltip("Weight of whether the selected tactic fits the current caption.")]
     public float tacticFitWeight = 0.20f;
 
     [Header("Quality Scores")]
@@ -130,10 +133,13 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
     [Tooltip("Score for a nonsense choice.")]
     public float nonsenseScore = -1f;
 
-    [Tooltip("Score when the selected tactic fits the topic/subtopic.")]
+    [Tooltip("Score when the selected tactic is listed in the caption idealTacticTypes list.")]
     public float correctTacticScore = 1f;
 
-    [Tooltip("Score when the selected tactic does not fit the topic/subtopic.")]
+    [Tooltip("Score when the selected tactic is listed in the caption neutralTacticTypes list, or is unlisted while Default Unlisted Tactic Fit Quality is Neutral.")]
+    public float neutralTacticScore = 0f;
+
+    [Tooltip("Score when the selected tactic is listed in the caption badTacticTypes list, or is unlisted while Default Unlisted Tactic Fit Quality is Wrong.")]
     public float wrongTacticScore = -0.75f;
 
     [Header("Quality To Growth Curve")]
@@ -213,6 +219,26 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
                 return nonsenseScore;
             default:
                 return neutralScore;
+        }
+    }
+
+
+    public float GetTacticFitScore(PostChoiceQuality quality)
+    {
+        switch (quality)
+        {
+            case PostChoiceQuality.Correct:
+                return correctTacticScore;
+            case PostChoiceQuality.HalfCorrect:
+                return halfCorrectScore;
+            case PostChoiceQuality.Neutral:
+                return neutralTacticScore;
+            case PostChoiceQuality.Wrong:
+                return wrongTacticScore;
+            case PostChoiceQuality.Nonsense:
+                return nonsenseScore;
+            default:
+                return neutralTacticScore;
         }
     }
 
