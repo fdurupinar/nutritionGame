@@ -33,9 +33,6 @@ public class CatCoachManager : MonoBehaviour
     [Range(0f, 1f)]
     public float warnWhenQualityBelow = 0.45f;
 
-    [Tooltip("Warn when one or more selected words are scored Wrong.")]
-    public bool warnOnWrongWordChoice = true;
-
     [Tooltip("Warn when one or more selected words are scored Nonsense.")]
     public bool warnOnNonsenseWordChoice = true;
 
@@ -168,7 +165,6 @@ public class CatCoachManager : MonoBehaviour
     {
         List<string> reasons = new List<string>();
 
-        bool hasWrong = false;
         bool hasNonsense = false;
         bool hasHalfCorrect = false;
 
@@ -182,10 +178,6 @@ public class CatCoachManager : MonoBehaviour
                 {
                     hasNonsense = true;
                 }
-                else if (quality == PostChoiceQuality.Wrong)
-                {
-                    hasWrong = true;
-                }
                 else if (quality == PostChoiceQuality.HalfCorrect)
                 {
                     hasHalfCorrect = true;
@@ -198,17 +190,12 @@ public class CatCoachManager : MonoBehaviour
             reasons.Add("At least one word makes the sentence nonsensical.");
         }
 
-        if (warnOnWrongWordChoice && hasWrong)
-        {
-            reasons.Add("At least one word does not fit its blank position.");
-        }
-
         if (warnOnHalfCorrectWordChoice && hasHalfCorrect)
         {
             reasons.Add("One or more words work only partially and may weaken the post.");
         }
 
-        if (preview.combinedQuality01 < warnWhenQualityBelow && !hasWrong && !hasNonsense)
+        if (preview.combinedQuality01 < warnWhenQualityBelow && !hasNonsense)
         {
             reasons.Add("The selected words make this caption weak or confusing.");
         }
@@ -251,7 +238,7 @@ public class CatCoachManager : MonoBehaviour
 
             for (int i = 0; i < reasons.Count; i++)
             {
-                message += "• " + reasons[i] + "\n";
+                message += reasons[i] + "\n";
             }
 
             message += "\n" + continueHint;

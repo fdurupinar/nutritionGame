@@ -583,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &71305667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2473,9 +2473,9 @@ RectTransform:
   - {fileID: 149244886}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -160}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &366872434
@@ -2617,6 +2617,36 @@ MonoBehaviour:
   _cashText: {fileID: 1143700395}
   _credibilityText: {fileID: 1338316036}
   _likesText: {fileID: 1943901300}
+  _metricAnimationDuration: 1.25
+  _metricAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _metricPunchScale: 1.18
+  _metricPunchCount: 5
+  _metricSoundRepeatInterval: 0.1
+  _useUnscaledTime: 1
+  _singleStatStepDelay: 0.02
 --- !u!4 &412012833
 Transform:
   m_ObjectHideFlags: 0
@@ -4204,6 +4234,7 @@ MonoBehaviour:
     currentMoney: 0
     currentFollowers: 0
     currentCredibility: 0
+    currentLikes: 0
     captionQualityScore: 0
     wordChoiceQualityScore: 0
     tacticFitScore: 0
@@ -5350,7 +5381,6 @@ MonoBehaviour:
   continueAnywayButton: {fileID: 1172391618}
   reviseButton: {fileID: 2081039370}
   warnWhenQualityBelow: 0.45
-  warnOnWrongWordChoice: 1
   warnOnNonsenseWordChoice: 1
   warnOnHalfCorrectWordChoice: 0
   warnOnWrongTactic: 1
@@ -7623,9 +7653,9 @@ RectTransform:
   - {fileID: 2031159707}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -300}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316918293
@@ -8804,9 +8834,9 @@ RectTransform:
   - {fileID: 442737992}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -720}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497965574
@@ -10405,9 +10435,9 @@ RectTransform:
   - {fileID: 913744645}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -580}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1842041459
@@ -11463,16 +11493,16 @@ MonoBehaviour:
   - unlockDay: 2
     topicButton: {fileID: 366872434}
     topicId: diet
-  - unlockDay: 2
-    topicButton: {fileID: 1316918293}
-    topicId: mom-child
   - unlockDay: 3
+    topicButton: {fileID: 1316918293}
+    topicId: mom_child
+  - unlockDay: 4
     topicButton: {fileID: 2063395652}
     topicId: disease
-  - unlockDay: 3
+  - unlockDay: 5
     topicButton: {fileID: 1842041459}
     topicId: supp
-  - unlockDay: 4
+  - unlockDay: 6
     topicButton: {fileID: 1497965574}
     topicId: weight
   subTopicTitleText: {fileID: 0}
@@ -11605,6 +11635,14 @@ MonoBehaviour:
   onPostCompleted:
     m_PersistentCalls:
       m_Calls: []
+  _commentStartDelay: 2
+  _delayBeforeMetricAnimation: 0.2
+  _delayBeforeHomeButton: 0.15
+  _animateHomeButtonPop: 1
+  _homeButtonPopDuration: 0.28
+  _homeButtonStartScale: 0.15
+  _homeButtonOvershootScale: 1.12
+  _useUnscaledHomeButtonAnimation: 1
 --- !u!4 &2010315360
 Transform:
   m_ObjectHideFlags: 0
@@ -11774,7 +11812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Family
+  m_text: Maternal & Chilld
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
   m_sharedMaterial: {fileID: 3241832977246249860, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
@@ -12101,9 +12139,9 @@ RectTransform:
   - {fileID: 1787136787}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -440}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2063395652
@@ -12911,9 +12949,9 @@ RectTransform:
   - {fileID: 5703066341211973916}
   m_Father: {fileID: 2081361150}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1559872723472460234

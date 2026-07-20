@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 101618728}
   - component: {fileID: 101618727}
   m_Layer: 5
-  m_Name: 1
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1605,7 +1605,7 @@ GameObject:
   - component: {fileID: 158324392}
   - component: {fileID: 158324391}
   m_Layer: 5
-  m_Name: 1 (1)
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2079,7 +2079,7 @@ GameObject:
   - component: {fileID: 205281839}
   - component: {fileID: 205281838}
   m_Layer: 5
-  m_Name: 1 (5)
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2527,9 +2527,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 95401662}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
-        m_MethodName: Select
+      - m_Target: {fileID: 1107839369}
+        m_TargetAssemblyTypeName: EndingStoryCollectionPanel, Assembly-CSharp
+        m_MethodName: RefreshAllSlots
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3328,7 +3328,7 @@ GameObject:
   - component: {fileID: 327757990}
   - component: {fileID: 327757989}
   m_Layer: 5
-  m_Name: 1 (11)
+  m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4286,7 +4286,7 @@ GameObject:
   - component: {fileID: 425157068}
   - component: {fileID: 425157067}
   m_Layer: 5
-  m_Name: 1 (7)
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7012,7 +7012,7 @@ GameObject:
   - component: {fileID: 871915364}
   - component: {fileID: 871915363}
   m_Layer: 5
-  m_Name: 1 (6)
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8281,7 +8281,7 @@ GameObject:
   - component: {fileID: 993110796}
   - component: {fileID: 993110795}
   m_Layer: 5
-  m_Name: 1 (4)
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8359,7 +8359,7 @@ GameObject:
   - component: {fileID: 1013146586}
   - component: {fileID: 1013146585}
   m_Layer: 5
-  m_Name: 1 (2)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8437,7 +8437,7 @@ GameObject:
   - component: {fileID: 1061138066}
   - component: {fileID: 1061138065}
   m_Layer: 5
-  m_Name: 1 (10)
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8784,6 +8784,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndingStoryCollectionPanel
   endingDatabase: {fileID: 11400000, guid: 1a43502a42f251442a5b9430fea7a6d1, type: 2}
+  trustCollapseMaxCredibility: 0
+  forgottenMoneyBelow: 1250
+  forgottenFollowersBelow: 2500
+  forgottenCredibilityBelow: 45
+  noiseEmpireMinMoney: 1700
+  noiseEmpireMinFollowers: 30000
+  noiseEmpireCredibilityBelow: 40
+  viralBeastMinFollowers: 30000
+  viralBeastCredibilityBelow: 40
+  quietCashMinMoney: 1700
+  quietCashFollowersBelow: 8000
+  quietCashMinCredibility: 40
+  brokeStarMinFollowers: 30000
+  brokeStarMoneyBelow: 1450
+  brokeStarMinCredibility: 40
+  powerhouseMinMoney: 1800
+  powerhouseMinFollowers: 38000
+  powerhouseMinCredibility: 75
+  trustedMinCredibility: 75
+  trustedMinFollowers: 20000
+  trustedMinMoney: 1450
+  honestPathMinCredibility: 80
+  honestPathFollowersBelow: 12000
+  honestPathMoneyBelow: 1450
+  responsibleInfluencerMinMoney: 1450
+  responsibleInfluencerMinCredibility: 55
+  responsibleInfluencerMinFollowers: 12000
+  paidLiesMinMoney: 1700
+  paidLiesCredibilityBelow: 40
+  unclearLegacyConditionNote: 'Default fallback: triggers when none of Index 0-10
+    conditions match.'
   storySlots:
   - lockedGameObject: {fileID: 783638916}
     unlockedGameObject: {fileID: 191032796}
@@ -9683,7 +9714,7 @@ GameObject:
   - component: {fileID: 1246700658}
   - component: {fileID: 1246700657}
   m_Layer: 5
-  m_Name: 1 (9)
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10473,6 +10504,439 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405513582}
   m_CullTransparentMesh: 1
+--- !u!1 &1411767129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411767131}
+  - component: {fileID: 1411767130}
+  m_Layer: 0
+  m_Name: TeenagerEndingSimulation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1411767130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411767129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f30d35fa5906f49ab615011ac9220e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeenagerEndingSimulation
+  simulationCount: 10000
+  daysPerSimulation: 31
+  profileSelectionMode: 0
+  useRandomSeed: 1
+  randomSeed: 20260720
+  stopImmediatelyWhenCredibilityReachesZero: 1
+  runOnStart: 0
+  startingMoney: 1000
+  startingFollowers: 0
+  startingCredibility: 100
+  formulaProfile: {fileID: 11400000, guid: 265dc113f2d1dee4d92317856d4fe66f, type: 2}
+  endingResolver: {fileID: 1107839369}
+  teenagerProfiles:
+  - profileName: Reckless Doomscroller
+    populationWeight: 6
+    wordQuality:
+      correctChance: 0.15
+      halfCorrectChance: 0.25
+      nonsenseChance: 0.6
+    tacticQuality:
+      correctChance: 0.1
+      halfCorrectChance: 0.2
+      nonsenseChance: 0.7
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.15
+      max: 0.45
+    tacticCredibilityCost:
+      min: 0.1
+      max: 0.18
+    repeatSameSubTopicChance: 0.55
+    repeatSameTacticChance: 0.65
+    repeatSameCaptionChance: 0.55
+    dailyJobRewardChance: 0.35
+    jobReward:
+      min: 80
+      max: 120
+  - profileName: Disengaged Poster
+    populationWeight: 6
+    wordQuality:
+      correctChance: 0.15
+      halfCorrectChance: 0.55
+      nonsenseChance: 0.3
+    tacticQuality:
+      correctChance: 0.15
+      halfCorrectChance: 0.55
+      nonsenseChance: 0.3
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.88
+      max: -0.72
+    tacticCredibilityCost:
+      min: 0.018
+      max: 0.03
+    repeatSameSubTopicChance: 0.35
+    repeatSameTacticChance: 0.35
+    repeatSameCaptionChance: 0.35
+    dailyJobRewardChance: 0
+    jobReward:
+      min: 80
+      max: 120
+  - profileName: Outrage Entrepreneur
+    populationWeight: 8
+    wordQuality:
+      correctChance: 0.65
+      halfCorrectChance: 0.3
+      nonsenseChance: 0.05
+    tacticQuality:
+      correctChance: 0.55
+      halfCorrectChance: 0.35
+      nonsenseChance: 0.1
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.28
+      max: 0.45
+    tacticCredibilityCost:
+      min: 0.04
+      max: 0.058
+    repeatSameSubTopicChance: 0.25
+    repeatSameTacticChance: 0.35
+    repeatSameCaptionChance: 0.25
+    dailyJobRewardChance: 0.28
+    jobReward:
+      min: 90
+      max: 120
+  - profileName: Viral Attention Seeker
+    populationWeight: 8
+    wordQuality:
+      correctChance: 0.65
+      halfCorrectChance: 0.3
+      nonsenseChance: 0.05
+    tacticQuality:
+      correctChance: 0.55
+      halfCorrectChance: 0.35
+      nonsenseChance: 0.1
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.3
+      max: 0.48
+    tacticCredibilityCost:
+      min: 0.04
+      max: 0.058
+    repeatSameSubTopicChance: 0.25
+    repeatSameTacticChance: 0.35
+    repeatSameCaptionChance: 0.25
+    dailyJobRewardChance: 0.01
+    jobReward:
+      min: 80
+      max: 100
+  - profileName: Quiet Side Hustler
+    populationWeight: 7
+    wordQuality:
+      correctChance: 0.7
+      halfCorrectChance: 0.25
+      nonsenseChance: 0.05
+    tacticQuality:
+      correctChance: 0.7
+      halfCorrectChance: 0.25
+      nonsenseChance: 0.05
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.84
+      max: -0.7
+    tacticCredibilityCost:
+      min: 0
+      max: 0.01
+    repeatSameSubTopicChance: 0.25
+    repeatSameTacticChance: 0.25
+    repeatSameCaptionChance: 0.2
+    dailyJobRewardChance: 0.35
+    jobReward:
+      min: 90
+      max: 120
+  - profileName: Popular but Unmonetized
+    populationWeight: 7
+    wordQuality:
+      correctChance: 0.85
+      halfCorrectChance: 0.13
+      nonsenseChance: 0.02
+    tacticQuality:
+      correctChance: 0.8
+      halfCorrectChance: 0.18
+      nonsenseChance: 0.02
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.15
+      max: 0.3
+    tacticCredibilityCost:
+      min: 0
+      max: 0.005
+    repeatSameSubTopicChance: 0.15
+    repeatSameTacticChance: 0.15
+    repeatSameCaptionChance: 0.15
+    dailyJobRewardChance: 0
+    jobReward:
+      min: 80
+      max: 100
+  - profileName: Disciplined Creator
+    populationWeight: 5
+    wordQuality:
+      correctChance: 0.9
+      halfCorrectChance: 0.09
+      nonsenseChance: 0.01
+    tacticQuality:
+      correctChance: 0.88
+      halfCorrectChance: 0.11
+      nonsenseChance: 0.01
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.2
+      max: 0.35
+    tacticCredibilityCost:
+      min: 0
+      max: 0.003
+    repeatSameSubTopicChance: 0.12
+    repeatSameTacticChance: 0.12
+    repeatSameCaptionChance: 0.12
+    dailyJobRewardChance: 0.3
+    jobReward:
+      min: 90
+      max: 120
+  - profileName: Careful Community Builder
+    populationWeight: 10
+    wordQuality:
+      correctChance: 0.8
+      halfCorrectChance: 0.18
+      nonsenseChance: 0.02
+    tacticQuality:
+      correctChance: 0.78
+      halfCorrectChance: 0.2
+      nonsenseChance: 0.02
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.35
+      max: -0.18
+    tacticCredibilityCost:
+      min: 0
+      max: 0.004
+    repeatSameSubTopicChance: 0.18
+    repeatSameTacticChance: 0.18
+    repeatSameCaptionChance: 0.18
+    dailyJobRewardChance: 0.1
+    jobReward:
+      min: 90
+      max: 110
+  - profileName: Honest Low Reach Student
+    populationWeight: 8
+    wordQuality:
+      correctChance: 0.9
+      halfCorrectChance: 0.09
+      nonsenseChance: 0.01
+    tacticQuality:
+      correctChance: 0.9
+      halfCorrectChance: 0.09
+      nonsenseChance: 0.01
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.78
+      max: -0.66
+    tacticCredibilityCost:
+      min: 0
+      max: 0.002
+    repeatSameSubTopicChance: 0.15
+    repeatSameTacticChance: 0.15
+    repeatSameCaptionChance: 0.15
+    dailyJobRewardChance: 0
+    jobReward:
+      min: 80
+      max: 100
+  - profileName: Balanced Everyday Creator
+    populationWeight: 15
+    wordQuality:
+      correctChance: 0.65
+      halfCorrectChance: 0.3
+      nonsenseChance: 0.05
+    tacticQuality:
+      correctChance: 0.65
+      halfCorrectChance: 0.3
+      nonsenseChance: 0.05
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.58
+      max: -0.42
+    tacticCredibilityCost:
+      min: 0
+      max: 0.008
+    repeatSameSubTopicChance: 0.22
+    repeatSameTacticChance: 0.22
+    repeatSameCaptionChance: 0.22
+    dailyJobRewardChance: 0.18
+    jobReward:
+      min: 90
+      max: 110
+  - profileName: Sponsored Rumor Pusher
+    populationWeight: 8
+    wordQuality:
+      correctChance: 0.4
+      halfCorrectChance: 0.4
+      nonsenseChance: 0.2
+    tacticQuality:
+      correctChance: 0.3
+      halfCorrectChance: 0.4
+      nonsenseChance: 0.3
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: 0.08
+      max: 0.22
+    tacticCredibilityCost:
+      min: 0.035
+      max: 0.052
+    repeatSameSubTopicChance: 0.35
+    repeatSameTacticChance: 0.45
+    repeatSameCaptionChance: 0.35
+    dailyJobRewardChance: 0.35
+    jobReward:
+      min: 100
+      max: 130
+  - profileName: Inconsistent Experimenter
+    populationWeight: 12
+    wordQuality:
+      correctChance: 0.45
+      halfCorrectChance: 0.4
+      nonsenseChance: 0.15
+    tacticQuality:
+      correctChance: 0.45
+      halfCorrectChance: 0.4
+      nonsenseChance: 0.15
+    wordChoicesPerPost:
+      min: 2
+      max: 4
+    tacticEngagementBonus:
+      min: -0.2
+      max: 0
+    tacticCredibilityCost:
+      min: 0.005
+      max: 0.02
+    repeatSameSubTopicChance: 0.3
+    repeatSameTacticChance: 0.3
+    repeatSameCaptionChance: 0.3
+    dailyJobRewardChance: 0.05
+    jobReward:
+      min: 80
+      max: 100
+  saveCsvFiles: 1
+  saveDetailedRunCsv: 1
+  lastReport: "============================================================\r\nTEENAGER
+    ENDING SIMULATION REPORT\r\n============================================================\r\nSimulation
+    runs: 10000\r\nDays per run: 31\r\nSeed used: 14456187\r\nProfile selection:
+    WeightedPopulation\r\nStarting metrics: Money 1000, Followers 0, Credibility
+    100\r\nFormula profile: MisinformationMetricFormulaProfile\r\nEnding resolver:
+    Game EndingStoryCollectionPanel\r\n\r\nOVERALL ENDING COUNTS\r\n------------------------------------------------------------\r\n01.
+    Trust Collapse: 622 / 10000 (6.22%)\r\n02. Forgotten: 262 / 10000 (2.62%)\r\n03.
+    Noise Empire: 717 / 10000 (7.17%)\r\n04. Viral Beast: 719 / 10000 (7.19%)\r\n05.
+    Quiet Cash: 705 / 10000 (7.05%)\r\n06. Broke Star: 686 / 10000 (6.86%)\r\n07.
+    Powerhouse: 547 / 10000 (5.47%)\r\n08. Trusted: 784 / 10000 (7.84%)\r\n09. Honest
+    Path: 829 / 10000 (8.29%)\r\n10. Responsible Influencer: 1474 / 10000 (14.74%)\r\n11.
+    Paid Lies: 839 / 10000 (8.39%)\r\n12. Unclear Legacy: 1816 / 10000 (18.16%)\r\n\r\nResolved
+    runs: 10000 / 10000\r\n\r\nOVERALL FINAL METRIC AVERAGES\r\n------------------------------------------------------------\r\nAverage
+    Money: 1676.5\r\nAverage Followers: 20704.5\r\nAverage Credibility: 71.3\r\nAverage
+    Fact Checks: 0.15\r\nAverage Job Rewards: 4.42\r\nRuns that reached Credibility
+    0: 622\r\n\r\nRESULTS BY TEENAGER PROFILE\r\n------------------------------------------------------------\r\n[Reckless
+    Doomscroller]\r\nRuns: 621\r\nAverage final metrics: Money 1396.9, Followers
+    1296.5, Credibility 0.0\r\nAverage Fact Checks: 1.27, Average Job Rewards: 4.41\r\nCredibility-0
+    runs: 621\r\n  Trust Collapse: 621 (100.0%)\r\n\r\n[Disengaged Poster]\r\nRuns:
+    626\r\nAverage final metrics: Money 1044.6, Followers 1099.9, Credibility 45.3\r\nAverage
+    Fact Checks: 0.01, Average Job Rewards: 0.00\r\nCredibility-0 runs: 0\r\n  Unclear
+    Legacy: 364 (58.1%)\r\n  Forgotten: 262 (41.9%)\r\n\r\n[Outrage Entrepreneur]\r\nRuns:
+    809\r\nAverage final metrics: Money 2278.2, Followers 33201.1, Credibility 35.8\r\nAverage
+    Fact Checks: 0.00, Average Job Rewards: 8.74\r\nCredibility-0 runs: 0\r\n  Noise
+    Empire: 716 (88.5%)\r\n  Paid Lies: 86 (10.6%)\r\n  Viral Beast: 7 (0.9%)\r\n\r\n[Viral
+    Attention Seeker]\r\nRuns: 784\r\nAverage final metrics: Money 1391.2, Followers
+    33623.7, Credibility 35.7\r\nAverage Fact Checks: 0.01, Average Job Rewards:
+    0.30\r\nCredibility-0 runs: 0\r\n  Viral Beast: 712 (90.8%)\r\n  Unclear Legacy:
+    71 (9.1%)\r\n  Noise Empire: 1 (0.1%)\r\n\r\n[Quiet Side Hustler]\r\nRuns: 723\r\nAverage
+    final metrics: Money 2235.2, Followers 4897.8, Credibility 98.8\r\nAverage Fact
+    Checks: 0.00, Average Job Rewards: 10.92\r\nCredibility-0 runs: 0\r\n  Quiet
+    Cash: 705 (97.5%)\r\n  Unclear Legacy: 17 (2.4%)\r\n  Honest Path: 1 (0.1%)\r\n\r\n[Popular
+    but Unmonetized]\r\nRuns: 686\r\nAverage final metrics: Money 1417.9, Followers
+    47575.4, Credibility 99.8\r\nAverage Fact Checks: 0.00, Average Job Rewards:
+    0.00\r\nCredibility-0 runs: 0\r\n  Broke Star: 686 (100.0%)\r\n\r\n[Disciplined
+    Creator]\r\nRuns: 551\r\nAverage final metrics: Money 2441.9, Followers 52970.8,
+    Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 9.45\r\nCredibility-0
+    runs: 0\r\n  Powerhouse: 547 (99.3%)\r\n  Trusted: 4 (0.7%)\r\n\r\n[Careful Community
+    Builder]\r\nRuns: 982\r\nAverage final metrics: Money 1557.9, Followers 26056.8,
+    Credibility 99.7\r\nAverage Fact Checks: 0.00, Average Job Rewards: 3.05\r\nCredibility-0
+    runs: 0\r\n  Trusted: 722 (73.5%)\r\n  Unclear Legacy: 260 (26.5%)\r\n\r\n[Honest
+    Low Reach Student]\r\nRuns: 826\r\nAverage final metrics: Money 1110.6, Followers
+    8279.4, Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 0.00\r\nCredibility-0
+    runs: 0\r\n  Honest Path: 826 (100.0%)\r\n\r\n[Balanced Everyday Creator]\r\nRuns:
+    1450\r\nAverage final metrics: Money 1720.0, Followers 14167.8, Credibility 98.7\r\nAverage
+    Fact Checks: 0.00, Average Job Rewards: 5.54\r\nCredibility-0 runs: 0\r\n  Responsible
+    Influencer: 1319 (91.0%)\r\n  Unclear Legacy: 129 (8.9%)\r\n  Honest Path: 2
+    (0.1%)\r\n\r\n[Sponsored Rumor Pusher]\r\nRuns: 766\r\nAverage final metrics:
+    Money 2386.7, Followers 15045.5, Credibility 23.6\r\nAverage Fact Checks: 0.86,
+    Average Job Rewards: 10.87\r\nCredibility-0 runs: 1\r\n  Paid Lies: 753 (98.3%)\r\n 
+    Unclear Legacy: 12 (1.6%)\r\n  Trust Collapse: 1 (0.1%)\r\n\r\n[Inconsistent
+    Experimenter]\r\nRuns: 1176\r\nAverage final metrics: Money 1365.6, Followers
+    19108.5, Credibility 77.3\r\nAverage Fact Checks: 0.00, Average Job Rewards:
+    1.48\r\nCredibility-0 runs: 0\r\n  Unclear Legacy: 963 (81.9%)\r\n  Responsible
+    Influencer: 155 (13.2%)\r\n  Trusted: 58 (4.9%)\r\n\r\nINTERPRETATION NOTE\r\n------------------------------------------------------------\r\nThe
+    default profiles are deliberately different balance-test archetypes.\r\nTheir
+    probabilities and Population Weights are design assumptions, not scientific predictions
+    of real teenagers.\r\nChange the profile probabilities and weights in the Inspector
+    to model your intended player audience.\r\nEvery simulation run resolves to exactly
+    one of the 12 endings; Unclear Legacy is the default fallback.\r\n============================================================\r\n"
+  lastSummaryCsvPath: C:/Users/Yanyan Wang/AppData/LocalLow/UMass Boston/nutritionGame\TeenagerEndingSimulation_20260720_175020_Summary.csv
+  lastDetailedCsvPath: C:/Users/Yanyan Wang/AppData/LocalLow/UMass Boston/nutritionGame\TeenagerEndingSimulation_20260720_175020_DetailedRuns.csv
+--- !u!4 &1411767131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411767129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 568.4855, y: 688.5766, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1444133228
 GameObject:
   m_ObjectHideFlags: 0
@@ -10918,8 +11382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0513916, y: -25}
-  m_SizeDelta: {x: -94.62097, y: -277.5555}
+  m_AnchoredPosition: {x: -6.795807, y: -13}
+  m_SizeDelta: {x: -110.3154, y: -123.2268}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520895328
 MonoBehaviour:
@@ -11924,7 +12388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayManager
   currentDay: 1
-  maxDay: 3
+  maxDay: 31
 --- !u!4 &1746062777
 Transform:
   m_ObjectHideFlags: 0
@@ -12824,7 +13288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 344, y: 373}
+  m_AnchoredPosition: {x: 344, y: 444}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803128188
@@ -14315,7 +14779,7 @@ GameObject:
   - component: {fileID: 2030964781}
   - component: {fileID: 2030964780}
   m_Layer: 5
-  m_Name: 1 (3)
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14846,7 +15310,7 @@ GameObject:
   - component: {fileID: 2078607144}
   - component: {fileID: 2078607143}
   m_Layer: 5
-  m_Name: 1 (8)
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15310,3 +15774,4 @@ SceneRoots:
   - {fileID: 1746062777}
   - {fileID: 2010036330}
   - {fileID: 1794122493}
+  - {fileID: 1411767131}

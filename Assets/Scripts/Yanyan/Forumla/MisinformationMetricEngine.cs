@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -112,8 +112,8 @@ public class MisinformationMetricEngine : MonoBehaviour
     }
 
     /// <summary>
-    /// 中文备注：用于“先播放帖子动画，再更新指标”的流程。
-    /// TacticManager可以先调用PreviewPost保存结果，等帖子和评论动画结束后再调用本方法。
+    /// Used when the post animation should play before the metrics are applied.
+    /// TacticManager can call PreviewPost first, then call this method after the post and comment animations finish.
     /// </summary>
     public PostMetricPreview ApplyPreparedPostResult(
         PostMetricPreview preview,
@@ -141,7 +141,7 @@ public class MisinformationMetricEngine : MonoBehaviour
         {
             if (animateUserStats)
             {
-                // 中文备注：四项指标同时滚动、弹跳并重复播放音效。
+                // Animate all four metrics together with rolling numbers, pop effects, and repeated sound.
                 userStats.AnimateMetricsTo(newMoney, newFollowers, newCredibility, newLikes);
             }
             else
@@ -150,7 +150,7 @@ public class MisinformationMetricEngine : MonoBehaviour
             }
         }
 
-        // 中文备注：存档保存目标值，不必等待视觉数字滚动结束。
+        // Save target values immediately; visual number animations do not need to finish.
         if (GlobalStatManager.Instance != null)
         {
             GlobalStatManager.Instance.SaveToDisk(newMoney, newFollowers, newCredibility);
@@ -221,7 +221,6 @@ public class MisinformationMetricEngine : MonoBehaviour
                 context.sentence = sentenceData.sentence;
                 context.sentenceId = sentenceData.sentenceId;
                 context.captionTemplateId = sentenceData.captionTemplateId;
-                context.captionQualityRaw = sentenceData.captionQuality;
                 context.blankWords = SafeCopy(sentenceData.blankWords);
                 context.blankScoring = SafeCopyBlankScoring(sentenceData.blankScoring);
                 context.correctWords = SafeCopy(sentenceData.correctWords);
@@ -249,14 +248,14 @@ public class MisinformationMetricEngine : MonoBehaviour
 
     private void EvaluateCaptionChoicesOnly(PostMetricContext context, PostMetricPreview preview)
     {
-        float captionScore = formulaProfile.GetQualityScore(GetCaptionQuality(context));
-        float wordScore = formulaProfile.neutralScore;
+        // Before a tactic is selected, preview only the average word-choice quality.
+        float wordScore = formulaProfile.nonsenseScore;
         preview.wordQualities.Clear();
 
         if (context.selectedWords.Count > 0)
         {
             float totalWordScore = 0f;
-            int wrongOrNonsenseCount = 0;
+            int nonsenseCount = 0;
 
             for (int i = 0; i < context.selectedWords.Count; i++)
             {
@@ -264,96 +263,71 @@ public class MisinformationMetricEngine : MonoBehaviour
                 preview.wordQualities.Add(quality);
                 totalWordScore += formulaProfile.GetQualityScore(quality);
 
-                if (quality == PostChoiceQuality.Wrong || quality == PostChoiceQuality.Nonsense)
+                if (quality == PostChoiceQuality.Nonsense)
                 {
-                    wrongOrNonsenseCount++;
+                    nonsenseCount++;
                 }
             }
 
             wordScore = totalWordScore / context.selectedWords.Count;
-            preview.wrongWordChoice = wrongOrNonsenseCount > 0;
-        }
-
-        float totalWeight = Mathf.Max(0.0001f,
-            formulaProfile.captionQualityWeight + formulaProfile.wordChoiceQualityWeight);
-
-        float combined =
-            (captionScore * formulaProfile.captionQualityWeight +
-             wordScore * formulaProfile.wordChoiceQualityWeight) / totalWeight;
-
-        preview.captionQualityScore = captionScore;
-        preview.wordChoiceQualityScore = wordScore;
-        preview.tacticFitScore = formulaProfile.neutralTacticScore;
-        preview.wrongTactic = false;
-        preview.combinedQualityScore = Mathf.Clamp(combined, -1f, 1f);
-        preview.combinedQuality01 = Mathf.InverseLerp(-1f, 1f, preview.combinedQualityScore);
-        preview.qualityGrowthMultiplier = formulaProfile.EvaluateGrowthMultiplierFromQuality(preview.combinedQualityScore);
-    }
-
-    private void EvaluateQuality(PostMetricContext context, PostMetricPreview preview)
-    {
-        float captionScore = formulaProfile.GetQualityScore(GetCaptionQuality(context));
-        PostChoiceQuality tacticFitQuality = GetTacticFitQuality(context);
-        bool wrongTactic = tacticFitQuality == PostChoiceQuality.Wrong || tacticFitQuality == PostChoiceQuality.Nonsense;
-        preview.wrongTactic = wrongTactic;
-        float tacticFitScore = formulaProfile.GetTacticFitScore(tacticFitQuality);
-
-        float wordScore = formulaProfile.neutralScore;
-        preview.wordQualities.Clear();
-
-        if (context.selectedWords.Count > 0)
-        {
-            float totalWordScore = 0f;
-            int wrongOrNonsenseCount = 0;
-
-            for (int i = 0; i < context.selectedWords.Count; i++)
-            {
-                PostChoiceQuality quality = GetWordQuality(context, context.selectedWords[i], i);
-                preview.wordQualities.Add(quality);
-
-                float score = formulaProfile.GetQualityScore(quality);
-                totalWordScore += score;
-
-                if (quality == PostChoiceQuality.Wrong || quality == PostChoiceQuality.Nonsense)
-                {
-                    wrongOrNonsenseCount++;
-                }
-            }
-
-            wordScore = totalWordScore / context.selectedWords.Count;
-            preview.wrongWordChoice = wrongOrNonsenseCount > 0;
+            preview.wrongWordChoice = nonsenseCount > 0;
         }
         else
         {
             preview.wrongWordChoice = false;
         }
 
-        float totalWeight = Mathf.Max(0.0001f,
-            formulaProfile.captionQualityWeight +
-            formulaProfile.wordChoiceQualityWeight +
-            formulaProfile.tacticFitWeight);
+        preview.wordChoiceQualityScore = wordScore;
+        preview.tacticFitScore = 0f;
+        preview.wrongTactic = false;
+        preview.combinedQualityScore = Mathf.Clamp(wordScore, -1f, 1f);
+        preview.combinedQuality01 = Mathf.InverseLerp(-1f, 1f, preview.combinedQualityScore);
+        preview.qualityGrowthMultiplier = formulaProfile.EvaluateGrowthMultiplierFromQuality(preview.combinedQualityScore);
+    }
 
-        float combined =
-            (captionScore * formulaProfile.captionQualityWeight +
-             wordScore * formulaProfile.wordChoiceQualityWeight +
-             tacticFitScore * formulaProfile.tacticFitWeight) / totalWeight;
+    private void EvaluateQuality(PostMetricContext context, PostMetricPreview preview)
+    {
+        PostChoiceQuality tacticFitQuality = GetTacticFitQuality(context);
+        preview.wrongTactic = tacticFitQuality == PostChoiceQuality.Nonsense;
+        float tacticFitScore = formulaProfile.GetTacticFitScore(tacticFitQuality);
 
-        preview.captionQualityScore = captionScore;
+        float wordScore = formulaProfile.nonsenseScore;
+        preview.wordQualities.Clear();
+
+        if (context.selectedWords.Count > 0)
+        {
+            float totalWordScore = 0f;
+            int nonsenseCount = 0;
+
+            for (int i = 0; i < context.selectedWords.Count; i++)
+            {
+                PostChoiceQuality quality = GetWordQuality(context, context.selectedWords[i], i);
+                preview.wordQualities.Add(quality);
+                totalWordScore += formulaProfile.GetQualityScore(quality);
+
+                if (quality == PostChoiceQuality.Nonsense)
+                {
+                    nonsenseCount++;
+                }
+            }
+
+            wordScore = totalWordScore / context.selectedWords.Count;
+            preview.wrongWordChoice = nonsenseCount > 0;
+        }
+        else
+        {
+            preview.wrongWordChoice = false;
+        }
+
+        // Caption quality is not used. Word Choice and Tactic are weighted equally.
+        float totalWeight = Mathf.Max(0.0001f, formulaProfile.wordChoiceQualityWeight + formulaProfile.tacticFitWeight);
+        float combined = (wordScore * formulaProfile.wordChoiceQualityWeight + tacticFitScore * formulaProfile.tacticFitWeight) / totalWeight;
+
         preview.wordChoiceQualityScore = wordScore;
         preview.tacticFitScore = tacticFitScore;
         preview.combinedQualityScore = Mathf.Clamp(combined, -1f, 1f);
         preview.combinedQuality01 = Mathf.InverseLerp(-1f, 1f, preview.combinedQualityScore);
         preview.qualityGrowthMultiplier = formulaProfile.EvaluateGrowthMultiplierFromQuality(preview.combinedQualityScore);
-    }
-
-    private PostChoiceQuality GetCaptionQuality(PostMetricContext context)
-    {
-        if (!formulaProfile.useJsonScoring)
-        {
-            return formulaProfile.defaultCaptionQuality;
-        }
-
-        return MisinformationMetricFormulaProfile.ParseQuality(context.captionQualityRaw, formulaProfile.defaultCaptionQuality);
     }
 
     private PostChoiceQuality GetWordQuality(PostMetricContext context, string selectedWord, int blankIndex)
@@ -368,12 +342,6 @@ public class MisinformationMetricEngine : MonoBehaviour
         if (ContainsWord(formulaProfile.globalNonsenseWords, selectedWord))
             return PostChoiceQuality.Nonsense;
 
-        if (ContainsWord(formulaProfile.globalWrongWords, selectedWord))
-            return PostChoiceQuality.Wrong;
-
-        if (ContainsWord(formulaProfile.globalNeutralWords, selectedWord))
-            return PostChoiceQuality.Neutral;
-
         if (ContainsWord(formulaProfile.globalHalfCorrectWords, selectedWord))
             return PostChoiceQuality.HalfCorrect;
 
@@ -386,25 +354,24 @@ public class MisinformationMetricEngine : MonoBehaviour
         DailyPostBlankScoringJson blankRule = GetBlankScoringRule(context, blankIndex);
         if (blankRule != null && HasAnyBlankScoringData(blankRule))
         {
-            if (ContainsWord(blankRule.nonsenseWords, selectedWord))
-                return PostChoiceQuality.Nonsense;
-
-            if (ContainsWord(blankRule.wrongWords, selectedWord))
-                return PostChoiceQuality.Wrong;
-
-            if (ContainsWord(blankRule.neutralWords, selectedWord))
-                return PostChoiceQuality.Neutral;
-
             if (ContainsWord(blankRule.halfCorrectWords, selectedWord))
                 return PostChoiceQuality.HalfCorrect;
 
             if (ContainsWord(blankRule.correctWords, selectedWord))
                 return PostChoiceQuality.Correct;
 
+            // Legacy neutralWords, wrongWords, and nonsenseWords are all treated as Nonsense.
+            if (ContainsWord(blankRule.neutralWords, selectedWord) ||
+                ContainsWord(blankRule.wrongWords, selectedWord) ||
+                ContainsWord(blankRule.nonsenseWords, selectedWord))
+            {
+                return PostChoiceQuality.Nonsense;
+            }
+
             if (formulaProfile.useBlankWordsAsCorrectAnswers && context.blankWords != null)
             {
-                // 中文备注：当 ordered blankScoring 存在时，永远只允许匹配同一个空格的位置。
-                // 即使旧资产误把 Allow Any Blank Word As Correct 勾上，也不会把交换顺序的答案判为正确。
+                // When ordered blankScoring exists, only options assigned to the same blank index can match.
+                // This prevents swapped answers from becoming correct even if an old asset enabled Allow Any Blank Word As Correct.
                 if (blankIndex >= 0 &&
                     blankIndex < context.blankWords.Count &&
                     SameKey(context.blankWords[blankIndex], selectedWord))
@@ -417,20 +384,18 @@ public class MisinformationMetricEngine : MonoBehaviour
         }
 
         // Backward-compatible fallback for older JSON files that do not have blankScoring yet.
-        if (ContainsWord(context.nonsenseWords, selectedWord))
-            return PostChoiceQuality.Nonsense;
-
-        if (ContainsWord(context.wrongWords, selectedWord))
-            return PostChoiceQuality.Wrong;
-
-        if (ContainsWord(context.neutralWords, selectedWord))
-            return PostChoiceQuality.Neutral;
-
         if (ContainsWord(context.halfCorrectWords, selectedWord))
             return PostChoiceQuality.HalfCorrect;
 
         if (ContainsWord(context.correctWords, selectedWord))
             return PostChoiceQuality.Correct;
+
+        if (ContainsWord(context.neutralWords, selectedWord) ||
+            ContainsWord(context.wrongWords, selectedWord) ||
+            ContainsWord(context.nonsenseWords, selectedWord))
+        {
+            return PostChoiceQuality.Nonsense;
+        }
 
         if (formulaProfile.useBlankWordsAsCorrectAnswers && context.blankWords != null)
         {
@@ -498,19 +463,21 @@ public class MisinformationMetricEngine : MonoBehaviour
 
         // Tactic fit is now caption-level only.
         // Topic and subtopic do not contain ideal/bad tactic lists anymore.
-        if (ContainsWord(context.sentenceBadTacticTypes, tactic))
-        {
-            return PostChoiceQuality.Wrong;
-        }
-
         if (ContainsWord(context.sentenceIdealTacticTypes, tactic))
         {
             return PostChoiceQuality.Correct;
         }
 
+        // Legacy neutralTacticTypes now represent Half Correct.
         if (ContainsWord(context.sentenceNeutralTacticTypes, tactic))
         {
-            return PostChoiceQuality.Neutral;
+            return PostChoiceQuality.HalfCorrect;
+        }
+
+        // badTacticTypes and all unlisted tactics are treated as Nonsense.
+        if (ContainsWord(context.sentenceBadTacticTypes, tactic))
+        {
+            return PostChoiceQuality.Nonsense;
         }
 
         return formulaProfile.defaultUnlistedTacticFitQuality;
@@ -534,55 +501,54 @@ public class MisinformationMetricEngine : MonoBehaviour
         preview.repetitionCredibilityLoss = 0;
 
         List<MetricPenaltyRuntime> activePenalties = new List<MetricPenaltyRuntime>();
-
         AddPenaltyIfActive(activePenalties, MetricPenaltyReason.SameSubTopic, preview.sameSubTopicStreak);
         AddPenaltyIfActive(activePenalties, MetricPenaltyReason.SameTactic, preview.sameTacticStreak);
         AddPenaltyIfActive(activePenalties, MetricPenaltyReason.SameCaptionTemplate, preview.sameCaptionTemplateStreak);
         AddPenaltyIfActive(activePenalties, MetricPenaltyReason.WrongTactic, preview.wrongTacticStreak);
         AddPenaltyIfActive(activePenalties, MetricPenaltyReason.WrongWordChoice, preview.wrongWordChoiceStreak);
 
-        if (activePenalties.Count == 0)
-        {
-            return;
-        }
-
-        if (formulaProfile.useOnlyHighestPriorityPenalty)
-        {
-            MetricPenaltyRuntime strongest = activePenalties[0];
-
-            for (int i = 1; i < activePenalties.Count; i++)
-            {
-                if (activePenalties[i].priority > strongest.priority)
-                {
-                    strongest = activePenalties[i];
-                }
-            }
-
-            ApplyPenaltyRuntimeToPreview(strongest, preview);
-            return;
-        }
+        if (activePenalties.Count == 0) return;
 
         MetricPenaltyRuntime combined = new MetricPenaltyRuntime();
         combined.reason = MetricPenaltyReason.None;
         combined.priority = -1;
         combined.growthMultiplier = 1f;
 
-        for (int i = 0; i < activePenalties.Count; i++)
+        if (formulaProfile.useOnlyHighestPriorityPenalty)
         {
-            MetricPenaltyRuntime penalty = activePenalties[i];
-            combined.growthMultiplier *= penalty.growthMultiplier;
-            combined.followerLoss += penalty.followerLoss;
-            combined.moneyLoss += penalty.moneyLoss;
-            combined.credibilityLoss += penalty.credibilityLoss;
-
-            if (penalty.priority > combined.priority)
+            MetricPenaltyRuntime strongestNormalPenalty = null;
+            for (int i = 0; i < activePenalties.Count; i++)
             {
-                combined.priority = penalty.priority;
-                combined.reason = penalty.reason;
+                MetricPenaltyRuntime penalty = activePenalties[i];
+                if (penalty.alwaysStack)
+                {
+                    CombinePenaltyRuntime(combined, penalty);
+                    continue;
+                }
+                if (strongestNormalPenalty == null || penalty.priority > strongestNormalPenalty.priority)
+                    strongestNormalPenalty = penalty;
             }
+            if (strongestNormalPenalty != null) CombinePenaltyRuntime(combined, strongestNormalPenalty);
+        }
+        else
+        {
+            for (int i = 0; i < activePenalties.Count; i++) CombinePenaltyRuntime(combined, activePenalties[i]);
         }
 
         ApplyPenaltyRuntimeToPreview(combined, preview);
+    }
+
+    private void CombinePenaltyRuntime(MetricPenaltyRuntime combined, MetricPenaltyRuntime penalty)
+    {
+        combined.growthMultiplier *= penalty.growthMultiplier;
+        combined.followerLoss += penalty.followerLoss;
+        combined.moneyLoss += penalty.moneyLoss;
+        combined.credibilityLoss += penalty.credibilityLoss;
+        if (penalty.priority > combined.priority)
+        {
+            combined.priority = penalty.priority;
+            combined.reason = penalty.reason;
+        }
     }
 
     private void AddPenaltyIfActive(List<MetricPenaltyRuntime> activePenalties, MetricPenaltyReason reason, int streak)
@@ -604,6 +570,7 @@ public class MisinformationMetricEngine : MonoBehaviour
         MetricPenaltyRuntime runtime = new MetricPenaltyRuntime();
         runtime.reason = reason;
         runtime.priority = settings.priority;
+        runtime.alwaysStack = settings.alwaysStack;
         runtime.growthMultiplier = Mathf.Max(settings.minGrowthMultiplier, Mathf.Exp(-settings.decayPerExtraDay * extraStreak));
 
         float exponentialValue = Mathf.Exp(settings.exponentialPenaltyGrowth * extraStreak) - 1f;
@@ -776,8 +743,8 @@ public class MisinformationMetricEngine : MonoBehaviour
 
     private string BuildCaptionTemplateKey(PostMetricContext context)
     {
-        // 中文备注：同一个字幕模板换战术卡后，仍然应该算“重复同一字幕模板”。
-        // 所以这里不能把 tacticType 放进 key。
+        // Changing the tactic does not change whether the same caption template was repeated.
+        // Therefore tacticType must not be included in this key.
         string locationPrefix = NormalizeKey(context.topicId + "|" + context.subTopicId + "|");
 
         if (!string.IsNullOrWhiteSpace(context.captionTemplateId))
@@ -989,7 +956,6 @@ public class PostMetricPreview
     public int currentLikes;
 
     [Header("Quality Score")]
-    public float captionQualityScore;
     public float wordChoiceQualityScore;
     public float tacticFitScore;
     public float combinedQualityScore;
@@ -1043,7 +1009,6 @@ public class PostMetricContext
     public string captionTemplateId;
     public string sentence;
     public string captionTemplateKey;
-    public string captionQualityRaw;
 
     public List<string> selectedWords = new List<string>();
     public List<string> blankWords = new List<string>();
@@ -1064,6 +1029,7 @@ public class MetricPenaltyRuntime
 {
     public MetricPenaltyReason reason;
     public int priority;
+    public bool alwaysStack;
     public float growthMultiplier = 1f;
     public int followerLoss;
     public int moneyLoss;

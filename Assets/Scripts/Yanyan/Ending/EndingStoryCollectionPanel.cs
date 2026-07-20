@@ -1,4 +1,4 @@
-using System;
+锘縰sing System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,116 +6,249 @@ using UnityEngine.UI;
 
 public class EndingStoryCollectionPanel : MonoBehaviour
 {
-    [Header("结局数据库")]
-    [Tooltip("拖入 EndingStoryDatabase。里面保存12个结局的ID、标题和故事。")]
+    [Header("Ending Database")]
+    [Tooltip("Assign the EndingStoryDatabase that stores the IDs, titles, and stories for all 12 endings.")]
     public EndingStoryDatabase endingDatabase;
 
-    [Header("12个结局UI槽位")]
-    [Tooltip("每个槽位对应一个结局。Locked GameObject 和 Unlocked GameObject 都可以直接是Button。")]
+    [Header("C1 R1 | Index 0 | Trust Collapse")]
+    [Tooltip("Triggers Trust Collapse when final Credibility is less than or equal to this value. Because Credibility is clamped to a minimum of 0, the default should be 0.")]
+    [Range(0, 100)]
+    public int trustCollapseMaxCredibility = 0;
+
+    [Header("C2 R1 | Index 1 | Forgotten")]
+    [Tooltip("Money must be less than this value.")]
+    [Min(0)]
+    public int forgottenMoneyBelow = 1250;
+
+    [Tooltip("Followers must be less than this value.")]
+    [Min(0)]
+    public int forgottenFollowersBelow = 2500;
+
+    [Tooltip("Credibility must be less than this value.")]
+    [Range(0, 100)]
+    public int forgottenCredibilityBelow = 45;
+
+    [Header("C3 R1 | Index 2 | Noise Empire")]
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int noiseEmpireMinMoney = 1700;
+
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int noiseEmpireMinFollowers = 30000;
+
+    [Tooltip("Credibility must be less than this value.")]
+    [Range(0, 100)]
+    public int noiseEmpireCredibilityBelow = 40;
+
+    [Header("C1 R2 | Index 3 | Viral Beast")]
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int viralBeastMinFollowers = 30000;
+
+    [Tooltip("Credibility must be less than this value.")]
+    [Range(0, 100)]
+    public int viralBeastCredibilityBelow = 40;
+
+    [Header("C2 R2 | Index 4 | Quiet Cash")]
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int quietCashMinMoney = 1700;
+
+    [Tooltip("Followers must be less than this value.")]
+    [Min(0)]
+    public int quietCashFollowersBelow = 8000;
+
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int quietCashMinCredibility = 40;
+
+    [Header("C3 R2 | Index 5 | Broke Star")]
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int brokeStarMinFollowers = 30000;
+
+    [Tooltip("Money must be less than this value.")]
+    [Min(0)]
+    public int brokeStarMoneyBelow = 1450;
+
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int brokeStarMinCredibility = 40;
+
+    [Header("C1 R3 | Index 6 | Powerhouse")]
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int powerhouseMinMoney = 1800;
+
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int powerhouseMinFollowers = 38000;
+
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int powerhouseMinCredibility = 75;
+
+    [Header("C2 R3 | Index 7 | Trusted Voice")]
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int trustedMinCredibility = 75;
+
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int trustedMinFollowers = 20000;
+
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int trustedMinMoney = 1450;
+
+    [Header("C3 R3 | Index 8 | Honest Path")]
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int honestPathMinCredibility = 80;
+
+    [Tooltip("Followers must be less than this value.")]
+    [Min(0)]
+    public int honestPathFollowersBelow = 12000;
+
+    [Tooltip("Money must be less than this value.")]
+    [Min(0)]
+    public int honestPathMoneyBelow = 1450;
+
+    [Header("C1 R4 | Index 9 | Responsible Influencer")]
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int responsibleInfluencerMinMoney = 1450;
+
+    [Tooltip("Credibility must be greater than or equal to this value.")]
+    [Range(0, 100)]
+    public int responsibleInfluencerMinCredibility = 55;
+
+    [Tooltip("Followers must be greater than or equal to this value.")]
+    [Min(0)]
+    public int responsibleInfluencerMinFollowers = 12000;
+
+    [Header("C2 R4 | Index 10 | Paid Lies")]
+    [Tooltip("Money must be greater than or equal to this value.")]
+    [Min(0)]
+    public int paidLiesMinMoney = 1700;
+
+    [Tooltip("Credibility must be less than this value.")]
+    [Range(0, 100)]
+    public int paidLiesCredibilityBelow = 40;
+
+    [Header("C3 R4 | Index 11 | Unclear Legacy")]
+    [TextArea(2, 4)]
+    [Tooltip("Unclear Legacy has no separate metric threshold. It is the default ending when none of the previous 11 ending conditions match. This text is only an Inspector note and is not used in calculations.")]
+    public string unclearLegacyConditionNote =
+        "Default fallback: triggers when none of Index 0-10 conditions match.";
+
+    [Header("12 Ending UI Slots")]
+    [Tooltip("Each slot represents one ending. The Locked GameObject and Unlocked GameObject can each be a Button directly.")]
     public EndingStorySlotUI[] storySlots = new EndingStorySlotUI[12];
 
-    [Header("按钮自动绑定")]
-    [Tooltip("开启后，脚本会自动给每个Locked Button和Unlocked Button添加点击事件，不需要你手动设置24个OnClick。")]
+    [Header("Automatic Button Binding")]
+    [Tooltip("When enabled, the script automatically adds click events to every Locked Button and Unlocked Button, so you do not need to configure 24 OnClick events manually.")]
     public bool autoBindSlotButtons = true;
 
-    [Header("故事Panel")]
-    [Tooltip("共用的故事Panel。点击已解锁结局或测试解锁按钮后，会自动打开这个Panel。")]
+    [Header("Story Panel")]
+    [Tooltip("Shared story panel. It opens automatically after clicking an unlocked ending or a test-unlock button.")]
     public GameObject storyPanel;
 
-    [Tooltip("打开结局收藏界面时，是否自动关闭故事Panel。")]
+    [Tooltip("Automatically close the Story Panel when the ending collection screen opens.")]
     public bool hideStoryPanelOnOpen = true;
 
-    [Tooltip("点击已解锁结局时，是否自动打开故事Panel。")]
+    [Tooltip("Automatically open the Story Panel when an unlocked ending is clicked.")]
     public bool showStoryPanelWhenUnlockedEndingClicked = true;
 
-    [Tooltip("点击未解锁结局时，是否关闭故事Panel。")]
+    [Tooltip("Close the Story Panel when a locked ending is clicked.")]
     public bool hideStoryPanelWhenLockedEndingClicked = true;
 
-    [Header("共用故事显示文字")]
-    [Tooltip("共用的结局标题文字。点击已解锁结局后，这里会显示对应标题。")]
+    [Header("Shared Story Text")]
+    [Tooltip("Shared ending title text. The selected ending title appears here after clicking an unlocked ending.")]
     public TMP_Text sharedTitleTMP;
 
-    [Tooltip("共用的结局故事正文文字。点击已解锁结局后，这里会显示对应故事。")]
+    [Tooltip("Shared ending story body text. The selected ending story appears here after clicking an unlocked ending.")]
     public TMP_Text sharedStoryTMP;
 
-    [Header("普通Text备用")]
-    [Tooltip("如果你没有用TMP，可以把普通Text标题拖到这里。可以不填。")]
+    [Header("Legacy Text Fallback")]
+    [Tooltip("Optional fallback for a standard UI Text title when TMP is not used.")]
     public Text sharedTitleText;
 
-    [Tooltip("如果你没有用TMP，可以把普通Text故事正文拖到这里。可以不填。")]
+    [Tooltip("Optional fallback for a standard UI Text story body when TMP is not used.")]
     public Text sharedStoryText;
 
-    [Header("首次解锁打字动画")]
-    [Tooltip("开启后，只有第一次解锁某个结局时播放打字机动画；之后点击已解锁按钮会直接显示完整文字。")]
+    [Header("First-Unlock Typewriter Animation")]
+    [Tooltip("When enabled, the typewriter animation plays only the first time an ending is unlocked. Later clicks show the complete text instantly.")]
     public bool playTypewriterOnlyOnFirstUnlock = true;
 
-    [Tooltip("每秒显示多少个字符。数值越大，文字出现越快。")]
+    [Tooltip("Number of characters revealed per second. Higher values reveal the text faster.")]
     public float typewriterCharactersPerSecond = 45f;
 
-    [Tooltip("打字机动画是否使用真实时间。开启后，即使Time.timeScale为0，动画也会播放。")]
+    [Tooltip("Use unscaled real time for the typewriter animation. When enabled, the animation still plays while Time.timeScale is 0.")]
     public bool typewriterUseUnscaledTime = true;
 
-    [Tooltip("每次显示字符时是否播放轻微打字跳动感。一般保持开启。")]
+    [Tooltip("Use a small panel-pop effect during the reveal. Usually leave this enabled.")]
     public bool useJuicyPanelPop = true;
 
-    [Tooltip("Story Panel弹出动画时间。")]
+    [Tooltip("Duration of the Story Panel pop animation.")]
     public float panelPopDuration = 0.18f;
 
     [Range(0.5f, 1f)]
-    [Tooltip("Story Panel弹出开始时的缩放。")]
+    [Tooltip("Starting scale of the Story Panel pop animation.")]
     public float panelPopStartScale = 0.92f;
 
     [Range(1f, 1.3f)]
-    [Tooltip("Story Panel弹出时的轻微放大倍率。")]
+    [Tooltip("Overshoot scale used during the Story Panel pop animation.")]
     public float panelPopOvershootScale = 1.05f;
 
-    [Tooltip("打字动画开始前的短暂停顿。")]
+    [Tooltip("Short delay before the typewriter animation begins.")]
     public float typewriterStartDelay = 0.05f;
 
-    [Header("锁定提示Panel")]
-    [Tooltip("点击未解锁结局时，需要打开的Locked Panel。")]
+    [Header("Locked Ending Panel")]
+    [Tooltip("Panel opened when the player clicks a locked ending.")]
     public GameObject lockedPanel;
 
-    [Tooltip("打开结局收藏界面时，是否自动关闭Locked Panel。")]
+    [Tooltip("Automatically close the Locked Panel when the ending collection screen opens.")]
     public bool hideLockedPanelOnOpen = true;
 
-    [Tooltip("点击已解锁结局时，是否自动关闭Locked Panel。")]
+    [Tooltip("Automatically close the Locked Panel when an unlocked ending is clicked.")]
     public bool hideLockedPanelWhenUnlockedEndingClicked = true;
 
-    [Header("锁定Panel文字")]
-    [Tooltip("Locked Panel里的标题文字。可以不填；不填则只打开Locked Panel，不改文字。")]
+    [Header("Locked Panel Text")]
+    [Tooltip("Title text inside the Locked Panel. Optional; when unassigned, the panel opens without changing title text.")]
     public TMP_Text lockedPanelTitleTMP;
 
-    [Tooltip("Locked Panel里的说明文字。可以不填；不填则只打开Locked Panel，不改文字。")]
+    [Tooltip("Description text inside the Locked Panel. Optional; when unassigned, the panel opens without changing story text.")]
     public TMP_Text lockedPanelStoryTMP;
 
-    [Tooltip("Locked Panel里的普通Text标题备用。可以不填。")]
+    [Tooltip("Optional standard UI Text fallback for the Locked Panel title.")]
     public Text lockedPanelTitleText;
 
-    [Tooltip("Locked Panel里的普通Text说明备用。可以不填。")]
+    [Tooltip("Optional standard UI Text fallback for the Locked Panel description.")]
     public Text lockedPanelStoryText;
 
-    [Tooltip("点击未解锁结局时，Locked Panel显示的标题。")]
+    [Tooltip("Title displayed in the Locked Panel when a locked ending is clicked.")]
     public string lockedTitle = "Locked";
 
     [TextArea(2, 5)]
-    [Tooltip("点击未解锁结局时，Locked Panel显示的说明。")]
+    [Tooltip("Description displayed in the Locked Panel when a locked ending is clicked.")]
     public string lockedStory = "This ending has not been unlocked yet.";
 
-    [Tooltip("勾选后，Locked Panel标题会显示该结局的真实标题；不勾选则显示Locked。")]
+    [Tooltip("When enabled, the Locked Panel title shows the real ending title. Otherwise, it shows the generic locked title.")]
     public bool showEndingTitleOnLockedPanel = false;
 
-    [Tooltip("不建议开启。开启后，未解锁结局也会在Locked Panel显示真实故事。")]
+    [Tooltip("Not recommended. When enabled, the Locked Panel reveals the real story for an ending that has not been unlocked.")]
     public bool revealStoryOnLockedPanel = false;
 
-    [Header("刷新设置")]
-    [Tooltip("当这个Panel启用时，自动刷新所有结局的锁定/解锁显示。")]
+    [Header("Refresh Settings")]
+    [Tooltip("Automatically refresh the locked and unlocked states of all endings when this panel is enabled.")]
     public bool refreshWhenEnabled = true;
 
-    [Tooltip("Start时自动刷新一次。")]
+    [Tooltip("Refresh all ending slots once during Start.")]
     public bool refreshOnStart = true;
 
-    [Tooltip("打开界面时，是否自动显示第一个已解锁结局。若你想故事Panel只在点击后出现，保持false。")]
+    [Tooltip("Automatically display the first unlocked ending when the screen opens. Keep this false when the Story Panel should appear only after a click.")]
     public bool showFirstUnlockedOnStart = false;
 
     private const string SaveKeyPrefix = "ENDING_UNLOCKED_";
@@ -177,7 +310,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 自动给所有Locked Button和Unlocked Button绑定点击事件。
+    /// Automatically binds click events to all Locked and Unlocked buttons.
     /// </summary>
     public void BindAllSlotButtons()
     {
@@ -190,7 +323,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 自动绑定单个槽位的Locked/Unlocked按钮。
+    /// Automatically binds the Locked and Unlocked buttons for one slot.
     /// </summary>
     private void BindSlotButtons(int index)
     {
@@ -225,7 +358,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 点击Locked按钮：打开Locked Panel，并显示统一锁定提示。
+    /// Handles a Locked button click by opening the Locked Panel and showing the shared locked message.
     /// </summary>
     private void OnLockedSlotButtonClicked(int index)
     {
@@ -233,7 +366,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 点击Unlocked按钮：打开Story Panel，并直接显示对应故事，不播放打字动画。
+    /// Handles an Unlocked button click by opening the Story Panel and showing the story instantly without the typewriter animation.
     /// </summary>
     private void OnUnlockedSlotButtonClicked(int index)
     {
@@ -241,9 +374,9 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 刷新全部12个结局UI。
-    /// 已解锁：隐藏Locked，显示Unlocked。
-    /// 未解锁：显示Locked，隐藏Unlocked。
+    /// Refreshes all 12 ending UI slots.
+    /// Unlocked ending: hides the Locked object and shows the Unlocked object.
+    /// Locked ending: shows the Locked object and hides the Unlocked object.
     /// </summary>
     public void RefreshAllSlots()
     {
@@ -256,7 +389,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 刷新单个结局UI，只负责锁定/解锁物体显示。
+    /// Refreshes one ending slot and updates only its Locked and Unlocked GameObject states.
     /// </summary>
     public void RefreshSlot(int index)
     {
@@ -287,8 +420,8 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 显示指定结局到共用故事文字。
-    /// 普通点击已解锁按钮时不会播放打字动画。
+    /// Displays the selected ending in the shared story text fields.
+    /// A normal click on an unlocked ending does not play the typewriter animation.
     /// </summary>
     public void ShowEndingByIndex(int index)
     {
@@ -296,7 +429,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// Button传数字用：1 = 第1个结局，12 = 第12个结局。
+    /// Number-based Button method: 1 selects the first ending and 12 selects the twelfth ending.
     /// </summary>
     public void ShowEndingByNumber(int endingNumber)
     {
@@ -304,8 +437,8 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 显示指定结局。
-    /// playFirstUnlockAnimation = true 时，会播放一次打字机动画。
+    /// Displays the selected ending.
+    /// When playFirstUnlockAnimation is true, the typewriter animation plays once.
     /// </summary>
     private void ShowEndingByIndexInternal(int index, bool playFirstUnlockAnimation)
     {
@@ -353,7 +486,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 点击Locked按钮时调用：打开Locked Panel，显示锁定提示。
+    /// Called after clicking a Locked button. Opens the Locked Panel and shows the locked message.
     /// </summary>
     public void ShowLockedEndingPanel(int index)
     {
@@ -390,7 +523,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 显示第一个已解锁结局。
+    /// Displays the first unlocked ending.
     /// </summary>
     public void ShowFirstUnlockedEnding()
     {
@@ -409,7 +542,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 打开Story Panel。
+    /// Opens the Story Panel.
     /// </summary>
     public void OpenStoryPanel()
     {
@@ -420,7 +553,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 关闭Story Panel。可以给Story Panel里的Close按钮调用。
+    /// Closes the Story Panel. This method can be assigned to the panel Close button.
     /// </summary>
     public void CloseStoryPanel()
     {
@@ -433,7 +566,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 打开Locked Panel。
+    /// Opens the Locked Panel.
     /// </summary>
     public void OpenLockedPanel()
     {
@@ -444,7 +577,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 关闭Locked Panel。可以给Locked Panel里的Close按钮调用。
+    /// Closes the Locked Panel. This method can be assigned to the panel Close button.
     /// </summary>
     public void CloseLockedPanel()
     {
@@ -455,9 +588,9 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 解锁结局，并显示到共用故事文字。
-    /// 第一次解锁会播放打字机动画；之后再次点击不会播放。
-    /// 0 = 第1个结局，11 = 第12个结局。
+    /// Unlocks an ending and displays it in the shared story text fields.
+    /// The first unlock plays the typewriter animation; later clicks show the story instantly.
+    /// Index 0 is the first ending and index 11 is the twelfth ending.
     /// </summary>
     public void UnlockEndingByIndex(int index)
     {
@@ -499,7 +632,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// Button传数字用：1 = 第1个结局，12 = 第12个结局。
+    /// Number-based Button method: 1 selects the first ending and 12 selects the twelfth ending.
     /// </summary>
     public void UnlockEndingByNumber(int endingNumber)
     {
@@ -507,7 +640,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 判断某个结局是否已解锁。
+    /// Returns whether the specified ending has been unlocked.
     /// </summary>
     public bool IsEndingUnlocked(string endingId)
     {
@@ -520,7 +653,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 锁回指定结局，主要用于测试。
+    /// Locks the specified ending again. Intended mainly for testing.
     /// </summary>
     public void LockEndingByIndex(int index)
     {
@@ -546,7 +679,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 清空所有结局解锁记录，测试用。
+    /// Clears every saved ending unlock. Intended for testing.
     /// </summary>
     public void ClearAllEndingUnlocks()
     {
@@ -572,9 +705,9 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 根据三个数值判断结局，并自动解锁。
-    /// 正式游戏结束时可以调用这个方法。
-    /// 第一次解锁时也会播放打字动画。
+    /// Resolves an ending from the three metrics and unlocks it automatically.
+    /// Call this method when the main game ends.
+    /// The typewriter animation also plays the first time the resolved ending is unlocked.
     /// </summary>
     public EndingStoryData ResolveAndUnlockEndingFromStats(int money, int credibility, int followers)
     {
@@ -584,67 +717,88 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 根据 Money / Credibility / Followers 返回对应结局Index。
+    /// Returns the matching ending index based on Money, Credibility, and Followers.
+    ///
+    /// Inspector and UI order:
+    /// R1: C1 Index 0 Trust Collapse | C2 Index 1 Forgotten | C3 Index 2 Noise Empire
+    /// R2: C1 Index 3 Viral Beast   | C2 Index 4 Quiet Cash | C3 Index 5 Broke Star
+    /// R3: C1 Index 6 Powerhouse    | C2 Index 7 Trusted Voice | C3 Index 8 Honest Path
+    /// R4: C1 Index 9 Responsible Influencer | C2 Index 10 Paid Lies | C3 Index 11 Unclear Legacy
     /// </summary>
     public int GetEndingIndexFromStats(int money, int credibility, int followers)
     {
-        money = Mathf.Clamp(money, 0, 100);
+        // Money and Followers have no maximum. Only negative values are prevented.
+        // Credibility remains on the 0-100 scale.
+        money = Mathf.Max(0, money);
+        followers = Mathf.Max(0, followers);
         credibility = Mathf.Clamp(credibility, 0, 100);
-        followers = Mathf.Clamp(followers, 0, 100);
 
-        if (credibility <= 0)
+        // Trust Collapse has the highest priority.
+        // When final Credibility reaches the configured threshold, the result is always Trust Collapse.
+        if (credibility <= trustCollapseMaxCredibility)
         {
-            return 0; // Collapse
+            return 0; // C1 R1 - Trust Collapse
         }
-        else if (money < 40 && credibility < 40 && followers < 40)
+
+        // The return indexes below must exactly match the order in EndingStoryDatabase.asset.
+        // Check rare and specific endings first so broader conditions do not override them.
+
+        if (money >= powerhouseMinMoney && followers >= powerhouseMinFollowers && credibility >= powerhouseMinCredibility)
         {
-            return 1; // Forgotten
+            return 6; // C1 R3 - Powerhouse
         }
-        else if (money >= 70 && followers >= 70 && credibility < 40)
+
+        if (money >= noiseEmpireMinMoney && followers >= noiseEmpireMinFollowers && credibility < noiseEmpireCredibilityBelow)
         {
-            return 2; // Noise Empire
+            return 2; // C3 R1 - Noise Empire
         }
-        else if (money >= 70 && credibility < 40)
+
+        if (followers >= viralBeastMinFollowers && credibility < viralBeastCredibilityBelow)
         {
-            return 3; // Paid Lies
+            return 3; // C1 R2 - Viral Beast
         }
-        else if (followers >= 70 && credibility < 40)
+
+        if (money >= paidLiesMinMoney && credibility < paidLiesCredibilityBelow)
         {
-            return 4; // Viral Beast
+            return 10; // C2 R4 - Paid Lies
         }
-        else if (money >= 70 && followers < 40 && credibility >= 40)
+
+        if (money < forgottenMoneyBelow && followers < forgottenFollowersBelow && credibility < forgottenCredibilityBelow)
         {
-            return 5; // Quiet Cash
+            return 1; // C2 R1 - Forgotten
         }
-        else if (followers >= 70 && money < 40 && credibility >= 40)
+
+        if (money >= quietCashMinMoney && followers < quietCashFollowersBelow && credibility >= quietCashMinCredibility)
         {
-            return 6; // Broke Star
+            return 4; // C2 R2 - Quiet Cash
         }
-        else if (money >= 70 && credibility >= 70 && followers >= 70)
+
+        if (followers >= brokeStarMinFollowers && money < brokeStarMoneyBelow && credibility >= brokeStarMinCredibility)
         {
-            return 7; // Powerhouse
+            return 5; // C3 R2 - Broke Star
         }
-        else if (credibility >= 70 && followers >= 70)
+
+        if (credibility >= trustedMinCredibility && followers >= trustedMinFollowers && money >= trustedMinMoney)
         {
-            return 8; // Trusted
+            return 7; // C2 R3 - Trusted Voice
         }
-        else if (credibility >= 70 && money < 40)
+
+        if (credibility >= honestPathMinCredibility && followers < honestPathFollowersBelow && money < honestPathMoneyBelow)
         {
-            return 9; // Honest Path
+            return 8; // C3 R3 - Honest Path
         }
-        else if (money >= 50 && credibility >= 60 && followers >= 50)
+
+        if (money >= responsibleInfluencerMinMoney && credibility >= responsibleInfluencerMinCredibility && followers >= responsibleInfluencerMinFollowers)
         {
-            return 10; // Balanced
+            return 9; // C1 R4 - Responsible Influencer
         }
-        else
-        {
-            return 11; // Mixed Legacy
-        }
+
+        return 11; // C3 R4 - Unclear Legacy / default
     }
 
     // =========================
-    // 12个测试按钮：永久解锁 + 显示Unlocked + 隐藏Locked + 打开Story Panel
-    // 第一次解锁会播放打字动画
+    // 12 test buttons: permanently unlock, show Unlocked, hide Locked, and open the Story Panel.
+    // The first unlock plays the typewriter animation.
     // =========================
 
     public void TestUnlockEnding01()
@@ -708,10 +862,10 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     // =========================
-    // 12个显示按钮：只显示，不解锁
-    // 未解锁时会打开Locked Panel
-    // 已解锁时会打开Story Panel
-    // 不播放打字动画
+    // 12 display buttons: show an ending without unlocking it.
+    // A locked ending opens the Locked Panel.
+    // An unlocked ending opens the Story Panel.
+    // The typewriter animation does not play.
     // =========================
 
     public void ShowEnding01()
@@ -775,7 +929,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     // =========================
-    // 打字动画
+    // Typewriter animation
     // =========================
 
     private void PlayStoryTypewriter(string title, string story)
@@ -1040,7 +1194,7 @@ public class EndingStoryCollectionPanel : MonoBehaviour
     }
 
     // =========================
-    // 通用辅助方法
+    // Shared helper methods
     // =========================
 
     private void SetLockedPanelText(string title, string story)
@@ -1150,11 +1304,11 @@ public class EndingStoryCollectionPanel : MonoBehaviour
 [Serializable]
 public class EndingStorySlotUI
 {
-    [Header("锁定/解锁按钮物体")]
-    [Tooltip("未解锁时显示的Button GameObject。点击后会打开Locked Panel。")]
+    [Header("Locked / Unlocked Button Objects")]
+    [Tooltip("Button GameObject shown while the ending is locked. Clicking it opens the Locked Panel.")]
     public GameObject lockedGameObject;
 
-    [Tooltip("已解锁时显示的Button GameObject。点击后会打开Story Panel并显示对应故事。")]
+    [Tooltip("Button GameObject shown after the ending is unlocked. Clicking it opens the Story Panel and displays the corresponding story.")]
     public GameObject unlockedGameObject;
 
     [NonSerialized]

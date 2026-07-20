@@ -1,14 +1,14 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Posts use only three quality categories.
+// Correct = fully correct, HalfCorrect = partly correct, and Nonsense = every other incorrect or meaningless choice.
 public enum PostChoiceQuality
 {
-    Correct,
-    HalfCorrect,
-    Neutral,
-    Wrong,
-    Nonsense
+    Correct = 0,
+    HalfCorrect = 1,
+    Nonsense = 2
 }
 
 public enum MetricPenaltyReason
@@ -25,182 +25,147 @@ public enum MetricPenaltyReason
 public class MisinformationMetricFormulaProfile : ScriptableObject
 {
     [Header("Metric Range")]
-    [Tooltip("If enabled, money is clamped between 0 and Max Money.")]
-    public bool clampMoney = true;
-
-    [Tooltip("If enabled, followers are clamped between 0 and Max Followers.")]
-    public bool clampFollowers = true;
+    [Tooltip("Money has no maximum. It is only prevented from going below 0.")]
+    public bool keepMoneyAtOrAboveZero = true;
 
     [Tooltip("If enabled, credibility is clamped between 0 and Max Credibility.")]
     public bool clampCredibility = true;
-
-    [Tooltip("Maximum money value. Use 100 if endings use 0-100 ranges.")]
-    public int maxMoney = 100;
-
-    [Tooltip("Maximum follower value. Use 100 if endings use 0-100 ranges.")]
-    public int maxFollowers = 100;
 
     [Tooltip("Maximum credibility value. Usually 100.")]
     public int maxCredibility = 100;
 
     [Header("Base Post Gains")]
-    [Tooltip("Base follower gain before tactic, quality, repetition, and credibility multipliers.")]
-    public float baseFollowersPerPost = 8f;
+    [Tooltip("Base follower scale for a 31-day game. Half Correct play averages around 20,000 followers; Correct play can exceed 40,000.")]
+    public float baseFollowersPerPost = 950f;
 
     [Tooltip("Base money gain for each post.")]
-    public float baseMoneyPerPost = 2f;
+    public float baseMoneyPerPost = 5f;
 
     [Tooltip("Base like gain for each post. Likes are stored in UserStats only.")]
     public float baseLikesPerPost = 6f;
 
-    [Tooltip("Extra money gained for each follower gained.")]
-    public float moneyPerFollowerGained = 0.12f;
+    [Tooltip("Small money conversion per follower gained. Kept low so jobs remain important even when followers reach tens of thousands.")]
+    public float moneyPerFollowerGained = 0.005f;
 
     [Tooltip("Extra likes gained for each follower gained.")]
     public float likesPerFollowerGained = 0.8f;
 
     [Header("Tactic Card Impact")]
-    [Tooltip("How strongly TacticSO.engagementBonus affects follower growth. Example: 1 = +15% if engagementBonus is 0.15.")]
-    public float tacticEngagementBonusToGrowthMultiplier = 1f;
+    [Tooltip("How strongly TacticSO.engagementBonus affects follower growth.")]
+    public float tacticEngagementBonusToGrowthMultiplier = 1.1f;
 
     [Tooltip("How strongly TacticSO.engagementBonus affects money gain.")]
-    public float tacticEngagementBonusToMoneyMultiplier = 0.5f;
+    public float tacticEngagementBonusToMoneyMultiplier = 0.75f;
 
-    [Tooltip("How strongly TacticSO.credibilityCost reduces credibility. Example: 100 means 0.08 becomes -8 credibility.")]
-    public float tacticCredibilityCostToCredibilityLoss = 100f;
+    [Tooltip("How strongly TacticSO.credibilityCost reduces credibility.")]
+    public float tacticCredibilityCostToCredibilityLoss = 40f;
 
     [Header("JSON-Based Scoring")]
-    [Tooltip("If enabled, selected words are scored from DailyPostData.json fields instead of setting many Inspector rules.")]
+    [Tooltip("If enabled, selected words are scored from DailyPostData.json.")]
     public bool useJsonScoring = true;
 
     [Tooltip("If a sentence has no explicit correctWords list, use blankWords as the correct answers.")]
     public bool useBlankWordsAsCorrectAnswers = true;
 
-    [Tooltip("If enabled, any blank word can count as correct. If disabled, the selected word must match the same blank position. Recommended OFF for ordered fill-in-the-blank captions.")]
+    [Tooltip("If enabled, any blank word can count as correct. Keep this OFF for ordered blanks.")]
     public bool allowAnyBlankWordAsCorrect = false;
 
-    [Tooltip("Quality used for words not listed in correctWords, halfCorrectWords, neutralWords, wrongWords, or nonsenseWords.")]
-    public PostChoiceQuality defaultUnlistedWordQuality = PostChoiceQuality.Wrong;
+    [Tooltip("Words not listed as Correct or Half Correct are treated as Nonsense.")]
+    public PostChoiceQuality defaultUnlistedWordQuality = PostChoiceQuality.Nonsense;
 
-    [Tooltip("Quality used for caption templates when the JSON sentence does not set captionQuality.")]
-    public PostChoiceQuality defaultCaptionQuality = PostChoiceQuality.Correct;
-
-    [Tooltip("If enabled, caption-level idealTacticTypes, neutralTacticTypes, and badTacticTypes decide whether the selected tactic fits this caption.")]
+    [Tooltip("If enabled, caption-level tactic lists decide whether the selected tactic fits.")]
     public bool useJsonTacticFit = true;
 
-    [Tooltip("If the tactic is not listed as ideal, neutral, or bad, use this quality. Recommended Neutral so unlisted tactics are accepted but not rewarded.")]
-    public PostChoiceQuality defaultUnlistedTacticFitQuality = PostChoiceQuality.Neutral;
+    [Tooltip("Tactics not listed as Correct or Half Correct are treated as Nonsense.")]
+    public PostChoiceQuality defaultUnlistedTacticFitQuality = PostChoiceQuality.Nonsense;
 
     [Header("Optional Global Word Lists")]
-    [Tooltip("Optional. These words count as correct everywhere if the sentence does not list them.")]
+    [Tooltip("Optional words that count as Correct everywhere.")]
     public List<string> globalCorrectWords = new List<string>();
 
-    [Tooltip("Optional. These words count as half correct everywhere if the sentence does not list them.")]
+    [Tooltip("Optional words that count as Half Correct everywhere.")]
     public List<string> globalHalfCorrectWords = new List<string>();
 
-    [Tooltip("Optional. These words count as neutral everywhere if the sentence does not list them.")]
-    public List<string> globalNeutralWords = new List<string>();
-
-    [Tooltip("Optional. These words count as wrong everywhere if the sentence does not list them.")]
-    public List<string> globalWrongWords = new List<string>();
-
-    [Tooltip("Optional. These words count as nonsense everywhere if the sentence does not list them.")]
+    [Tooltip("Optional words that count as Nonsense everywhere.")]
     public List<string> globalNonsenseWords = new List<string>();
 
-    [Header("Quality Weights")]
-    [Tooltip("Weight of the caption template quality.")]
-    public float captionQualityWeight = 0.25f;
+    [Header("Quality Weights - Word Choice and Tactic Only")]
+    [Range(0f, 1f)]
+    [Tooltip("Weight of the average selected word-choice quality. Default is 0.50, meaning 50 percent of the final post quality.")]
+    public float wordChoiceQualityWeight = 0.50f;
 
-    [Tooltip("Weight of the selected blank words quality.")]
-    public float wordChoiceQualityWeight = 0.55f;
+    [Range(0f, 1f)]
+    [Tooltip("Weight of whether the selected tactic fits the current sentence. Default is 0.50, meaning 50 percent of the final post quality.")]
+    public float tacticFitWeight = 0.50f;
 
-    [Tooltip("Weight of whether the selected tactic fits the current caption.")]
-    public float tacticFitWeight = 0.20f;
-
-    [Header("Quality Scores")]
-    [Tooltip("Score for a correct choice.")]
+    [Header("Three Quality Scores")]
+    [Tooltip("Score for a Correct choice.")]
     public float correctScore = 1f;
 
-    [Tooltip("Score for a half-correct choice.")]
-    public float halfCorrectScore = 0.5f;
+    [Tooltip("Score for a Half Correct choice.")]
+    public float halfCorrectScore = 0.45f;
 
-    [Tooltip("Score for a neutral choice.")]
-    public float neutralScore = 0f;
-
-    [Tooltip("Score for a wrong choice.")]
-    public float wrongScore = -0.65f;
-
-    [Tooltip("Score for a nonsense choice.")]
+    [Tooltip("Score for every other choice, treated as Nonsense.")]
     public float nonsenseScore = -1f;
-
-    [Tooltip("Score when the selected tactic is listed in the caption idealTacticTypes list.")]
-    public float correctTacticScore = 1f;
-
-    [Tooltip("Score when the selected tactic is listed in the caption neutralTacticTypes list, or is unlisted while Default Unlisted Tactic Fit Quality is Neutral.")]
-    public float neutralTacticScore = 0f;
-
-    [Tooltip("Score when the selected tactic is listed in the caption badTacticTypes list, or is unlisted while Default Unlisted Tactic Fit Quality is Wrong.")]
-    public float wrongTacticScore = -0.75f;
 
     [Header("Quality To Growth Curve")]
     [Tooltip("X = final quality score from -1 to 1. Y = growth multiplier.")]
+    // Thirty-one-day follower calibration: Nonsense gives very little growth,
+    // Half Correct can finish near 20,000, and Correct can exceed 40,000.
     public AnimationCurve qualityToGrowthMultiplier = new AnimationCurve(
-        new Keyframe(-1f, 0.05f),
-        new Keyframe(-0.5f, 0.25f),
-        new Keyframe(0f, 0.65f),
-        new Keyframe(0.5f, 1f),
+        new Keyframe(-1f, 0.02f),
+        new Keyframe(0.45f, 0.75f),
         new Keyframe(1f, 1.55f)
     );
 
-    [Tooltip("Minimum output from the quality curve. Can be negative if you want bad posts to lose followers.")]
-    public float minQualityGrowthMultiplier = -0.5f;
+    [Tooltip("Minimum output from the quality curve. Quality alone never creates a negative follower gain.")]
+    public float minQualityGrowthMultiplier = 0f;
 
     [Tooltip("Maximum output from the quality curve.")]
     public float maxQualityGrowthMultiplier = 2f;
 
     [Header("Credibility Formula")]
-    [Tooltip("Effective misinformation also costs credibility because it spreads farther.")]
-    public float successfulMisinformationCredibilityLoss = 2f;
+    [Tooltip("Small background credibility cost for effective posts.")]
+    public float successfulMisinformationCredibilityLoss = 0.2f;
 
-    [Tooltip("Bad or confusing posts cost credibility based on how bad they are.")]
-    public float wrongPostCredibilityLoss = 5f;
+    [Tooltip("Nonsense posts cost credibility based on how bad their combined score is.")]
+    public float wrongPostCredibilityLoss = 4f;
 
-    [Tooltip("Quality above this value is treated as effective misinformation; lower is treated as a bad post.")]
-    public float qualityScoreThresholdForEffectivePost = 0.25f;
+    [Tooltip("Quality at or above this value is treated as an effective post.")]
+    public float qualityScoreThresholdForEffectivePost = 0.3f;
 
     [Header("Low Credibility Reach Loss")]
     [Tooltip("If enabled, low credibility reduces future post growth.")]
     public bool lowCredibilityReducesGrowth = true;
 
     [Tooltip("Growth multiplier when credibility is 0.")]
-    public float zeroCredibilityGrowthMultiplier = 0.35f;
+    public float zeroCredibilityGrowthMultiplier = 0.45f;
 
     [Header("Fact Check Events")]
     [Tooltip("If enabled, low credibility can trigger a Fact Check penalty.")]
     public bool enableFactCheckEvents = true;
 
     [Tooltip("Fact Check triggers when projected credibility is less than or equal to this value.")]
-    public int factCheckCredibilityThreshold = 35;
+    public int factCheckCredibilityThreshold = 30;
 
     [Tooltip("Minimum number of days between Fact Check events.")]
-    public int factCheckCooldownDays = 3;
+    public int factCheckCooldownDays = 4;
 
     [Tooltip("Extra credibility lost when a Fact Check event triggers.")]
-    public int factCheckCredibilityLoss = 6;
+    public int factCheckCredibilityLoss = 4;
 
-    [Tooltip("Percent of current followers lost when a Fact Check event triggers. 0.08 = 8%.")]
+    [Tooltip("Percent of current followers lost when a Fact Check event triggers.")]
     [Range(0f, 1f)]
-    public float factCheckFollowerLossPercent = 0.08f;
+    public float factCheckFollowerLossPercent = 0.07f;
 
-    [Tooltip("Percent of current money lost when a Fact Check event triggers. 0.03 = 3%.")]
+    [Tooltip("Percent of current money lost when a Fact Check event triggers.")]
     [Range(0f, 1f)]
-    public float factCheckMoneyLossPercent = 0.03f;
+    public float factCheckMoneyLossPercent = 0.05f;
 
-    [Header("Repetition / Wrong Choice Penalties")]
-    [Tooltip("If multiple penalties happen at once, only apply the strongest one. Recommended.")]
+    [Header("Repetition / Nonsense Choice Penalties")]
+    [Tooltip("When enabled, only the strongest normal penalty is used. Penalties marked Always Stack, such as repeated caption and repeated tactic, are still combined.")]
     public bool useOnlyHighestPriorityPenalty = true;
 
-    [Tooltip("Penalty order: Wrong Word Choice > Wrong Tactic = Same Caption Template > Same Tactic > Same Subtopic.")]
     public List<MetricPenaltySettings> repetitionPenaltySettings = new List<MetricPenaltySettings>();
 
     public float GetQualityScore(PostChoiceQuality quality)
@@ -211,35 +176,15 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
                 return correctScore;
             case PostChoiceQuality.HalfCorrect:
                 return halfCorrectScore;
-            case PostChoiceQuality.Neutral:
-                return neutralScore;
-            case PostChoiceQuality.Wrong:
-                return wrongScore;
             case PostChoiceQuality.Nonsense:
-                return nonsenseScore;
             default:
-                return neutralScore;
+                return nonsenseScore;
         }
     }
 
-
     public float GetTacticFitScore(PostChoiceQuality quality)
     {
-        switch (quality)
-        {
-            case PostChoiceQuality.Correct:
-                return correctTacticScore;
-            case PostChoiceQuality.HalfCorrect:
-                return halfCorrectScore;
-            case PostChoiceQuality.Neutral:
-                return neutralTacticScore;
-            case PostChoiceQuality.Wrong:
-                return wrongTacticScore;
-            case PostChoiceQuality.Nonsense:
-                return nonsenseScore;
-            default:
-                return neutralTacticScore;
-        }
+        return GetQualityScore(quality);
     }
 
     public float EvaluateGrowthMultiplierFromQuality(float qualityScore)
@@ -273,22 +218,14 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
 
     public int ClampMoneyValue(int value)
     {
-        if (!clampMoney)
-        {
-            return Mathf.Max(0, value);
-        }
-
-        return Mathf.Clamp(value, 0, maxMoney);
+        // Money has no maximum; this only prevents a negative value.
+        return keepMoneyAtOrAboveZero ? Mathf.Max(0, value) : value;
     }
 
     public int ClampFollowerValue(int value)
     {
-        if (!clampFollowers)
-        {
-            return Mathf.Max(0, value);
-        }
-
-        return Mathf.Clamp(value, 0, maxFollowers);
+        // Followers have no maximum; they are only prevented from going below zero.
+        return Mathf.Max(0, value);
     }
 
     public int ClampCredibilityValue(int value)
@@ -310,13 +247,19 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
 
         string normalized = value.Trim().Replace(" ", "").Replace("-", "").Replace("_", "").ToLowerInvariant();
 
-        if (normalized == "correct") return PostChoiceQuality.Correct;
-        if (normalized == "halfcorrect" || normalized == "half") return PostChoiceQuality.HalfCorrect;
-        if (normalized == "neutral" || normalized == "noeffect") return PostChoiceQuality.Neutral;
-        if (normalized == "wrong") return PostChoiceQuality.Wrong;
-        if (normalized == "nonsense" || normalized == "weird" || normalized == "wrongwrong") return PostChoiceQuality.Nonsense;
+        if (normalized == "correct")
+        {
+            return PostChoiceQuality.Correct;
+        }
 
-        return fallback;
+        if (normalized == "halfcorrect" || normalized == "half")
+        {
+            return PostChoiceQuality.HalfCorrect;
+        }
+
+        // Legacy JSON values such as Neutral, Wrong, and Nonsense are all treated as Nonsense,
+        // so existing DailyPostData.json files continue to work.
+        return PostChoiceQuality.Nonsense;
     }
 
 #if UNITY_EDITOR
@@ -327,8 +270,6 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
 
     private void OnValidate()
     {
-        if (maxMoney < 1) maxMoney = 1;
-        if (maxFollowers < 1) maxFollowers = 1;
         if (maxCredibility < 1) maxCredibility = 1;
         if (repetitionPenaltySettings == null) repetitionPenaltySettings = new List<MetricPenaltySettings>();
         if (repetitionPenaltySettings.Count == 0) BuildDefaultPenaltySettings();
@@ -343,100 +284,107 @@ public class MisinformationMetricFormulaProfile : ScriptableObject
         {
             reason = MetricPenaltyReason.WrongWordChoice,
             priority = 50,
-            freeStreakDays = 1,
-            decayPerExtraDay = 0.55f,
-            minGrowthMultiplier = -0.65f,
-            exponentialPenaltyGrowth = 0.45f,
-            followerLossBase = 5,
-            moneyLossBase = 1,
-            credibilityLossBase = 4
+            alwaysStack = false,
+            freeStreakDays = 2,
+            decayPerExtraDay = 0.22f,
+            minGrowthMultiplier = 0f,
+            exponentialPenaltyGrowth = 0.12f,
+            followerLossBase = 2f,
+            moneyLossBase = 5f,
+            credibilityLossBase = 0.5f
         });
 
         repetitionPenaltySettings.Add(new MetricPenaltySettings
         {
             reason = MetricPenaltyReason.WrongTactic,
-            priority = 40,
-            freeStreakDays = 1,
-            decayPerExtraDay = 0.45f,
-            minGrowthMultiplier = -0.35f,
-            exponentialPenaltyGrowth = 0.38f,
-            followerLossBase = 3,
-            moneyLossBase = 0,
-            credibilityLossBase = 3
+            priority = 45,
+            alwaysStack = false,
+            freeStreakDays = 2,
+            decayPerExtraDay = 0.18f,
+            minGrowthMultiplier = 0f,
+            exponentialPenaltyGrowth = 0.10f,
+            followerLossBase = 1.5f,
+            moneyLossBase = 2f,
+            credibilityLossBase = 0.5f
         });
 
+        // The second consecutive use of the same caption template starts an
+        // exponential audience-fatigue penalty. It always stacks with tactic repetition.
         repetitionPenaltySettings.Add(new MetricPenaltySettings
         {
             reason = MetricPenaltyReason.SameCaptionTemplate,
-            priority = 40,
-            freeStreakDays = 2,
-            decayPerExtraDay = 0.4f,
-            minGrowthMultiplier = -0.25f,
-            exponentialPenaltyGrowth = 0.34f,
-            followerLossBase = 3,
-            moneyLossBase = 0,
-            credibilityLossBase = 2
+            priority = 60,
+            alwaysStack = true,
+            freeStreakDays = 1,
+            decayPerExtraDay = 0.28f,
+            minGrowthMultiplier = 0.10f,
+            exponentialPenaltyGrowth = 0.35f,
+            followerLossBase = 25f,
+            moneyLossBase = 1f,
+            credibilityLossBase = 0f
         });
 
+        // The second consecutive use of the same tactic starts an exponential
+        // audience-fatigue penalty. It always stacks with caption repetition.
         repetitionPenaltySettings.Add(new MetricPenaltySettings
         {
             reason = MetricPenaltyReason.SameTactic,
-            priority = 30,
-            freeStreakDays = 3,
-            decayPerExtraDay = 0.28f,
-            minGrowthMultiplier = 0.1f,
-            exponentialPenaltyGrowth = 0.25f,
-            followerLossBase = 2,
-            moneyLossBase = 0,
-            credibilityLossBase = 1
+            priority = 55,
+            alwaysStack = true,
+            freeStreakDays = 1,
+            decayPerExtraDay = 0.20f,
+            minGrowthMultiplier = 0.20f,
+            exponentialPenaltyGrowth = 0.28f,
+            followerLossBase = 15f,
+            moneyLossBase = 0.5f,
+            credibilityLossBase = 0f
         });
 
         repetitionPenaltySettings.Add(new MetricPenaltySettings
         {
             reason = MetricPenaltyReason.SameSubTopic,
             priority = 20,
-            freeStreakDays = 3,
-            decayPerExtraDay = 0.18f,
-            minGrowthMultiplier = 0.2f,
-            exponentialPenaltyGrowth = 0.18f,
-            followerLossBase = 1,
-            moneyLossBase = 0,
-            credibilityLossBase = 1
+            alwaysStack = false,
+            freeStreakDays = 4,
+            decayPerExtraDay = 0.08f,
+            minGrowthMultiplier = 0.40f,
+            exponentialPenaltyGrowth = 0.05f,
+            followerLossBase = 0.5f,
+            moneyLossBase = 0f,
+            credibilityLossBase = 0.2f
         });
     }
+
 }
 
 [Serializable]
 public class MetricPenaltySettings
 {
     [Header("Penalty Type")]
-    [Tooltip("Why this penalty happens.")]
     public MetricPenaltyReason reason = MetricPenaltyReason.None;
 
-    [Tooltip("Higher number means more severe. Wrong word should be highest.")]
+    [Tooltip("Higher values identify the stronger normal penalty.")]
     public int priority = 0;
 
+    [Tooltip("When enabled, this penalty is applied even when Use Only Highest Priority Penalty is enabled. Repeated captions and repeated tactics use this so both effects can stack.")]
+    public bool alwaysStack = false;
+
     [Header("Streak Days")]
-    [Tooltip("How many continuous uses are allowed before punishment starts.")]
+    [Tooltip("Number of consecutive uses allowed before the penalty starts. A value of 1 means the second consecutive use is penalized.")]
     public int freeStreakDays = 2;
 
-    [Header("Growth Decay")]
-    [Tooltip("After the free streak, growth multiplier uses e^(-decay * extra streak).")]
+    [Header("Exponential Growth Reduction")]
+    [Tooltip("Growth multiplier uses e^(-Decay Per Extra Day x Extra Repeats). Larger values reduce follower growth faster.")]
     public float decayPerExtraDay = 0.25f;
 
-    [Tooltip("Lowest growth multiplier for this penalty. Can be negative if repeated mistakes should lose followers/money.")]
+    [Tooltip("Lowest follower-growth multiplier this penalty can reach.")]
     public float minGrowthMultiplier = 0.1f;
 
-    [Header("Exponential Metric Loss")]
-    [Tooltip("How fast the direct metric loss grows after the free streak.")]
+    [Header("Exponential Direct Metric Loss")]
+    [Tooltip("Direct losses use Base Loss x (e^(Exponential Penalty Growth x Extra Repeats) - 1).")]
     public float exponentialPenaltyGrowth = 0.3f;
 
-    [Tooltip("Base follower loss. Final loss = base * (e^(growth * extra streak) - 1).")]
     public float followerLossBase = 2f;
-
-    [Tooltip("Base money loss. Final loss = base * (e^(growth * extra streak) - 1).")]
     public float moneyLossBase = 0f;
-
-    [Tooltip("Base credibility loss. Final loss = base * (e^(growth * extra streak) - 1).")]
     public float credibilityLossBase = 1f;
 }
