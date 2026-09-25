@@ -82,10 +82,19 @@ public static class NutriGameCsvImporter {
             
             var so = LoadOrCreate<CommentLineSO>(Path.Combine(OutFolder, "Comments"), r["id"]);
             so.id = r["id"];            
-            if(!Enum.TryParse(r["category"], true, out CommentCategory cat)) cat = CommentCategory.neutral;
+            string category = r["category"];
+            if (string.Equals(category, "supportive", StringComparison.OrdinalIgnoreCase)) category = "positive";
+            if (string.Equals(category, "negative", StringComparison.OrdinalIgnoreCase)) category = "skeptic";
+            if(!Enum.TryParse(category, true, out CommentCategory cat)) cat = CommentCategory.neutral;
             so.category = cat;
             so.text = r["text"];
             so.type = r["type"];
+            so.topicId = r.GetOrDefault("topicId", "").Trim();
+            so.subTopicId = r.GetOrDefault("subTopicId", "").Trim();
+            so.captionTemplateId = r.GetOrDefault("captionTemplateId", "").Trim();
+            if (!Enum.TryParse(r.GetOrDefault("reaction", "Any"), true, out CommentReaction reaction))
+                reaction = CommentReaction.Any;
+            so.reaction = reaction;
             so.commenterName = r["commenterName"];            
             EditorUtility.SetDirty(so);
         }

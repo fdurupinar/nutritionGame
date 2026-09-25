@@ -624,7 +624,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -894,7 +894,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1329,10 +1329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You achieved the rarest result: money, trust, and influence at the same
-    time. Your content reaches a large audience without relying on manipulation.
-    People follow you because they believe you, and your platform becomes both successful
-    and respected.'
+  m_text: 'You achieved the rarest result: money, trust, and influence at the same time. Your content reaches a large audience without relying on manipulation. People follow you because they believe you, and your platform becomes both successful and respected.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1382,7 +1379,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -3157,7 +3154,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -3697,7 +3694,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4111,7 +4108,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4459,7 +4456,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4546,7 +4543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Food for Thoughts
+  m_text: Food for Thought
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5094b715585444e90b7306721788dae5, type: 2}
   m_sharedMaterial: {fileID: 2393364598115949451, guid: 5094b715585444e90b7306721788dae5, type: 2}
@@ -4596,7 +4593,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4736,7 +4733,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -5287,7 +5284,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -5758,7 +5755,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -5895,7 +5892,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -6309,7 +6306,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -7187,7 +7184,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -8239,7 +8236,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -8813,8 +8810,7 @@ MonoBehaviour:
   responsibleInfluencerMinFollowers: 12000
   paidLiesMinMoney: 1700
   paidLiesCredibilityBelow: 40
-  unclearLegacyConditionNote: 'Default fallback: triggers when none of Index 0-10
-    conditions match.'
+  unclearLegacyConditionNote: 'Default fallback: triggers when none of Index 0-10 conditions match.'
   storySlots:
   - lockedGameObject: {fileID: 783638916}
     unlockedGameObject: {fileID: 191032796}
@@ -9204,6 +9200,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -9887,7 +9884,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -10258,7 +10255,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -10474,7 +10471,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -10860,66 +10857,7 @@ MonoBehaviour:
       max: 100
   saveCsvFiles: 1
   saveDetailedRunCsv: 1
-  lastReport: "============================================================\r\nTEENAGER
-    ENDING SIMULATION REPORT\r\n============================================================\r\nSimulation
-    runs: 10000\r\nDays per run: 31\r\nSeed used: 14456187\r\nProfile selection:
-    WeightedPopulation\r\nStarting metrics: Money 1000, Followers 0, Credibility
-    100\r\nFormula profile: MisinformationMetricFormulaProfile\r\nEnding resolver:
-    Game EndingStoryCollectionPanel\r\n\r\nOVERALL ENDING COUNTS\r\n------------------------------------------------------------\r\n01.
-    Trust Collapse: 622 / 10000 (6.22%)\r\n02. Forgotten: 262 / 10000 (2.62%)\r\n03.
-    Noise Empire: 717 / 10000 (7.17%)\r\n04. Viral Beast: 719 / 10000 (7.19%)\r\n05.
-    Quiet Cash: 705 / 10000 (7.05%)\r\n06. Broke Star: 686 / 10000 (6.86%)\r\n07.
-    Powerhouse: 547 / 10000 (5.47%)\r\n08. Trusted: 784 / 10000 (7.84%)\r\n09. Honest
-    Path: 829 / 10000 (8.29%)\r\n10. Responsible Influencer: 1474 / 10000 (14.74%)\r\n11.
-    Paid Lies: 839 / 10000 (8.39%)\r\n12. Unclear Legacy: 1816 / 10000 (18.16%)\r\n\r\nResolved
-    runs: 10000 / 10000\r\n\r\nOVERALL FINAL METRIC AVERAGES\r\n------------------------------------------------------------\r\nAverage
-    Money: 1676.5\r\nAverage Followers: 20704.5\r\nAverage Credibility: 71.3\r\nAverage
-    Fact Checks: 0.15\r\nAverage Job Rewards: 4.42\r\nRuns that reached Credibility
-    0: 622\r\n\r\nRESULTS BY TEENAGER PROFILE\r\n------------------------------------------------------------\r\n[Reckless
-    Doomscroller]\r\nRuns: 621\r\nAverage final metrics: Money 1396.9, Followers
-    1296.5, Credibility 0.0\r\nAverage Fact Checks: 1.27, Average Job Rewards: 4.41\r\nCredibility-0
-    runs: 621\r\n  Trust Collapse: 621 (100.0%)\r\n\r\n[Disengaged Poster]\r\nRuns:
-    626\r\nAverage final metrics: Money 1044.6, Followers 1099.9, Credibility 45.3\r\nAverage
-    Fact Checks: 0.01, Average Job Rewards: 0.00\r\nCredibility-0 runs: 0\r\n  Unclear
-    Legacy: 364 (58.1%)\r\n  Forgotten: 262 (41.9%)\r\n\r\n[Outrage Entrepreneur]\r\nRuns:
-    809\r\nAverage final metrics: Money 2278.2, Followers 33201.1, Credibility 35.8\r\nAverage
-    Fact Checks: 0.00, Average Job Rewards: 8.74\r\nCredibility-0 runs: 0\r\n  Noise
-    Empire: 716 (88.5%)\r\n  Paid Lies: 86 (10.6%)\r\n  Viral Beast: 7 (0.9%)\r\n\r\n[Viral
-    Attention Seeker]\r\nRuns: 784\r\nAverage final metrics: Money 1391.2, Followers
-    33623.7, Credibility 35.7\r\nAverage Fact Checks: 0.01, Average Job Rewards:
-    0.30\r\nCredibility-0 runs: 0\r\n  Viral Beast: 712 (90.8%)\r\n  Unclear Legacy:
-    71 (9.1%)\r\n  Noise Empire: 1 (0.1%)\r\n\r\n[Quiet Side Hustler]\r\nRuns: 723\r\nAverage
-    final metrics: Money 2235.2, Followers 4897.8, Credibility 98.8\r\nAverage Fact
-    Checks: 0.00, Average Job Rewards: 10.92\r\nCredibility-0 runs: 0\r\n  Quiet
-    Cash: 705 (97.5%)\r\n  Unclear Legacy: 17 (2.4%)\r\n  Honest Path: 1 (0.1%)\r\n\r\n[Popular
-    but Unmonetized]\r\nRuns: 686\r\nAverage final metrics: Money 1417.9, Followers
-    47575.4, Credibility 99.8\r\nAverage Fact Checks: 0.00, Average Job Rewards:
-    0.00\r\nCredibility-0 runs: 0\r\n  Broke Star: 686 (100.0%)\r\n\r\n[Disciplined
-    Creator]\r\nRuns: 551\r\nAverage final metrics: Money 2441.9, Followers 52970.8,
-    Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 9.45\r\nCredibility-0
-    runs: 0\r\n  Powerhouse: 547 (99.3%)\r\n  Trusted: 4 (0.7%)\r\n\r\n[Careful Community
-    Builder]\r\nRuns: 982\r\nAverage final metrics: Money 1557.9, Followers 26056.8,
-    Credibility 99.7\r\nAverage Fact Checks: 0.00, Average Job Rewards: 3.05\r\nCredibility-0
-    runs: 0\r\n  Trusted: 722 (73.5%)\r\n  Unclear Legacy: 260 (26.5%)\r\n\r\n[Honest
-    Low Reach Student]\r\nRuns: 826\r\nAverage final metrics: Money 1110.6, Followers
-    8279.4, Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 0.00\r\nCredibility-0
-    runs: 0\r\n  Honest Path: 826 (100.0%)\r\n\r\n[Balanced Everyday Creator]\r\nRuns:
-    1450\r\nAverage final metrics: Money 1720.0, Followers 14167.8, Credibility 98.7\r\nAverage
-    Fact Checks: 0.00, Average Job Rewards: 5.54\r\nCredibility-0 runs: 0\r\n  Responsible
-    Influencer: 1319 (91.0%)\r\n  Unclear Legacy: 129 (8.9%)\r\n  Honest Path: 2
-    (0.1%)\r\n\r\n[Sponsored Rumor Pusher]\r\nRuns: 766\r\nAverage final metrics:
-    Money 2386.7, Followers 15045.5, Credibility 23.6\r\nAverage Fact Checks: 0.86,
-    Average Job Rewards: 10.87\r\nCredibility-0 runs: 1\r\n  Paid Lies: 753 (98.3%)\r\n 
-    Unclear Legacy: 12 (1.6%)\r\n  Trust Collapse: 1 (0.1%)\r\n\r\n[Inconsistent
-    Experimenter]\r\nRuns: 1176\r\nAverage final metrics: Money 1365.6, Followers
-    19108.5, Credibility 77.3\r\nAverage Fact Checks: 0.00, Average Job Rewards:
-    1.48\r\nCredibility-0 runs: 0\r\n  Unclear Legacy: 963 (81.9%)\r\n  Responsible
-    Influencer: 155 (13.2%)\r\n  Trusted: 58 (4.9%)\r\n\r\nINTERPRETATION NOTE\r\n------------------------------------------------------------\r\nThe
-    default profiles are deliberately different balance-test archetypes.\r\nTheir
-    probabilities and Population Weights are design assumptions, not scientific predictions
-    of real teenagers.\r\nChange the profile probabilities and weights in the Inspector
-    to model your intended player audience.\r\nEvery simulation run resolves to exactly
-    one of the 12 endings; Unclear Legacy is the default fallback.\r\n============================================================\r\n"
+  lastReport: "============================================================\r\nTEENAGER ENDING SIMULATION REPORT\r\n============================================================\r\nSimulation runs: 10000\r\nDays per run: 31\r\nSeed used: 14456187\r\nProfile selection: WeightedPopulation\r\nStarting metrics: Money 1000, Followers 0, Credibility 100\r\nFormula profile: MisinformationMetricFormulaProfile\r\nEnding resolver: Game EndingStoryCollectionPanel\r\n\r\nOVERALL ENDING COUNTS\r\n------------------------------------------------------------\r\n01. Trust Collapse: 622 / 10000 (6.22%)\r\n02. Forgotten: 262 / 10000 (2.62%)\r\n03. Noise Empire: 717 / 10000 (7.17%)\r\n04. Viral Beast: 719 / 10000 (7.19%)\r\n05. Quiet Cash: 705 / 10000 (7.05%)\r\n06. Broke Star: 686 / 10000 (6.86%)\r\n07. Powerhouse: 547 / 10000 (5.47%)\r\n08. Trusted: 784 / 10000 (7.84%)\r\n09. Honest Path: 829 / 10000 (8.29%)\r\n10. Responsible Influencer: 1474 / 10000 (14.74%)\r\n11. Paid Lies: 839 / 10000 (8.39%)\r\n12. Unclear Legacy: 1816 / 10000 (18.16%)\r\n\r\nResolved runs: 10000 / 10000\r\n\r\nOVERALL FINAL METRIC AVERAGES\r\n------------------------------------------------------------\r\nAverage Money: 1676.5\r\nAverage Followers: 20704.5\r\nAverage Credibility: 71.3\r\nAverage Fact Checks: 0.15\r\nAverage Job Rewards: 4.42\r\nRuns that reached Credibility 0: 622\r\n\r\nRESULTS BY TEENAGER PROFILE\r\n------------------------------------------------------------\r\n[Reckless Doomscroller]\r\nRuns: 621\r\nAverage final metrics: Money 1396.9, Followers 1296.5, Credibility 0.0\r\nAverage Fact Checks: 1.27, Average Job Rewards: 4.41\r\nCredibility-0 runs: 621\r\n  Trust Collapse: 621 (100.0%)\r\n\r\n[Disengaged Poster]\r\nRuns: 626\r\nAverage final metrics: Money 1044.6, Followers 1099.9, Credibility 45.3\r\nAverage Fact Checks: 0.01, Average Job Rewards: 0.00\r\nCredibility-0 runs: 0\r\n  Unclear Legacy: 364 (58.1%)\r\n  Forgotten: 262 (41.9%)\r\n\r\n[Outrage Entrepreneur]\r\nRuns: 809\r\nAverage final metrics: Money 2278.2, Followers 33201.1, Credibility 35.8\r\nAverage Fact Checks: 0.00, Average Job Rewards: 8.74\r\nCredibility-0 runs: 0\r\n  Noise Empire: 716 (88.5%)\r\n  Paid Lies: 86 (10.6%)\r\n  Viral Beast: 7 (0.9%)\r\n\r\n[Viral Attention Seeker]\r\nRuns: 784\r\nAverage final metrics: Money 1391.2, Followers 33623.7, Credibility 35.7\r\nAverage Fact Checks: 0.01, Average Job Rewards: 0.30\r\nCredibility-0 runs: 0\r\n  Viral Beast: 712 (90.8%)\r\n  Unclear Legacy: 71 (9.1%)\r\n  Noise Empire: 1 (0.1%)\r\n\r\n[Quiet Side Hustler]\r\nRuns: 723\r\nAverage final metrics: Money 2235.2, Followers 4897.8, Credibility 98.8\r\nAverage Fact Checks: 0.00, Average Job Rewards: 10.92\r\nCredibility-0 runs: 0\r\n  Quiet Cash: 705 (97.5%)\r\n  Unclear Legacy: 17 (2.4%)\r\n  Honest Path: 1 (0.1%)\r\n\r\n[Popular but Unmonetized]\r\nRuns: 686\r\nAverage final metrics: Money 1417.9, Followers 47575.4, Credibility 99.8\r\nAverage Fact Checks: 0.00, Average Job Rewards: 0.00\r\nCredibility-0 runs: 0\r\n  Broke Star: 686 (100.0%)\r\n\r\n[Disciplined Creator]\r\nRuns: 551\r\nAverage final metrics: Money 2441.9, Followers 52970.8, Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 9.45\r\nCredibility-0 runs: 0\r\n  Powerhouse: 547 (99.3%)\r\n  Trusted: 4 (0.7%)\r\n\r\n[Careful Community Builder]\r\nRuns: 982\r\nAverage final metrics: Money 1557.9, Followers 26056.8, Credibility 99.7\r\nAverage Fact Checks: 0.00, Average Job Rewards: 3.05\r\nCredibility-0 runs: 0\r\n  Trusted: 722 (73.5%)\r\n  Unclear Legacy: 260 (26.5%)\r\n\r\n[Honest Low Reach Student]\r\nRuns: 826\r\nAverage final metrics: Money 1110.6, Followers 8279.4, Credibility 99.9\r\nAverage Fact Checks: 0.00, Average Job Rewards: 0.00\r\nCredibility-0 runs: 0\r\n  Honest Path: 826 (100.0%)\r\n\r\n[Balanced Everyday Creator]\r\nRuns: 1450\r\nAverage final metrics: Money 1720.0, Followers 14167.8, Credibility 98.7\r\nAverage Fact Checks: 0.00, Average Job Rewards: 5.54\r\nCredibility-0 runs: 0\r\n  Responsible Influencer: 1319 (91.0%)\r\n  Unclear Legacy: 129 (8.9%)\r\n  Honest Path: 2 (0.1%)\r\n\r\n[Sponsored Rumor Pusher]\r\nRuns: 766\r\nAverage final metrics: Money 2386.7, Followers 15045.5, Credibility 23.6\r\nAverage Fact Checks: 0.86, Average Job Rewards: 10.87\r\nCredibility-0 runs: 1\r\n  Paid Lies: 753 (98.3%)\r\n  Unclear Legacy: 12 (1.6%)\r\n  Trust Collapse: 1 (0.1%)\r\n\r\n[Inconsistent Experimenter]\r\nRuns: 1176\r\nAverage final metrics: Money 1365.6, Followers 19108.5, Credibility 77.3\r\nAverage Fact Checks: 0.00, Average Job Rewards: 1.48\r\nCredibility-0 runs: 0\r\n  Unclear Legacy: 963 (81.9%)\r\n  Responsible Influencer: 155 (13.2%)\r\n  Trusted: 58 (4.9%)\r\n\r\nINTERPRETATION NOTE\r\n------------------------------------------------------------\r\nThe default profiles are deliberately different balance-test archetypes.\r\nTheir probabilities and Population Weights are design assumptions, not scientific predictions of real teenagers.\r\nChange the profile probabilities and weights in the Inspector to model your intended player audience.\r\nEvery simulation run resolves to exactly one of the 12 endings; Unclear Legacy is the default fallback.\r\n============================================================\r\n"
   lastSummaryCsvPath: C:/Users/Yanyan Wang/AppData/LocalLow/UMass Boston/nutritionGame\TeenagerEndingSimulation_20260720_175020_Summary.csv
   lastDetailedCsvPath: C:/Users/Yanyan Wang/AppData/LocalLow/UMass Boston/nutritionGame\TeenagerEndingSimulation_20260720_175020_DetailedRuns.csv
 --- !u!4 &1411767131
@@ -11562,7 +11500,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -12765,7 +12703,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -12904,7 +12842,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -13613,7 +13551,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -13879,7 +13817,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -14091,7 +14029,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -15192,7 +15130,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1

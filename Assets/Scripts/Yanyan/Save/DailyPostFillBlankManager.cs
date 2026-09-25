@@ -538,7 +538,7 @@ public class DailyPostFillBlankManager : MonoBehaviour
         if (sentenceText == null || currentSentenceData == null) return;
 
         sentenceText.text = BuildDisplaySentence();
-        sentenceText.enableWordWrapping = true;
+        sentenceText.textWrappingMode = TextWrappingModes.Normal;
         sentenceText.richText = true;
         sentenceText.raycastTarget = false;
         sentenceText.alignment = sentenceAlignment;

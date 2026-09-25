@@ -1,29 +1,54 @@
-id,commenterName,category,type,text
-1,WellnessFanatic22,supportive,Emotion,This is so inspiring! Thank you for being brave enough to share your journey! ___
-2,LogicBot,skeptic,Emotion,"A 'before and after' pic isn't evidence. It can be faked with lighting, posture, and just sucking in."
-3,HopefulSoul,supportive,Emotion,I'm literally in tears. This is the sign I've been waiting for. I'm starting this tomorrow!
-4,TiredOfThis,negative,Emotion,This is so irresponsible. You're preying on people's desperation for a quick fix.
-5,BioHackerBro,supportive,Pseudoscience,YES! I've been saying this for ages. It's all about the biovibrational frequencies. So glad someone is finally talking about it!
-6,RealScientist,skeptic,Pseudoscience,'Biovibrational harmonization' is not a recognized scientific term. This is meaningless technobabble.
-7,JustWondering,neutral,Pseudoscience,Can you explain what 'recalibrating the body's quantum field' means in simpler terms?
-8,Debunker_Dan,negative,Pseudoscience,This 'single cause' idea is dangerous. You're telling people to ignore real medical advice for a fad.
-9,TruthSeeker11,supportive,Conspiracy,They are definitely trying to hide this! Thank you for being brave enough to speak the TRUTH! 100%
-10,WhereIsTheProof,skeptic,Conspiracy,"Who is 'they'? Can you name a single person, organization, or study to back this 'cover-up' claim?"
-11,OnTheFence,neutral,Conspiracy,"It's an interesting theory, but seems a bit far-fetched. Not sure what to believe."
-12,AngryUser87,negative,Conspiracy,Not everything is a plot. You're just trying to scare people to get more clicks. Stop it.
-13,MeToo123,supportive,TwistedEvidence,"Wow, I never knew that! It makes so much sense. The ancient ways are always the best."
-14,CiteYourSource,skeptic,TwistedEvidence,Can you please link to the actual study you're 'cherry-picking' from? I'd like to read the full context.
-15,HistoryBuff,negative,TwistedEvidence,Just because something is 'ancient' doesn't mean it's good. We used to use lead as makeup.
-16,Learner21,neutral,TwistedEvidence,I'd never heard of this study before. Going to look it up.
-17,JennysStory,supportive,LogicalFallacy,This is so true! The same thing happened to my aunt's friend. It definitely works!
-18,StatsGuy,skeptic,LogicalFallacy,That's a classic 'correlation vs. causation' fallacy. Just because two things happened at once doesn't mean one caused the other.
-19,PossibleIguess,neutral,LogicalFallacy,That's a crazy story. Wonder if it would work for me.
-20,NotADoctor,negative,LogicalFallacy,This is how bad information spreads. Stop using 'my cousin said' as medical proof.
-21,ReadyToBuy,supportive,FinancialGain,Just ordered mine! Can't wait to start my journey! __ Thanks for the link!
-22,FollowTheMoney,skeptic,FinancialGain,"Ah, so this whole post was just a 10-minute ad to sell your overpriced supplements. Got it."
-23,PricePlz,neutral,FinancialGain,How much does the e-book cost? Is there a discount code?
-24,ScammedOnce,negative,FinancialGain,"This is a straight-up cash grab. You don't care about helping people, you just want their money."
-25,AngryAndy,supportive,Attack,Yes! Call them out! Those 'doctors' are just paid shills. They don't care about our health!
-26,JustTheFacts,skeptic,Attack,"This post doesn't offer any data, it's just a personal attack. Can you address their actual research?"
-27,GrabsPopcorn,neutral,Attack,"Wow, things are getting heated in the wellness space. __"
-28,BeKindPlease,negative,Attack,There's no reason to be so aggressive. It just makes your own argument look weak.
+id,commenterName,category,type,text,topicId,subTopicId,captionTemplateId,reaction
+1,WellnessFanatic22,supportive,Emotion,This is so inspiring! Thank you for being brave enough to share your journey! ___,,,,
+2,LogicBot,skeptic,Emotion,"A 'before and after' pic isn't evidence. It can be faked with lighting, posture, and just sucking in.",,,,
+3,HopefulSoul,supportive,Emotion,I'm literally in tears. This is the sign I've been waiting for. I'm starting this tomorrow!,,,,
+4,TiredOfThis,negative,Emotion,This is so irresponsible. You're preying on people's desperation for a quick fix.,,,,
+5,BioHackerBro,supportive,Pseudoscience,YES! I've been saying this for ages. It's all about the biovibrational frequencies. So glad someone is finally talking about it!,,,,
+6,RealScientist,skeptic,Pseudoscience,'Biovibrational harmonization' is not a recognized scientific term. This is meaningless technobabble.,,,,
+7,JustWondering,neutral,Pseudoscience,Can you explain what 'recalibrating the body's quantum field' means in simpler terms?,,,,
+8,Debunker_Dan,negative,Pseudoscience,This 'single cause' idea is dangerous. You're telling people to ignore real medical advice for a fad.,,,,
+9,TruthSeeker11,supportive,Conspiracy,They are definitely trying to hide this! Thank you for being brave enough to speak the TRUTH! 100%,,,,
+10,WhereIsTheProof,skeptic,Conspiracy,"Who is 'they'? Can you name a single person, organization, or study to back this 'cover-up' claim?",,,,
+11,OnTheFence,neutral,Conspiracy,"It's an interesting theory, but seems a bit far-fetched. Not sure what to believe.",,,,
+12,AngryUser87,negative,Conspiracy,Not everything is a plot. You're just trying to scare people to get more clicks. Stop it.,,,,
+13,MeToo123,supportive,TwistedEvidence,"Wow, I never knew that! It makes so much sense. The ancient ways are always the best.",,,,
+14,CiteYourSource,skeptic,TwistedEvidence,Can you please link to the actual study you're 'cherry-picking' from? I'd like to read the full context.,,,,
+15,HistoryBuff,negative,TwistedEvidence,Just because something is 'ancient' doesn't mean it's good. We used to use lead as makeup.,,,,
+16,Learner21,neutral,TwistedEvidence,I'd never heard of this study before. Going to look it up.,,,,
+17,JennysStory,supportive,LogicalFallacy,This is so true! The same thing happened to my aunt's friend. It definitely works!,,,,
+18,StatsGuy,skeptic,LogicalFallacy,That's a classic 'correlation vs. causation' fallacy. Just because two things happened at once doesn't mean one caused the other.,,,,
+19,PossibleIguess,neutral,LogicalFallacy,That's a crazy story. Wonder if it would work for me.,,,,
+20,NotADoctor,negative,LogicalFallacy,This is how bad information spreads. Stop using 'my cousin said' as medical proof.,,,,
+21,ReadyToBuy,supportive,FinancialGain,Just ordered mine! Can't wait to start my journey! __ Thanks for the link!,,,,
+22,FollowTheMoney,skeptic,FinancialGain,"Ah, so this whole post was just a 10-minute ad to sell your overpriced supplements. Got it.",,,,
+23,PricePlz,neutral,FinancialGain,How much does the e-book cost? Is there a discount code?,,,,
+24,ScammedOnce,negative,FinancialGain,"This is a straight-up cash grab. You don't care about helping people, you just want their money.",,,,
+25,AngryAndy,supportive,Attack,Yes! Call them out! Those 'doctors' are just paid shills. They don't care about our health!,,,,
+26,JustTheFacts,skeptic,Attack,"This post doesn't offer any data, it's just a personal attack. Can you address their actual research?",,,,
+27,GrabsPopcorn,neutral,Attack,"Wow, things are getting heated in the wellness space. __",,,,
+28,BeKindPlease,negative,Attack,There's no reason to be so aggressive. It just makes your own argument look weak.,,,,
+context_diet_1,FoodForThought,skeptic,,What evidence supports the claim about {subtopic}? A convincing caption alone is not enough.,diet,,,Any
+context_diet_2,EverydayEater,skeptic,,"Does this advice apply to everyone, or only to certain people?",diet,,,Any
+context_mom_child_1,CarefulParent,skeptic,,"Before sharing this about {subtopic}, I want a reliable source.",mom_child,,,Any
+context_mom_child_2,FamilyQuestions,skeptic,,Advice involving children needs more context than a short post.,mom_child,,,Any
+context_disease_1,EvidenceFirst,skeptic,,What research connects {subtopic} to the health outcome you are claiming?,disease,,,Any
+context_disease_2,CheckTheClaim,skeptic,,A confident prevention claim needs evidence and a clear explanation of its limits.,disease,,,Any
+context_food_1,KitchenQuestions,skeptic,,"For {subtopic}, what is the actual risk and where did that information come from?",food,,,Any
+context_food_2,SourceChecker,skeptic,,Is this a documented food-safety concern or just a frightening story?,food,,,Any
+context_supp_1,LabelReader,skeptic,,What evidence supports this claim about {subtopic}?,supp,,,Any
+context_supp_2,BeforeIBuy,skeptic,,Are there limitations or risks missing from this supplement post?,supp,,,Any
+context_weight_1,ContextMatters,skeptic,,Does the claim about {subtopic} account for differences between people?,weight,,,Any
+context_weight_2,BeyondTheHeadline,skeptic,,I would like evidence beyond a dramatic weight-loss claim.,weight,,,Any
+reaction_clear_1,CuriousReader,neutral,,"I understand the point about {subtopic}, but I still want to check the evidence.",,,,ClearCaption
+reaction_clear_2,CaughtMyEye,neutral,,This is persuasive at first glance. I should verify it before sharing.,,,,ClearCaption
+reaction_clear_3,ReadItTwice,neutral,,The wording gets the message across. Does the evidence support it?,,,,ClearCaption
+reaction_words_1,LostReader,skeptic,,The words in this caption do not make sense together. What are you trying to say?,,,,ConfusingWords
+reaction_words_2,PleaseExplain,skeptic,,I cannot follow the claim about {subtopic}. Could you rewrite it more clearly?,,,,ConfusingWords
+reaction_words_3,ReadAgain,skeptic,,I reread the caption and the wording still does not explain the claim.,,,,ConfusingWords
+reaction_tactic_1,NotConvinced,skeptic,,The way this claim is framed does not support the point about {subtopic}.,,,,PoorTacticFit
+reaction_tactic_2,MissingConnection,skeptic,,I do not see how this argument supports the caption. What is the connection?,,,,PoorTacticFit
+reaction_tactic_3,ArgumentCheck,skeptic,,This persuasion approach feels out of place for the claim being made.,,,,PoorTacticFit
+caption_genz_vegetables,VeggieQuestions,skeptic,,Why does this caption single out vegetables? Where is the evidence for that claim?,diet,carnivore,carnivore_fear_01,Any
+context_general_1,SourcePlease,neutral,,Can you share the source for this claim?,,,,Any
+context_general_2,PauseBeforeSharing,neutral,,I will check the evidence before passing this along.,,,,Any
+context_general_3,MoreContext,neutral,,What context is missing from this post?,,,,Any

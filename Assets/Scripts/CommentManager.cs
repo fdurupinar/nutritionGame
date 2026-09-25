@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using System.Diagnostics;
 
 public class CommentManager : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public class CommentManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _commentDelay = 0.2f;
     [SerializeField] private float _typewriterSpeed = 60f;
+    [SerializeField, Min(1)] private int _commentsPerPost = 4;
 
     // 【需要你修改】在 Inspector 里设置两种交替的颜色
     [SerializeField] private Color _usernameColor1 = new Color(0.36f, 0.68f, 0.89f, 1f); // 默认淡蓝
@@ -35,9 +35,9 @@ public class CommentManager : MonoBehaviour
         }
 
         // Clear the comment box at the start
-        _commentBox.text = string.Empty;
+        if (_commentBox != null) _commentBox.text = string.Empty;
 
-        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        _audioManager = FindFirstObjectByType<AudioManager>();
         LoadComments();
     }
 
@@ -58,10 +58,16 @@ public class CommentManager : MonoBehaviour
 
     public IEnumerator DisplayCommentsRoutine(string type, float delay)
     {
-        StringBuilder builder = new StringBuilder();
-        List<CommentLineSO> commentsWithType = new List<CommentLineSO>();
+        return DisplayCommentsRoutine(new PostCommentContext { tacticType = type }, delay);
+    }
 
-        commentsWithType = _commentsList.FindAll(comment => comment.type == type);
+    public IEnumerator DisplayCommentsRoutine(PostCommentContext context, float delay)
+    {
+        if (_commentBox == null) yield break;
+        if (_commentsList == null) LoadComments();
+        StringBuilder builder = new StringBuilder();
+        var commentsWithType = PostCommentSelector.Select(_commentsList, context, _commentsPerPost);
+        _commentBox.text = string.Empty;
 
         // Wait for the specified delay before adding the next comment
         yield return new WaitForSeconds(delay);
@@ -87,7 +93,7 @@ public class CommentManager : MonoBehaviour
             useColor1 = !useColor1;
 
             // 动态应用计算出的颜色
-            builder.Append($"<color={colorHex}><b>@{comment.commenterName}:</b></color> {comment.text}");
+            builder.Append($"<color={colorHex}><b>@{comment.commenterName}:</b></color> {PostCommentSelector.RenderText(comment, context)}");
 
             // Update the text box with the new cumulative text
             _commentBox.text = builder.ToString();
@@ -96,7 +102,7 @@ public class CommentManager : MonoBehaviour
             int totalCharacters = _commentBox.textInfo.characterCount;
             int currentVisible = _commentBox.maxVisibleCharacters;
 
-            _audioManager.PlayCommentNotification();
+            if (_audioManager != null) _audioManager.PlayCommentNotification();
 
             while (currentVisible < totalCharacters)
             {
@@ -140,7 +146,7 @@ public class CommentManager : MonoBehaviour
     {
         // If a scroll is requested, execute it here and reset the flag.
         // This is the most reliable way to scroll after the UI layout has been updated.
-        if (_needsScrollToBottom)
+        if (_needsScrollToBottom && _scrollRect != null)
         {
             Canvas.ForceUpdateCanvases();
             _scrollRect.verticalNormalizedPosition = 0f;

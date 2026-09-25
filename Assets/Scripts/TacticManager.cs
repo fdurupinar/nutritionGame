@@ -357,7 +357,7 @@ public class TacticManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SpeakAndShowComments(TacticSO selectedTactic, string postTextToShow)
+    private IEnumerator SpeakAndShowComments(TacticSO selectedTactic, PostCommentContext commentContext)
     {
         if (selectedTactic == null)
         {
@@ -373,7 +373,7 @@ public class TacticManager : MonoBehaviour
         if (_commentManager != null)
         {
             // 中文备注：直接等待评论协程结束，确保指标动画一定在所有帖子动画完成后才开始。
-            yield return StartCoroutine(_commentManager.DisplayCommentsRoutine(selectedTactic.type, 0f));
+            yield return StartCoroutine(_commentManager.DisplayCommentsRoutine(commentContext, 0f));
         }
     }
 
@@ -580,6 +580,20 @@ public class TacticManager : MonoBehaviour
         PostMetricPreview preparedPreview)
     {
         int requestId = _displayRequestId;
+        // Use the same preview as scoring and capture the composed post once.
+        var commentContext = new PostCommentContext
+        {
+            tacticType = selectedTactic.type,
+            tacticId = selectedTactic.GetTacticId(),
+            tacticName = selectedTactic.displayName,
+            topicId = dailyPostFillBlankManager?.currentTopicId,
+            topicName = dailyPostFillBlankManager?.currentTopicData?.topicName,
+            subTopicId = dailyPostFillBlankManager?.currentSubTopicData?.subTopicId,
+            subTopicName = dailyPostFillBlankManager?.currentSubTopicData?.subTopicName,
+            captionTemplateId = dailyPostFillBlankManager?.currentSentenceData?.captionTemplateId,
+            completedCaption = postTextToShow,
+            metrics = useMisinformationMetricFormula ? preparedPreview : null
+        };
 
         // 1. 帖子文字动画
         _displayTextRoutine = StartCoroutine(DisplayTextCC(postTextToShow, requestId));
@@ -587,7 +601,7 @@ public class TacticManager : MonoBehaviour
         _displayTextRoutine = null;
 
         // 2. 评论动画
-        _speakAndCommentRoutine = StartCoroutine(SpeakAndShowComments(selectedTactic, postTextToShow));
+        _speakAndCommentRoutine = StartCoroutine(SpeakAndShowComments(selectedTactic, commentContext));
         yield return _speakAndCommentRoutine;
         _speakAndCommentRoutine = null;
 

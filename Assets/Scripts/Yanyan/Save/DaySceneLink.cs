@@ -38,6 +38,22 @@ public class DaySceneLink : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        // Home and Game can be opened directly in the editor, without Main Page.
+        // Create missing session managers before any scene UI runs Start.
+        // Existing scene managers may not have run Awake yet, so check for them too.
+        if (DayManager.Instance == null && FindFirstObjectByType<DayManager>() == null)
+        {
+            new GameObject("DayManager").AddComponent<DayManager>();
+        }
+
+        if (GlobalStatManager.Instance == null && FindFirstObjectByType<GlobalStatManager>() == null)
+        {
+            new GameObject("GlobalStatManager").AddComponent<GlobalStatManager>();
+        }
+    }
+
     private void Start()
     {
         if (DayManager.Instance == null)
