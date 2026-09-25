@@ -7,6 +7,7 @@ public class TacticHintPanel : MonoBehaviour
 {
     [Header("Hint Button")]
     public Button hintButton;
+    public DailyPostFillBlankManager captionManager;
 
     [Header("Hint Panel")]
     public GameObject hintPanel;
@@ -72,26 +73,15 @@ public class TacticHintPanel : MonoBehaviour
 
         if (hintText != null)
         {
-            if (currentSelectedCard == null)
-            {
-                hintText.text = "Select a tactic card first.";
-            }
-            else
-            {
-                TacticSO tactic = currentSelectedCard.TacticData;
-
-                if (tactic != null && !string.IsNullOrWhiteSpace(tactic.hintText))
-                {
-                    hintText.text = tactic.hintText;
-                }
-                else
-                {
-                    hintText.text = "No hint available.";
-                }
-            }
+            hintText.text = TacticExplorer.Describe(currentSelectedCard != null ? currentSelectedCard.TacticData : null);
+            if (!string.IsNullOrWhiteSpace(captionManager?.currentCompletedSentence))
+                hintText.text = "<b>YOUR POST</b>\n" + TacticExplorer.Escape(captionManager.currentCompletedSentence) + "\n\n" + hintText.text;
         }
 
         hintPanel.SetActive(true);
+        Canvas.ForceUpdateCanvases();
+        var reading = hintPanel.GetComponentInChildren<ScrollRect>();
+        if (reading != null) { reading.StopMovement(); reading.verticalNormalizedPosition = 1f; }
 
         if (hintPanelRect == null)
         {

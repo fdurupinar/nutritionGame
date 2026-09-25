@@ -68,14 +68,14 @@ MonoBehaviour:
   m_text: Food Safety
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11aa33098a5104d3a966062c80ea6242, type: 2}
-  m_sharedMaterial: {fileID: -5007076229144347080, guid: 11aa33098a5104d3a966062c80ea6242, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 8ee72d3df85e547cea3e61a24f0fa667, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0.16078432, g: 0.13725491, b: 0.21960784, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 1
-  m_fontSizeMax: 72
+  m_fontSizeMin: 24
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1

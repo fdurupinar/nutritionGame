@@ -29,6 +29,7 @@ public class TacticManager : MonoBehaviour
     [SerializeField] private List<TacticSO> _allTactics;
     [SerializeField] private List<TacticSO> _currentTactics;
     private Card _currentlySelectedCard;
+    public TacticSO SelectedTactic => _currentlySelectedCard != null ? _currentlySelectedCard.TacticData : null;
 
     [Header("Publish Settings")]
     [SerializeField] private GameObject _contentPanel;
@@ -294,6 +295,7 @@ public class TacticManager : MonoBehaviour
     {
         if (TacticPanel != null) TacticPanel.SetActive(false);
         _currentlySelectedCard = null;
+        if (tacticHintPanel != null) tacticHintPanel.ClearSelectedCard();
     }
 
     public void PopulateGrid()
@@ -355,6 +357,7 @@ public class TacticManager : MonoBehaviour
                 tacticHintPanel.SetSelectedCard(_currentlySelectedCard);
             }
         }
+        if (TacticPanel != null) TacticPanel.GetComponent<TacticExplorer>()?.Refresh();
     }
 
     private IEnumerator SpeakAndShowComments(TacticSO selectedTactic, PostCommentContext commentContext)

@@ -68,14 +68,14 @@ MonoBehaviour:
   m_text: Food Safety
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
-  m_sharedMaterial: {fileID: 3241832977246249860, guid: 3401f53a38bcd41beba57f7d57067be4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 1f4f94dd91f244de6a32570b83d65d1c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.16078432, g: 0.13725491, b: 0.21960784, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -96,8 +96,8 @@ MonoBehaviour:
   m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 24
+  m_fontSizeMax: 34
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
+  m_ActiveFontFeatures: 6e72656bu
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonClickSound
   customClickSound: {fileID: 0}
+  playLockedSoundWhenNotInteractable: 1
+  customLockedSound: {fileID: 0}
 --- !u!114 &6944923732308831553
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,3 +21,9 @@ No C# compilation errors or runtime exceptions were found in the verification lo
 Observed presentation issues: the caption-stage button reads Post although it proceeds to tactic selection; some cat positions still show text placeholders; the published caption appears crowded/clipped between the image and comment area. These did not block the tested flow and were not changed during verification.
 
 Scope: one complete post cycle, coach Revise, direct Home startup and daily gating. Other topics/tactics, coach Continue Anyway, job acceptance/rewards, final-day endings and standalone builds were not exercised.
+
+## Tactic exploration and caption readability (2026-09-25)
+
+Replaced the ambiguous tactic heading with an exploration prompt, kept the composed caption visible, and added a scrollable explanation with reflection questions and authored tactic descriptions. The existing publish action now reads “Publish post” and is disabled without a selected, unlocked card. Browsing does not apply scores or rewrite captions.
+
+Verified in Unity Play Mode: caption-to-tactic flow, card selection and deselection, publish availability, explanation opening, scrolling, and closing. Checked dark caption text on the existing yellow prefab buttons; word-choice text retains its compact size and uses a subtle raised shadow. Final publishing and metric changes were not rerun. Temporary diagnostic helpers were removed.

@@ -143,37 +143,18 @@ public class Card : MonoBehaviour
 
     public Color GetColorForTactic()
     {
-        if (_tacticData == null || string.IsNullOrWhiteSpace(_tacticData.type))
-            return Color.white;
+        return GamePalette.Secondary;
+    }
 
-        string type = _tacticData.type.ToLower();
-
-        switch (type)
-        {
-            case "emotion":
-                return new Color32(242, 195, 185, 255);
-
-            case "attack":
-                return new Color32(210, 224, 211, 255);
-
-            case "conspiracy":
-                return new Color32(240, 221, 214, 255);
-
-            case "financialgain":
-                return new Color32(245, 232, 199, 255);
-
-            case "twistedevidence":
-                return new Color32(151, 179, 174, 255);
-
-            case "pseudoscience":
-                return new Color32(214, 229, 240, 255);
-
-            case "logicalfallacy":
-                return new Color32(230, 220, 245, 255);
-
-            default:
-                return Color.white;
-        }
+    private void ApplySelectionColors(bool selected)
+    {
+        Color surface = selected ? GamePalette.Primary : GamePalette.Secondary;
+        var front = GetComponent<Image>();
+        if (front != null) front.color = surface;
+        var back = transform.Find("CardBack");
+        if (back != null && back.TryGetComponent<Image>(out var backImage)) backImage.color = surface;
+        foreach (var label in GetComponentsInChildren<TextMeshProUGUI>(true))
+            label.color = selected ? GamePalette.OnPrimary : GamePalette.Text;
     }
 
     public void OnCardClicked()
@@ -200,6 +181,7 @@ public class Card : MonoBehaviour
         if (!_canSelect)
             return;
 
+        ApplySelectionColors(true);
         if (_selectionOutline != null)
         {
             _selectionOutline.SetActive(true);
@@ -208,6 +190,7 @@ public class Card : MonoBehaviour
 
     public void Deselect()
     {
+        ApplySelectionColors(false);
         if (_selectionOutline != null)
         {
             _selectionOutline.SetActive(false);
