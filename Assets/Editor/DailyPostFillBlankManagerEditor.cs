@@ -11,13 +11,13 @@ public class DailyPostFillBlankManagerEditor : Editor
 
         EditorGUILayout.Space(8f);
         EditorGUILayout.LabelField("Daily Post JSON Tool", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("Open the JSON editor. The new JSON structure is Topic > Subtopic > Caption. Captions contain ordered blank scoring and caption-level tactic fit.", MessageType.Info);
+        EditorGUILayout.HelpBox("Choose a caption, then add full-credit or partial-credit answers for each blank.", MessageType.Info);
 
         DailyPostFillBlankManager manager = (DailyPostFillBlankManager)target;
 
         using (new EditorGUI.DisabledScope(manager.dailyPostJsonFile == null))
         {
-            if (GUILayout.Button("Open Daily Post JSON Editor"))
+            if (GUILayout.Button("Edit Captions & Answers"))
             {
                 DailyPostJsonEditorWindow.OpenWithFile(manager.dailyPostJsonFile);
             }

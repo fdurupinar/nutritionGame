@@ -1,0 +1,547 @@
+[
+  {
+    "id": "carnivore_fear_01",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "The Gen-Z Diet",
+    "subtopicId": "carnivore",
+    "caption": "If your [friends] still eat vegetables, they may never unlock the real [energy] of the Gen-Z diet.",
+    "path": "Assets/Food for Thought Images/Captions/diet/carnivore/carnivore_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two college-age friends at a lunch table, one looking doubtfully between a plate of vegetables and a plate with a steak; a phone with a large question mark sits between them. Underlying caption context (do not render as text): If your [friends] still eat vegetables, they may never unlock the real [energy] of the Gen-Z diet."
+  },
+  {
+    "id": "carnivore_conspiracy_02",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "The Gen-Z Diet",
+    "subtopicId": "carnivore",
+    "caption": "They keep mocking [carnivore] because they do not want young people to discover [freedom].",
+    "path": "Assets/Food for Thought Images/Captions/diet/carnivore/carnivore_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A college-age person holds a plate of steak beside a phone showing opposing speech bubbles and question marks, conveying an online argument about a meat-only diet. Underlying caption context (do not render as text): They keep mocking [carnivore] because they do not want young people to discover [freedom]."
+  },
+  {
+    "id": "carnivore_social_03",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "The Gen-Z Diet",
+    "subtopicId": "carnivore",
+    "caption": "Thousands of students are trying [raw steak] week because the [trend] is exploding online.",
+    "path": "Assets/Food for Thought Images/Captions/diet/carnivore/carnivore_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Three college-age students look at a phone with a steak photo and many heart icons; a plate of raw steak remains untouched on the table. Nobody eats raw meat. Underlying caption context (do not render as text): Thousands of students are trying [raw steak] week because the [trend] is exploding online."
+  },
+  {
+    "id": "fasting_fear_01",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Extreme Fasting Rules",
+    "subtopicId": "fasting",
+    "caption": "If you eat before [noon], your body may never enter true [repair] mode.",
+    "path": "Assets/Food for Thought Images/Captions/diet/fasting/fasting_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A worried young adult at a breakfast table with untouched toast, looking at a wall clock near noon; a small question-mark thought bubble. No weight-loss imagery. Underlying caption context (do not render as text): If you eat before [noon], your body may never enter true [repair] mode."
+  },
+  {
+    "id": "fasting_conspiracy_02",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Extreme Fasting Rules",
+    "subtopicId": "fasting",
+    "caption": "The food industry fears [fasting] because hungry people are harder to [control].",
+    "path": "Assets/Food for Thought Images/Captions/diet/fasting/fasting_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A young adult compares a food advertisement on a phone with an empty lunch plate; question-mark speech bubbles indicate a disputed claim. Underlying caption context (do not render as text): The food industry fears [fasting] because hungry people are harder to [control]."
+  },
+  {
+    "id": "fasting_social_03",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Extreme Fasting Rules",
+    "subtopicId": "fasting",
+    "caption": "Everyone is doing the [36-hour] reset, and people who eat normally are falling [behind].",
+    "path": "Assets/Food for Thought Images/Captions/diet/fasting/fasting_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A young adult sees several phone notifications featuring clock icons while holding a normal lunch; peer pressure is conveyed by questioning expressions, not praise for fasting. Underlying caption context (do not render as text): Everyone is doing the [36-hour] reset, and people who eat normally are falling [behind]."
+  },
+  {
+    "id": "clean_fear_01",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Clean Eating Exclusivity",
+    "subtopicId": "clean_eating",
+    "caption": "One bite of [processed food] could undo all your clean eating [progress].",
+    "path": "Assets/Food for Thought Images/Captions/diet/clean_eating/clean_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A young adult hesitates over a packaged snack while a balanced plate sits nearby; a worried thought bubble containing a question mark. Do not mark foods as morally good or bad. Underlying caption context (do not render as text): One bite of [processed food] could undo all your clean eating [progress]."
+  },
+  {
+    "id": "clean_conspiracy_02",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Clean Eating Exclusivity",
+    "subtopicId": "clean_eating",
+    "caption": "They call it [clean eating] extreme because they profit when we stay [dependent].",
+    "path": "Assets/Food for Thought Images/Captions/diet/clean_eating/clean_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone displaying a leafy food photo and confusing speech bubbles sits between a grocery bag and a person with a skeptical expression. Underlying caption context (do not render as text): They call it [clean eating] extreme because they profit when we stay [dependent]."
+  },
+  {
+    "id": "clean_social_03",
+    "topic": "General Dietary Patterns",
+    "topicId": "diet",
+    "subtopic": "Clean Eating Exclusivity",
+    "subtopicId": "clean_eating",
+    "caption": "People with real discipline are switching to [clean plates] while everyone else eats [junk].",
+    "path": "Assets/Food for Thought Images/Captions/diet/clean_eating/clean_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Friends compare lunch photos on their phones at a table with varied meals; one looks excluded by the online comparison. All bodies depicted respectfully. Underlying caption context (do not render as text): People with real discipline are switching to [clean plates] while everyone else eats [junk]."
+  },
+  {
+    "id": "mystery_fear_01",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Curing Mystery Illnesses",
+    "subtopicId": "mystery_illness",
+    "caption": "If your child is always [tired], hidden food toxins could be the real [cause].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/mystery_illness/mystery_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent with a concerned expression sits beside a tired-looking child at a kitchen table with a lunchbox; a question-mark bubble connects the parent's gaze to the food, with no assertion of a cause. Underlying caption context (do not render as text): If your child is always [tired], hidden food toxins could be the real [cause]."
+  },
+  {
+    "id": "mystery_conspiracy_02",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Curing Mystery Illnesses",
+    "subtopicId": "mystery_illness",
+    "caption": "Doctors ignore [mystery symptoms] because cures from food would destroy their [business].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/mystery_illness/mystery_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent considers a phone showing a food remedy post while a friendly clinician listens nearby; question marks on the phone emphasize an unverified claim, no villainous doctor. Underlying caption context (do not render as text): Doctors ignore [mystery symptoms] because cures from food would destroy their [business]."
+  },
+  {
+    "id": "mystery_social_03",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Curing Mystery Illnesses",
+    "subtopicId": "mystery_illness",
+    "caption": "Parents everywhere are blaming [school lunches] after seeing the same [symptoms] in their kids.",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/mystery_illness/mystery_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two parents compare phone posts showing school lunch trays while a child stands nearby with a backpack; concerned, uncertain expressions. Underlying caption context (do not render as text): Parents everywhere are blaming [school lunches] after seeing the same [symptoms] in their kids."
+  },
+  {
+    "id": "formula_fear_01",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Homemade Baby Formula",
+    "subtopicId": "baby_formula",
+    "caption": "Commercial [formula] may hide ingredients that put your baby's [future] at risk.",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/baby_formula/formula_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A concerned parent examines a plain sealed infant formula tin beside a baby bottle, with a question mark above the tin. No harmful ingredients depicted, no branding. Underlying caption context (do not render as text): Commercial [formula] may hide ingredients that put your baby's [future] at risk."
+  },
+  {
+    "id": "formula_conspiracy_02",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Homemade Baby Formula",
+    "subtopicId": "baby_formula",
+    "caption": "Big brands attack [homemade formula] because they cannot profit from your [kitchen].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/baby_formula/formula_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent looks skeptically at a phone showing an unlabeled bowl and baby bottle beside a store formula tin; no recipe, ingredients, quantities, mixing steps, or feeding. Underlying caption context (do not render as text): Big brands attack [homemade formula] because they cannot profit from your [kitchen]."
+  },
+  {
+    "id": "formula_social_03",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Homemade Baby Formula",
+    "subtopicId": "baby_formula",
+    "caption": "More moms are replacing [store formula] with online recipes after seeing shocking [results].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/baby_formula/formula_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two parents look at a phone full of hearts surrounding a baby-bottle icon; a sealed formula tin and empty bottle stand on a counter. No recipe, preparation, or feeding. Underlying caption context (do not render as text): More moms are replacing [store formula] with online recipes after seeing shocking [results]."
+  },
+  {
+    "id": "dyes_fear_01",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Food Dyes and Hyperactivity",
+    "subtopicId": "food_dyes",
+    "caption": "That bright [candy] may be the reason your child cannot sit [still].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/food_dyes/dyes_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent looks uncertainly at brightly colored candy in a bowl while a child plays energetically in the background; a question mark shows the cause is unproven. Underlying caption context (do not render as text): That bright [candy] may be the reason your child cannot sit [still]."
+  },
+  {
+    "id": "dyes_conspiracy_02",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Food Dyes and Hyperactivity",
+    "subtopicId": "food_dyes",
+    "caption": "They hide [food dyes] in kids snacks because chaos keeps parents [desperate].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/food_dyes/dyes_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Close-up of a parent reading the back of a colorful snack package with abstract lines only, alongside a phone full of confusing question-mark bubbles. Underlying caption context (do not render as text): They hide [food dyes] in kids snacks because chaos keeps parents [desperate]."
+  },
+  {
+    "id": "dyes_social_03",
+    "topic": "Maternal & Child Nutrition",
+    "topicId": "mom_child",
+    "subtopic": "Food Dyes and Hyperactivity",
+    "subtopicId": "food_dyes",
+    "caption": "Parents are throwing out [red dye] after videos linked it to wild [behavior].",
+    "path": "Assets/Food for Thought Images/Captions/mom_child/food_dyes/dyes_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent holding a red-colored snack pauses over an open bin while watching a phone clip of an energetic child; questioning expression rather than endorsement. Underlying caption context (do not render as text): Parents are throwing out [red dye] after videos linked it to wild [behavior]."
+  },
+  {
+    "id": "cancer_fear_01",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Anti-Cancer Superfoods",
+    "subtopicId": "cancer_superfoods",
+    "caption": "Ignoring [superfoods] could leave your body defenseless against silent [cancer].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cancer_superfoods/cancer_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult looks anxiously at a phone showing berries and leafy greens beside a question mark; the same foods sit in a bowl nearby. No literal cancer, no protective shield, no cure claim. Underlying caption context (do not render as text): Ignoring [superfoods] could leave your body defenseless against silent [cancer]."
+  },
+  {
+    "id": "cancer_conspiracy_02",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Anti-Cancer Superfoods",
+    "subtopicId": "cancer_superfoods",
+    "caption": "They downplay [apricot kernels] because simple foods threaten the cancer [industry].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cancer_superfoods/cancer_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A skeptical adult examines a phone post depicting apricots and a few kernels beside a medical-clinic icon and question marks; kernels not eaten, no dosing or cure claims. Underlying caption context (do not render as text): They downplay [apricot kernels] because simple foods threaten the cancer [industry]."
+  },
+  {
+    "id": "cancer_social_03",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Anti-Cancer Superfoods",
+    "subtopicId": "cancer_superfoods",
+    "caption": "Millions are adding [green powder] after influencers called it the anti-cancer [secret].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cancer_superfoods/cancer_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone shows an influencer holding a generic green-powder tub surrounded by heart icons; a viewer looks doubtful. No ingestion, cure claims, or protection imagery. Underlying caption context (do not render as text): Millions are adding [green powder] after influencers called it the anti-cancer [secret]."
+  },
+  {
+    "id": "diabetes_fear_01",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Curing Diabetes Quickly",
+    "subtopicId": "cure_diabetes",
+    "caption": "If you still trust normal [medicine], you may miss the food cure for [diabetes].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cure_diabetes/diabetes_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult compares a phone's food-remedy image with a glucose meter and a closed generic medicine container on a table, looking uncertain; no advice to stop treatment. Underlying caption context (do not render as text): If you still trust normal [medicine], you may miss the food cure for [diabetes]."
+  },
+  {
+    "id": "diabetes_conspiracy_02",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Curing Diabetes Quickly",
+    "subtopicId": "cure_diabetes",
+    "caption": "They do not want you using [cinnamon] because diabetes drugs need lifelong [customers].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cure_diabetes/diabetes_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Cinnamon sticks sit beside a glucose meter and a phone showing an unverified cinnamon post with a question mark; no replacement of medication or cure imagery. Underlying caption context (do not render as text): They do not want you using [cinnamon] because diabetes drugs need lifelong [customers]."
+  },
+  {
+    "id": "diabetes_social_03",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Curing Diabetes Quickly",
+    "subtopicId": "cure_diabetes",
+    "caption": "People are posting before-and-after [glucose] numbers after trying the 7-day [reset].",
+    "path": "Assets/Food for Thought Images/Captions/disease/cure_diabetes/diabetes_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult looks skeptically at two conflicting glucose-meter pictures on a phone; their own glucose meter sits nearby. Screens have abstract marks, no numerical health results or treatment advice. Underlying caption context (do not render as text): People are posting before-and-after [glucose] numbers after trying the 7-day [reset]."
+  },
+  {
+    "id": "immunity_fear_01",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Extreme Immunity Hacks",
+    "subtopicId": "extreme_immunity",
+    "caption": "Your weak [immune system] is begging for this extreme [boost].",
+    "path": "Assets/Food for Thought Images/Captions/disease/extreme_immunity/immunity_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A worried adult in a scarf looks at a phone advertisement showing a generic supplement bottle and oversized question mark; no literal weakened immune system or promised protection. Underlying caption context (do not render as text): Your weak [immune system] is begging for this extreme [boost]."
+  },
+  {
+    "id": "immunity_conspiracy_02",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Extreme Immunity Hacks",
+    "subtopicId": "extreme_immunity",
+    "caption": "They call [megadose vitamins] dangerous because a strong public is harder to [manage].",
+    "path": "Assets/Food for Thought Images/Captions/disease/extreme_immunity/immunity_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult studies a sealed generic vitamin bottle beside a phone with arguing speech bubbles and question marks. No pills being taken, no amounts, no claimed health transformation. Underlying caption context (do not render as text): They call [megadose vitamins] dangerous because a strong public is harder to [manage]."
+  },
+  {
+    "id": "immunity_social_03",
+    "topic": "Disease Prevention & Management",
+    "topicId": "disease",
+    "subtopic": "Extreme Immunity Hacks",
+    "subtopicId": "extreme_immunity",
+    "caption": "Everyone is trying the [immune hack] before flu season because nobody wants to be [weak].",
+    "path": "Assets/Food for Thought Images/Captions/disease/extreme_immunity/immunity_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Friends in autumn coats look at a phone with a trending citrus-and-supplement post and heart icons; one raises an eyebrow. No endorsement or ingestion. Underlying caption context (do not render as text): Everyone is trying the [immune hack] before flu season because nobody wants to be [weak]."
+  },
+  {
+    "id": "rawmilk_fear_01",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Fear of Unsafe Food",
+    "subtopicId": "raw_milk",
+    "caption": "Pasteurized [milk] may be stripping away the natural [power] your family needs.",
+    "path": "Assets/Food for Thought Images/Captions/food/raw_milk/rawmilk_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A person compares two plain milk bottles on a kitchen counter, one with a small farm pictogram and one with a small factory pictogram, with a question mark between them. No strength or health effects. Underlying caption context (do not render as text): Pasteurized [milk] may be stripping away the natural [power] your family needs."
+  },
+  {
+    "id": "rawmilk_conspiracy_02",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Fear of Unsafe Food",
+    "subtopicId": "raw_milk",
+    "caption": "The government attacks [raw milk] because healthy families do not need their [system].",
+    "path": "Assets/Food for Thought Images/Captions/food/raw_milk/rawmilk_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A skeptical person holds a phone showing a farm milk bottle and a government-building pictogram with arguing speech bubbles; no drinking and no claims of superior safety. Underlying caption context (do not render as text): The government attacks [raw milk] because healthy families do not need their [system]."
+  },
+  {
+    "id": "rawmilk_social_03",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Fear of Unsafe Food",
+    "subtopicId": "raw_milk",
+    "caption": "Farm families are switching to [raw milk] and saying their kids feel [stronger].",
+    "path": "Assets/Food for Thought Images/Captions/food/raw_milk/rawmilk_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two families near a farm gate look at a phone milk trend; a sealed milk bottle and cow in a distant field establish the topic. No children drinking milk or strength transformation. Underlying caption context (do not render as text): Farm families are switching to [raw milk] and saying their kids feel [stronger]."
+  },
+  {
+    "id": "water_fear_01",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Contaminated Produce Panic",
+    "subtopicId": "tap_water",
+    "caption": "Every sip of [tap water] could be filling your body with hidden [toxins].",
+    "path": "Assets/Food for Thought Images/Captions/food/tap_water/water_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A person holds a glass of clear tap water under a kitchen faucet and looks worriedly at a phone with a question-mark post; water remains clear, no depicted toxins. Underlying caption context (do not render as text): Every sip of [tap water] could be filling your body with hidden [toxins].",
+    "anatomyCorrection": "Remove the extra hand touching the chin; keep only the two hands holding the phone and water glass. Preserve all other content, composition, colors, style and dimensions."
+  },
+  {
+    "id": "water_conspiracy_02",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Contaminated Produce Panic",
+    "subtopicId": "tap_water",
+    "caption": "They keep [fluoride] in the water because a tired public is easier to [control].",
+    "path": "Assets/Food for Thought Images/Captions/food/tap_water/water_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A person studies a clear glass of water beside a phone showing a water-drop icon and a government-building icon separated by question marks. No mind-control or contaminant imagery presented as fact. Underlying caption context (do not render as text): They keep [fluoride] in the water because a tired public is easier to [control]."
+  },
+  {
+    "id": "water_social_03",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Contaminated Produce Panic",
+    "subtopicId": "tap_water",
+    "caption": "People are panic-buying [filters] after viral videos exposed dirty [water].",
+    "path": "Assets/Food for Thought Images/Captions/food/tap_water/water_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two shoppers reach toward a shelf of water-filter pitchers while one shows a phone with a murky-water video thumbnail; convey a viral shopping rush, not contaminated municipal water as fact. Underlying caption context (do not render as text): People are panic-buying [filters] after viral videos exposed dirty [water]."
+  },
+  {
+    "id": "dirty_fear_01",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Chemical Food Fear",
+    "subtopicId": "dirty_dozen",
+    "caption": "Feeding your kids [strawberries] without washing could load them with [chemicals].",
+    "path": "Assets/Food for Thought Images/Food Safety/Kitchen Hygiene/1/Washing_strawberries_under_running_water.png",
+    "prompt": "Use case: illustration-story. Create ONE new landscape 16:9 game illustration, ideally 1024x576, for the empty Food Safety/Kitchen Hygiene/1 folder: a person washing strawberries under running water at a kitchen sink. The two supplied images are STYLE REFERENCES ONLY, not edit targets. Match their deliberately simple hand-drawn MS Paint-like cartoon aesthetic: slightly irregular thick black outlines, flat opaque fills, basic shapes, minimal detail, limited muted pastel palette, no gradients, no realistic shading, no photorealism or polished vector gloss. Show a close view of two hands gently rinsing a few recognizably red strawberries with green leaves in a colander beneath a running faucet, with a simple pale blue sink and muted lavender background. Clean uncluttered composition readable at a small game-card size. No soap, no bottles, no germ icons, no medical claims, no text, no captions, no arrows, no logos, no watermark. This is an educational game asset, not a claim that washing eliminates all food hazards.",
+    "reusedFrom": "Assets/Food for Thought Images/Food Safety/Kitchen Hygiene/1/Washing_strawberries_under_running_water.png",
+    "organizedCopy": "Assets/Food for Thought Images/Captions/food/dirty_dozen/dirty_fear_01.png"
+  },
+  {
+    "id": "dirty_conspiracy_02",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Chemical Food Fear",
+    "subtopicId": "dirty_dozen",
+    "caption": "They say [pesticides] are safe because the food industry needs us [quiet].",
+    "path": "Assets/Food for Thought Images/Captions/food/dirty_dozen/dirty_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A person looks skeptically at a produce label, with apples and leafy greens in a basket and a distant farmer spraying a field in a small phone picture; question marks, no poisoning or health effects. Underlying caption context (do not render as text): They say [pesticides] are safe because the food industry needs us [quiet]."
+  },
+  {
+    "id": "dirty_social_03",
+    "topic": "Food Safety",
+    "topicId": "food",
+    "subtopic": "Chemical Food Fear",
+    "subtopicId": "dirty_dozen",
+    "caption": "Parents are ditching [dirty dozen] produce after influencers showed shocking [tests].",
+    "path": "Assets/Food for Thought Images/Captions/food/dirty_dozen/dirty_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent pauses while holding strawberries above a grocery basket, looking at a phone displaying a produce-testing video with an abstract chart and question mark. No fabricated numeric test results. Underlying caption context (do not render as text): Parents are ditching [dirty dozen] produce after influencers showed shocking [tests]."
+  },
+  {
+    "id": "metal_fear_01",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Heavy Metal Detoxes",
+    "subtopicId": "heavy_metal",
+    "caption": "Heavy metals may be hiding in your [body] and stealing your [energy].",
+    "path": "Assets/Food for Thought Images/Captions/supp/heavy_metal/metal_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A tired-looking adult at a table studies a phone advertisement with a vague dark-speck icon and question marks; generic detox bottle nearby, no literal metal inside a human body. Underlying caption context (do not render as text): Heavy metals may be hiding in your [body] and stealing your [energy]."
+  },
+  {
+    "id": "metal_conspiracy_02",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Heavy Metal Detoxes",
+    "subtopicId": "heavy_metal",
+    "caption": "They mock [detox drops] because a poisoned public keeps buying [solutions].",
+    "path": "Assets/Food for Thought Images/Captions/supp/heavy_metal/metal_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A skeptical adult looks at a sealed dropper bottle next to a phone full of conflicting speech bubbles about a detox product; no ingestion or health transformation. Underlying caption context (do not render as text): They mock [detox drops] because a poisoned public keeps buying [solutions]."
+  },
+  {
+    "id": "metal_social_03",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Heavy Metal Detoxes",
+    "subtopicId": "heavy_metal",
+    "caption": "Everyone is sharing [detox photos] after black spots appeared in their [bath].",
+    "path": "Assets/Food for Thought Images/Captions/supp/heavy_metal/metal_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone held in a hand shows a social-media bath-water photo with dark specks and heart icons; a questioning speech bubble beside the viewer. No claim that specks are toxins leaving the body. Underlying caption context (do not render as text): Everyone is sharing [detox photos] after black spots appeared in their [bath]."
+  },
+  {
+    "id": "preworkout_fear_01",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Unregulated Pre-Workout Powders",
+    "subtopicId": "pre_workout",
+    "caption": "That weak [pre-workout] may be the reason your gym progress stays [flat].",
+    "path": "Assets/Food for Thought Images/Captions/supp/pre_workout/preworkout_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult at a gym bench compares a sealed generic powder tub with a phone fitness post, looking frustrated and uncertain; ordinary diverse body, no exaggerated muscles or promised results. Underlying caption context (do not render as text): That weak [pre-workout] may be the reason your gym progress stays [flat]."
+  },
+  {
+    "id": "preworkout_conspiracy_02",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Unregulated Pre-Workout Powders",
+    "subtopicId": "pre_workout",
+    "caption": "Regulators attack [energy powders] because real focus makes people harder to [control].",
+    "path": "Assets/Food for Thought Images/Captions/supp/pre_workout/preworkout_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A skeptical gym-goer holds a sealed generic energy-powder tub beside a phone with conflicting speech bubbles and question marks. No dosing or drinking. Underlying caption context (do not render as text): Regulators attack [energy powders] because real focus makes people harder to [control]."
+  },
+  {
+    "id": "preworkout_social_03",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Unregulated Pre-Workout Powders",
+    "subtopicId": "pre_workout",
+    "caption": "Lifters are using [double scoops] before every session and calling it the new [standard].",
+    "path": "Assets/Food for Thought Images/Captions/supp/pre_workout/preworkout_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone on a gym bench displays a powder tub and two empty scoop icons surrounded by likes; a viewer raises an eyebrow. Do not show measuring, dosing, swallowing, or endorsement. Underlying caption context (do not render as text): Lifters are using [double scoops] before every session and calling it the new [standard]."
+  },
+  {
+    "id": "gummies_fear_01",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Magic Vitamin Gummies",
+    "subtopicId": "magic_gummies",
+    "caption": "Without these [vitamin gummies], your body may be missing its daily [shield].",
+    "path": "Assets/Food for Thought Images/Captions/supp/magic_gummies/gummies_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A concerned adult looks at a closed vitamin-gummy jar beside a phone advertisement containing a question mark; no magic shield or claimed protection. Underlying caption context (do not render as text): Without these [vitamin gummies], your body may be missing its daily [shield]."
+  },
+  {
+    "id": "gummies_conspiracy_02",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Magic Vitamin Gummies",
+    "subtopicId": "magic_gummies",
+    "caption": "Doctors do not want kids taking [gummies] because healthy families need fewer [appointments].",
+    "path": "Assets/Food for Thought Images/Captions/supp/magic_gummies/gummies_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A parent looks skeptically at a closed gummy-vitamin jar and a phone showing a clinic pictogram with question marks; no feeding children, no cure or prevention claims. Underlying caption context (do not render as text): They do not want kids taking [gummies] because healthy families need fewer [appointments]."
+  },
+  {
+    "id": "gummies_social_03",
+    "topic": "Supplements",
+    "topicId": "supp",
+    "subtopic": "Magic Vitamin Gummies",
+    "subtopicId": "magic_gummies",
+    "caption": "Parents are buying [magic gummies] after seeing viral before-and-after [stories].",
+    "path": "Assets/Food for Thought Images/Captions/supp/magic_gummies/gummies_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: Two parents compare a phone's viral gummy-jar post surrounded by heart icons, with a sealed jar on the table; no before-and-after body transformation. Underlying caption context (do not render as text): Parents are buying [magic gummies] after seeing viral before-and-after [stories]."
+  },
+  {
+    "id": "size_fear_01",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Attacking Body Size",
+    "subtopicId": "body_size",
+    "caption": "If your [body] looks bigger, it means you are ignoring the real [problem].",
+    "path": "Assets/Food for Thought Images/Captions/weight/body_size/size_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A fully clothed adult looks hurt by a phone comment showing a judgmental pointing-hand icon; another adult offers supportive company. Respectful varied body sizes, no scales, tape measures, or ideal-body comparison. Underlying caption context (do not render as text): If your [body] looks bigger, it means you are ignoring the real [problem].",
+    "anatomyCorrection": "The sad woman in coral has an extra folded arm across her lap. Remove that extra folded arm completely, replacing it with plain coral sweater fabric. She must have exactly TWO arms: one holds the phone, the other supports her cheek. Keep her friend's supportive hand on her shoulder."
+  },
+  {
+    "id": "size_conspiracy_02",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Attacking Body Size",
+    "subtopicId": "body_size",
+    "caption": "They call [body positivity] healthy so people stop chasing real [discipline].",
+    "path": "Assets/Food for Thought Images/Captions/weight/body_size/size_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A diverse group of adults stand together supportively while one views a phone debate with question-mark speech bubbles about body image. No shame, weight-loss goal, or ideal body. Underlying caption context (do not render as text): They call [body positivity] healthy so people stop chasing real [discipline]."
+  },
+  {
+    "id": "size_social_03",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Attacking Body Size",
+    "subtopicId": "body_size",
+    "caption": "Everyone is posting [body checks] because honesty about size is finally [trending].",
+    "path": "Assets/Food for Thought Images/Captions/weight/body_size/size_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A fully clothed young adult turns a phone away from a mirror while a friend offers support; neutral everyday proportions, no body-check poses, measurements, or before-and-after. Underlying caption context (do not render as text): Everyone is posting [body checks] because honesty about size is finally [trending]."
+  },
+  {
+    "id": "fatburn_fear_01",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Rapid Fat-Burning Pills",
+    "subtopicId": "fat_burning",
+    "caption": "If you skip [fat burners], your metabolism may stay trapped in [slow] mode.",
+    "path": "Assets/Food for Thought Images/Captions/weight/fat_burning/fatburn_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult looks doubtful at a sealed generic weight-loss-pill bottle next to a phone advertisement with a question mark; no flame-on-body imagery, dosing, or weight-loss transformation. Underlying caption context (do not render as text): If you skip [fat burners], your metabolism may stay trapped in [slow] mode."
+  },
+  {
+    "id": "fatburn_conspiracy_02",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Rapid Fat-Burning Pills",
+    "subtopicId": "fat_burning",
+    "caption": "They warn about [rapid pills] because weight-loss clinics need repeat [customers].",
+    "path": "Assets/Food for Thought Images/Captions/weight/fat_burning/fatburn_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult compares a sealed generic pill bottle with a phone post showing a clinic pictogram and conflicting speech bubbles; no ingestion, medical villain, or promised result. Underlying caption context (do not render as text): They warn about [rapid pills] because weight-loss clinics need repeat [customers]."
+  },
+  {
+    "id": "fatburn_social_03",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Rapid Fat-Burning Pills",
+    "subtopicId": "fat_burning",
+    "caption": "People are taking [fat-burning pills] nightly and showing faster [results] online.",
+    "path": "Assets/Food for Thought Images/Captions/weight/fat_burning/fatburn_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone on a bedside table shows a viral generic pill-bottle post with hearts; a fully clothed adult looks skeptical, closed bottle nearby, no taking pills or body transformation. Underlying caption context (do not render as text): People are taking [fat-burning pills] nightly and showing faster [results] online."
+  },
+  {
+    "id": "negative_fear_01",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Negative Calorie Foods",
+    "subtopicId": "negative_calorie",
+    "caption": "Eating [negative calorie] foods may be the only way to cancel hidden [fat].",
+    "path": "Assets/Food for Thought Images/Captions/weight/negative_calorie/negative_fear_01.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: An adult looks puzzled at celery on a plate beside a phone with a celery icon and question mark; no calorie cancellation, weight-loss results, or restrictive-eating praise. Underlying caption context (do not render as text): Eating [negative calorie] foods may be the only way to cancel hidden [fat]."
+  },
+  {
+    "id": "negative_conspiracy_02",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Negative Calorie Foods",
+    "subtopicId": "negative_calorie",
+    "caption": "Diet companies hate [celery hacks] because free foods break their [business].",
+    "path": "Assets/Food for Thought Images/Captions/weight/negative_calorie/negative_conspiracy_02.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A person compares a celery bunch with a phone post showing a grocery-store pictogram and confusing speech bubbles; skeptical expression, no weight-loss promise. Underlying caption context (do not render as text): Diet companies hate [celery hacks] because free foods break their [business].",
+    "anatomyCorrection": "Remove the extra hand and arm touching the woman's chin. She must have exactly TWO arms and TWO hands, one holding celery and one holding the phone. Restore her shirt and neck where the extra hand was."
+  },
+  {
+    "id": "negative_social_03",
+    "topic": "Weight Loss",
+    "topicId": "weight",
+    "subtopic": "Negative Calorie Foods",
+    "subtopicId": "negative_calorie",
+    "caption": "Creators are replacing dinner with [ice water] and [celery] to burn calories while eating.",
+    "path": "Assets/Food for Thought Images/Captions/weight/negative_calorie/negative_social_03.png",
+    "prompt": "Use case: illustration-story. Create ONE standalone landscape 16:9 cartoon game image, 1024x576 if possible. The supplied image is a STYLE REFERENCE ONLY, not an edit target. Match its simple hand-drawn cartoon look: thick slightly irregular black outlines, simple shapes, mostly flat colors, pale blue and lavender with coral accents, minimal detail, readable at small card size. No text, words, letters, captions, watermarks, logos, or realistic medical diagrams. This is an illustration of a fictional social-media post in a misinformation-literacy game; show the topic and uncertainty, not proof that its claim is true. Scene: A phone shows a viral picture of celery and ice water with heart icons, while a skeptical adult sits beside an ordinary balanced dinner; no endorsement of replacing meals. Underlying caption context (do not render as text): Creators are replacing dinner with [ice water] and [celery] to burn calories while eating."
+  }
+]

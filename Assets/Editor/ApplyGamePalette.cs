@@ -134,6 +134,7 @@ public static class ApplyGamePalette
             {
                 if (image.color.a < 0.6f && panel && n != "pre-ending panel")
                 { Surface(image, new Color(GamePalette.Text.r, GamePalette.Text.g, GamePalette.Text.b,0.65f), false); }
+                else if (path.Contains("coachpanel")) Surface(image, GamePalette.CoachWarning);
                 else if (path.Contains("coach") || path.Contains("hint panel")) Surface(image, GamePalette.Coach);
                 else if (n == "mainmenupanel" || n == "socialfeedpanel" || n == "tacticpanel" || n == "coachpanel" ||
                     n == "topic panel" || n == "sub topic panel" || n == "sentence selection panel" || n == "fill in blank panel" || n == "loading panel")

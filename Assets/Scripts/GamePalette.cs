@@ -8,6 +8,7 @@ public static class GamePalette
     public static readonly Color Primary = new Color32(245, 200, 76, 255); // #F5C84C
     public static readonly Color Secondary = new Color32(238, 232, 223, 255); // #EEE8DF
     public static readonly Color Coach = new Color32(238, 232, 223, 255);
+    public static readonly Color CoachWarning = new Color32(255, 239, 184, 255); // #FFEFB8
     public static readonly Color Text = new Color32(36, 44, 69, 255); // #242C45
     public static readonly Color OnPrimary = new Color32(36, 44, 69, 255); // #242C45
     public static readonly Color Highlight = new Color32(255, 228, 119, 255); // #FFE477

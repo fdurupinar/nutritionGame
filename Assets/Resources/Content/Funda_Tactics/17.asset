@@ -29,3 +29,4 @@ MonoBehaviour:
   credibilityCost: 0.06
   enabledFlag: 1
   tacticImage: {fileID: 1477306467657765337, guid: ae214e595b9f041bd842bc35a7e6d341, type: 3}
+  cardFrontArtwork: {fileID: 21300000, guid: aed5d4ff883048d69d14d3193021ce1e, type: 3}

@@ -14,7 +14,7 @@ public class JobPostManager : MonoBehaviour
         [TextArea(2, 5)]
         public string jobText;
 
-        [Tooltip("Which game day this job appears.")]
+        [Tooltip("The first game day this job is available. It stays available until completed.")]
         public int availableDay = 1;
 
         [Tooltip("How many day changes before this job can be claimed.")]
@@ -75,6 +75,27 @@ public class JobPostManager : MonoBehaviour
     private const string KEY_LAST_CHECKED_DAY = "JobSystem_LastCheckedDay";
     private const string KEY_READY_TO_CLAIM = "JobSystem_ReadyToClaim";
     private const string KEY_COMPLETED_PREFIX = "JobSystem_Completed_";
+    private const string KEY_JOB_RUN = "JobSystem_Run";
+
+    private static string CompletedJobKey(int jobIndex)
+    {
+        int run = PlayerPrefs.GetInt(KEY_JOB_RUN, 0);
+        // Preserve completion records in existing games until New game is selected.
+        return run == 0 ? KEY_COMPLETED_PREFIX + jobIndex : KEY_COMPLETED_PREFIX + run + "_" + jobIndex;
+    }
+
+    public static void ResetSavedJobs()
+    {
+        // A new completion namespace resets every job, including jobs absent from this scene.
+        PlayerPrefs.SetInt(KEY_JOB_RUN, PlayerPrefs.GetInt(KEY_JOB_RUN, 0) + 1);
+        PlayerPrefs.DeleteKey(KEY_HAS_ACTIVE_JOB);
+        PlayerPrefs.DeleteKey(KEY_ACTIVE_JOB_INDEX);
+        PlayerPrefs.DeleteKey(KEY_ACTIVE_OFFER_SLOT_INDEX);
+        PlayerPrefs.DeleteKey(KEY_REMAINING_DAYS);
+        PlayerPrefs.DeleteKey(KEY_LAST_CHECKED_DAY);
+        PlayerPrefs.DeleteKey(KEY_READY_TO_CLAIM);
+        PlayerPrefs.Save();
+    }
 
     private int lastKnownDay = -1;
     private Coroutine panelAnimationCoroutine;
@@ -221,6 +242,7 @@ public class JobPostManager : MonoBehaviour
     private IEnumerator OpenPanelRoutine()
     {
         jobPanel.SetActive(true);
+        jobPanel.transform.SetAsLastSibling(); // Display above the home menu and other panels.
 
         if (jobPanelCanvasGroup != null)
         {
@@ -313,6 +335,7 @@ public class JobPostManager : MonoBehaviour
     {
         if (HasActiveJob())
         {
+            HideAllJobOfferSlots();
             ShowActiveJobInOfferSlot();
             return;
         }
@@ -333,7 +356,7 @@ public class JobPostManager : MonoBehaviour
             if (job == null)
                 continue;
 
-            if (job.availableDay != currentDay)
+            if (job.availableDay > currentDay)
                 continue;
 
             if (IsJobCompleted(jobIndex))
@@ -406,7 +429,7 @@ public class JobPostManager : MonoBehaviour
             slot.rewardText.text = "Reward: $" + job.rewardMoney;
 
         if (slot.dayText != null)
-            slot.dayText.text = "Days Left: " + remainingDays;
+            slot.dayText.text = RewardCountdownText(remainingDays);
 
         if (slot.acceptButton != null)
         {
@@ -431,7 +454,12 @@ public class JobPostManager : MonoBehaviour
             slot.rewardText.text = "Reward: $" + job.rewardMoney;
 
         if (slot.dayText != null)
-            slot.dayText.text = "Work Days: " + Mathf.Max(0, job.workDays);
+        {
+            int days = Mathf.Max(0, job.workDays);
+            slot.dayText.text = days == 0
+                ? "Collect reward immediately after accepting"
+                : "Collect reward " + days + (days == 1 ? " game day" : " game days") + " after accepting";
+        }
 
         if (slot.acceptButton != null)
         {
@@ -507,6 +535,12 @@ public class JobPostManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    private static string RewardCountdownText(int remainingDays)
+    {
+        if (remainingDays <= 0) return "Reward ready to collect";
+        return "Collect reward in " + remainingDays + (remainingDays == 1 ? " game day" : " game days");
+    }
+
     private void RefreshAcceptedJobDisplay()
     {
         bool hasActiveJob = HasActiveJob();
@@ -540,7 +574,7 @@ public class JobPostManager : MonoBehaviour
             acceptedJobMoneyDisplayText.text = "Reward: $" + job.rewardMoney;
 
         if (acceptedJobDayLeftDisplayText != null)
-            acceptedJobDayLeftDisplayText.text = "Days Left: " + remainingDays;
+            acceptedJobDayLeftDisplayText.text = RewardCountdownText(remainingDays);
 
         if (claimRewardButton != null)
         {
@@ -584,7 +618,7 @@ public class JobPostManager : MonoBehaviour
 
         AddMoney(job.rewardMoney);
 
-        PlayerPrefs.SetInt(KEY_COMPLETED_PREFIX + jobIndex, 1);
+        PlayerPrefs.SetInt(CompletedJobKey(jobIndex), 1);
 
         ClearActiveJobSave();
         ClearAcceptedJobDisplayTexts();
@@ -647,7 +681,7 @@ public class JobPostManager : MonoBehaviour
 
     private bool IsJobCompleted(int jobIndex)
     {
-        return PlayerPrefs.GetInt(KEY_COMPLETED_PREFIX + jobIndex, 0) == 1;
+        return PlayerPrefs.GetInt(CompletedJobKey(jobIndex), 0) == 1;
     }
 
     private int GetCurrentDay()
@@ -661,16 +695,8 @@ public class JobPostManager : MonoBehaviour
     [ContextMenu("Reset Job System Save")]
     public void ResetJobSystemSave()
     {
-        ClearActiveJobSave();
+        ResetSavedJobs();
         ClearAcceptedJobDisplayTexts();
-
-        for (int i = 0; i < jobs.Count; i++)
-        {
-            PlayerPrefs.DeleteKey(KEY_COMPLETED_PREFIX + i);
-        }
-
-        PlayerPrefs.SetInt(KEY_LAST_CHECKED_DAY, GetCurrentDay());
-        PlayerPrefs.Save();
 
         RefreshAllUI();
 

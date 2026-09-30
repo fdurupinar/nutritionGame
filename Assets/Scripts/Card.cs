@@ -23,6 +23,8 @@ public class Card : MonoBehaviour
     private TacticManager _controller;
     private AudioManager _audioManager;
     private CanvasGroup _canvasGroup;
+    private Outline _cardBorder;
+    private Image _cardFrontArtwork;
     private bool _canSelect = true;
 
     public void Setup(TacticSO data, TacticManager controller)
@@ -50,12 +52,13 @@ public class Card : MonoBehaviour
 
         if (_nameText != null)
         {
-            _nameText.text = _tacticData.type;
+            _nameText.text = string.IsNullOrWhiteSpace(_tacticData.displayName) ? "TACTIC" :
+                System.Text.RegularExpressions.Regex.Replace(_tacticData.type ?? "TACTIC", "([a-z])([A-Z])", "$1 $2").ToUpperInvariant();
         }
 
         if (_subtitleText != null)
         {
-            _subtitleText.text = _tacticData.displayName;
+            _subtitleText.text = string.IsNullOrWhiteSpace(_tacticData.displayName) ? _tacticData.type : _tacticData.displayName;
         }
 
         if (_bonusText != null)
@@ -94,7 +97,37 @@ public class Card : MonoBehaviour
             }
         }
 
+        ApplyCardFrontArtwork();
         Deselect();
+    }
+
+    private void ApplyCardFrontArtwork()
+    {
+        bool hasArtwork = _tacticData.cardFrontArtwork != null;
+        if (hasArtwork && _cardFrontArtwork == null)
+        {
+            var artworkObject = new GameObject("Card Front Artwork", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            artworkObject.transform.SetParent(transform, false);
+            _cardFrontArtwork = artworkObject.GetComponent<Image>();
+            var rect = _cardFrontArtwork.rectTransform;
+            // Proportional inset preserves the portrait ratio and leaves a selection edge.
+            rect.anchorMin = new Vector2(0.02f, 0.02f);
+            rect.anchorMax = new Vector2(0.98f, 0.98f);
+            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            _cardFrontArtwork.preserveAspect = true;
+            _cardFrontArtwork.raycastTarget = false;
+            _cardFrontArtwork.color = Color.white;
+        }
+
+        if (_cardFrontArtwork != null)
+        {
+            _cardFrontArtwork.sprite = _tacticData.cardFrontArtwork;
+            _cardFrontArtwork.gameObject.SetActive(hasArtwork);
+        }
+
+        // Complete card artwork already includes its heading; avoid printing text over it.
+        if (_nameText != null) _nameText.gameObject.SetActive(!hasArtwork);
+        if (_subtitleText != null) _subtitleText.gameObject.SetActive(!hasArtwork);
     }
 
     public void SetCardInteractable(bool canSelect)
@@ -148,9 +181,20 @@ public class Card : MonoBehaviour
 
     private void ApplySelectionColors(bool selected)
     {
-        Color surface = selected ? GamePalette.Primary : GamePalette.Secondary;
+        Color surface = selected ? GamePalette.Primary : GetColorForTactic();
         var front = GetComponent<Image>();
-        if (front != null) front.color = surface;
+        if (front != null)
+        {
+            front.color = surface;
+            // Outline the actual card shape, without a rectangular overlay over its content.
+            if (_cardBorder == null)
+                _cardBorder = GetComponent<Outline>() ?? gameObject.AddComponent<Outline>();
+            Color borderColor = GamePalette.Text;
+            borderColor.a = selected ? 1f : 0.2f;
+            _cardBorder.effectColor = borderColor;
+            _cardBorder.effectDistance = selected ? new Vector2(3f, -3f) : new Vector2(1f, -1f);
+            _cardBorder.useGraphicAlpha = true;
+        }
         var back = transform.Find("CardBack");
         if (back != null && back.TryGetComponent<Image>(out var backImage)) backImage.color = surface;
         foreach (var label in GetComponentsInChildren<TextMeshProUGUI>(true))
@@ -174,6 +218,17 @@ public class Card : MonoBehaviour
         {
             _audioManager.PlayCardSelect();
         }
+    }
+
+    public void ShowHint()
+    {
+        if (!_canSelect || _controller == null || !_controller.IsTacticUnlocked(_tacticData)) return;
+        // Do not toggle off a card that is already selected.
+        if (_controller.SelectedTactic != _tacticData)
+            _controller.OnCardSelected(this);
+        var explorer = _controller.TacticPanel != null
+            ? _controller.TacticPanel.GetComponent<TacticExplorer>() : null;
+        if (explorer != null) explorer.CheckMyChoice();
     }
 
     public void Select()

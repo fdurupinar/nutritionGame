@@ -36,10 +36,15 @@ public class GlobalStatManager : MonoBehaviour
 
         // 中文备注：起始现金统一为 1000。这里原来写入 10000，
         // 会导致脚本变量和 PlayerPrefs 存档中的现金数值不一致。
+        PlayerPrefs.DeleteKey(FactCheckResponseFeedback.ResponseSaveKey);
+        PlayerPrefs.DeleteKey(FactCheckEventStore.SaveKey);
+        PlayerPrefs.DeleteKey("MisinformationMetrics_LastFactCheckDay");
         PlayerPrefs.SetInt(SAVE_CASH, 1000);
         PlayerPrefs.SetInt(SAVE_FOLLOWERS, 0);
         PlayerPrefs.SetInt(SAVE_CRED, 100);
         PlayerPrefs.Save();
+
+        FactCheckEntryState.RefreshAll();
 
         Debug.Log("GlobalStatManager: reset to 1000, 0, 100");
     }

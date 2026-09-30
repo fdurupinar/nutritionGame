@@ -27,3 +27,10 @@ Scope: one complete post cycle, coach Revise, direct Home startup and daily gati
 Replaced the ambiguous tactic heading with an exploration prompt, kept the composed caption visible, and added a scrollable explanation with reflection questions and authored tactic descriptions. The existing publish action now reads “Publish post” and is disabled without a selected, unlocked card. Browsing does not apply scores or rewrite captions.
 
 Verified in Unity Play Mode: caption-to-tactic flow, card selection and deselection, publish availability, explanation opening, scrolling, and closing. Checked dark caption text on the existing yellow prefab buttons; word-choice text retains its compact size and uses a subtle raised shadow. Final publishing and metric changes were not rerun. Temporary diagnostic helpers were removed.
+
+### Fact Check strategy feedback (2026-09-25)
+
+- Apologize, Hire people, and Defend now open distinct feedback screens before their existing actions. Each explains the selected strategy, its limits, and the next step.
+- Continue invokes the original serialized action; Choose another strategy returns without applying an action. Ignore remains unchanged.
+- Verified all three feedback screens and back navigation in Unity Play Mode, hiring continuation to the amount panel, and apology continuation to the post-writing scene. No post was published or hiring confirmed.
+- This adds decision feedback, not a new outcome/scoring model. The original apology and defense actions both enter the standard daily-post flow; choosing a strategy alone does not change stats.

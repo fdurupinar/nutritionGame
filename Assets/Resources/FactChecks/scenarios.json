@@ -1,0 +1,112 @@
+{
+  "scenarios": [
+    {
+      "subTopicId": "carnivore",
+      "title": "Cutting out vegetables",
+      "explanation": "The post links avoiding vegetables to better energy without supporting evidence.",
+      "correction": "I should not have presented cutting out a food group as a guaranteed way to improve energy."
+    },
+    {
+      "subTopicId": "fasting",
+      "title": "Extreme fasting rules",
+      "explanation": "The post presents a strict eating schedule as necessary for body repair without supporting evidence.",
+      "correction": "I should not have presented one fasting schedule as a rule everyone needs to follow."
+    },
+    {
+      "subTopicId": "clean_eating",
+      "title": "Clean eating claims",
+      "explanation": "The post uses an all-or-nothing claim about processed food without explaining the evidence.",
+      "correction": "I should not have claimed that one food ruins all dietary progress."
+    },
+    {
+      "subTopicId": "mystery_illness",
+      "title": "Food toxins and symptoms",
+      "explanation": "The post suggests a cause or cure for symptoms without evidence establishing that connection.",
+      "correction": "I should not have blamed symptoms on hidden food toxins without reliable evidence."
+    },
+    {
+      "subTopicId": "baby_formula",
+      "title": "Baby formula claims",
+      "explanation": "The post raises fears about formula or promotes an alternative without evidence supporting its safety claim.",
+      "correction": "I should not have made an unsupported claim about infant feeding safety."
+    },
+    {
+      "subTopicId": "food_dyes",
+      "title": "Food dyes and behavior",
+      "explanation": "The post presents a simple explanation for a child’s behavior without evidence establishing that cause.",
+      "correction": "I should not have presented food dyes as a proven explanation for an individual child’s behavior."
+    },
+    {
+      "subTopicId": "cancer_superfoods",
+      "title": "Superfoods and cancer",
+      "explanation": "The post makes a cancer-related food claim without evidence supporting the promised protection or treatment.",
+      "correction": "I should not have presented a food as guaranteed protection or treatment for cancer."
+    },
+    {
+      "subTopicId": "cure_diabetes",
+      "title": "Food cures for diabetes",
+      "explanation": "The post promotes a quick food cure or dismisses treatment without evidence supporting those claims.",
+      "correction": "I should not have claimed that a food offers a quick cure for diabetes."
+    },
+    {
+      "subTopicId": "extreme_immunity",
+      "title": "Immunity promises",
+      "explanation": "The post promises an extreme immunity boost without showing what that means or what evidence supports it.",
+      "correction": "I should not have promised an immunity boost without reliable evidence."
+    },
+    {
+      "subTopicId": "raw_milk",
+      "title": "Milk safety claims",
+      "explanation": "The post makes claims about pasteurization or natural milk benefits without evidence supporting the comparison.",
+      "correction": "I should not have implied that natural milk is safer or more beneficial without reliable evidence."
+    },
+    {
+      "subTopicId": "tap_water",
+      "title": "Tap water fears",
+      "explanation": "The post suggests hidden contamination without providing local test results or a relevant public notice.",
+      "correction": "I should not have claimed that tap water is contaminated without evidence for that location."
+    },
+    {
+      "subTopicId": "dirty_dozen",
+      "title": "Produce and chemical fears",
+      "explanation": "The post uses chemical-related fears without evidence showing the actual exposure and risk.",
+      "correction": "I should not have presented a chemical-related food warning without evidence about the actual risk."
+    },
+    {
+      "subTopicId": "heavy_metal",
+      "title": "Heavy metal detox claims",
+      "explanation": "The post suggests hidden metal exposure or a detox benefit without evidence for either claim.",
+      "correction": "I should not have promoted a detox claim without reliable evidence."
+    },
+    {
+      "subTopicId": "pre_workout",
+      "title": "Pre-workout promises",
+      "explanation": "The post promises training benefits without evidence supporting that product or its safety.",
+      "correction": "I should not have promised results from a pre-workout product without reliable evidence."
+    },
+    {
+      "subTopicId": "magic_gummies",
+      "title": "Vitamin gummy promises",
+      "explanation": "The post presents gummies as essential protection or suggests a cover-up without supporting evidence.",
+      "correction": "I should not have presented vitamin gummies as essential protection without reliable evidence."
+    },
+    {
+      "subTopicId": "body_size",
+      "title": "Body size judgments",
+      "explanation": "The post uses appearance to make a judgment about someone’s health or choices without supporting evidence.",
+      "correction": "I should not have used body size to make assumptions about someone’s health or choices."
+    },
+    {
+      "subTopicId": "fat_burning",
+      "title": "Fat-burning promises",
+      "explanation": "The post promises rapid fat burning or a metabolism change without evidence supporting the product claim.",
+      "correction": "I should not have promised rapid results from a fat-burning product without reliable evidence."
+    },
+    {
+      "subTopicId": "negative_calorie",
+      "title": "Negative-calorie claims",
+      "explanation": "The post promises that certain foods cancel fat or calories without evidence supporting that promise.",
+      "correction": "I should not have promised that particular foods cancel fat or calories."
+    }
+  ]
+}

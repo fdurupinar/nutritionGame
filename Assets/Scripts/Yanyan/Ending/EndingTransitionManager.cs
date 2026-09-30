@@ -496,6 +496,7 @@ public class EndingTransitionManager : MonoBehaviour
             1
         );
 
+        PlayerPrefs.SetInt(MainMenuNavigation.CompletedKey, 1);
         PlayerPrefs.Save();
 
         Debug.Log(

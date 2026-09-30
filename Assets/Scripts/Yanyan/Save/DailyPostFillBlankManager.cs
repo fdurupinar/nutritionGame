@@ -93,6 +93,13 @@ public class DailyPostFillBlankManager : MonoBehaviour
     [HideInInspector] public DailyPostSubTopicJson currentSubTopicData;
     [HideInInspector] public DailyPostSentenceJson currentSentenceData;
 
+    [Header("Caption cat feedback")]
+    public Image captionCat;
+    public Sprite captionCatNeutral;
+    public Sprite captionCatSmile;
+    public Sprite captionCatSideEye;
+    public Sprite captionCatUnsure;
+
     public string currentCompletedSentence;
 
     [HideInInspector] public List<string> currentBlankValues = new List<string>();
@@ -556,6 +563,30 @@ public class DailyPostFillBlankManager : MonoBehaviour
         }
 
         UpdateNextButtonState();
+        RefreshCaptionCat();
+    }
+
+    public void RefreshCaptionCat()
+    {
+        if (captionCat == null) return;
+        Sprite expression = captionCatNeutral;
+        bool anyChoice = currentBlankValues.Exists(value => !string.IsNullOrWhiteSpace(value));
+        if (anyChoice && metricEngine != null)
+        {
+            var preview = metricEngine.PreviewCaptionChoices(this);
+            if (preview != null && preview.wordQualities != null)
+            {
+                bool off = false, partial = false;
+                for (int i = 0; i < currentBlankValues.Count && i < preview.wordQualities.Count; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(currentBlankValues[i])) continue;
+                    off |= preview.wordQualities[i] == PostChoiceQuality.Nonsense;
+                    partial |= preview.wordQualities[i] == PostChoiceQuality.HalfCorrect;
+                }
+                expression = off ? captionCatSideEye : partial ? captionCatUnsure : captionCatSmile;
+            }
+        }
+        if (expression != null) captionCat.sprite = expression;
     }
 
     public string BuildDisplaySentence()
@@ -1008,11 +1039,19 @@ public class DailyPostSentenceJson
 public class DailyPostBlankScoringJson
 {
     public string note;
+    public List<DailyPostWordFeedbackJson> wordFeedback = new List<DailyPostWordFeedbackJson>();
     public List<string> correctWords = new List<string>();
     public List<string> halfCorrectWords = new List<string>();
     public List<string> neutralWords = new List<string>();
     public List<string> wrongWords = new List<string>();
     public List<string> nonsenseWords = new List<string>();
+}
+
+[Serializable]
+public class DailyPostWordFeedbackJson
+{
+    public string word;
+    public string reason;
 }
 
 [Serializable]

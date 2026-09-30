@@ -1,0 +1,141 @@
+{
+  "generator": "Built-in image_gen",
+  "reference": "Assets/Scripts/Elley/Tatics/TacticCard_AppealToEmotion_FRONT.png",
+  "cards": [
+    {
+      "name": "TwistedFacts",
+      "title": "Twisted Facts",
+      "asset": "Assets/Resources/Content/New Folder/4.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-c2577e41-97f7-4313-807b-5a434c4e98eb.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Twisted Facts\". Central pictogram: two hands twisting a sheet of paper with a simple fact check mark.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_TwistedFacts_FRONT.png"
+    },
+    {
+      "name": "Conspiracy",
+      "title": "Conspiracy",
+      "asset": "Assets/Resources/Content/New Folder/5.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-626d43d8-c814-4667-99b5-0db4d4da972c.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Conspiracy\". Central pictogram: an eye inside a triangle with a few strings leading to small notes.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Conspiracy_FRONT.png"
+    },
+    {
+      "name": "Guru",
+      "title": "Guru",
+      "asset": "Assets/Resources/Content/Funda_Tactics/6.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-499ce3c9-6e97-4d42-bfc9-49160f14ab49.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Guru\". Central pictogram: a self-important speaker with a halo and a small microphone.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Guru_FRONT.png"
+    },
+    {
+      "name": "AncientWisdom",
+      "title": "Ancient Wisdom",
+      "asset": "Assets/Resources/Content/Funda_Tactics/7.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-d09bdb4a-3867-4298-8d3a-1ef080b85137.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Ancient Wisdom\". Central pictogram: an unfurled old scroll with a small hourglass.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_AncientWisdom_FRONT.png"
+    },
+    {
+      "name": "CherryPicking",
+      "title": "Cherry Picking",
+      "asset": "Assets/Resources/Content/Funda_Tactics/8.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-92e39fd5-c23c-4d8e-bfb1-8c21a81b7006.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Cherry Picking\". Central pictogram: a hand picking one cherry from a branch while ignoring the others.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_CherryPicking_FRONT.png"
+    },
+    {
+      "name": "MisleadingGraph",
+      "title": "Misleading Graph",
+      "asset": "Assets/Resources/Content/Funda_Tactics/9.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-1889a48f-1c67-4842-a708-808a8f5341e4.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Misleading Graph\". Central pictogram: a simple bar chart with a visibly broken vertical axis and an exaggerated arrow.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_MisleadingGraph_FRONT.png"
+    },
+    {
+      "name": "Anecdote",
+      "title": "Anecdote",
+      "asset": "Assets/Resources/Content/Funda_Tactics/10.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-4033647d-cf38-4c9f-a3a7-4f68d14c16f9.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Anecdote\". Central pictogram: one person telling a story in a large speech bubble.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Anecdote_FRONT.png"
+    },
+    {
+      "name": "Strawman",
+      "title": "Strawman",
+      "asset": "Assets/Resources/Content/Funda_Tactics/11.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-df35039b-a1d1-47d7-ad92-9cc88010e7d6.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Strawman\". Central pictogram: a simple straw scarecrow with a target on its chest.",
+      "editPrompt": "Edit only the large top header lettering on this finished game card. Replace the entire header with exactly \"TACTIC\" (six letters: T, A, C, T, I, C). Use simple uniform black block pixel letters with generous gaps. No extra I or strokes after the last C. Preserve the tactic name, central illustration, white background, red rectangular border, bottom CARD text, and overall dimensions unchanged.",
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Strawman_FRONT.png"
+    },
+    {
+      "name": "JargonOverload",
+      "title": "Jargon Overload",
+      "asset": "Assets/Resources/Content/Funda_Tactics/12.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-a1ab9fde-4232-4915-b951-c2d44a9f4ecc.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Jargon Overload\". Central pictogram: a puzzled face surrounded by tangled speech bubbles of abstract technical symbols.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_JargonOverload_FRONT.png"
+    },
+    {
+      "name": "SingleCause",
+      "title": "Single Cause",
+      "asset": "Assets/Resources/Content/Funda_Tactics/13.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-8e3213f7-a5b0-4b46-ad24-0e1afb8afd11.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Single Cause\". Central pictogram: several tangled arrows squeezed into one arrow pointing at a single dot.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_SingleCause_FRONT.png"
+    },
+    {
+      "name": "CorrelationVsCausation",
+      "title": "Correlation vs. Causation",
+      "asset": "Assets/Resources/Content/Funda_Tactics/14.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-4eafb9e9-7eb5-47ce-913d-9d26d27b8dae.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Correlation vs. Causation\". Central pictogram: two small rising graphs side by side with a question mark between them.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_CorrelationVsCausation_FRONT.png"
+    },
+    {
+      "name": "Supplements",
+      "title": "Supplements",
+      "asset": "Assets/Resources/Content/Funda_Tactics/15.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-1a1d1bbf-62d5-40a8-9f06-0a19093851e0.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Supplements\". Central pictogram: a pill bottle with a few capsules and a dollar symbol.",
+      "editPrompt": "Edit only the large top header lettering on this finished game card. Replace the entire header with exactly \"TACTIC\" (six letters: T, A, C, T, I, C). Use simple uniform black block pixel letters with generous gaps. No extra I or strokes after the last C. Preserve the tactic name, central illustration, white background, red rectangular border, bottom CARD text, and overall dimensions unchanged.",
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Supplements_FRONT.png"
+    },
+    {
+      "name": "Bandwagon",
+      "title": "Bandwagon",
+      "asset": "Assets/Resources/Content/Funda_Tactics/16.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-293524bc-353e-47bf-ba8a-0102d76a7fe8.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Bandwagon\". Central pictogram: three simple people crowding onto a small wheeled wagon.",
+      "editPrompt": "Edit only the large top header lettering on this finished game card. Replace the entire header with exactly \"TACTIC\" (six letters: T, A, C, T, I, C). Use simple uniform black block pixel letters with generous gaps. No extra I or strokes after the last C. Preserve the tactic name, central illustration, white background, red rectangular border, bottom CARD text, and overall dimensions unchanged.",
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Bandwagon_FRONT.png"
+    },
+    {
+      "name": "Purity",
+      "title": "Purity",
+      "asset": "Assets/Resources/Content/Funda_Tactics/17.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-43b563be-db09-4719-818b-f6e639f581f1.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Purity\". Central pictogram: a leaf inside a sparkling shield. The header must contain exactly SIX letters T A C T I C, separated clearly, without additional strokes or letters.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_Purity_FRONT.png"
+    },
+    {
+      "name": "VagueAuthority",
+      "title": "Vague Authority",
+      "asset": "Assets/Resources/Content/Funda_Tactics/18.asset",
+      "source": "/Users/fundadurupinarbabur/.codex/generated_images/01a0d5a5-1dbd-7b31-918b-38974df33579/exec-e1c90086-4511-4433-9f09-fd7c5f71a183.png",
+      "prompt": "Use case: style-transfer. Edit the reference card into another card from precisely the same game deck. Preserve the reference's simple retro low-resolution pixel-art aesthetic: flat white background, thin red rectangular perimeter border, black pixel lettering, sparse black 1-bit line art, intentionally simple hand-drawn pictogram, no shading, no gradients, no textures, no shadows, no 3D. Portrait card, same 4:7 aspect ratio and identical layout: large black pixel word \"TACTIC\" across the top, tactic name in small clear black pixel letters below, centered symbolic drawing, large word \"CARD\" along the bottom. Keep all text completely inside the border with margins. Make exactly ONE finished card front filling the image, no mockup, no surroundings, no extra cards. Name may wrap to 2-3 short lines for readability. Replace emotion masks and original tactic name with the following. Exact tactic name: \"Vague Authority\". Central pictogram: a faceless expert silhouette with a question mark badge and a pointer. The header must contain exactly SIX letters T A C T I C, separated clearly, without additional strokes or letters.",
+      "editPrompt": null,
+      "output": "Assets/Food for Thought Images/Tactic Cards/TacticCard_VagueAuthority_FRONT.png"
+    }
+  ]
+}

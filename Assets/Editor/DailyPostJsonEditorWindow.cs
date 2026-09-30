@@ -13,6 +13,18 @@ public class DailyPostJsonEditorWindow : EditorWindow
     private string jsonAssetPath;
     private Vector2 scrollPosition;
     private bool showTopics = true;
+    private bool advanced;
+    private int topicSelection, subtopicSelection, captionSelection;
+
+    private void OnEnable()
+    {
+        if (database != null) return;
+        jsonFile = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Scripts/Yanyan/Save/DailyPostData.json");
+        if (jsonFile != null) LoadJsonFromAsset();
+    }
+
+    public override void SaveChanges() { if (SaveJsonToAsset()) base.SaveChanges(); }
+
     private readonly Dictionary<string, bool> foldouts = new Dictionary<string, bool>();
 
     private readonly string[] qualityOptions = new string[]
@@ -44,8 +56,8 @@ public class DailyPostJsonEditorWindow : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.Space(6f);
-        EditorGUILayout.LabelField("Daily Post JSON Editor", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("Use this tool to edit DailyPostData.json. New structure: Topic > Subtopic > Caption. Tactic fit belongs only to captions. Blank scoring is ordered, so blank position matters.", MessageType.Info);
+        EditorGUILayout.LabelField("Caption & Answer Editor", EditorStyles.boldLabel);
+        EditorGUILayout.HelpBox("Choose a topic, subtopic and caption. Add one word or phrase per answer row. Full credit means it fits this blank in the game, not that the health claim is true. Click Save when finished.", MessageType.Info);
 
         EditorGUILayout.BeginHorizontal();
         jsonFile = (TextAsset)EditorGUILayout.ObjectField("JSON TextAsset", jsonFile, typeof(TextAsset), false);
@@ -81,26 +93,55 @@ public class DailyPostJsonEditorWindow : EditorWindow
         }
 
         NormalizeDatabase(database);
-
-        EditorGUILayout.Space(8f);
-        DrawToolbar();
+        advanced = EditorGUILayout.ToggleLeft("Advanced: manage topics, captions and tactic settings", advanced);
+        EditorGUI.BeginChangeCheck();
+        if (advanced) DrawToolbar();
 
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
-        DrawTopicsSection();
+        if (advanced) DrawTopicsSection(); else DrawCaptionPicker();
         EditorGUILayout.EndScrollView();
+        if (EditorGUI.EndChangeCheck()) MarkDirty();
+    }
+
+    private void DrawCaptionPicker()
+    {
+        if (database.topics.Count == 0) { EditorGUILayout.HelpBox("Add a topic in Advanced to get started.", MessageType.Info); return; }
+        bool previousChanged = GUI.changed;
+        topicSelection = Mathf.Clamp(topicSelection, 0, database.topics.Count - 1);
+        int nextTopic = EditorGUILayout.Popup("1. Topic", topicSelection, database.topics.ConvertAll(t => t.topicName).ToArray());
+        if (nextTopic != topicSelection) { topicSelection = nextTopic; subtopicSelection = captionSelection = 0; }
+        var topic = database.topics[topicSelection];
+        if (topic.subTopics.Count == 0) return;
+        subtopicSelection = Mathf.Clamp(subtopicSelection, 0, topic.subTopics.Count - 1);
+        int nextSub = EditorGUILayout.Popup("2. Subtopic", subtopicSelection, topic.subTopics.ConvertAll(t => t.subTopicName).ToArray());
+        if (nextSub != subtopicSelection) { subtopicSelection = nextSub; captionSelection = 0; }
+        var sub = topic.subTopics[subtopicSelection];
+        if (sub.sentences.Count == 0) return;
+        captionSelection = Mathf.Clamp(captionSelection, 0, sub.sentences.Count - 1);
+        captionSelection = EditorGUILayout.Popup("3. Caption", captionSelection, sub.sentences.ConvertAll(c => Shorten(c.sentence, 100)).ToArray());
+        GUI.changed = previousChanged;
+        var sentence = sub.sentences[captionSelection];
+        EditorGUILayout.Space(10);
+        EditorGUILayout.LabelField(sentence.sentence, EditorStyles.wordWrappedLabel);
+        DrawBlankScoring(sentence, topicSelection, subtopicSelection, captionSelection);
+        EditorGUILayout.Space(10);
+        EditorGUILayout.HelpBox("Each blank can accept several answers. For example, Blank 2 can give full credit for both power and benefits. Moving a word into a group removes it from the other groups for this blank only.", MessageType.Info);
+        DrawStringList("Words players can select (including distractors)", sentence.wordChoices);
+        if (sentence.wordChoices.Count > 12)
+            EditorGUILayout.HelpBox("This caption has more than 12 word choices. The game's default display limit is 12, so some may be hidden. Remove unused distractors or raise Max Word Choices To Show on the caption manager.", MessageType.Warning);
     }
 
     private void DrawToolbar()
     {
         EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
 
-        if (GUILayout.Button("Normalize All Blank Scoring"))
+        if (GUILayout.Button("Fill Missing Answer Groups"))
         {
             NormalizeAllBlankScoring();
             MarkDirty();
         }
 
-        if (GUILayout.Button("Sync All Blanks From [Brackets]"))
+        if (GUILayout.Button("Update Blanks From Captions"))
         {
             SyncAllBlankWordsFromSentences();
             MarkDirty();
@@ -310,7 +351,7 @@ public class DailyPostJsonEditorWindow : EditorWindow
 
             if (GUILayout.Button("Normalize Blank Scoring"))
             {
-                NormalizeBlankScoring(sentence, true);
+                NormalizeBlankScoring(sentence, false);
                 MarkDirty();
             }
             EditorGUILayout.EndHorizontal();
@@ -353,11 +394,10 @@ public class DailyPostJsonEditorWindow : EditorWindow
         {
             EditorGUILayout.BeginHorizontal();
             sentence.blankWords[i] = EditorGUILayout.TextField("Blank " + (i + 1), sentence.blankWords[i]);
-            if (GUILayout.Button("Use as Correct", GUILayout.Width(110f)))
+            if (GUILayout.Button("Mark as Fits", GUILayout.Width(110f)))
             {
                 NormalizeBlankScoring(sentence, false);
-                sentence.blankScoring[i].correctWords.Clear();
-                sentence.blankScoring[i].correctWords.Add(sentence.blankWords[i]);
+                SetAnswer(sentence, sentence.blankScoring[i], sentence.blankScoring[i].correctWords, -1, sentence.blankWords[i]);
                 MarkDirty();
             }
             EditorGUILayout.EndHorizontal();
@@ -369,39 +409,81 @@ public class DailyPostJsonEditorWindow : EditorWindow
         NormalizeBlankScoring(sentence, false);
 
         EditorGUILayout.Space(4f);
-        EditorGUILayout.LabelField("Ordered Blank Scoring", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox("Each block matches the same blank position. This makes order matter. Example: blank 1 correct = eat, blank 2 correct = today. Selecting today first is wrong unless you add it to blank 1 half/neutral.", MessageType.None);
-
+        EditorGUILayout.LabelField("Answers for each blank", EditorStyles.boldLabel);
+        EditorGUILayout.HelpBox("Grade how words fit this caption, not whether the health claim is true. Put equivalent answers together. Use partial credit for readable but broader or different claims.", MessageType.Info);
         for (int i = 0; i < sentence.blankScoring.Count; i++)
         {
-            DailyPostBlankScoringJson rule = sentence.blankScoring[i];
-            string blankName = i < sentence.blankWords.Count ? sentence.blankWords[i] : "Blank " + (i + 1);
-            string key = "blank_score_" + topicIndex + "_" + subTopicIndex + "_" + sentenceIndex + "_" + i;
-            bool open = GetFoldout(key, false);
-
+            var rule = sentence.blankScoring[i];
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-            open = EditorGUILayout.Foldout(open, "Blank " + (i + 1) + " Scoring: " + blankName, true);
-            SetFoldout(key, open);
-
-            if (open)
+            EditorGUILayout.LabelField("Blank " + (i + 1) + " — [" + sentence.blankWords[i] + "]", EditorStyles.boldLabel);
+            DrawAnswerGroup(sentence, rule, "Full credit — fits the caption", rule.correctWords);
+            DrawAnswerGroup(sentence, rule, "Partial credit — partly fits", rule.halfCorrectWords);
+            var key = "other_" + rule.GetHashCode();
+            bool other = EditorGUILayout.Foldout(GetFoldout(key, false), "Other answers (no credit)", true);
+            SetFoldout(key, other);
+            if (other)
             {
-                rule.note = EditorGUILayout.TextField("Note", rule.note);
-                DrawStringList("Correct Words", rule.correctWords);
-                DrawStringList("Half Correct Words", rule.halfCorrectWords);
-                DrawStringList("Neutral Words", rule.neutralWords);
-                DrawStringList("Wrong Words", rule.wrongWords);
-                DrawStringList("Nonsense Words", rule.nonsenseWords);
+                DrawAnswerGroup(sentence, rule, "Legacy neutral answers (no credit)", rule.neutralWords);
+                DrawAnswerGroup(sentence, rule, "Legacy wrong answers (no credit)", rule.wrongWords);
+                DrawAnswerGroup(sentence, rule, "Does not fit", rule.nonsenseWords);
             }
-
+            DrawWordFeedback(rule);
             EditorGUILayout.EndVertical();
         }
+    }
+
+    private void DrawWordFeedback(DailyPostBlankScoringJson rule)
+    {
+        if (rule.wordFeedback == null) rule.wordFeedback = new List<DailyPostWordFeedbackJson>();
+        var key = "feedback_" + rule.GetHashCode();
+        bool open = EditorGUILayout.Foldout(GetFoldout(key, false), "Explain why an answer only partly fits or does not fit", true);
+        SetFoldout(key, open);
+        if (!open) return;
+        EditorGUILayout.HelpBox("Match the answer spelling to the word bank. Explain the specific issue: vague wording, a different claim, grammar, or a contradiction. Partial fits do not interrupt the player by default.", MessageType.Info);
+        for (int i = 0; i < rule.wordFeedback.Count; i++)
+        {
+            var feedback = rule.wordFeedback[i];
+            EditorGUI.BeginChangeCheck();
+            feedback.word = EditorGUILayout.TextField("Answer", feedback.word);
+            feedback.reason = EditorGUILayout.TextField("Explanation", feedback.reason);
+            if (EditorGUI.EndChangeCheck()) MarkDirty();
+            if (GUILayout.Button("Remove explanation")) { rule.wordFeedback.RemoveAt(i); MarkDirty(); break; }
+        }
+        if (GUILayout.Button("Add explanation")) { rule.wordFeedback.Add(new DailyPostWordFeedbackJson()); MarkDirty(); }
+    }
+
+    private void DrawAnswerGroup(DailyPostSentenceJson sentence, DailyPostBlankScoringJson rule, string label, List<string> words)
+    {
+        EditorGUILayout.LabelField(label, EditorStyles.boldLabel);
+        if (words.Count == 0) EditorGUILayout.LabelField("No answers yet", EditorStyles.miniLabel);
+        for (int i = 0; i < words.Count; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+            string value = EditorGUILayout.DelayedTextField(words[i]);
+            if (value != words[i]) { SetAnswer(sentence, rule, words, i, value); MarkDirty(); }
+            bool remove = GUILayout.Button("Remove", GUILayout.Width(75));
+            EditorGUILayout.EndHorizontal();
+            if (remove) { words.RemoveAt(i); MarkDirty(); break; }
+        }
+        if (GUILayout.Button("+ Add answer", GUILayout.Width(130))) { words.Add(""); MarkDirty(); }
+        EditorGUILayout.Space(5);
+    }
+
+    public static void SetAnswer(DailyPostSentenceJson sentence, DailyPostBlankScoringJson rule, List<string> target, int index, string value)
+    {
+        value = (value ?? "").Trim();
+        if (index < 0) target.Add(value); else target[index] = value;
+        if (value.Length == 0) return;
+        foreach (var group in new[] { rule.correctWords, rule.halfCorrectWords, rule.neutralWords, rule.wrongWords, rule.nonsenseWords })
+            if (group != target) group.RemoveAll(w => string.Equals(w?.Trim(), value, StringComparison.OrdinalIgnoreCase));
+        if (!sentence.wordChoices.Exists(w => string.Equals(w?.Trim(), value, StringComparison.OrdinalIgnoreCase))) sentence.wordChoices.Add(value);
     }
 
     private void DrawStringList(string label, List<string> list)
     {
         if (list == null)
         {
-            EditorGUILayout.HelpBox(label + " is null. Click Normalize All Blank Scoring or reload the JSON.", MessageType.Warning);
+            EditorGUILayout.HelpBox(label + " is null. Click Fill Missing Answer Groups or reload the JSON.", MessageType.Warning);
             return;
         }
 
@@ -414,6 +496,8 @@ public class DailyPostJsonEditorWindow : EditorWindow
         if (GUILayout.Button("Add", GUILayout.Width(55f)))
         {
             list.Add("");
+            SetFoldout(key, true);
+            open = true;
             MarkDirty();
         }
         EditorGUILayout.EndHorizontal();
@@ -457,6 +541,7 @@ public class DailyPostJsonEditorWindow : EditorWindow
 
     private void LoadJsonFromAsset()
     {
+        if (hasUnsavedChanges && !EditorUtility.DisplayDialog("Reload caption data?", "Reloading discards your unsaved edits.", "Reload", "Cancel")) return;
         if (jsonFile == null)
         {
             EditorUtility.DisplayDialog("No JSON file", "Drag a DailyPostData.json TextAsset first.", "OK");
@@ -478,19 +563,20 @@ public class DailyPostJsonEditorWindow : EditorWindow
                 database = new DailyPostJsonDatabase();
             }
             NormalizeDatabase(database);
+            hasUnsavedChanges = false;
         }
         catch (Exception e)
         {
-            database = new DailyPostJsonDatabase();
+            database = null;
             Debug.LogError("DailyPostJsonEditorWindow: JSON parse failed. " + e.Message);
         }
     }
 
-    private void SaveJsonToAsset()
+    private bool SaveJsonToAsset()
     {
         if (database == null)
         {
-            return;
+            return false;
         }
 
         if (string.IsNullOrEmpty(jsonAssetPath))
@@ -498,18 +584,44 @@ public class DailyPostJsonEditorWindow : EditorWindow
             string path = EditorUtility.SaveFilePanelInProject("Save Daily Post JSON", "DailyPostData", "json", "Choose where to save the JSON file.");
             if (string.IsNullOrEmpty(path))
             {
-                return;
+                return false;
             }
             jsonAssetPath = path;
         }
 
         NormalizeDatabase(database);
+        foreach (var topic in database.topics)
+        foreach (var sub in topic.subTopics)
+        foreach (var caption in sub.sentences)
+        foreach (var rule in caption.blankScoring)
+        {
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var group in new[] { rule.correctWords, rule.halfCorrectWords, rule.neutralWords, rule.wrongWords, rule.nonsenseWords })
+            {
+                group.RemoveAll(string.IsNullOrWhiteSpace);
+                for (int i = 0; i < group.Count; i++)
+                {
+                    group[i] = group[i].Trim();
+                    if (!seen.Add(group[i]))
+                    {
+                        EditorUtility.DisplayDialog("Answer appears more than once", caption.sentence + "\n\n" + rule.note + ": " + group[i] + "\nKeep this answer in only one group for this blank.", "OK");
+                        return false;
+                    }
+                }
+            }
+            foreach (var word in rule.correctWords)
+                if (!caption.wordChoices.Exists(w => string.Equals(w, word, StringComparison.OrdinalIgnoreCase))) caption.wordChoices.Add(word);
+            foreach (var word in rule.halfCorrectWords)
+                if (!caption.wordChoices.Exists(w => string.Equals(w, word, StringComparison.OrdinalIgnoreCase))) caption.wordChoices.Add(word);
+        }
         string json = JsonUtility.ToJson(database, true);
         File.WriteAllText(jsonAssetPath, json);
         AssetDatabase.ImportAsset(jsonAssetPath);
         AssetDatabase.Refresh();
         jsonFile = AssetDatabase.LoadAssetAtPath<TextAsset>(jsonAssetPath);
-        EditorUtility.DisplayDialog("Saved", "Daily post JSON saved.", "OK");
+        hasUnsavedChanges = false;
+        ShowNotification(new GUIContent("Caption answers saved"));
+        return true;
     }
 
     private void NormalizeDatabase(DailyPostJsonDatabase data)
@@ -606,7 +718,7 @@ public class DailyPostJsonEditorWindow : EditorWindow
                 DailyPostSubTopicJson subTopic = topic.subTopics[s];
                 for (int c = 0; c < subTopic.sentences.Count; c++)
                 {
-                    NormalizeBlankScoring(subTopic.sentences[c], true);
+                    NormalizeBlankScoring(subTopic.sentences[c], false);
                 }
             }
         }
@@ -633,7 +745,7 @@ public class DailyPostJsonEditorWindow : EditorWindow
         List<string> found = ExtractBracketWords(sentence.sentence);
         sentence.blankWords.Clear();
         sentence.blankWords.AddRange(found);
-        NormalizeBlankScoring(sentence, true);
+        NormalizeBlankScoring(sentence, false);
     }
 
     private List<string> ExtractBracketWords(string sentence)
@@ -712,6 +824,8 @@ public class DailyPostJsonEditorWindow : EditorWindow
 
     private void MarkDirty()
     {
+        hasUnsavedChanges = true;
+        saveChangesMessage = "Save your caption and answer changes?";
         Repaint();
     }
 }

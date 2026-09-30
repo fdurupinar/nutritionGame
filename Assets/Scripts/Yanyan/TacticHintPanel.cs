@@ -13,6 +13,8 @@ public class TacticHintPanel : MonoBehaviour
     public GameObject hintPanel;
     public RectTransform hintPanelRect;
     public TextMeshProUGUI hintText;
+    public TextMeshProUGUI panelTitle;
+    public Image feedbackCat;
 
     [Header("Optional Close Button")]
     public Button closeButton;
@@ -50,6 +52,7 @@ public class TacticHintPanel : MonoBehaviour
 
     public void SetSelectedCard(Card card)
     {
+        HideHintPanelInstant();
         currentSelectedCard = card;
 
         // Do not disable or hide the hint button.
@@ -68,6 +71,8 @@ public class TacticHintPanel : MonoBehaviour
 
     public void OpenHintPanel()
     {
+        if (feedbackCat != null) feedbackCat.gameObject.SetActive(false);
+        if (panelTitle != null) panelTitle.text = "Inside the tactic";
         if (hintPanel == null)
             return;
 
@@ -78,6 +83,24 @@ public class TacticHintPanel : MonoBehaviour
                 hintText.text = "<b>YOUR POST</b>\n" + TacticExplorer.Escape(captionManager.currentCompletedSentence) + "\n\n" + hintText.text;
         }
 
+        ShowPanel();
+    }
+
+    public void ShowFeedback(string title, string message, Sprite expression)
+    {
+        if (hintPanel == null || hintText == null) return;
+        hintText.text = message;
+        if (panelTitle != null) panelTitle.text = title;
+        if (feedbackCat != null)
+        {
+            feedbackCat.sprite = expression;
+            feedbackCat.gameObject.SetActive(expression != null);
+        }
+        ShowPanel();
+    }
+
+    private void ShowPanel()
+    {
         hintPanel.SetActive(true);
         Canvas.ForceUpdateCanvases();
         var reading = hintPanel.GetComponentInChildren<ScrollRect>();
@@ -169,7 +192,7 @@ public class TacticHintPanel : MonoBehaviour
         animationRoutine = null;
     }
 
-    private void HideHintPanelInstant()
+    public void HideHintPanelInstant()
     {
         if (animationRoutine != null)
         {

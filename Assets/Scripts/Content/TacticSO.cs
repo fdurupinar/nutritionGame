@@ -50,6 +50,9 @@ public class TacticSO : ScriptableObject
     public bool enabledFlag = true;
     public Sprite tacticImage;
 
+    [Tooltip("Optional complete card-front artwork. Separate from the image used in published posts.")]
+    public Sprite cardFrontArtwork;
+
     private void OnValidate()
     {
         tacticId = ConvertTacticIdToString(tacticIdDropdown);

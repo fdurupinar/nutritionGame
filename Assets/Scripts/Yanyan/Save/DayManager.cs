@@ -45,6 +45,7 @@ public class DayManager : MonoBehaviour
 
     public void ResetDays()
     {
+        JobPostManager.ResetSavedJobs();
         currentDay = 1;
         PlayerPrefs.SetInt("HasPostedToday", 0); // <-- Resets the post flag
         SaveDay();

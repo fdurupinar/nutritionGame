@@ -14,6 +14,13 @@ public class DayConfig
     public List<TacticSO> tacticsForThisDay;
 }
 
+[System.Serializable]
+public class CaptionImageLink
+{
+    public string captionTemplateId;
+    public Sprite image;
+}
+
 public class TacticManager : MonoBehaviour
 {
     [Header("Day System Configuration")]
@@ -32,6 +39,7 @@ public class TacticManager : MonoBehaviour
     public TacticSO SelectedTactic => _currentlySelectedCard != null ? _currentlySelectedCard.TacticData : null;
 
     [Header("Publish Settings")]
+    public List<CaptionImageLink> captionImages = new List<CaptionImageLink>();
     [SerializeField] private GameObject _contentPanel;
     [SerializeField] TextMeshProUGUI _contentBox;
 
@@ -41,6 +49,7 @@ public class TacticManager : MonoBehaviour
 
     private ScrollRect _scrollRect;
     private CommentManager _commentManager;
+    private AudioManager _audioManager;
 
     // Auto-scroll state flag
     private bool _isAutoScrolling;
@@ -127,6 +136,7 @@ public class TacticManager : MonoBehaviour
         }
 
         _commentManager = FindFirstObjectByType<CommentManager>();
+        _audioManager = FindAnyObjectByType<AudioManager>();
 
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
@@ -382,6 +392,7 @@ public class TacticManager : MonoBehaviour
 
     private void StopTacticPublishRoutines()
     {
+        if (_audioManager != null) _audioManager.StopTyping();
         _displayRequestId++;
 
         if (_publishSequenceRoutine != null)
@@ -407,6 +418,11 @@ public class TacticManager : MonoBehaviour
         SetAfterSentenceButtonActive(false);
     }
 
+    private void OnDisable()
+    {
+        StopTacticPublishRoutines();
+    }
+
     private IEnumerator DisplayTextCC(string fullText, int requestId)
     {
         if (_contentBox == null) yield break;
@@ -424,6 +440,8 @@ public class TacticManager : MonoBehaviour
             if (requestId != _displayRequestId) yield break;
 
             _contentBox.text += word + " ";
+            if (!string.IsNullOrWhiteSpace(word) && _audioManager != null)
+                _audioManager.PlayTypingTap();
 
             if (_scrollRect != null)
             {
@@ -432,6 +450,8 @@ public class TacticManager : MonoBehaviour
 
             yield return new WaitForSeconds(delay);
         }
+
+        if (_audioManager != null) _audioManager.StopTyping();
 
         // 中文备注：Home按钮不再在文字动画结束时出现。
         // 它会等待评论动画和指标动画全部结束后再弹出。
@@ -463,6 +483,12 @@ public class TacticManager : MonoBehaviour
         {
             Debug.LogError("TacticManager: UserStats was not found. Publish cancelled.");
             return;
+        }
+
+        // Close feedback before the coach warning or the published post appears.
+        if (tacticHintPanel != null)
+        {
+            tacticHintPanel.HideHintPanelInstant();
         }
 
         TacticSO selectedTactic = _currentlySelectedCard.TacticData;
@@ -517,7 +543,7 @@ public class TacticManager : MonoBehaviour
             Image contentImage = _contentPanel.GetComponent<Image>();
             if (contentImage != null)
             {
-                contentImage.sprite = selectedTactic.tacticImage;
+                contentImage.sprite = ResolvePostImage(dailyPostFillBlankManager?.currentSentenceData?.captionTemplateId, selectedTactic);
                 contentImage.gameObject.SetActive(true);
             }
         }
@@ -547,6 +573,17 @@ public class TacticManager : MonoBehaviour
             publishedCard,
             postTextToShow,
             preparedPreview));
+    }
+
+    public Sprite ResolvePostImage(string captionTemplateId, TacticSO tactic)
+    {
+        if (!string.IsNullOrWhiteSpace(captionTemplateId) && captionImages != null)
+        {
+            var link = captionImages.Find(item => item != null &&
+                item.captionTemplateId == captionTemplateId && item.image != null);
+            if (link != null) return link.image;
+        }
+        return tactic != null ? tactic.tacticImage : null;
     }
 
     private PostMetricPreview PrepareMetricPreview(TacticSO selectedTactic)
